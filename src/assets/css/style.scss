@@ -1,5 +1,5 @@
 //VARIABLES
-$fonts: "Lato";
+$fonts: "Helvetica";
 $global-color:#03603b;
 $menu-colors: #19491d;
 $menu-border-colors: #074d24;
@@ -11,6 +11,7 @@ $main-submenu-button-hover-color: #2d8954;
 $menu-menu-hover-color:#0f2603;
 $top-nav-color:#535450;
 $btn-primary-color: green;
+$btn-primary-border-color: #157042;
 $btn-primary-color-hover:#234412;
 $btn-link-color: green;
 $btn-link-color-hover: #234412;
@@ -47,8 +48,8 @@ button {
     @include border-radius(0px !important);
 }
 .btn-primary{
-    background: $btn-link-color;
-    border: $btn-link-color;
+    background: $btn-primary-color;
+    border: $btn-primary-border-color;
 }
 .btn-primary:hover {
     background: $btn-primary-color-hover;

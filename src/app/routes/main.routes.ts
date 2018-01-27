@@ -1,3 +1,4 @@
+import { MenuResolver } from './../generic/menu.resolver';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
@@ -11,7 +12,7 @@ import { PageNotFoundComponent} from '../generic/error-pages/page-not-found/page
 import { XfsPageComponent } from '../generic/xfs-page/xfs-page.component';
 
 //RESOLVERS
-import { MenuResolver } from '../generic/menu.resolver';
+
 import { DropdownResolver } from '../generic/resolver/dropdown.resolver';
 import { ConditionOfVehicleResolver } from '../generic/resolver/condVech.resolver';
 import { EquipmentAccesoriesResolver } from '../generic/resolver/equipAcc.resolver';
@@ -27,37 +28,23 @@ import { AuthGuard } from '../generic/guards/auth.guard';
 
 export const routes: Routes = [
 
-      { path: 'login', component: LoginComponent },
-      { path: 'Appraisal', component: LoginComponent },
-      { path: '', component: LoginComponent, pathMatch: 'full' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'xfs', component: XfsPageComponent },
       {
             path: 'home', component: HomeComponent,
-            resolve: {
-                  menu: MenuResolver,
-                  dropdowns: DropdownResolver,
-                  negFactors: NegativeFactorsResolver,
-                  posFactors: PositiveFactorsResolver,
-                  MCEquipAcc: EquipmentAccesoriesResolver,
-                  MCCondVech: ConditionOfVehicleResolver,
-                  WareHouseDet: WarehouseResolver,
-                  Improvements: ImprovementResolver,
-                  REDocuments: DocumentREResolver,
-                  MCDocuments: DocumentMCResolver
-            },
-            canActivateChild: [AuthGuard],
+            resolve:
+                 { 
+                       menu: MenuResolver
+                 },
+            
             children: [
                   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-                  { path: 'error', component: ErrorPageComponent },
                   //TRANSACTION LIST
-                  { path: 'createRequestRE', component: WelcomeComponent },
+                  { path: 'welcome', component: WelcomeComponent },
 
             ]
       },
-      //WHEN ROUTE IS NOT FOUND
-      { path: 'error', component: ErrorPageComponent },
-      { path: '404', component: PageNotFoundComponent },
-      { path: '**', redirectTo: "/404" }
+
 
 ];
 

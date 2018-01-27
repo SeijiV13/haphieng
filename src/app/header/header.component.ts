@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 		else this.losUser = false;
 	}
 	ngOnInit() {
-		this.forceChange = localStorage.getItem('changePasswordWQuestion');
+		/*this.forceChange = localStorage.getItem('changePasswordWQuestion');
 		this.router.events.subscribe((value) => {
 			if (value instanceof NavigationEnd) {
 				if (value.url === "/") {
@@ -64,8 +64,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 					$("#menu1").removeClass("top-nav-active");
 				}
 			}
-		});
-		this.getUsername(this.dataPasserService.username);
+		});*/
+		//this.getUsername(this.dataPasserService.username);
 	}
 
 	logout() {

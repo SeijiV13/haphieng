@@ -41,7 +41,6 @@ import { LoadingAnimationComponent } from './generic/loading-animation/loading-a
 import { DatepickerComponent } from './generic/datepicker/datepicker.component';
 import { ProgressHttpModule } from "angular-progress-http";
 import { CookieModule} from 'ngx-cookie';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { QuillEditorModule } from 'ngx-quill-editor';
 import { AgmCoreModule } from '@agm/core';
 import { ChartsModule } from 'ng2-charts';
@@ -158,7 +157,6 @@ import { WidgetsComponent } from './generic/widgets/widgets.component';
         BrowserAnimationsModule,
         CommonModule,
         DropdownModule,
-        FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyCG_DEfvNeplEfJBT62WR1a4YwlmipYbUY'
           }),
@@ -230,7 +228,7 @@ export function theFactory(init: InitService){
 }
 
 export function baseUrl(){   
-    return  "/Appraisal/";
+    return  "/";
 }
 
 

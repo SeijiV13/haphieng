@@ -27,7 +27,7 @@ export class GenericTableComponent implements OnInit {
 
   ngOnInit() {
     if (this.results.length === 0) {
-      this.tableResultMessage = this.messageConfig.getErrorMessage("noResults");
+      //this.tableResultMessage = this.messageConfig.getErrorMessage("noResults");
    }
   
   }
