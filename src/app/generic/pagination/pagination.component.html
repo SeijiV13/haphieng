@@ -1,0 +1,41 @@
+<!--*ngIf="pagerOptions.totalItems > 0"-->
+<div class="row" class="paginationTab">
+    <div class="col-xs-3" >
+        <span>Total Number of Records: {{pagerOptions.totalItems}}</span>
+
+    </div>
+    <div class="col-xs-6 col-lg-6" style="text-align:center">
+        <ul  class="pagination" style="margin:0px;">
+            <li [ngClass]="{disabled:pagerOptions.currentPage === 1}">
+                <button type="button" class="btn btn-default" (click)="retrieveNewValues(1)" [disabled]="pagerOptions.currentPage === 1"><<</button>
+            </li>
+            <li [ngClass]="{disabled:pagerOptions.currentPage === 1}">
+                <button type="button" class="btn btn-default" (click)="retrieveNewValues(pagerOptions.currentPage - 1)" [disabled]="pagerOptions.currentPage === 1"><</button>
+            </li>
+            <li>
+                <input type="number" #goToPage [value]="pagerOptions.currentPage" class="form-control go-to-page" style="width:50px">
+            </li>
+            <li>
+                <button type="button" class="btn btn-default" (click)="retrieveNewValues(goToPage.value)" style="font-size:12px;">Go To Page</button>
+            </li>
+            <li [ngClass]="{disabled:pagerOptions.currentPage === pagerOptions.totalPages}">
+                <button type="button" class="btn btn-default" (click)="retrieveNewValues(pagerOptions.currentPage + 1)" [disabled]="pagerOptions.currentPage === pagerOptions.totalPages">></button>
+            </li>
+            <li [ngClass]="{disabled:pagerOptions.currentPage === pagerOptions.totalPages}">
+                <button type="button" class="btn btn-default" (click)="retrieveNewValues(pagerOptions.totalPages)" [disabled]="pagerOptions.currentPage === pagerOptions.totalPages">>></button>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" style="text-align: right">Page {{pagerOptions.currentPage}} of {{pagerOptions.totalPages}}</div>
+   
+</div>
+
+
+<!--div class="row" class="paginationTab" *ngIf="legend">
+    <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" style="left: 0">
+        <span style="color:#ef4a4a" class="glyphicon glyphicon-stop"></span>
+        <span>Beyond Deadline</span>
+        <span style="color:#eff230" class="glyphicon glyphicon-stop"></span>
+        <span>Near Deadline</span>
+    </div>
+</div-->

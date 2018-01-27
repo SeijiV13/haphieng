@@ -1,0 +1,94 @@
+<div class="header">
+
+    <!--img class="header-logo pull-left" style="margin-left:25px; float:left;" src="assets/img/login-header-background.png" 
+    /-->
+
+
+    <ul id="top-nav" style="margin: 8px 0" style="margin-right:25px; margin-top:10px" class="pull-right">
+        <li *ngIf="forceChange !== 'yes'">
+            <div *ngIf="!losUser" class="dropdown" dropdown>
+                <button id="top-nav-button" style="margin-top:9px; margin-right:8px; border-style:none; border-right-style:solid; background-color:transparent;  outline: none !important;
+                        box-shadow: none; " class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                    dropdown-open><span class="fa fa-user"></span> {{username}}
+                       <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li style="width:100%" class="dropdown-header"><span class="fa fa-cog"></span> Settings</li>
+                    <li style="width:100%" class="divider"></li>
+                    <li style="width:100%"><a (click)="changePassword()">Change Password</a></li>
+                    <li style="width:100%"><a (click)="securityQuestion()">Security Questions</a></li>
+                </ul>
+            </div>
+            <div *ngIf="losUser" class="dropdown" dropdown>
+                <button id="top-nav-button" style="margin-top:9px; margin-right:8px; border-style:none; border-right-style:solid; background-color:transparent;  outline: none !important;
+                        box-shadow: none; color:#333435" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                    dropdown-open><span class="fa fa-user"></span> {{username}}
+                       <span class="caret"></span></button>
+            </div>
+
+        </li>
+
+        <li *ngIf="forceChange !== 'yes'">
+            <button id="menu1" class="btn btn-link" (click)="home()" type="button">
+                    <i class="glyphicon glyphicon-home top-nav-title" style="font-size:1.2em"></i>
+                    <span class="top-nav-title" xlabel="lnkHome" style="font-size:.8em">HOME</span>
+                </button>
+        </li>
+        <li>
+            <button class="btn btn-link">
+                    <i class="glyphicon glyphicon-question-sign top-nav-title"  style="font-size:1.2em"></i>
+                    <span class="top-nav-title" xlabel="lnkHelp" style="font-size:.8em">HELP</span>
+                </button>
+        </li>
+        <li>
+            <button (click)="logoutConfirmation.show()" class="btn btn-link">
+                    <i class="glyphicon glyphicon-log-out top-nav-title"  style="font-size:1.2em"></i>
+                    <span class="top-nav-title" xlabel="lnkLogout" style="font-size:.8em">LOGOUT</span>
+                </button>
+        </li>
+    </ul>
+
+
+</div>
+
+<div bsModal #logoutConfirmation="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button *ngIf="pressedLogOut" type="button" class="close-modal" (click)="logoutConfirmation.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                <h4 class="modal-title"><span class="fa fa-sign-out"></span> Log Out</h4>
+            </div>
+            <h2>Are you sure?</h2>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button style="border-radius: 5px !important" type="submit" class="btn btn-primary" [disabled]="pressedLogOut" (click)="logout()">Yes</button>
+                    <button style="border-radius: 5px !important" type="button" class="btn btn-default" [disabled]="pressedLogOut" (click)="logoutConfirmation.hide()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #sessionWarning="bs-modal" id="sessionWarningModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close-modal" (click)="sessionWarning.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                <h4 class="modal-title"><span class="fa fa-exclamation-triangle"></span> Session Warning</h4>
+            </div>
+            <div>{{sessionWarningMsg}}</div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button style="border-radius: 5px !important" type="submit" class="btn btn-primary" (click)="refreshJWT()">Yes</button>
+                    <button style="border-radius: 5px !important" type="button" class="btn btn-default" (click)="sessionWarning.hide()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--session-timeout-modal #confirmationSessionExpiredModal (acceptTransaction)="forceLogout()" (denyTransaction)="checkSessExpired()"></session-timeout-modal-->
+<!--error-modal [maxZIndex]="true" [redirectButton]="true" #forceLogoutModal (emitOk)="logout()"></error-modal-->

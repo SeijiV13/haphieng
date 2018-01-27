@@ -1,0 +1,144 @@
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-bottom: solid gray 1px;
+}
+.responsive-table-container {
+    padding: 10px;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: lightgray;
+}
+
+.table>thead>tr>th{
+    padding:4px;
+}
+.table-responsive {
+    width: 100%;
+    /*border-style: none !important;*/
+    text-align: center;
+}
+
+td:not(.checkbox-container),
+th,
+td:not(.table-footer) {
+    font-size:14px;
+    padding: 4px;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.table-footer {
+    text-align: center !important;
+}
+
+th {
+    border-style: none;
+    font-size:13px;
+    color: white;
+    vertical-align: left;
+}
+
+tr:not(.row-footer) {
+    cursor: pointer;
+    font-weight: normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+tr.row-result:hover td {
+    background-color: #1e995d;
+    border-color: #1e995d;
+    color: white;
+    /*for transition effects*/
+}
+
+tr.active-row td:not(.color-row) {
+    background-color: #1e995d !important;
+    border-color: #1e995d !important;
+    color: white !important;
+}
+
+td.color-row:hover {
+    background-color: #1e995d !important;
+    border-right: solid 1px #1e995d!important;
+}
+
+
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+
+tr.row-result:hover td:not(.color-row) {
+    background-color: #1e995d;
+    border-color: #1e995d;
+    color: white;
+}
+
+tr.row-result:nth-child(odd):hover td:not(.color-row) {
+    background-color: #1e995d;
+    border-color: #1e995d;
+    color: white
+    /*for transition effects*/
+}
+
+.color-row {
+    width: 10px;
+}
+
+.color-row-header {
+    width: 10px;
+
+}
+
+td {
+
+    background: #FFFFFF;
+}
+
+tfoot {
+    text-align: center;
+    color: #999;
+    font-size: 0.9em;
+    border-top: 2px solid #CCC;
+}
+
+tfoot div {
+    height: 30px;
+    padding-top: 6px;
+}
+
+tfoot .form-control,
+tfoot .btn {
+    border: 1px solid #CCC;
+    height: 30px;
+    padding: 6px 5px;
+    vertical-align: middle;
+    font-size: 1.0em;
+    color: #999;
+    margin-top: -6px;
+}
+
+tfoot .form-control {
+    width: 30px;
+    display: inline-block;
+}
+
+.go-to-page::-webkit-inner-spin-button,
+.go-to-page::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.btn-link:focus {
+    border: none;
+    outline: none !important;
+    box-shadow: none;
+}
+.alert-info {
+    background-color: transparent;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: lightgray;
+    text-align: center;
+}

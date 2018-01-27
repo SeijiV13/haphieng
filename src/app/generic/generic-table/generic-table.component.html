@@ -1,0 +1,103 @@
+<!--/#START OF TABLE RESULTS-->
+<fieldset class="section-content">
+    <legend>
+        <h5>SEARCH RESULTS</h5>
+    </legend>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pull-right">
+                <ng-container *ngFor="let button of buttons">
+                      <button type="button" class="btn btn-link disabled-button" [id]="button.id" (click)="onButtonClick(button.type)">
+                                <span [class]="button.logo"></span> {{button.name}}
+                      </button>
+    
+                </ng-container>
+            </div>
+        </div>
+    </div>
+<div *ngIf="type == 'single'" class="row">
+  <div class="col-sm-12">
+      <!--LOADING ANIMATION GIF-->
+      <loading-animation [removeLoad]="removeLoad"></loading-animation>
+      <div *ngIf="results.length === 0 && removeLoad !== false">
+          <div class="alert alert-info">{{tableResultMessage}}</div>
+      </div>
+      <div [hidden]="!(results.length !== 0 && removeLoad !== false)" class="table-responsive">
+          <table class="table">
+              <THEAD>
+                  <TR>
+                    <th *ngFor="let header of headers">{{header}}</th>
+                  </TR>
+              </THEAD>
+              <TBODY>
+                  <TR class="row-result" (click)="tableFunctions.onTableRowClick($event, result, dataPasserService.selectedData, processButtonId())" *ngFor="let result of results; let i = index">
+                      <TD style="display:none" class="checkbox-container"><input (change)="tableFunctions.onUpdateCheckBox($event, result)" name="checkbox-results" type="checkbox" [value]="result"
+                              class="checkbox-results"></TD>
+                      <td *ngFor="let key of keys">
+                               <ng-container *ngIf="key.behavior === 'clickable'">
+                                  <a (click)="onClickColumn(result)">{{result[key.name]}}</a>
+                               </ng-container>
+                               <ng-container *ngIf="key.behavior !== 'clickable'">
+                                  {{result[key.name]}}
+                               </ng-container>
+                      </td>
+            
+                  </TR>
+
+              </TBODY>
+            
+          </table>
+
+
+      </div>
+      <div [hidden]="!(results.length !== 0 && removeLoad !== false)">
+      <pagination-selector [url]="searchUrl" (showLoaderEvent)="showLoader($event)" (returnedValueEvent)="map2Tables($event)"></pagination-selector>
+      </div>
+
+    
+  </div>
+</div>
+<div *ngIf="type == 'multiple'" class="row">
+        <div class="col-sm-12">
+            <!--LOADING ANIMATION GIF-->
+            <loading-animation [removeLoad]="removeLoad"></loading-animation>
+            <div *ngIf="results.length === 0 && removeLoad !== false">
+                <div class="alert alert-info">{{tableResultMessage}}</div>
+            </div>
+            <div [hidden]="!(results.length !== 0 && removeLoad !== false)" class="table-responsive">
+                <table class="table">
+                    <THEAD>
+                        <TR>
+                          <th><input class="all-check-box" (change)="tableFunctions.checkAllCheckBox($event, results, processButtonId(), processButtonIdMultiple(), primaryKey)" type="checkbox"></th>
+                          <th *ngFor="let header of headers">{{header}}</th>
+                        </TR>
+                    </THEAD>
+                    <TBODY>
+                        <TR class="row-result" (click)="tableFunctions.onTableRowClickMultiple($event, result, processButtonId(), processButtonIdMultiple(), primaryKey)" *ngFor="let result of results; let i = index">
+                            <TD class="checkbox-container"><input (change)="tableFunctions.onUpdateCheckboxMultiple($event, result, processButtonId(), processButtonIdMultiple(), primaryKey);" name="checkbox-results" type="checkbox" [value]="result"
+                                    class="checkbox-results"></TD>
+                            <td *ngFor="let key of keys">
+                               <ng-container *ngIf="key.behavior === 'clickable'">
+                                    <a (click)="onClickColumn(result)">{{result[key.name]}}</a>
+                               </ng-container>
+                               <ng-container *ngIf="key.behavior !== 'clickable'">
+                                  {{result[key.name]}}
+                               </ng-container>
+                            </td>
+                  
+                        </TR>
+      
+                    </TBODY>
+                  
+                </table>
+      
+      
+            </div>
+            <div [hidden]="!(results.length !== 0 && removeLoad !== false)">
+            <pagination-selector [url]="searchUrl" (showLoaderEvent)="showLoader($event)" (returnedValueEvent)="map2Tables($event)"></pagination-selector>
+            </div>
+      
+          
+        </div>
+</div>
+</fieldset>

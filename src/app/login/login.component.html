@@ -1,0 +1,137 @@
+<div class="container" *ngIf="showDiv">
+ 
+    <div class="content">
+        <div class="col-md-7 col-sm-7 col-xs-7 information-section">
+            <div class="header-image"></div>
+            <hr style="border-color:white">
+            <span style="color:white; font-size:14px; text-align: justify; text-justify:inter-word"> Beware of E-mail scams and Phishing Attacks. If you receive an email that asks you to provide your personal and
+            financial information, you might be a target of scamming or phishing attacks</span>
+            <!--div class="header-image"></div-->
+            <br><br>
+            <a [routerLink]="['/securityAdvisory']" style="color:white; text-decoration:underline">Phishing FAQs</a>
+
+        </div>
+        <div class="col-md-5 col-sm-5 col-xs-12 login-section">
+
+            <!--div id="loading-wrapper">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div *ngIf="loginSuccess" class="lds-css ng-scope" style="height: 50%; position:absolute; margin-top:70px;">
+                        <div style="height:100%" class="lds-rolling">
+                            <div></div>
+                            <p *ngIf="questionAnswered">Logging In...</p>
+                            <p *ngIf="!questionAnswered">Processing...</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div-->
+
+            <div class="form-login">
+                <div class="login-header-image"></div>
+                <div class="error-holder">
+                    <div class="force-logout" *ngIf="errorMessage && errorMessage != 'Force Logout' && !showLoading">
+                        <div class="alert alert-danger">
+                            {{errorMessage}}
+                        </div>
+                    </div>
+                    <div class="force-logout" *ngIf="errorMessage && errorMessage == 'Force Logout' && !showLoading">
+                        <!--span class="fa fa-times-circle closeButton" (click)="errorMessage=''">
+                        </span-->
+                        <div class="alert alert-danger">
+                            Your User ID is currently logged in. You can <a (click)="remoteLogout()">click here</a> to log
+                            it out. If you are not aware of this activity please contact your system administrator.
+                        </div>
+
+                    </div>
+                </div>
+                <!--loading svg-->
+                <div *ngIf="showLoading" class="loader">
+                    <h4 style="color: #06c;">Logging In...</h4>
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+
+                        <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">
+                            <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                            <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                            <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                        </rect>
+                        <rect x="8" y="10" width="4" height="10" fill="#333" opacity="0.2">
+                            <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite"
+                            />
+                            <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite"
+                            />
+                            <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                        </rect>
+                        <rect x="16" y="10" width="4" height="10" fill="#333" opacity="0.2">
+                            <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite"
+                            />
+                            <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite"
+                            />
+                            <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                        </rect>
+                    </svg>
+                </div>
+
+                <div>
+                    <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="onSubmit()">
+                        <h5 class="login-title">LOGIN</h5>
+
+                        <div class="form-group">
+                            <div class="icon-addon addon-md">
+                                <input formControlName="username" id="username" type="text" class="form-control login-field" placeholder="Username">
+                                <label for="username" class="fa fa-user" rel="tooltip" title="Username"></label>
+                                <control-messages [control]="loginForm.controls.username"></control-messages>
+                            </div>
+
+                        </div>
+                        <!--control-messages [control]="loginForm.controls.username"></control-messages-->
+
+                        <div class="form-group">
+                            <div class="icon-addon addon-md">
+                                <input formControlName="password" id="password" type="password" class="form-control login-field" placeholder="Password">
+                                <label for="password" class="fa fa-lock" rel="tooltip" title="Password"></label>
+                                <control-messages [control]="loginForm.controls.password"></control-messages>
+                            </div>
+                        </div>
+
+                        <!--control-messages [control]="loginForm.controls.password"></control-messages-->
+                        <br />
+
+                        <div>
+                            <input id="login-button" style="border-radius:0px" type="submit" [disabled]="loginPressed" class="btn btn-primary login-buttons"
+                                value="Login">
+                        </div>
+                        <a class="forgot-link" id="forgotPassword" [routerLink]="['/resetPassword']" style="text-align: left;">Forgot your password?</a>
+                    </form>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 patch-section">
+                        <div class="important-box">
+                            <h4 style="color:red">IMPORTANT</h4>
+                            <ul>
+                                <li class="reminder">Password is case sensitive</li>
+                                <li class="reminder">For your security, you have a limited number of attempts to supply the correct credentials.</li>
+                                <li class="reminder">Do not forget to logout the application once you completed your transaction.</li>
+                            </ul>
+                        </div>
+                        <h6>RCBC Savings Bank Mobile Appraisal System.</h6>
+                        <h6>PATCH VER.: {{patchVersion}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="login-footer">
+        <ul>
+            <li><a [routerLink]="['/securityAdvisory']">Security Advisory</a></li>
+            <li><a [routerLink]="['/faqs']">FAQs</a></li>
+            <li><a [routerLink]="['/termsAndConditions']">Terms and Conditions</a></li>
+            <li><a [routerLink]="['/consumerProtectionPolicy']">Consumer Protection Policy</a></li>
+        </ul>
+    </div>
+
+    <div class="entrust-seal"></div>
+</div>

@@ -1,0 +1,17 @@
+<div *ngIf="error && modal != 'true'">
+    <button type="button" style="margin-right:5px" class="close" (click)="error=''">
+        <span aria-hidden="true ">&times;</span>
+    </button>
+    <div class="alert alert-danger">
+        <h4><b>{{error}}</b></h4>
+    </div>
+</div>
+
+<div *ngIf="error && modal == 'true'" style="width:90%;margin:0px auto;margin-top:5px;">
+    <button type="button" style="margin-right:5px" class="close" (click)="error=''">
+        <span aria-hidden="true ">&times;</span>
+    </button>
+    <div class="alert alert-danger" style="margin-bottom:0px;">
+        <h4><b>{{error}}</b></h4>
+    </div>
+</div>

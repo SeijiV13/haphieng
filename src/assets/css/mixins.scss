@@ -1,0 +1,38 @@
+@mixin header-attribute($size, $color, $weight){
+    font-size: $size;
+    color: $color;
+    font-weight: $weight;
+}
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+            border-radius: $radius;
+ }
+@mixin margin-padding-attribute($margin, $padding){
+    margin: $margin;
+    padding: $padding;
+}
+@mixin password-meter-attribute($backgroundcolor, $bordercolor){
+    background-color: $backgroundcolor;
+    $bordercolor: $bordercolor;
+}
+
+@mixin transition($transition){
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin menu-attribute($backgroundcolor, $bordercolor, $color){
+    background-color: $backgroundcolor;
+    border-color: $bordercolor;
+    color: $color;
+}
+
+@mixin appearance-attribute($appearance){
+    -webkit-appearance: $appearance;
+    -moz-appearance: $appearance;
+    appearance: $appearance;
+}

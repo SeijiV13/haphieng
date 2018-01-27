@@ -1,0 +1,24 @@
+<div bsModal #timeoutModal="bs-modal" class="modal confirmation-modal-comp fade maxZIndex" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <!--MODAL CONTENT -->
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title"><span class="fa fa-comment"></span> Message</h4>
+      </div>
+      <div class="modal-body" style="text-align:center;">
+        <h4 *ngIf="!htmlMessage">{{transactionMessage}}</h4>
+        <h4 *ngIf="htmlMessage" [innerHTML]="transactionMessage"></h4>
+      </div>
+      <div class="modal-footer">
+        <div class="text-center">
+          <button type="button" *ngIf="confirmButton === 'Ok'" (click)="accept(); confirmationModal.hide()" class="btn btn-default btn-danger">Ok</button>
+          <button type="button" *ngIf="confirmButton === 'Yes'" (click)="accept(); confirmationModal.hide()" class="btn btn-default btn-danger">Yes</button>
+          <button type="button" *ngIf="!noWithPath && !removeNo" class="btn btn-default" (click)="confirmationModal.hide()">No</button>
+          <button type="button" *ngIf="noWithPath && !removeNo" class="btn btn-default" (click)="deny();">No</button>
+          <button type="button" *ngIf="cancelActivated" class="btn btn-default" (click)="confirmationModal.hide()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

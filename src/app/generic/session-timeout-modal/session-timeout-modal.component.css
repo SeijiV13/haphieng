@@ -1,0 +1,10 @@
+.maxZIndex{
+    z-index: 99999 !important;
+}
+
+.confirmation-modal-center{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow:hidden;
+  }

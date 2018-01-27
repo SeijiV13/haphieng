@@ -1,0 +1,32 @@
+.generic-modal-center{
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow:hidden;
+}
+.maxZIndex{
+  z-index:999999 !important;
+}
+
+.modal-content{
+  border-radius: 0px;
+}
+
+button{
+  width:100px;
+}
+
+.logo{
+  text-align: center;
+  font-size: 50px;
+  width:100px;
+  color:green;
+}
+.modal-title{
+  text-align: center;
+}
+
+.logo-container{
+  width:100%;
+  text-align: center;
+}

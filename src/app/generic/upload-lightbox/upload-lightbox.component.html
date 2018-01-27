@@ -1,0 +1,44 @@
+<!--MODAL FOR LIGHTBOX-->
+<div id="{{document}}Modal" class="modal">
+  <span class="close-modal cursor" (click)="closeModal(document)">&times;</span>
+  <div class="modal-content" style="background-color:transparent !important;">
+
+    <div class="{{document}}Slides" *ngFor="let file of fileJson; let i = index">
+      <div class="numbertext">{{i+1}} / {{fileJson.length}}</div>
+      <div *ngIf="file.fileType === 'image/png' || file.fileType === 'image/jpeg' || file.fileType === 'image/bmp' || file.fileType === 'image/gif' || file.fileType === 'image/pjpeg'">
+        <div class="caption-container">
+
+          <p id="caption">{{file.fileName}} {{file.fileType}}</p>
+        </div>
+        <div class="object-container">
+          <img [attr.src]="file.url" style="max-width:100%;">
+        </div>
+      </div>
+      <div *ngIf="file.fileType === 'application/pdf'">
+        <div class="caption-container">
+          <p id="caption">{{file.fileName}}</p>
+        </div>
+        <div class="object-container">
+          <object width="100%" height="600px" type="application/pdf" [attr.data]="file.url">
+             </object>
+        </div>
+      </div>
+      <div *ngIf="file.fileType === 'application/msword' || file.fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || file.fileType === 'text/plain' || file.fileType ==='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || file.fileType === 'application/vnd.ms-excel'">
+        <div style="padding: 10px; background-color:black; height:300px">
+          <div class="caption-container">
+            <p id="caption">{{file.fileName}}</p>
+            <p style="color:white;"></p>
+          </div>
+          <a class="button btn btn-primary" (click)="downloadFile(file.url, file.fileName)" download>
+               Download File <span class="fa fa-download"></span>
+            </a>
+        </div>
+      </div>
+    </div>
+
+    <a class="prev" (click)="plusSlides(-1, document)">&#10094;</a>
+    <a class="next" (click)="plusSlides(1, document)">&#10095;</a>
+
+
+  </div>
+</div>

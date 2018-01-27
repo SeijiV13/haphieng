@@ -1,0 +1,75 @@
+/* CSS Password Meter */
+.pw-meter {
+  margin-top:-5px;	
+}
+
+.pw-meter-bar {
+  margin-top:-5px;
+  background: #FFF !important;
+  border: 1px solid;
+  border-color: #cccccc !important;
+  /* border-right: none; */
+  /* border-left: none; */
+  display: inline-block;
+  height: 5px;
+  width: 100%;
+  position: relative;
+}
+
+.pw-meter-status {
+  padding-top: 2px;
+  float:right;
+  background: transparent !important;
+  font-size:0.85em;
+}
+
+.pw-meter i {
+  padding-top: 2px;
+  float: right;
+  color: #0066cc;
+  display: inline-block;
+  margin-right: 5px;  
+}
+
+.pw-meter-progress{
+  background: #cccccc;
+  width: 0%;
+  height: 4px;
+  border: none;
+}
+
+.pw-passwordMeter-strength0{
+  background: '';
+  border-color: '';
+  color: #333333;
+}
+
+.pw-passwordMeter-strength1{
+  background: #F00;
+  border-color: #F00 !important;
+  /* color: #F00; */
+}
+
+.pw-passwordMeter-strength2{
+  background: #F90;
+  border-color: #F90 !important;
+  /* color: #F90; */
+}
+
+.pw-passwordMeter-strength3{
+  background: #FC0;
+  border-color: #FC0 !important;
+  /* color: #FC0; */
+}
+
+.pw-passwordMeter-strength4{
+  background: #9C0;
+  border-color: #9C0 !important;
+  /* color: #9C0; */
+}
+
+.pw-passwordMeter-strength5{
+  background: #0C0;
+  border-color: #0C0 !important;
+  /* color: #0C0; */
+}

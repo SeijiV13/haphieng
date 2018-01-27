@@ -1,0 +1,262 @@
+/* Wireframe */
+body, input, select, textarea, table, p,h1,h2,h3,h4,h5,h6{
+	font: 16px sans-serif;
+	color:#333; 
+	}
+body{}	
+
+h1{
+	font-size:1.4em; font-weight:bold;
+	margin:0;	padding:0;
+	}
+h2{
+	font-size:1.3em; font-weight:400;
+	margin:0;	padding:0;
+	color:#CCC !important;
+	}
+h3{
+	font-size:1.2em; font-weight:bold;
+	margin:0;	padding:0;
+	}
+h4{font-size:1.1em; margin:0;	padding:0; color:#999;}
+h5{font-size:1.0em; margin:0;	padding:0;}
+h6{font-size:0.9em; margin:0;	padding:0; color:#C00;}
+
+ul{margin:0 0 5px; padding:0;}
+li{display:inline-block; padding:0 5px; border-left:1px solid #999}
+li:first-child{padding-left:0; border-left:none;}
+
+p{font-size:1.1em}
+
+a:link, a:focus, a:visited{
+	color:#00F;
+	}
+a:hover{
+	color:#F00;
+	text-decoration:underline;	
+	}
+a:active{
+	color:#FFF;
+	text-decoration:none;	
+	}
+
+#login-header{
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	width:100%;
+	padding:10px 0 20px;
+	font-size:0.8em;
+	border-bottom:5px solid #8dc641;
+	background:url(img/LBP_BACKGROUND.jpg) bottom right no-repeat;
+	}
+
+	#logo-lbp, #logo-emds, #logo-mobile{
+		width:49%;
+		height:80px;
+		display:inline-block;	
+		}
+	#logo-mobile{display:none;}
+	#logo-lbp{ background:url(img/LANDBANK_LOGO.jpg) left no-repeat #FFF;}
+	/**#logo-emds{ background:url(img/EMDS_LOGO.jpg) right no-repeat #FFF;}**/
+
+#login-box.panel{
+	box-shadow:none;
+	border:1px solid #CCC;
+	margin-top:20px;
+	}
+	.panel-heading, .panel-title, .panel-body, .panel-footer{
+		background:none;
+		margin:1px
+		}
+	.panel-title{
+		text-align:center;
+		padding:10px 0;
+		}	
+
+	.panel-body *{
+		margin-bottom:5px;
+		}
+	.panel-body .form-control{
+		background:none;
+		border:1px solid #CCC;
+		}
+	.panel-body > div{
+		margin-top:10px;	
+		}
+	.panel-body .btn{
+		width:100%;	
+		}		
+	.panel-body .btn-success, .panel-body .btn-success:focus{
+		background:#8dc641;
+		border:1px solid #8dc641;	
+		}
+		
+	.panel-body .btn-success:hover{
+		background:#ddc02e;
+		border:1px solid #ddc02e;	
+		}	
+	.panel-body .btn-success:active{
+		background:#444709;
+		border:1px solid #444709;
+		}	
+
+	.panel-body a{
+		font-size:0.9em;	
+		}	
+
+#login-reminders ul{
+	list-style:disc outside !important;
+	padding-left:10px;	
+	}		
+#login-reminders li{
+	border:none;
+	padding:0;
+	font-size:0.75em;
+	clear:both;
+	float:none;
+	width:100%;	
+	display:list-item;
+	}
+
+.emds-advisory{
+	width:100%;
+	margin:20px 0;
+	display:block;	
+	}
+
+
+#login-footer{
+	position:fixed;
+	bottom:40px;
+	left:0;
+	right:0;
+	width:100%;
+	padding:10px 0;
+	font-size:0.8em;
+	background:#EFEFEF;
+	border-top:1px solid #CCC;
+	}
+	#login-footer h4{font-size:1.4em}
+	#login-footer a:link, #login-footer a:focus, #login-footer a:visited{
+		outline:none;
+		}
+	#login-footer a:hover{
+		}	
+	#sec-footer-link a:link, #sec-footer-link a:focus, #sec-footer-link a:visited{}
+	#sec-footer-link a:hover{}	
+
+	#login-footer .row > div:first-child ul{ margin-top:20px;}
+	#login-footer .row > div:first-child li{padding:0 10px}
+	#login-footer .row > div:first-child li:first-child{padding-left:0}
+	#login-footer .row > div:last-child ul{text-align:right;}
+	#login-footer .row > div:last-child li{border:none}
+	#login-footer img{ height:50px; vertical-align:middle;}
+	
+#login-footer-copyright{
+	position:fixed;
+	bottom:0;
+	left:0;
+	right:0;
+	width:100%;
+	font-size:0.8em;
+	padding:10px 0;
+	background:url(img/EMDS_FOOTER_778X38.jpg) top left repeat-x;	
+	color:#FFF;
+	}
+
+.has-error{
+	border:1px solid #F00 !important;	
+	box-shadow: 0px 0px 3px #FFF;
+	}
+.err-msg-inline, .err-msg-block{
+	font-size:0.75em;
+	color:#C00;
+	display:none;
+	}	
+.err-msg-inline{
+	font-style:italic;
+	margin:0 0 10px;	
+	}
+.err-msg-block{
+	background:none;
+	border-bottom:1px dashed #CCC;
+	padding:5px;
+	text-align:center;
+	margin:-10px 0 10px !important;
+	display:none;	
+	}	
+
+.tooltip{font-family:sans-serif;font-size:0.8em;}
+.tooltip-inner{color:#fff; background-color:#09F;border-radius:4px}
+.tooltip.top .tooltip-arrow, .tooltip.top-left .tooltip-arrow, .tooltip.top-right .tooltip-arrow{border-top-color:#09F}
+.tooltip.right .tooltip-arrow{border-right-color:#09F}
+.tooltip.left .tooltip-arrow{border-left-color:#09F}
+.tooltip.bottom .tooltip-arrow, .tooltip.bottom-left .tooltip-arrow, .tooltip.bottom-right .tooltip-arrow{border-bottom-color:#09F}	
+
+@media (max-width: 768px){
+@font-face {
+	font-family: 'opensans cond';
+	src:url('font/OpenSans-CondLight.ttf');
+} 
+@font-face {
+	font-family: 'opensans light';
+	src:url('font/OpenSans-Light.ttf');
+} 
+@font-face {
+	font-family: 'opensans';
+	src:url('font/OpenSans-Regular.ttf');
+}
+@font-face{
+	font-family: 'opensans-bold'
+	src:url('font/OpenSans-Bold.ttf')	
+	}
+
+li{display:block; padding:8px 0; border:none;}
+
+	.panel-body .form-control, .panel-body .btn{
+		height:50px;	
+		}
+
+#logo-lbp, #logo-emds{display:none;}
+#logo-mobile{
+	display:block;
+	width:100%;
+	background:url(img/EMDS_BANNER_300X100.jpg) top no-repeat;
+	height:120px;
+	}
+
+#login-footer{
+	position:static;
+	margin-top:30px;
+	}
+	#login-footer p{
+		text-align:justify;	
+		}
+	
+	#login-footer .row > div ul{
+		-webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+		text-align:center;	
+		}
+	
+	#login-footer .row > div:first-child ul{margin-top:0;}
+	#login-footer .row > div:first-child li{padding:8px 0;}
+	#login-footer .row > div:last-child li{padding:0; text-align:center}	
+
+#login-footer-copyright{
+	position:static;
+	text-align:center;
+	background:#01914b;
+	border-top:5px solid #67bc45;	
+	}
+
+	#ccc-panel{border:1px solid #CCC; padding:10px; margin:20px 0 0}
+
+.m-hide{display:none}
+
+}
+
+

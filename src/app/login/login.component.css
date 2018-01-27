@@ -1,0 +1,409 @@
+@media screen and (max-width: 767px) {
+    .information-section {
+        display: none;
+    }
+    .loader {
+        display: none;
+    }
+    .login-footer {
+        display: none !important;
+    }
+    .login-section {
+        border-left: none !important;
+    }
+    .error-holder {
+        height: auto !important;
+    }
+    .login-title {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .login-header-image {
+        display: none
+    }
+}
+
+.important-box {
+    margin-top: 15px;
+    border-width: 0.8px;
+    border-radius: 3px;
+    color: gray;
+}
+
+li.reminder {
+    margin-left: 15px;
+    list-style-type: square;
+}
+
+.content {
+    border-radius: 10px;
+    -webkit-box-shadow: -3px 4px 74px -23px rgba(0, 0, 0, 1);
+    -moz-box-shadow: -3px 4px 74px -23px rgba(0, 0, 0, 1);
+    box-shadow: -3px 4px 74px -23px rgba(0, 0, 0, 1);
+    width: 1000px;
+    height: 500px;
+    position: fixed;
+    /*it can be fixed too*/
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    /*this to solve "the content will not be cut when the window is smaller than the content": */
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+}
+
+.information-section {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+    background: linear-gradient(0deg, rgba(40, 96, 144, 0.7), rgba(40, 0, 144, 0.7)), url('../../assets/img/RCBC_image2.jpg');
+}
+
+.login-section {
+    border-left: solid;
+    border-left-color: #1e995d;
+    background-color: #f5f4f2;
+    height: 500px;
+}
+
+.header-image {
+    margin-top: 5%;
+    width: 100%;
+    background: url("../../assets/img/appw.png") top center no-repeat;
+    height: 80px;
+}
+
+.login-header-image {
+    margin-top: 5%;
+    width: 100%;
+    background: url("../../assets/img/app-front.png") top center no-repeat;
+    height: 100px;
+}
+
+.login-title {
+    padding: 2.5px;
+    font-size:14px;
+}
+
+input {
+    padding: 6px;
+}
+
+.input-group .icon-addon .form-control {
+    border-radius: 0;
+}
+
+.icon-addon {
+    position: relative;
+    color: #555;
+    display: block;
+}
+
+.icon-addon:after,
+.icon-addon:before {
+    display: table;
+    content: " ";
+}
+
+.icon-addon:after {
+    clear: both;
+}
+
+.icon-addon.addon-md .glyphicon,
+.icon-addon .glyphicon,
+.icon-addon.addon-md .fa,
+.icon-addon .fa {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    font-size: 14px;
+    width: 20px;
+    margin-left: -2.5px;
+    text-align: center;
+    padding: 10px 0;
+    top: 1px
+}
+
+.icon-addon.addon-lg .form-control {
+    line-height: 1.33;
+    height: 46px;
+    font-size: 18px;
+    padding: 10px 16px 10px 40px;
+}
+
+.icon-addon.addon-sm .form-control {
+    height: 30px;
+    padding: 5px 10px 5px 28px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.icon-addon.addon-lg .fa,
+.icon-addon.addon-lg .glyphicon {
+    font-size: 18px;
+    margin-left: 0;
+    left: 11px;
+    top: 4px;
+}
+
+.icon-addon.addon-md .form-control,
+.icon-addon .form-control {
+    padding-left: 30px;
+    float: left;
+    font-weight: normal;
+}
+
+.icon-addon.addon-sm .fa,
+.icon-addon.addon-sm .glyphicon {
+    margin-left: 0;
+    font-size: 12px;
+    left: 5px;
+    top: -1px
+}
+
+.icon-addon .form-control:focus+.glyphicon,
+.icon-addon:hover .glyphicon,
+.icon-addon .form-control:focus+.fa,
+.icon-addon:hover .fa {
+    color: #2580db;
+}
+
+.patch-section {
+    margin-top: 10px;
+    border-top-style: solid;
+    border-width: 0.5px;
+    border-color: #dbdbdb;
+    width: 100%;
+    padding: 10px;
+    bottom: 0;
+}
+
+.forgot-link {
+    margin-top: 2% !important;
+    color: gray;
+    font-size: 13px;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+.force-logout {
+    font-size: 13px;
+}
+
+.error-holder {
+    height: 110px;
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    color: #ad0524;
+}
+
+@keyframes lds-rolling {
+    0% {
+        -webkit-transform: translate(-50%, -50%) rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translate(-50%, -50%) rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@-webkit-keyframes lds-rolling {
+    0% {
+        -webkit-transform: translate(-50%, -50%) rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translate(-50%, -50%) rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.lds-rolling {
+    z-index: 1000;
+    position: relative;
+    height: 100%;
+    text-align: center;
+}
+
+.lds-rolling div,
+.lds-rolling div:after {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 10px solid #609bf5;
+    border-top-color: transparent;
+    border-radius: 50%;
+}
+
+.lds-rolling div {
+    -webkit-animation: lds-rolling 1s linear infinite;
+    animation: lds-rolling 1s linear infinite;
+    top: 100px;
+    left: 100px;
+}
+
+.lds-rolling div:after {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.lds-rolling {
+    width: 200px !important;
+    height: 200px !important;
+    -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+    transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+}
+
+.fade-login {
+    opacity: 0.4;
+}
+
+.closeButton {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.login-buttons {
+    width: 100%;
+    border-radius: 3px;
+    padding: 8px;
+    border-style: none;
+}
+
+.login-footer {
+    position: absolute;
+    left: 0px;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+}
+
+.login-footer ul {
+    margin: 0;
+    padding: 0;
+}
+
+.login-footer ul li {
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+.login-footer ul li a {
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    color: gray;
+    text-align: center;
+}
+
+.login-footer ul li a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+#wrapper {
+    padding-left: 100%;
+    height: 100%;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 5px;
+}
+
+#sidebar-wrapper {
+    border-right-style: solid;
+    border-right-color: gray;
+    z-index: 2000;
+    width: 100%;
+    left: 100%;
+    height: 100%;
+    margin-left: -100%;
+    position: fixed;
+    overflow-y: auto;
+    background: white;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    background-color: white;
+}
+
+#loading-wrapper {
+    border-right-style: solid;
+    border-right-color: gray;
+    z-index: 2000;
+    width: 100%;
+    left: 100%;
+    height: 100%;
+    margin-left: -100%;
+    position: fixed;
+    overflow-y: auto;
+    background: white;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    background-color: white;
+}
+
+#wrapper.toggled #sidebar-button-wrapper {
+    left: 0px;
+}
+
+.security-question-footer {
+    bottom: 0;
+    text-align: center;
+}
+
+input[type="text"]:disabled {
+    background: #dddddd;
+    cursor: no-drop;
+}
+
+.alert-danger {
+    color: #df5138;
+    border: 1px solid #df5138;
+    border-left-width: 8px;
+    background: #FFF;
+}
+
+.entrust-seal {
+    width: 60px;
+    height: 60px;
+    left: 10px;
+    bottom: 10px;
+    position: absolute;
+    background: url(../../assets/img/entrust_seal_ssl.png);
+    background-size: 50px;
+    background-repeat: no-repeat;
+}
+
+svg rect {
+    fill: #06c;
+}
+
+.loader {
+    text-align: center;
+    margin-top: -50px;
+}

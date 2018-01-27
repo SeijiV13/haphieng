@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="text-right">
+      <button *ngIf="appraiserWorkload === 'Y'" class="btn btn-link" (click)="goToAppraisalWorkloadOutside('app', appraiserWorkloadType)"
+        target="_blank"><span class="glyphicon glyphicon-search"></span> View Appraiser Workload</button>
+      <button *ngIf="appraiserCompanyWorkload === 'Y'" class="btn btn-link" (click)="goToAppraisalWorkloadOutside('com','external')"
+        target="_blank"><span class="glyphicon glyphicon-search"></span> View Appraisal Company Workload</button>
+
+    </div>
+  </div>
+</div>

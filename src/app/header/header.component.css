@@ -1,0 +1,27 @@
+.header {
+    background-color:white;
+    padding: 5px;
+    z-index:1000;
+    position:fixed;
+    width:100%;
+   top: 0px !important;
+
+    /**color: #126c99;
+    background-color: #ffffff;    **/
+    /**-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; **/
+    background-size: 50%;
+    border-bottom-style: solid;
+    border-bottom-width: 5px;
+}
+
+.header-logo {
+    width: 250px;
+}
+
+
+#top-nav li {
+    float: left;
+}

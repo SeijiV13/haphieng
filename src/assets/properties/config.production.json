@@ -1,0 +1,8 @@
+{
+    "baseUrl": "/Appraisal/",
+    "host": "http://222.222.222.214:8080/base/api/",
+    "servlet": "http://222.222.222.214:8080/base",
+    "dashBoardWorkload": "http://222.222.222.214:8080/base/appraisalWorkload.htm",
+    "datePatched": "11-21-2017",
+    "patchVersion": "V3.0.0"
+}

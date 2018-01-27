@@ -1,0 +1,34 @@
+<div *ngFor="let node of menuData; let i = index">
+      <!--DISREGARDS UNNEEDED MENUS-->
+      <div *ngIf='node.group !== "4070" && node.group !== "4090"'>
+            <!--checks if the menu belongs to the same group-->
+            <div *ngIf="node.level === currentLevel && (node.path === null) && node.level === 1">
+                  <button (click)="changeCaret($event); toggleMainMenu($event)" class="main-menu-button btn btn-primary"><small class="fa fa-folder"></small> {{node.name}}
+                         <span class="fa dynamic fa-caret-down pull-right"></span></button>
+
+                  <div class="submenu">
+                        <menu-view [menuData]="menuData" [currentLevel]="node.level + 1" [parentId]="node.id"></menu-view>
+                  </div>
+            </div>
+
+            <div *ngIf="node.level === currentLevel  && (node.path === null) && node.level >= 2 && node.parentId === parentId">
+                  <button data-toggle="collapse" data-target="#2" (click)="changeCaret($event); toggleSubMenu($event)" class="main-submenu-button btn btn-primary">
+                         {{node.name}}  <span class="fa dynamic fa-caret-down pull-right"></span></button>
+
+                  <div class="submenu">
+                        <menu-view [menuData]="menuData" [currentLevel]="node.level + 1" [parentId]="node.id"></menu-view>
+                  </div>
+            </div>
+
+            <div *ngIf="node.level === currentLevel && (node.path !== null) && node.parentId === parentId">
+                  <button [value]="node.name" (click)="redirectPage(node.path)" class="main-second-submenu-button btn btn-default" (click)="activeButton($event); clearSession()">{{node.name}}</button>
+            
+            </div>
+
+            <div *ngIf="node.level === currentLevel && (node.path !== null) && node.level === 1">
+                 <button [value]="node.name" (click)="redirectPage(node.path)" class="main-second-submenu-button btn btn-default" (click)="activeButton($event); clearSession()">{{node.name}}</button>
+            </div>
+
+      </div>
+
+</div>

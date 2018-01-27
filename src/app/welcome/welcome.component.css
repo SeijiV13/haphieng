@@ -1,0 +1,183 @@
+#welcomeComponent{
+    width:80%;
+    margin:0px auto;
+}
+
+body *{
+	text-shadow:none;
+}
+
+.table-responsive{
+	margin-bottom:20px;
+}
+
+.header, .header2, th{
+    background-color: #0054a5;
+    color: white;
+		border:none;
+		border-left:1px solid #999;
+		padding:4px;
+		vertical-align:bottom;
+		font-size:1em;
+}
+.header{
+		text-align:left;
+}
+.header2{
+		text-align:center;
+}
+
+td{
+		vertical-align:middle;
+		font-size:0.9em;
+		border:none;
+}
+tbody tr td:first-child, thead th:first-child{
+	text-align:left !important;
+}
+
+tbody{
+	background:none;
+}
+
+.subheader, .pendingClassHeader{
+	background:#E4E4E4;
+	font-weight:bold;
+}
+
+.pendingClassHeader2{
+	background:#E4E4E4;
+	font-style:italic;
+}
+
+.pendingClassHeaderApp2{
+	background:#E4E4E4;
+	font-weight:bold;
+	padding-left:30px;
+}
+
+.indentedRecord{
+	padding-left:60px;
+}
+
+.appraisalRegion{
+	margin-bottom:5px;
+}
+.appRegLabel{
+	font-weight:bold;
+	padding-top:7px;
+}
+
+.workloadButton{
+}
+
+.leftAlign{
+    text-align: left;
+}
+
+
+/* Dashboard Stylesheet */
+.pictograph {
+	width:18px;
+	height: 20px;
+	display:inline-block;
+	vertical-align:middle;
+	position:relative;
+	margin-right:20px;
+}
+
+.pictograph .badge{
+	top:2px;
+	right:-22px;
+	background:none !important;
+	border-left:none !important;
+	border-radius: 0 8px 8px 0;
+	z-index:1;
+	width:36px;
+	text-align:center;
+	padding-left:10px;
+	padding-right:2px;
+	font-size:10px;
+	font-weight: normal;
+
+}
+
+.picto-legend{
+	width:16px;
+	height: 16px;
+	background-size: 16px 16px !important;
+	margin-left:5px;
+	margin-right:0;
+	vertical-align: text-top;
+}
+.picto-legend:first-child{
+	margin-left:0;
+}
+
+
+.re-within-tat{
+	background:url(../../assets/img/reWithinTAT.png) left top no-repeat;
+}
+.re-near-tat{
+	background:url(../../assets/img/reNearTAT.png) left top no-repeat;
+}
+.re-beyond-tat{
+	background:url(../../assets/img/reBeyondTAT.png) left top no-repeat;
+}
+
+
+.mc-within-tat{
+	background:url(../../assets/img/mcWithinTAT.png) left top no-repeat;
+}
+.mc-near-tat{
+	background:url(../../assets/img/mcNearTAT.png) left top no-repeat;
+}
+.mc-beyond-tat{
+	background:url(../../assets/img/mcBeyondTAT.png) left top no-repeat;
+}
+
+
+
+.pa-within-tat{
+	background:url(../../assets/img/paWithinTAT.png) no-repeat;
+}
+.pa-near-tat{
+	background:url(../../assets/img/paNearTAT.png) no-repeat;
+}
+.pa-beyond-tat{
+	background:url(../../assets/img/paBeyondTAT.png) no-repeat;
+}
+
+.total-tat{
+	background:url(../../assets/img/totalTAT.png) left top no-repeat;
+}
+
+.re-within-tat, .re-near-tat, .re-beyond-tat, .mc-within-tat, .mc-near-tat, .mc-beyond-tat, .pa-within-tat, .pa-near-tat, .pa-beyond-tat, .total-tat{
+	background-size: 20px 20px;
+}
+
+
+.re-within-tat .badge, .mc-within-tat .badge, .pa-within-tat .badge{
+	border:1px solid #090;
+	color:#090 !important;
+}
+.re-near-tat .badge, .mc-near-tat .badge, .pa-near-tat .badge{
+	border:1px solid #F90;
+	color:#F90 !important;
+}
+.re-beyond-tat .badge, .mc-beyond-tat .badge, .pa-beyond-tat .badge{
+	border:1px solid #F00;
+	color:#F00 !important;
+}
+.total-tat .badge{
+	border:1px solid #666;
+	color:#666 !important;
+}
+
+.legendTat{
+	font-size:0.6em;
+	color:#999;
+	font-weight:normal;
+	vertical-align: middle !important;
+}
+

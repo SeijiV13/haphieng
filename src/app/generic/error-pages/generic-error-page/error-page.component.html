@@ -1,0 +1,15 @@
+<div style="width:100%">
+    <div style="margin:0px auto; text-align:center;">
+        <h1 style="font-size: 80px;">ERROR<span class="fa fa-exclamation"></span></h1>
+        <h4 style="font-size: 20px;"><b>{{message}}</b></h4>
+        <br>
+        <h4>Please contact system administrator for assistance</h4>
+        <br>
+        <button *ngIf="nextPageInd == 'Home'" [routerLink]="['/home/welcome']" class="btn btn-default contact-button"> 
+        Home Page <span class="fa fa-home"></span>
+    </button>
+        <button *ngIf="nextPageInd == 'Login'" [disabled]="loginPressed" (click)="logout()" class="btn btn-default contact-button"> 
+        Login Page <span class="fa fa-user"></span>
+    </button>
+    </div>
+</div>

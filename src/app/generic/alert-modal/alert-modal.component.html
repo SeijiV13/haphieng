@@ -1,0 +1,21 @@
+<div bsModal #alertModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <!--MODAL CONTENT -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close-modal"(click)="alertModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"><span class="fa fa-comment"></span> Message</h4>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <h4>{{transactionMessage}}</h4>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <button type="button" (click)="accept()" class="btn btn-default btn-danger">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
