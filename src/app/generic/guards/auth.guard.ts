@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         if (this.cookieService.get('token')) {
             return true;
         }
-        this.router.navigate(['/error']);
+        //this.router.navigate(['/error']);
         localStorage.setItem("errorMessage",this.err.getErrorMessage("noJwt"));
         return false;
     }

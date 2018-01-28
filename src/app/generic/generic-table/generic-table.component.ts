@@ -8,6 +8,7 @@ import { DataPasserService} from '../services/data-passer.service';
   styleUrls: ['./generic-table.component.scss']
 })
 export class GenericTableComponent implements OnInit {
+  @Input() title: string;
   @Input() headers: any;
   @Input() results: any = [];
   @Input() type: string = "single";
@@ -27,7 +28,7 @@ export class GenericTableComponent implements OnInit {
 
   ngOnInit() {
     if (this.results.length === 0) {
-      //this.tableResultMessage = this.messageConfig.getErrorMessage("noResults");
+      this.tableResultMessage  = "No Result/s Found";
    }
   
   }
@@ -41,7 +42,7 @@ export class GenericTableComponent implements OnInit {
  map2Tables(data) {
     this.results = data.value;
     if (this.results.length === 0) {
-        this.tableResultMessage = this.messageConfig.getErrorMessage("noResults");
+        this.tableResultMessage = "No Result/s Found";
     }
   }
 

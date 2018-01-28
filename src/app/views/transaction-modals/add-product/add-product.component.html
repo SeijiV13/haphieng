@@ -1,0 +1,139 @@
+<div bsModal #addProductModal="bs-modal" class="modal generic-modal-comp fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <!--MODAL CONTENT -->
+    <div class="modal-content">
+      <div class="modal-header">
+         <h4 class="text-center" class="modal-title"><b>Add Product</b></h4>
+      </div>
+      <div class="modal-body">
+             <fieldset class="section-content">
+    <legend>
+        <h5>CARD FORM</h5>
+    </legend>
+    <div [formGroup]="browseForm" class="row form-horizontal">
+        <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="importedItem">Imported Item</label>
+                  <div class="col-sm-9 col-md-8 field">
+                    <input type="checkbox" formControlName="importedItem">
+                 </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="category">Category</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <select formControlName="category"  type="text" class="form-control">
+                
+                   
+                    </select>
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="description">Description</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="description">
+                  </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="grossPrice">Gross Price</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input (change)="computeLess()" Formatter='{"type":"decimal"}' type="text" class="form-control" formControlName="grossPrice">
+                  </div>
+             </div> 
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="less35">Less 35%</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="less35">
+                  </div>
+             </div> 
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="warehouseOne">Warehouse One</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="warehouseOne">
+                  </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="packQtyBig">Pack Qty Big</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="packQtyBig">
+                  </div>
+             </div> 
+               <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" Formatter='{"type":"decimal"}' for="productLine">Product Line</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <select formControlName="productLine"  type="text" class="form-control">
+                
+                   
+                    </select>
+                  </div>
+             </div> 
+         </div>
+
+
+          <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="unit">Unit</label>
+                  <div class="col-sm-9 col-md-8 field">
+                    <input type="text" class="form-control" formControlName="unit">
+                 </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="location">Location</label>
+                 <div class="col-sm-9 col-md-8 field">
+                    <input type="text" class="form-control" formControlName="location">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4"  for="minimumQuantity">Minimum Quantity</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="minimumQuantity">
+                  </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="less15">Less 15%</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control"  formControlName="less15">
+                  </div>
+             </div> 
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="warehouseTwo">Warehouse Two</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="warehouseTwo">
+                  </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="packQtySmall">Pack Qty Small</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="packQtySmall">
+                  </div>
+             </div> 
+         </div>
+        <div class="col-md-12">
+          <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-2" for="remarksOne">Remarks 1</label>
+                 <div class="col-sm-9 col-md-10 field">
+                     <textarea class="form-control" formControlName="remarksOne"></textarea>
+                  </div>
+             </div> 
+        </div>
+         <div class="col-md-12">
+          <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-2" for="remarksTwo">Remarks 2</label>
+                 <div class="col-sm-9 col-md-10 field">
+                     <textarea class="form-control" formControlName="remarksTwo"></textarea>
+                  </div>
+             </div> 
+        </div>
+    </div>
+     </fieldset>
+      </div>
+      <div class="modal-footer">
+        <div>
+          <ng-container >
+              <button class="btn btn-default" (click)="hide()">Close</button>
+             <button class="btn btn-primary" (click)="addProduct()">Add Product</button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

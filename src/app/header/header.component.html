@@ -15,7 +15,6 @@
                     <li style="width:100%" class="dropdown-header"><span class="fa fa-cog"></span> Settings</li>
                     <li style="width:100%" class="divider"></li>
                     <li style="width:100%"><a (click)="changePassword()">Change Password</a></li>
-                    <li style="width:100%"><a (click)="securityQuestion()">Security Questions</a></li>
                 </ul>
             </div>
             <div *ngIf="losUser" class="dropdown" dropdown>
@@ -31,12 +30,6 @@
             <button id="menu1" class="btn btn-link" (click)="home()" type="button">
                     <i class="glyphicon glyphicon-home top-nav-title" style="font-size:1.2em"></i>
                     <span class="top-nav-title" xlabel="lnkHome" style="font-size:.8em">HOME</span>
-                </button>
-        </li>
-        <li>
-            <button class="btn btn-link">
-                    <i class="glyphicon glyphicon-question-sign top-nav-title"  style="font-size:1.2em"></i>
-                    <span class="top-nav-title" xlabel="lnkHelp" style="font-size:.8em">HELP</span>
                 </button>
         </li>
         <li>

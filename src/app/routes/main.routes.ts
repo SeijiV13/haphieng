@@ -1,3 +1,4 @@
+
 import { MenuResolver } from './../generic/menu.resolver';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
@@ -24,6 +25,11 @@ import { DocumentREResolver } from '../generic/resolver/documentRE.resolver';
 import { DocumentMCResolver } from '../generic/resolver/documentMC.resolver';
 //GUARDS
 import { AuthGuard } from '../generic/guards/auth.guard';
+import { InventoryFileComponent} from '../views/files/inventory-file/inventory-file.component';
+import { CustomerFileComponent } from './../views/files/customer-file/customer-file.component';
+import { SupplierFileComponent } from './../views/files/supplier-file/supplier-file.component';
+import { AgentFileComponent } from './../views/files/agent-file/agent-file.component';
+import { CustomerBankFileComponent } from './../views/files/customer-bank-file/customer-bank-file.component';
 
 
 export const routes: Routes = [
@@ -36,11 +42,15 @@ export const routes: Routes = [
                  { 
                        menu: MenuResolver
                  },
-            
             children: [
                   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
                   //TRANSACTION LIST
                   { path: 'welcome', component: WelcomeComponent },
+                  { path: 'inventoryFile', component: InventoryFileComponent},
+                  { path: 'customerFile', component: CustomerFileComponent},
+                  { path: 'agentFile', component: AgentFileComponent},
+                  { path: 'supplierFile', component: SupplierFileComponent},
+                  { path: 'customerBankFile', component: CustomerBankFileComponent}
 
             ]
       },

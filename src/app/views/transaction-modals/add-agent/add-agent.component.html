@@ -1,0 +1,90 @@
+<div bsModal #addAgentModal="bs-modal" class="modal generic-modal-comp fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <!--MODAL CONTENT -->
+    <div class="modal-content">
+      <div class="modal-header">
+         <h4 class="text-center" class="modal-title"><b>Add Agent</b></h4>
+      </div>
+      <div class="modal-body">
+             <fieldset class="section-content">
+    <legend>
+        <h5>PERSONAL DETAILS</h5>
+    </legend>
+    <div [formGroup]="browseForm">
+        <div class="row form-horizontal">
+        <div class="col-md-6">
+      
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="angentName">Agent Name</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="agentName"  type="text" class="form-control">
+                  </div>
+             </div>
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="description">Description</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="description"  type="text" class="form-control">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="telephone">Telephone</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="telephone"  type="text" class="form-control">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="cellphone">Cellphone</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="cellphone"  type="text" class="form-control">
+                  </div>
+             </div> 
+      
+         </div>
+
+          <div class="col-md-6">
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="address">Address</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="address"  type="text" class="form-control">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="address2">Address 2</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="address2"  type="text" class="form-control">
+                  </div>
+             </div> 
+       
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="email">Email</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="email"  type="text" class="form-control">
+                  </div>
+             </div> 
+         
+         </div>
+          <div class="col-md-12">
+          <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-2" for="remarks">Remarks</label>
+                 <div class="col-sm-9 col-md-10 field">
+                     <textarea class="form-control" formControlName="remarks"></textarea>
+                  </div>
+             </div> 
+        </div>
+        </div>
+ 
+    </div>
+     
+     </fieldset>
+      </div>
+      <div class="modal-footer">
+        <div>
+          <ng-container >
+              <button class="btn btn-default" (click)="hide()">Close</button>
+             <button class="btn btn-primary" (click)="addAgent()">Add Agent</button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

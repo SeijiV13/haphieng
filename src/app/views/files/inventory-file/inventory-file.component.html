@@ -1,0 +1,172 @@
+<div class="search-button-holder">
+            <button type="button" (click)="itemTransctions();" class="btn btn-primary pull-right" >Item Transactions</button>
+            <button type="button" (click)="print()" class="btn btn-default" ><span class="glyphicon glyphicon-print"></span> Print</button>
+</div>
+
+
+<tabset>
+  <tab heading="Broswe Form">
+       <fieldset class="section-content">
+    <legend>
+        <h5>BROWSE FORM</h5>
+    </legend>
+    <div [formGroup]="formGroup" class="row form-horizontal">
+        <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="productLineFilter">Product Line Filter</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <select formControlName="product" type="text" class="form-control">
+                  
+                    </select>
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="categoryFilter">Category Filter</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <select formControlName="category"  type="text" class="form-control">
+                
+                   
+                    </select>
+                  </div>
+             </div> 
+         </div>
+         <div class="col-md-6">
+              <div  class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="totalInventoryCost">Total Inventory Cost</label>
+                 <div class="col-sm-9 col-md-8 field">
+                    <input formControlName="total"  type="text" class="form-control">
+                 </div>
+             </div>
+         </div>
+
+  </div>
+    
+ 
+    
+        <div class="search-button-holder">
+            <button type="button" (click)="filter();" class="btn btn-primary pull-right" >Filter</button>
+            <button type="button" (click)="addNewProduct()" class="btn btn-default" >Add New Product</button>
+        </div>
+    
+   </fieldset>
+
+    <generic-table #resultsTable [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+
+
+  </tab>
+  <tab heading="Card Form">
+     <fieldset class="section-content">
+    <legend>
+        <h5>CARD FORM</h5>
+    </legend>
+    <div [formGroup]="browseForm" class="row form-horizontal">
+        <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="importedItem">Imported Item</label>
+                  <div class="col-sm-9 col-md-8 field">
+                    <input type="checkbox" formControlName="importedItem">
+                 </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="category">Category</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <select formControlName="category"  type="text" class="form-control">
+                
+                   
+                    </select>
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="description">Description</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="description">
+                  </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="grossPrice">Gross Price</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="grossPrice">
+                  </div>
+             </div> 
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="less35">Less 35%</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="less35">
+                  </div>
+             </div> 
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="warehouseOne">Warehouse One</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="warehouseOne">
+                  </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="packQtyBig">Pack Qty Big</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="packQtyBig">
+                  </div>
+             </div> 
+         </div>
+
+
+          <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="unit">Unit</label>
+                  <div class="col-sm-9 col-md-8 field">
+                    <input type="text" class="form-control" formControlName="unit">
+                 </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="location">Location</label>
+                 <div class="col-sm-9 col-md-8 field">
+                    <input type="text" class="form-control" formControlName="location">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="minimumQuantity">Minimum Quantity</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="minimumQuantity">
+                  </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="less15">Less 15%</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="less15">
+                  </div>
+             </div> 
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="warehouseTwo">Warehouse Two</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="warehouseTwo">
+                  </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="packQtySmall">Pack Qty Small</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input type="text" class="form-control" formControlName="packQtySmall">
+                  </div>
+             </div> 
+         </div>
+        <div class="col-md-12">
+          <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-2" for="remarksOne">Remarks 1</label>
+                 <div class="col-sm-9 col-md-10 field">
+                     <textarea class="form-control" formControlName="remarksOne"></textarea>
+                  </div>
+             </div> 
+        </div>
+         <div class="col-md-12">
+          <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-2" for="remarksTwo">Remarks 2</label>
+                 <div class="col-sm-9 col-md-10 field">
+                     <textarea class="form-control" formControlName="remarksTwo"></textarea>
+                  </div>
+             </div> 
+        </div>
+    </div>
+     </fieldset>
+     <generic-table #pricingTable [title]="'PRICING'" [headers]="pricingHeaders" [results]="pricingResults" [type]="'single'" [keys]="pricingKeys"></generic-table>
+  </tab>
+</tabset>
+
+<app-add-product #addProduct></app-add-product>

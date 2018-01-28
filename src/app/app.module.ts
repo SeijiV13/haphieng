@@ -46,6 +46,7 @@ import { AgmCoreModule } from '@agm/core';
 import { ChartsModule } from 'ng2-charts';
 import {NgDashboardModule} from 'ngx-dashboard';
 
+
 //RESOLVERS
 import { MenuResolver } from './generic/menu.resolver';
 import { DropdownResolver } from './generic/resolver/dropdown.resolver';
@@ -95,6 +96,15 @@ import { FormatterDirective } from './generic/directives/formatter.directive';
 import { CharacterLimiterDirective } from './generic/directives/character-limiter.directive';
 import { TrimmerDirective } from './generic/directives/trimmer.directive';
 import { WidgetsComponent } from './generic/widgets/widgets.component';
+import { InventoryFileComponent } from './views/files/inventory-file/inventory-file.component';
+import { CustomerFileComponent } from './views/files/customer-file/customer-file.component';
+import { AgentFileComponent } from './views/files/agent-file/agent-file.component';
+import { SupplierFileComponent } from './views/files/supplier-file/supplier-file.component';
+import { CustomerBankFileComponent } from './views/files/customer-bank-file/customer-bank-file.component';
+import { AddProductComponent } from './views/transaction-modals/add-product/add-product.component';
+import { AddCustomerComponent } from './views/transaction-modals/add-customer/add-customer.component';
+import { AddSupplierComponent } from './views/transaction-modals/add-supplier/add-supplier.component';
+import { AddAgentComponent } from './views/transaction-modals/add-agent/add-agent.component';
 
 
 
@@ -131,6 +141,15 @@ import { WidgetsComponent } from './generic/widgets/widgets.component';
         GenericModalComponent,
         GenericTableComponent,
         WidgetsComponent,
+        InventoryFileComponent,
+        CustomerFileComponent,
+        AgentFileComponent,
+        SupplierFileComponent,
+        CustomerBankFileComponent,
+        AddProductComponent,
+        AddCustomerComponent,
+        AddSupplierComponent,
+        AddAgentComponent,
        
 
 
@@ -162,7 +181,8 @@ import { WidgetsComponent } from './generic/widgets/widgets.component';
           }),
         QuillEditorModule,
         ChartsModule,
-        NgDashboardModule
+        NgDashboardModule,
+     
         
       
 

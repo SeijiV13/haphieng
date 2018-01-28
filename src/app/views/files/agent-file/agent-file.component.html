@@ -1,0 +1,129 @@
+<div class="search-button-holder">
+            <button type="button" (click)="print()" class="btn btn-default" ><span class="glyphicon glyphicon-print"></span> Print</button>
+</div>
+
+<tabset>
+  <tab heading="Broswe Form">
+       <fieldset class="section-content">
+    <legend>
+        <h5>BROWSE FORM</h5>
+    </legend>
+    <div [formGroup]="formGroup" class="row form-horizontal">
+        <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="agentNameFilter">Agent Name Filter</label>
+                 <div class="col-sm-9 col-md-8 field">
+                      <input formControlName="name"  type="text" class="form-control">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="agentDescriptionFilter">Agent Description Filter</label>
+                 <div class="col-sm-9 col-md-8 field">
+                      <input formControlName="description"  type="text" class="form-control">
+                  </div>
+             </div> 
+         </div>
+         <div class="col-md-6">
+              <div  class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="addressFilter">Adress Filter</label>
+                 <div class="col-sm-9 col-md-8 field">
+                    <input formControlName="address"  type="text" class="form-control">
+                 </div>
+             </div>
+         </div>
+
+  </div>
+    
+ 
+    
+        <div class="search-button-holder">
+            <button type="button" (click)="filter();" class="btn btn-primary pull-right" >Filter</button>
+            <button type="button" (click)="addNewAgent()" class="btn btn-default" >Add New Agent</button>
+        </div>
+    
+   </fieldset>
+
+    <generic-table #resultsTable [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+
+
+  </tab>
+  <tab heading="Card Form">
+  
+    <div [formGroup]="browseForm">
+      <fieldset class="section-content">
+        <legend>
+          <h5>PERSONAL DETAILS</h5>
+        </legend>
+        <div class="row form-horizontal">
+        <div class="col-md-6">
+      
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="angentName">Agent Name</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="agentName"  type="text" class="form-control">
+                  </div>
+             </div>
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="description">Description</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="description"  type="text" class="form-control">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="telephone">Telephone</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="telephone"  type="text" class="form-control">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="cellphone">Cellphone</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="cellphone"  type="text" class="form-control">
+                  </div>
+             </div> 
+      
+         </div>
+
+          <div class="col-md-6">
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="address">Address</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="address"  type="text" class="form-control">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="address2">Address 2</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="address2"  type="text" class="form-control">
+                  </div>
+             </div> 
+       
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="email">Email</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="email"  type="text" class="form-control">
+                  </div>
+             </div> 
+         
+         </div>
+          <div class="col-md-12">
+          <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-2" for="remarks">Remarks</label>
+                 <div class="col-sm-9 col-md-10 field">
+                     <textarea class="form-control" formControlName="remarks"></textarea>
+                  </div>
+             </div> 
+        </div>
+        </div>
+        <div class="search-button-holder">
+            <button type="button" (click)="editDetails()" class="btn btn-default" >Edit Details</button>
+        </div>
+      </fieldset>
+        
+
+    </div>
+  </tab>
+</tabset>
+<app-add-agent #addAgentModal></app-add-agent>
+
+

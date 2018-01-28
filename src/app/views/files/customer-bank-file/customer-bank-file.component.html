@@ -1,0 +1,102 @@
+<div class="search-button-holder">
+            <button type="button" (click)="print()" class="btn btn-default" ><span class="glyphicon glyphicon-print"></span> Print</button>
+</div>
+
+
+
+  <fieldset class="section-content">
+    <legend>
+        <h5>SEARCH FORM</h5>
+    </legend>
+    <div [formGroup]="formGroup" class="row form-horizontal">
+        <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="customerCode">Customer Code</label>
+                 <div class="col-sm-9 col-md-8 field">
+                      <input formControlName="customerCode"  type="text" class="form-control">
+                  </div>
+             </div> 
+          
+         </div>
+         <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="customerDescription">Customer Description</label>
+                 <div class="col-sm-9 col-md-8 field">
+                      <input formControlName="customerDescription"  type="text" class="form-control">
+                  </div>
+             </div> 
+          
+         </div>
+
+  </div>
+    
+        <div class="search-button-holder">
+            <button type="button" (click)="filter();" class="btn btn-primary pull-right" >Filter</button>
+        </div>
+    
+   </fieldset>
+
+    <generic-table #resultsTable [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+
+
+<div [formGroup]="browseForm">
+      <fieldset class="section-content">
+        <legend>
+          <h5>CUSTOMER BANK INFORMATION</h5>
+        </legend>
+        <div class="row form-horizontal">
+        <div class="col-md-6">
+      
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="accountNumber">Account Number</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="accountNumber"  type="text" class="form-control">
+                  </div>
+             </div>
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="accountName">Account Name</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="accountName"  type="text" class="form-control">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="bank">Bank</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="bank"  type="text" class="form-control">
+                  </div>
+             </div> 
+          
+         </div>
+
+          <div class="col-md-6">
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="address">Branch</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="branch"  type="text" class="form-control">
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="address2">Status</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="status"  type="text" class="form-control">
+                  </div>
+             </div> 
+       
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="email">Remarks</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="remarks"  type="text" class="form-control">
+                  </div>
+             </div> 
+         
+         </div>
+        </div>
+        <div class="search-button-holder">
+            <button type="button" (click)="editDetails()" class="btn btn-default" >Edit Details</button>
+        </div>
+      </fieldset>
+        
+
+    </div>
+
+
