@@ -105,6 +105,7 @@ import { AddProductComponent } from './views/transaction-modals/add-product/add-
 import { AddCustomerComponent } from './views/transaction-modals/add-customer/add-customer.component';
 import { AddSupplierComponent } from './views/transaction-modals/add-supplier/add-supplier.component';
 import { AddAgentComponent } from './views/transaction-modals/add-agent/add-agent.component';
+import { SalesEntriesComponent } from './views/entries/sales-entries/sales-entries.component';
 
 
 
@@ -150,6 +151,7 @@ import { AddAgentComponent } from './views/transaction-modals/add-agent/add-agen
         AddCustomerComponent,
         AddSupplierComponent,
         AddAgentComponent,
+        SalesEntriesComponent,
        
 
 
