@@ -65,4 +65,8 @@ export class InventoryFileComponent implements OnInit {
   print(){
 
  }
+
+ itemTransactions(){
+   
+ }
 }
