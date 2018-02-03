@@ -37,5 +37,4 @@ testem.log
 Thumbs.db
 
 #Developer Files
-/src/assets/properties/env.json
 /src/assets/properties/config.development.json
