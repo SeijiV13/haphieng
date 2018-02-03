@@ -61,5 +61,8 @@ export class InventoryFileComponent implements OnInit {
   addNewProduct(){
     this.addProduct.show();
   }
+ 
+  print(){
 
+ }
 }

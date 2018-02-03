@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {DataPasserService} from '../services/data-passer.service';
+import * as $ from 'jquery';
 @Injectable()
 export class TableFunctionsService {
   counter: number = 0;
