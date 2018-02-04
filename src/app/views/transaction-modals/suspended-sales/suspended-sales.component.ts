@@ -8,7 +8,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class SuspendedSalesComponent implements OnInit {
   @ViewChild("suspendedSalesModal") suspendedModal: ModalDirective;
-  resultsHeaders = [
+  suspendedHeaders = [
     "DR Ref No.",
     "Customer",
     "Date"

@@ -43,7 +43,11 @@ export class AddSalesEntryComponent implements OnInit {
       itemCode: [''],
       description: [''],
       lastprice: [''],
-      quantity: ['', Validators.required]
+      quantity: ['', Validators.required],
+      warehouse: ['', Validators.required],
+      good: ['', Validators.required],
+
+
     })
   }
 
@@ -68,6 +72,8 @@ export class AddSalesEntryComponent implements OnInit {
       agent: this.salesEntryGroup.controls['agent'].value,
       lastprice: this.salesEntryGroup.controls['lastprice'].value,
       quantity: this.salesEntryGroup.controls['quantity'].value,
+      warehouse: this.salesEntryGroup.controls['warehouse'].value,
+      good: this.salesEntryGroup.controls['good'].value,
     
     }
     this.addSalesEntryModal.hide();

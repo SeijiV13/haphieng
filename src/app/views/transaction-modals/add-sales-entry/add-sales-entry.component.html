@@ -15,7 +15,7 @@
         <div class="col-md-12">
       
               <div class="form-group">
-                 <label class="control-label col-sm-3 col-md-2" for="description">Agent</label>
+                 <label class="control-label col-sm-3 col-md-2" for="description">Agent <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-10 field">
                      <select formControlName="agent" class="form-control">
                        <option *ngFor="let agent of agents" [value]="agent.value">{{agent.label}}</option>
@@ -28,10 +28,18 @@
          </div>
 
           <div class="col-md-6">
-               <div class="form-group">
+              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="itemCode">Item Code</label>
                  <div class="col-sm-9 col-md-8 field">
                      <input formControlName="itemCode"  type="text" class="form-control">
+                  </div>
+             </div>
+             <div class="form-group" *ngIf="type === 'salesReturn'">
+                 <label class="control-label col-sm-3 col-md-4" for="itemCode">Warehouse <span class="fa fa-asterisk"></span></label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <label class="control-label"><input formControlName="warehouse"  type="radio"  value="W1">W1</label>
+                      <label class="control-label"><input formControlName="warehouse"  type="radio" value="W2">W2</label>
+                    <control-messages [control]="salesEntryGroup.controls.warehouse"></control-messages>
                   </div>
              </div>
          </div>
@@ -40,6 +48,15 @@
                  <label class="control-label col-sm-3 col-md-4" for="description">Description</label>
                  <div class="col-sm-9 col-md-8 field">
                      <input formControlName="description"  type="text" class="form-control">
+                     
+                  </div>
+             </div>
+              <div class="form-group" *ngIf="type === 'salesReturn'">
+                 <label class="control-label col-sm-3 col-md-4" for="good">Good <span class="fa fa-asterisk"></span></label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <label class="control-label"><input formControlName="good"  type="radio" value="Y">Yes</label>
+                      <label class="control-label"><input formControlName="good"  type="radio"  value="N">No</label>
+                      <control-messages [control]="salesEntryGroup.controls.good"></control-messages>
                   </div>
              </div>
          </div>
@@ -61,7 +78,7 @@
          </div>
           <div class="col-md-6">
                <div class="form-group">
-                 <label class="control-label col-sm-3 col-md-4" for="description">Quantity</label>
+                 <label class="control-label col-sm-3 col-md-4" for="description">Quantity <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-8 field">
                      <input Formatter='{"type": "number"}' formControlName="quantity"  type="text" class="form-control">
                      <control-messages [control]="salesEntryGroup.controls.quantity"></control-messages>

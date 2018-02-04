@@ -75,5 +75,5 @@
   </fieldset>
   <app-add-customer #addCustomer></app-add-customer>
   <generic-table (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
-  <app-add-sales-entry #addSalesEntry (entry)="pushNewItem($event)"></app-add-sales-entry>
+  <app-add-sales-entry [type]="'sales'" #addSalesEntry (entry)="pushNewItem($event)"></app-add-sales-entry>
   <app-suspended-sales #suspendedSales></app-suspended-sales>
