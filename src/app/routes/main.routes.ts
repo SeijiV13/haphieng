@@ -1,3 +1,4 @@
+import { SalesEntriesComponent } from './../views/entries/sales-entries/sales-entries.component';
 
 import { MenuResolver } from './../generic/menu.resolver';
 import { Routes, RouterModule } from '@angular/router';
@@ -50,7 +51,8 @@ export const routes: Routes = [
                   { path: 'customerFile', component: CustomerFileComponent},
                   { path: 'agentFile', component: AgentFileComponent},
                   { path: 'supplierFile', component: SupplierFileComponent},
-                  { path: 'customerBankFile', component: CustomerBankFileComponent}
+                  { path: 'customerBankFile', component: CustomerBankFileComponent},
+                  { path: 'salesEntries', component: SalesEntriesComponent}
 
             ]
       },

@@ -14,7 +14,7 @@
       </div>
       <div class="modal-footer">
         <div class="text-center">
-          <ng-container *ngFor="let button of processButtons()" >
+          <ng-container *ngFor="let button of processedButtons" >
              <button *ngIf="button.buttonEmit" class="btn btn-default" (click)="hide(); emit(button.buttonType)">{{button.buttonName}}</button>
              <button *ngIf="!button.buttonEmit" class="btn btn-default" (click)="hide()">{{button.buttonName}}</button>
           </ng-container>

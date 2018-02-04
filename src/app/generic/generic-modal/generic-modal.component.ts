@@ -17,7 +17,7 @@ export class GenericModalComponent implements AfterViewInit{
   @Input() messageKey: string = "";
   @Output() emitAction = new EventEmitter();
   @ViewChild('genericModal') genericModal: ModalDirective;
- 
+  processedButtons: any[] = [];
   transactionMessage: string;
   htmlMessage: boolean = false;
 
@@ -28,6 +28,7 @@ export class GenericModalComponent implements AfterViewInit{
 
       this.setColor();
       this.centerModal();
+      this.processButtons();
   }
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -77,14 +78,14 @@ export class GenericModalComponent implements AfterViewInit{
 
   processButtons(){
     if(this.buttons){
-    let proccessButtonCollection = Array<any>();
+
     for(let button of this.buttons){
       let buttonName = button.buttonName;
       let buttonEmit = button.buttonEmit;
       let buttonType = button.buttonType;
-      proccessButtonCollection.push({buttonName: buttonName, buttonEmit: buttonEmit, buttonType: buttonType})
+      this.processedButtons.push({buttonName: buttonName, buttonEmit: buttonEmit, buttonType: buttonType})
     }
-   return proccessButtonCollection;
+   return this.processedButtons;
   }
   }
 
