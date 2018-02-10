@@ -108,6 +108,15 @@ import { AddAgentComponent } from './views/transaction-modals/add-agent/add-agen
 import { SalesEntriesComponent } from './views/entries/sales-entries/sales-entries.component';
 import { AddSalesEntryComponent } from './views/transaction-modals/add-sales-entry/add-sales-entry.component';
 import { SuspendedSalesComponent } from './views/transaction-modals/suspended-sales/suspended-sales.component';
+import { SalesReturnEntriesComponent } from './views/entries/sales-return-entries/sales-return-entries.component';
+import { PurchaseEntriesComponent } from './views/entries/purchase-entries/purchase-entries.component';
+import { PurchaseReturnEntriesComponent } from './views/entries/purchase-return-entries/purchase-return-entries.component';
+import { ViewEditSalesComponent } from './views/tools/view-edit-sales/view-edit-sales.component';
+import { ViewEditSalesReturnComponent } from './views/tools/view-edit-sales-return/view-edit-sales-return.component';
+import { ViewEditPurchasesComponent } from './views/tools/view-edit-purchases/view-edit-purchases.component';
+import { ViewEditPurchasesReturnComponent } from './views/tools/view-edit-purchases-return/view-edit-purchases-return.component';
+import { CustomerTransactionsComponent } from './views/tools/customer-transactions/customer-transactions.component';
+import { SupplierTransactionsComponent } from './views/tools/supplier-transactions/supplier-transactions.component';
 
 
 
@@ -156,6 +165,15 @@ import { SuspendedSalesComponent } from './views/transaction-modals/suspended-sa
         SalesEntriesComponent,
         AddSalesEntryComponent,
         SuspendedSalesComponent,
+        SalesReturnEntriesComponent,
+        PurchaseEntriesComponent,
+        PurchaseReturnEntriesComponent,
+        ViewEditSalesComponent,
+        ViewEditSalesReturnComponent,
+        ViewEditPurchasesComponent,
+        ViewEditPurchasesReturnComponent,
+        CustomerTransactionsComponent,
+        SupplierTransactionsComponent,
        
 
 

@@ -34,12 +34,18 @@
                       <TD style="display:none" class="checkbox-container"><input (change)="tableFunctions.onUpdateCheckBox($event, result)" name="checkbox-results" type="checkbox" [value]="result"
                               class="checkbox-results"></TD>
                       <td *ngFor="let key of keys">
+                          <ng-container *ngIf="key.name !== 'rowNo'">
                                <ng-container *ngIf="key.behavior === 'clickable'">
                                   <a (click)="onClickColumn(result)">{{result[key.name]}}</a>
                                </ng-container>
                                <ng-container *ngIf="key.behavior !== 'clickable'">
                                   {{result[key.name]}}
                                </ng-container>
+                          </ng-container>
+                          <ng-container *ngIf="key.name === 'rowNo'">
+                              {{i + 1}}
+                          </ng-container>
+                               
                       </td>
             
                   </TR>

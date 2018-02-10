@@ -44,11 +44,22 @@ export class AddSalesEntryComponent implements OnInit {
       description: [''],
       lastprice: [''],
       quantity: ['', Validators.required],
-      warehouse: ['', Validators.required],
-      good: ['', Validators.required],
-
-
-    })
+      warehouse: [''],
+      good: [''],
+    });
+    if(this.type == 'salesReturn'){
+       this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
+       this.salesEntryGroup.controls['good'].setValidators(Validators.required);
+    }
+    if(this.type === 'purchase'){
+       this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
+       this.salesEntryGroup.controls['agent'].setValidators(null);
+    }
+    if(this.type === 'purchaseReturn'){
+       this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
+        this.salesEntryGroup.controls['good'].setValidators(Validators.required);
+       this.salesEntryGroup.controls['agent'].setValidators(null);
+    }
   }
 
 

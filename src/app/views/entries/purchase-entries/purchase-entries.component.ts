@@ -1,3 +1,4 @@
+import { AddSupplierComponent } from './../../transaction-modals/add-supplier/add-supplier.component';
 import { SuspendedSalesComponent } from './../../transaction-modals/suspended-sales/suspended-sales.component';
 import { AddSalesEntryComponent } from './../../transaction-modals/add-sales-entry/add-sales-entry.component';
 import { AddCustomerComponent } from './../../transaction-modals/add-customer/add-customer.component';
@@ -6,23 +7,23 @@ import { DataPasserService } from './../../../generic/services/data-passer.servi
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-sales-entries',
-  templateUrl: './sales-entries.component.html',
-  styleUrls: ['./sales-entries.component.scss']
+  selector: 'app-purchase-entries',
+  templateUrl: './purchase-entries.component.html',
+  styleUrls: ['./purchase-entries.component.scss']
 })
-export class SalesEntriesComponent implements OnInit {
-  @ViewChild('addCustomer') addCustomer: AddCustomerComponent;
+export class PurchaseEntriesComponent implements OnInit {
+
+  @ViewChild('addSupplier') addSupplier: AddSupplierComponent;
   @ViewChild('addSalesEntry') addSalesEntry: AddSalesEntryComponent;
   @ViewChild('suspendedSales') suspendedSales: SuspendedSalesComponent;
-  salesForm: FormGroup;
+  purchaseForm: FormGroup;
   resultsHeaders = [
     "Row No.",
     "Item code",
-    "Description",
     "Quantity",
     "Quantity Stock",
-    "Pending Quantity",
-    "Agent",
+    "Description",
+    "W1/W1",
     "Price",
     "Amount",
     "Remove"
@@ -31,11 +32,10 @@ export class SalesEntriesComponent implements OnInit {
   resultsKeys = [
      {"name": "rowNo"},
      {"name": "itemCode"},
-     {"name":"description"},
      {"name": "quantity"},
      {"name": "available"},
-     {"name": "pending"},
-     {"name": "agent"},
+     {"name": "description"},
+     {"name": "warehouse"},
      {"name": "price"},
      {"name": "amount"},
      {"name": "remove", behavior: "clickable"}
@@ -49,27 +49,27 @@ export class SalesEntriesComponent implements OnInit {
   constructor(private dataPasserService: DataPasserService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.dataPasserService.sendPageTitle("SALES ENTRIES");
-    this.salesForm = this.fb.group({
+    this.dataPasserService.sendPageTitle("PURCHASE ENTRIES");
+    this.purchaseForm = this.fb.group({
       refNo: ['', Validators.required],
       date: [''],
-      wcrc: ['', Validators.required],
-      customer: ['', Validators.required],
+      currency: ['', Validators.required],
+      supplier: ['', Validators.required],
       terms: [''],
-      total: [{value:'', disabled: true}]
+      totalpeso: [{value:'', disabled: true}],
+      totalyuan: [{value:'', disabled: true}]
     })
   }
 
-  print(type: string){
-
-  }
+  print(type: string){}
 
   addEntry(){
     this.addSalesEntry.show();
   }
-  addNewCustomer(){
-    this.addCustomer.show();
+  addNewSupplier(){
+    this.addSupplier.show();
   }
+
 
   pushNewItem(entry){
     //get price
@@ -82,6 +82,7 @@ export class SalesEntriesComponent implements OnInit {
     entry['amount'] = entry['price'] * entry ['quantity'];
     this.resultsResults.push(entry)
   }
+
   doAction(type){
     if(type === 'post'){
 
@@ -95,5 +96,4 @@ export class SalesEntriesComponent implements OnInit {
       
     }
   }
-
 }

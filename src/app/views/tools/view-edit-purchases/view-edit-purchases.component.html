@@ -1,0 +1,38 @@
+<fieldset class="section-content">
+    <legend>
+        <h5>SEARCH CRITERIA</h5>
+    </legend>
+    <div [formGroup]="formGroup" class="row form-horizontal">
+        <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="productLineFilter">Supplier Filter</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <select formControlName="supplier"  type="text" class="form-control">
+                      </select>
+                  </div>
+             </div> 
+         </div>
+
+         <div class="col-md-6">
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="categoryFilter">Ref No Filter</label>
+                 <div class="col-sm-9 col-md-8 field">
+                      <input formControlName="refNo"  type="text" class="form-control">
+                  </div>
+             </div> 
+         </div>
+  
+  </div>
+    
+ 
+    
+        <div class="search-button-holder">
+            <button type="button" (click)="filter();" class="btn btn-primary pull-right" >Filter</button>
+        </div>
+    
+   </fieldset>
+
+    <generic-table #resultsTable [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+
+
+  

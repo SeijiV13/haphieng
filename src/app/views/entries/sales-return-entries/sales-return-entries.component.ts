@@ -6,11 +6,12 @@ import { DataPasserService } from './../../../generic/services/data-passer.servi
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-sales-entries',
-  templateUrl: './sales-entries.component.html',
-  styleUrls: ['./sales-entries.component.scss']
+  selector: 'app-sales-return-entries',
+  templateUrl: './sales-return-entries.component.html',
+  styleUrls: ['./sales-return-entries.component.scss']
 })
-export class SalesEntriesComponent implements OnInit {
+export class SalesReturnEntriesComponent implements OnInit {
+
   @ViewChild('addCustomer') addCustomer: AddCustomerComponent;
   @ViewChild('addSalesEntry') addSalesEntry: AddSalesEntryComponent;
   @ViewChild('suspendedSales') suspendedSales: SuspendedSalesComponent;
@@ -18,10 +19,11 @@ export class SalesEntriesComponent implements OnInit {
   resultsHeaders = [
     "Row No.",
     "Item code",
-    "Description",
+    "Good",
     "Quantity",
     "Quantity Stock",
-    "Pending Quantity",
+    "Description",
+    "W1/W2",
     "Agent",
     "Price",
     "Amount",
@@ -31,10 +33,11 @@ export class SalesEntriesComponent implements OnInit {
   resultsKeys = [
      {"name": "rowNo"},
      {"name": "itemCode"},
-     {"name":"description"},
+     {"name":"good"},
      {"name": "quantity"},
      {"name": "available"},
-     {"name": "pending"},
+     {"name": "description"},
+     {"name": "warehouse"},
      {"name": "agent"},
      {"name": "price"},
      {"name": "amount"},
@@ -49,7 +52,7 @@ export class SalesEntriesComponent implements OnInit {
   constructor(private dataPasserService: DataPasserService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.dataPasserService.sendPageTitle("SALES ENTRIES");
+    this.dataPasserService.sendPageTitle("SALES RETURN ENTRIES");
     this.salesForm = this.fb.group({
       refNo: ['', Validators.required],
       date: [''],

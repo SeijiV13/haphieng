@@ -1,3 +1,12 @@
+import { SupplierTransactionsComponent } from './../views/tools/supplier-transactions/supplier-transactions.component';
+import { CustomerTransactionsComponent } from './../views/tools/customer-transactions/customer-transactions.component';
+import { ViewEditPurchasesReturnComponent } from './../views/tools/view-edit-purchases-return/view-edit-purchases-return.component';
+import { ViewEditPurchasesComponent } from './../views/tools/view-edit-purchases/view-edit-purchases.component';
+import { ViewEditSalesReturnComponent } from './../views/tools/view-edit-sales-return/view-edit-sales-return.component';
+import { ViewEditSalesComponent } from './../views/tools/view-edit-sales/view-edit-sales.component';
+import { PurchaseReturnEntriesComponent } from './../views/entries/purchase-return-entries/purchase-return-entries.component';
+import { PurchaseEntriesComponent } from './../views/entries/purchase-entries/purchase-entries.component';
+import { SalesReturnEntriesComponent } from './../views/entries/sales-return-entries/sales-return-entries.component';
 import { SalesEntriesComponent } from './../views/entries/sales-entries/sales-entries.component';
 
 import { MenuResolver } from './../generic/menu.resolver';
@@ -52,7 +61,16 @@ export const routes: Routes = [
                   { path: 'agentFile', component: AgentFileComponent},
                   { path: 'supplierFile', component: SupplierFileComponent},
                   { path: 'customerBankFile', component: CustomerBankFileComponent},
-                  { path: 'salesEntries', component: SalesEntriesComponent}
+                  { path: 'salesEntries', component: SalesEntriesComponent},
+                  { path: 'salesReturnEntries', component: SalesReturnEntriesComponent},
+                  { path: 'purchaseEntries', component: PurchaseEntriesComponent},
+                  { path: 'purchaseReturnEntries', component: PurchaseReturnEntriesComponent },
+                  { path: 'viewEditSales', component: ViewEditSalesComponent},
+                  { path: 'viewEditSalesReturns', component: ViewEditSalesReturnComponent},
+                  { path: 'viewEditPurchases', component: ViewEditPurchasesComponent},
+                  { path: 'viewEditPurchasesReturns', component: ViewEditPurchasesReturnComponent},
+                  { path: 'customerTransactions', component: CustomerTransactionsComponent},
+                  { path: 'supplierTransactions', component : SupplierTransactionsComponent}
 
             ]
       },

@@ -1,0 +1,80 @@
+
+ <fieldset class="section-content">
+    <legend>
+        <h5>Sales Entries</h5>
+    </legend>
+    <div [formGroup]="purchaseForm" class="row form-horizontal">
+        <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="refNo">Ref No.</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="refNo" type="text" class="form-control">
+                     <control-messages [control]="purchaseForm.controls.refNo"></control-messages>
+                  </div>
+             </div> 
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="date">Date</label>
+                <div class="col-sm-9 col-md-8 field">
+                    <datepicker formControlName="date"  [id]="'date'" [validations]="['requiredValidator']"  [placeholder]="'Date'"></datepicker>
+                    <control-messages [control]="purchaseForm.controls.date"></control-messages>
+                </div>
+            </div> 
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="wcrc">Currency</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <select formControlName="currency" type="text" class="form-control">
+                       <option value="yuan">Yuan</option>
+                       <option value="peso">Philippine Peso</option>
+                    </select>
+                    <control-messages [control]="purchaseForm.controls.currency"></control-messages>
+                  </div>
+             </div> 
+
+
+         </div>
+         <div class="col-md-6">
+               <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="supplier">Supplier</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <select formControlName="supplier" type="text" class="form-control">
+                    </select>
+                    <control-messages [control]="purchaseForm.controls.customer"></control-messages>
+                  </div>
+             </div>
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="refNo">Terms</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="terms" type="text" class="form-control">
+                     <control-messages [control]="purchaseForm.controls.terms"></control-messages>
+                  </div>
+             </div> 
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="totalpeso">Total (Peso)</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="totalpeso" type="text" class="form-control">
+                  
+                  </div>
+             </div>
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="totalyuan">Total (Yuan)</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="totalyuan" type="text" class="form-control">
+                  
+                  </div>
+             </div> 
+         </div>
+
+  </div>
+    
+ 
+    
+        <div class="search-button-holder">
+            <button type="button" (click)="addEntry();" class="btn btn-primary pull-right" >Add Entry</button>
+            <button type="button" (click)="addNewSupplier()" class="btn btn-default" >Add New Supplier</button>
+        </div>
+    
+  </fieldset>
+  <app-add-supplier #addSupplier></app-add-supplier>
+  <generic-table (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+  <app-add-sales-entry [type]="'purchaseReturn'" #addSalesEntry (entry)="pushNewItem($event)"></app-add-sales-entry>
+  <app-suspended-sales #suspendedSales></app-suspended-sales>
