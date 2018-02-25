@@ -1,3 +1,6 @@
+import { AgentListComponent } from './../views/reports/agent-list/agent-list.component';
+import { CustomersListComponent } from './../views/reports/customers-list/customers-list.component';
+import { SuppliersListComponent } from './../views/reports/suppliers-list/suppliers-list.component';
 import { PurchaseReturnReportsComponent } from './../views/reports/purchase-return-reports/purchase-return-reports.component';
 import { PurchaseReportsComponent } from './../views/reports/purchase-reports/purchase-reports.component';
 import { SalesReturnReportsComponent } from './../views/reports/sales-return-reports/sales-return-reports.component';
@@ -82,7 +85,10 @@ export const routes: Routes = [
                   { path: 'salesReports', component: SalesReportsComponent},
                   { path: 'salesReturnReports', component: SalesReturnReportsComponent},
                   { path: 'purchaseReports', component:PurchaseReportsComponent},
-                  { path: 'purchaseReturnReports', component: PurchaseReturnReportsComponent}
+                  { path: 'purchaseReturnReports', component: PurchaseReturnReportsComponent},
+                  { path: 'suppliersList', component: SuppliersListComponent},
+                  { path: 'customersList', component: CustomersListComponent},
+                  { path: 'agentList', component: AgentListComponent}
 
             ]
       },

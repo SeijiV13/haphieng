@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-field-generator',
   templateUrl: './field-generator.component.html',

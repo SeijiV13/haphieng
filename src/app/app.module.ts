@@ -125,6 +125,9 @@ import { SalesReturnReportsComponent } from './views/reports/sales-return-report
 import { PurchaseReportsComponent } from './views/reports/purchase-reports/purchase-reports.component';
 import { PurchaseReturnReportsComponent } from './views/reports/purchase-return-reports/purchase-return-reports.component';
 import { FieldGeneratorComponent } from './views/reports/report-fields/field-generator/field-generator.component';
+import { CustomersListComponent } from './views/reports/customers-list/customers-list.component';
+import { SuppliersListComponent } from './views/reports/suppliers-list/suppliers-list.component';
+import { AgentListComponent } from './views/reports/agent-list/agent-list.component';
 
 
 
@@ -189,7 +192,10 @@ import { FieldGeneratorComponent } from './views/reports/report-fields/field-gen
         SalesReturnReportsComponent,
         PurchaseReportsComponent,
         PurchaseReturnReportsComponent,
-        FieldGeneratorComponent
+        FieldGeneratorComponent,
+        CustomersListComponent,
+        SuppliersListComponent,
+        AgentListComponent
        
 
 
