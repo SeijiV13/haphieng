@@ -1,0 +1,21 @@
+<div bsModal #itemInOutModal="bs-modal" class="modal generic-modal-comp fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <!--MODAL CONTENT -->
+    <div class="modal-content">
+      <div class="modal-header">
+         <h4 class="text-center" class="modal-title"><b>Item In Out Transactions</b></h4>
+      </div>
+      <div class="modal-body">
+        <app-item-in-out [modal]="true"></app-item-in-out>
+      </div>
+ 
+      <div class="modal-footer">
+        <div>
+          <ng-container >
+              <button class="btn btn-default" (click)="hide()">Close</button>
+          </ng-container>
+        </div>
+      </div>
+    
+  </div>
+</div>

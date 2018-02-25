@@ -1,3 +1,4 @@
+import { ItemInOutModalComponent } from './../../transaction-modals/item-in-out-modal/item-in-out-modal.component';
 import { SuspendedSalesComponent } from './../../transaction-modals/suspended-sales/suspended-sales.component';
 import { AddSalesEntryComponent } from './../../transaction-modals/add-sales-entry/add-sales-entry.component';
 import { AddCustomerComponent } from './../../transaction-modals/add-customer/add-customer.component';
@@ -11,7 +12,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./sales-return-entries.component.scss']
 })
 export class SalesReturnEntriesComponent implements OnInit {
-
+  @ViewChild('itemInOutModal') itemInOutModal: ItemInOutModalComponent;
   @ViewChild('addCustomer') addCustomer: AddCustomerComponent;
   @ViewChild('addSalesEntry') addSalesEntry: AddSalesEntryComponent;
   @ViewChild('suspendedSales') suspendedSales: SuspendedSalesComponent;
@@ -95,6 +96,7 @@ export class SalesReturnEntriesComponent implements OnInit {
 
 
     }else if(type === 'itemtrans'){
+      this.itemInOutModal.show();
       
     }
   }

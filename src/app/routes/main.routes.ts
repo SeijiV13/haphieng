@@ -1,3 +1,9 @@
+import { PurchaseReturnReportsComponent } from './../views/reports/purchase-return-reports/purchase-return-reports.component';
+import { PurchaseReportsComponent } from './../views/reports/purchase-reports/purchase-reports.component';
+import { SalesReturnReportsComponent } from './../views/reports/sales-return-reports/sales-return-reports.component';
+import { SalesReportsComponent } from './../views/reports/sales-reports/sales-reports.component';
+import { ChangePasswordComponent } from './../views/change-password/change-password.component';
+import { ItemInOutComponent } from './../views/reports/item-in-out/item-in-out.component';
 import { SupplierTransactionsComponent } from './../views/tools/supplier-transactions/supplier-transactions.component';
 import { CustomerTransactionsComponent } from './../views/tools/customer-transactions/customer-transactions.component';
 import { ViewEditPurchasesReturnComponent } from './../views/tools/view-edit-purchases-return/view-edit-purchases-return.component';
@@ -70,7 +76,13 @@ export const routes: Routes = [
                   { path: 'viewEditPurchases', component: ViewEditPurchasesComponent},
                   { path: 'viewEditPurchasesReturns', component: ViewEditPurchasesReturnComponent},
                   { path: 'customerTransactions', component: CustomerTransactionsComponent},
-                  { path: 'supplierTransactions', component : SupplierTransactionsComponent}
+                  { path: 'supplierTransactions', component : SupplierTransactionsComponent},
+                  { path: 'itemInOutTransactions', component : ItemInOutComponent},
+                  { path: 'changePassword', component: ChangePasswordComponent},
+                  { path: 'salesReports', component: SalesReportsComponent},
+                  { path: 'salesReturnReports', component: SalesReturnReportsComponent},
+                  { path: 'purchaseReports', component:PurchaseReportsComponent},
+                  { path: 'purchaseReturnReports', component: PurchaseReturnReportsComponent}
 
             ]
       },

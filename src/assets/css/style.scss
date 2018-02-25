@@ -634,3 +634,21 @@ agm-map {
 th{
     background: $table-header-color;
 }
+
+//DATE :in-range
+
+.date-field1 {
+    width: 47%;
+    float: left;
+}
+
+.date-field2 {
+    width: 47%;
+    float: right;
+}
+
+//radio
+input[type="radio"] {
+  margin-top: -1px;
+  vertical-align: middle;
+}

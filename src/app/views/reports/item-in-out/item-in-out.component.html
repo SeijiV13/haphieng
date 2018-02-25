@@ -1,0 +1,105 @@
+<div class="search-button-holder">
+   <button type="button" (click)="print()" class="btn btn-default" ><span class="glyphicon glyphicon-print"></span> Print</button>
+</div>
+
+ <fieldset class="section-content">
+    <legend>
+        <h5>Sales Entries</h5>
+    </legend>
+    <div [formGroup]="itemForm" class="row form-horizontal">
+        <div class="col-md-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="customer">Items</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <select formControlName="items" type="text" class="form-control">
+                    </select>
+                    <control-messages [control]="itemForm.controls.customer"></control-messages>
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="clients">Clients</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <label class="control-label"><input type="radio" formControlName="clients"  value="suppliers"  > All Suppliers</label>
+                     <label class="control-label"><input type="radio" formControlName="clients"  value="sales" > All Sales Transaction</label>
+                     <label class="control-label"><input  type="radio" formControlName="clients"  value="client" > Select Client
+                     </label>
+              
+                  </div>
+             </div> 
+             <div *ngIf="itemForm.controls['clients'].value =='client' "class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="clients">Select Client</label>
+                 <div class="col-sm-9 col-md-8 field">
+                      <select formControlName="allClients" type="text" class="form-control">
+                     </select>
+              
+                  </div>
+             </div> 
+
+         
+            <div class="form-group">
+                    <label class="control-label col-sm-3 col-md-4" for="dateFrom">Date From</label>
+                        <div class="col-sm-9 col-md-8 field">
+                            <div class="date-field1">
+                                <datepicker [id]="'dateFrom'" formControlName="dateFrom" [placeholder]="'MM/DD/YYYY'"></datepicker>
+                                <control-messages [control]="itemForm.controls.dateFrom"></control-messages>
+                             </div>
+
+                            <div class="date-field2">
+                                  <datepicker [id]="'dateTo'" formControlName="dateTo" [placeholder]="'MM/DD/YYYY'"></datepicker>
+                             </div>
+                      </div>
+            </div>
+
+           
+        
+         </div>
+         <div class="col-md-6">
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="totalIn">Total In</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="totalIn" type="text" class="form-control">
+                     <control-messages [control]="itemForm.controls.totalIn"></control-messages>
+                  </div>
+             </div> 
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="totalOut">Total Out</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="totalOut" type="text" class="form-control">
+                  
+                  </div>
+             </div>
+            <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="totalAdj">Total Adj.</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="totalAdj" type="text" class="form-control">
+                  
+                  </div>
+             </div>
+            <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="inOut">In-Out + Adj</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="inOut" type="text" class="form-control">
+                  
+                  </div>
+             </div> 
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="recordQty">Record Qty.</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="recordQty" type="text" class="form-control">
+                  
+                  </div>
+             </div> 
+         </div>
+
+  </div>
+    
+ 
+    
+        <div class="search-button-holder">
+            <button type="button" (click)="filter();" class="btn btn-primary pull-right" >Filter</button>
+      
+        </div>
+    
+  </fieldset>
+  
+  <generic-table (emitType)="doAction($event)" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>

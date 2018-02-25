@@ -117,6 +117,14 @@ import { ViewEditPurchasesComponent } from './views/tools/view-edit-purchases/vi
 import { ViewEditPurchasesReturnComponent } from './views/tools/view-edit-purchases-return/view-edit-purchases-return.component';
 import { CustomerTransactionsComponent } from './views/tools/customer-transactions/customer-transactions.component';
 import { SupplierTransactionsComponent } from './views/tools/supplier-transactions/supplier-transactions.component';
+import { ItemInOutComponent } from './views/reports/item-in-out/item-in-out.component';
+import { ItemInOutModalComponent } from './views/transaction-modals/item-in-out-modal/item-in-out-modal.component';
+import { ChangePasswordComponent } from './views/change-password/change-password.component';
+import { SalesReportsComponent } from './views/reports/sales-reports/sales-reports.component';
+import { SalesReturnReportsComponent } from './views/reports/sales-return-reports/sales-return-reports.component';
+import { PurchaseReportsComponent } from './views/reports/purchase-reports/purchase-reports.component';
+import { PurchaseReturnReportsComponent } from './views/reports/purchase-return-reports/purchase-return-reports.component';
+import { FieldGeneratorComponent } from './views/reports/report-fields/field-generator/field-generator.component';
 
 
 
@@ -174,6 +182,14 @@ import { SupplierTransactionsComponent } from './views/tools/supplier-transactio
         ViewEditPurchasesReturnComponent,
         CustomerTransactionsComponent,
         SupplierTransactionsComponent,
+        ItemInOutComponent,
+        ItemInOutModalComponent,
+        ChangePasswordComponent,
+        SalesReportsComponent,
+        SalesReturnReportsComponent,
+        PurchaseReportsComponent,
+        PurchaseReturnReportsComponent,
+        FieldGeneratorComponent
        
 
 

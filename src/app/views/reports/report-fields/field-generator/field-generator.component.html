@@ -1,0 +1,76 @@
+    <!--REQUEST DATE FORM GROUP-->
+<form [formGroup]="formGroup"class="form-horizontal"> 
+ 
+<div style="padding:10px" *ngFor="let field of fields">
+<div *ngIf="field === 'customer'" class="form-group">
+    <label class="control-label col-sm-3 col-md-4" for="customer">Customer</label>
+    <div class="col-sm-9 col-md-8 field">
+         <select formControlName="customer" type="text" class="form-control">
+         </select>
+   
+    </div>
+ </div>
+<div *ngIf="field === 'supplier'" class="form-group">
+    <label class="control-label col-sm-3 col-md-4" for="supplier">Supplier</label>
+    <div class="col-sm-9 col-md-8 field">
+         <select formControlName="supplier" type="text" class="form-control">
+         </select>
+   
+    </div>
+ </div>
+ <div *ngIf="field === 'category'" class="form-group">
+    <label class="control-label col-sm-3 col-md-4" for="category">Category</label>
+    <div class="col-sm-9 col-md-8 field">
+         <select formControlName="category" type="text" class="form-control">
+         </select>
+   
+    </div>
+ </div>
+  <div *ngIf="field === 'item'" class="form-group">
+    <label class="control-label col-sm-3 col-md-4" for="customer">Item</label>
+    <div class="col-sm-9 col-md-8 field">
+         <select formControlName="item" type="text" class="form-control">
+         </select>
+   
+    </div>
+ </div>
+  <div *ngIf="field === 'agent'" class="form-group">
+    <label class="control-label col-sm-3 col-md-4" for="agent">Agent</label>
+    <div class="col-sm-9 col-md-8 field">
+         <select formControlName="agent" type="text" class="form-control">
+         </select>
+   
+    </div>
+ </div>
+
+<div *ngIf="field === 'date'" class="form-group">
+          <label class="control-label col-sm-3 col-md-4" for="requestFrom">Date</label>
+             <div class="col-sm-9 col-md-8" >
+                  <div class="date-field">
+                      <datepicker [id]="date" formControlName="date" [placeholder]="'MM/DD/YYYY'"></datepicker>
+                      
+             </div> 
+          </div>
+</div>
+
+<div *ngIf="field === 'daterange'" class="form-group">
+          <label class="control-label col-sm-3 col-md-4" for="requestFrom">Date From</label>
+             <div class="col-sm-9 col-md-8" >
+                  <div class="date-field1">
+                      <datepicker [id]="dateFrom" formControlName="dateFrom" [placeholder]="'MM/DD/YYYY'"></datepicker>
+                      <div class="help-block">From</div>
+                  </div>
+
+                   <div class="date-field2">
+                      <datepicker [id]="dateTo" formControlName="dateTo" [placeholder]="'MM/DD/YYYY'"></datepicker>
+                      <div class="help-block">To</div>
+                   </div>
+          </div>
+</div>
+
+ </div>
+<div style="padding: 10px" class="search-button-holder">
+            <button type="button" (click)="generate();" class="btn btn-primary pull-right" >Generate</button>
+            <button type="button" (click)="clear()" class="btn btn-default" >Clear </button>
+ </div>
+</form>

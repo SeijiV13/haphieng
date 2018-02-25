@@ -1,0 +1,77 @@
+<div class="col-sm-8">
+<fieldset>
+<tabset>
+  <tab heading="All Daily Returns">
+    <div class="panel-group">
+       <div class="panel panel-default">
+          <div class="panel-heading">
+             <h4 class="panel-title">
+                <a (click)="showPanel('#collapse1')">All Daily Returns</a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse">
+              <div class="panel-body"></div>
+              <app-field-generator [fields]="['date']" [date]="'date1'" (generateReport)="generateReport($event)"></app-field-generator>
+              </div>
+          </div>
+    
+   
+  
+    </div>
+    
+  </tab>
+   <tab heading="Sales Return History">
+         <div class="panel-group">
+       <div class="panel panel-default">
+          <div class="panel-heading">
+             <h4 class="panel-title">
+                <a (click)="showPanel('#collapse5')">History of Sales Return by Item</a>
+            </h4>
+          </div>
+          <div id="collapse5" class="panel-collapse collapse">
+              <div class="panel-body"></div>
+              <app-field-generator [fields]="['item','daterange']"  [dateFrom]="'dateFrom1'" [dateTo]="'dateTo1'" (generateReport)="generateReport($event)"></app-field-generator>
+              </div>
+          </div>
+    
+       <div class="panel panel-default">
+          <div class="panel-heading">
+             <h4 class="panel-title">
+                <a (click)="showPanel('#collapse6')">History of Sales by Customer-Category-Item</a>
+            </h4>
+          </div>
+          <div id="collapse6" class="panel-collapse collapse">
+              <div class="panel-body"></div>
+              <app-field-generator [fields]="['customer', 'category','item','daterange']"  [dateFrom]="'dateFrom2'" [dateTo]="'dateTo2'" (generateReport)="generateReport($event)"></app-field-generator>
+              </div>
+          </div>
+    
+       <div class="panel panel-default">
+          <div class="panel-heading">
+             <h4 class="panel-title">
+                <a (click)="showPanel('#collapse7')">History of Sales by Agent</a>
+            </h4>
+          </div>
+          <div id="collapse7" class="panel-collapse collapse">
+              <div class="panel-body"></div>
+              <app-field-generator [fields]="['agent','daterange']"  [dateFrom]="'dateFrom3'" [dateTo]="'dateTo3'" (generateReport)="generateReport($event)"></app-field-generator>
+              </div>
+       </div>
+    
+
+    </div>
+    
+  </tab>
+</tabset>
+</fieldset>
+</div>
+<div class="col-sm-4">
+  <div class="panel panel-default">
+  <div class="panel-heading">Reminders</div>
+  <div class="panel-body"><p>
+   Generating a report will a download a PDF Format file containing the reports
+   base on the selected category, please make sure all the details are complete before
+   generating a report to have accurate results.
+   </p></div>
+  </div>
+</div>
