@@ -1,3 +1,4 @@
+import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgentListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataPasserService: DataPasserService) { }
 
   ngOnInit() {
+    this.dataPasserService.sendPageTitle('AGENTS LIST');
   }
+
+
+  generate(){}
 
 }

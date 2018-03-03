@@ -1,3 +1,4 @@
+import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomersListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataPasserSercive: DataPasserService) { }
 
   ngOnInit() {
+    this.dataPasserSercive.sendPageTitle("CUSTOMERS LIST");
   }
-
+  generate(){}
 }

@@ -1,0 +1,151 @@
+<div class="col-sm-8">
+<fieldset class="section-content">
+  <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a (click)="showPanel('#collapse1')">Price List (Imported)</a> 
+      </div>
+     <div id="collapse1" class="panel-collapse collapse">
+      <div class="panel-body">
+             <div  style="background-color: #dee2e8; padding: 15px; text-align:center">
+                 <button type="button" (click)="generate('pl1')" class="btn btn-primary" >Generate PDF <span class="glyphicon glyphicon-file"></span></button>
+             </div>
+             <div class="panel panel-default">
+                 <div class="panel-heading" style="font-size:13px">Note: the amount of data will affect the time to generate the PDF Report, a large amount of results will take several time to generate</div>
+             </div> 
+       </div>
+     </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">  
+      <a (click)="showPanel('#collapse2')">Price List (Local)</a> 
+      </div>
+     <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">
+             <div  style="background-color: #dee2e8; padding: 15px; text-align:center">
+                 <button type="button" (click)="generate('pl2')" class="btn btn-primary" >Generate PDF <span class="glyphicon glyphicon-file"></span></button>
+             </div>
+             <div class="panel panel-default">
+                 <div class="panel-heading" style="font-size:13px">Note: the amount of data will affect the time to generate the PDF Report, a large amount of results will take several time to generate</div>
+             </div> 
+       </div>
+     </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+       <a (click)="showPanel('#collapse3')">External - List All Products (Imported)</a> 
+    </div>
+     <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">
+             <div  style="background-color: #dee2e8; padding: 15px; text-align:center">
+                 <button type="button" (click)="generate('pl3')" class="btn btn-primary" >Generate PDF <span class="glyphicon glyphicon-file"></span></button>
+             </div>
+             <div class="panel panel-default">
+                 <div class="panel-heading" style="font-size:13px">Note: the amount of data will affect the time to generate the PDF Report, a large amount of results will take several time to generate</div>
+             </div> 
+       </div>
+     </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a (click)="showPanel('#collapse4')">External - List All Products (Local)</a> 
+      </div>
+     <div id="collapse4" class="panel-collapse collapse">
+      <div class="panel-body">
+             <div  style="background-color: #dee2e8; padding: 15px; text-align:center">
+                 <button type="button" (click)="generate('pl4')" class="btn btn-primary" >Generate PDF <span class="glyphicon glyphicon-file"></span></button>
+             </div>
+             <div class="panel panel-default">
+                 <div class="panel-heading" style="font-size:13px">Note: the amount of data will affect the time to generate the PDF Report, a large amount of results will take several time to generate</div>
+             </div> 
+       </div>
+     </div>
+  </div>
+  <div class="panel panel-default">
+     <div class="panel-heading">
+      <a (click)="showPanel('#collapse5')">External - List All Products (No Price)</a> 
+      </div>
+     <div id="collapse5" class="panel-collapse collapse">
+      <div class="panel-body">
+             <div  style="background-color: #dee2e8; padding: 15px; text-align:center">
+                 <button type="button" (click)="generate('pl5')" class="btn btn-primary" >Generate PDF <span class="glyphicon glyphicon-file"></span></button>
+             </div>
+             <div class="panel panel-default">
+                 <div class="panel-heading" style="font-size:13px">Note: the amount of data will affect the time to generate the PDF Report, a large amount of results will take several time to generate</div>
+             </div> 
+       </div>
+     </div>
+  </div>
+   <div class="panel panel-default">
+     <div class="panel-heading">
+      <a (click)="showPanel('#collapse6')">List All Products</a> 
+      </div>
+     <div id="collapse6" class="panel-collapse collapse">
+      <div class="panel-body">
+             <div  style="background-color: #dee2e8; padding: 15px; text-align:center">
+                 <button type="button" (click)="generate('pl6')" class="btn btn-primary" >Generate PDF <span class="glyphicon glyphicon-file"></span></button>
+             </div>
+             <div class="panel panel-default">
+                 <div class="panel-heading" style="font-size:13px">Note: the amount of data will affect the time to generate the PDF Report, a large amount of results will take several time to generate</div>
+             </div> 
+       </div>
+     </div>
+  </div>
+  <div class="panel panel-default">
+     <div class="panel-heading">
+      <a (click)="showPanel('#collapse7')">List All Products by Vategory</a> 
+      </div>
+     <div id="collapse7" class="panel-collapse collapse">
+      <div class="panel-body">
+             <div  style="background-color: #dee2e8; padding: 15px; text-align:center">
+                 <button type="button" (click)="generate('pl7')" class="btn btn-primary" >Generate PDF <span class="glyphicon glyphicon-file"></span></button>
+             </div>
+             <div class="panel panel-default">
+                 <div class="panel-heading" style="font-size:13px">Note: the amount of data will affect the time to generate the PDF Report, a large amount of results will take several time to generate</div>
+             </div> 
+       </div>
+     </div>
+  </div>
+  <div class="panel panel-default">
+     <div class="panel-heading">
+      <a (click)="showPanel('#collapse8')">Damaged Inventory Summary</a>
+      </div>
+     <div id="collapse8" class="panel-collapse collapse">
+      <div class="panel-body">
+             <div  style="background-color: #dee2e8; padding: 15px; text-align:center">
+                 <button type="button" (click)="generate('pl8')" class="btn btn-primary" >Generate PDF <span class="glyphicon glyphicon-file"></span></button>
+             </div>
+             <div class="panel panel-default">
+                 <div class="panel-heading" style="font-size:13px">Note: the amount of data will affect the time to generate the PDF Report, a large amount of results will take several time to generate</div>
+             </div> 
+       </div>
+     </div>
+  </div>
+  <div class="panel panel-default">
+   <div class="panel-heading">
+      <a (click)="showPanel('#collapse9')">Qunatity Adjustment Summary</a>
+      </div>
+     <div id="collapse9" class="panel-collapse collapse">
+      <div class="panel-body">
+             <div  style="background-color: #dee2e8; padding: 15px; text-align:center">
+                 <button type="button" (click)="generate('pl9')" class="btn btn-primary" >Generate PDF <span class="glyphicon glyphicon-file"></span></button>
+             </div>
+             <div class="panel panel-default">
+                 <div class="panel-heading" style="font-size:13px">Note: the amount of data will affect the time to generate the PDF Report, a large amount of results will take several time to generate</div>
+             </div> 
+       </div>
+     </div>
+  </div>
+  </div>
+</fieldset>
+</div>
+<div class="col-sm-4">
+  <div class="panel panel-default">
+  <div class="panel-heading">Reminders</div>
+  <div class="panel-body"><p>
+   Generating a report will a download a PDF Format file containing the reports
+   base on the selected category, please make sure all the details are complete before
+   generating a report to have accurate results.
+   </p></div>
+  </div>
+</div>

@@ -1,3 +1,22 @@
-<p>
-  agent-list works!
-</p>
+<div class="col-sm-8">
+<fieldset class="section-content">
+ <legend><h5>Generate List of Agents</h5></legend>
+ <div  style="background-color: #dee2e8; padding: 15px; text-align:center">
+ <button type="button" (click)="generate()" class="btn btn-primary" >Generate PDF <span class="glyphicon glyphicon-file"></span></button>
+ </div>
+ <div class="panel panel-default">
+   <div class="panel-heading" style="font-size:13px">Note: the amount of data will affect the time to generate the PDF Report, a large amount of results will take several time to generate</div>
+</div>
+</fieldset>
+</div>
+
+<div class="col-sm-4">
+  <div class="panel panel-default">
+  <div class="panel-heading">Reminders</div>
+  <div class="panel-body"><p>
+   Generating a report will a download a PDF Format file containing the reports
+   base on the selected category, please make sure all the details are complete before
+   generating a report to have accurate results.
+   </p></div>
+  </div>
+</div>

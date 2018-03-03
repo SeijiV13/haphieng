@@ -47,20 +47,10 @@ export class MenuResolver implements Resolve<any>{
              { path: "/home/purchaseReports", name: "Purchase Reports", level: 2, group: "3070" },
              { path: "/home/purchaseReturnReports", name: "Purchase Return Reports", level: 2, group: "3070" },
              { path: "/home/itemInOutTransactions", name: "Item-In Out Transactions", level: 2, group: "3070" },
-             {  path: null, name: "Product List", level: 2, group: "3070" },
-              { path: "/home/priceListImported", name: "Price List (Imported)", level: 3, group: "3070" },
-              { path: "/home/priceListLocal", name: "Price List (Local)", level: 3, group: "3070" },
-              { path: "/home/externalPriceListImported", name: "External - List All Products (Imported)", level: 3, group: "3070" },
-              { path: "/home/externalPriceListLocal", name: "External - List All Products (Local)", level: 3, group: "3070" },
-              { path: "/home/externalPriceListNoPrice", name: "External - List All Products (No Price)", level: 3, group: "3070" },
-              { path: "/home/internalListAllProducts", name: "List All Products", level: 3, group: "3070" },
-              { path: "/home/listProductsByCategory", name: "List Products by Category", level: 3, group: "3070" },
-              { path: "/home/damagedInventorySummary", name: "Damaged Inventory Summary", level: 3, group: "3070" },
-              { path: "/home/quantityAdjustmentInventory", name: "Quantity Adjustment Inventory", level: 3, group: "3070" },
-
-            { path: "/home/customersList", name: "Customers List", level: 2, group: "3070" },
-            { path: "/home/suppliersList", name: "Suppliers List", level: 2, group: "3070" },
-            { path: "/home/agentList", name: "Agent List", level: 2, group: "3070" },
+             {  path:"/home/productsList", name: "Product List", level: 2, group: "3070" },
+             { path: "/home/customersList", name: "Customers List", level: 2, group: "3070" },
+             { path: "/home/suppliersList", name: "Suppliers List", level: 2, group: "3070" },
+             { path: "/home/agentList", name: "Agent List", level: 2, group: "3070" },
 
             
             //fourth group

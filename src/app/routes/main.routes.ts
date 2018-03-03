@@ -1,3 +1,5 @@
+import { LoginPageComponent } from './../views/login-page/login-page.component';
+import { ProductsListComponent } from './../views/reports/products-list/products-list.component';
 import { AgentListComponent } from './../views/reports/agent-list/agent-list.component';
 import { CustomersListComponent } from './../views/reports/customers-list/customers-list.component';
 import { SuppliersListComponent } from './../views/reports/suppliers-list/suppliers-list.component';
@@ -24,7 +26,6 @@ import { ModuleWithProviders } from '@angular/core';
 
 
 //COMPONENTS
-import { LoginComponent } from '../login/login.component';
 import { HomeComponent } from '../home/home.component';
 import { WelcomeComponent } from '../welcome/welcome.component';
 import { ErrorPageComponent} from '../generic/error-pages/generic-error-page/error-page.component'
@@ -53,8 +54,10 @@ import { CustomerBankFileComponent } from './../views/files/customer-bank-file/c
 
 export const routes: Routes = [
 
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      {path: 'login', component: LoginPageComponent},
       { path: 'xfs', component: XfsPageComponent },
+
       {
             path: 'home', component: HomeComponent,
             resolve:
@@ -88,7 +91,8 @@ export const routes: Routes = [
                   { path: 'purchaseReturnReports', component: PurchaseReturnReportsComponent},
                   { path: 'suppliersList', component: SuppliersListComponent},
                   { path: 'customersList', component: CustomersListComponent},
-                  { path: 'agentList', component: AgentListComponent}
+                  { path: 'agentList', component: AgentListComponent},
+                  { path: 'productsList', component: ProductsListComponent}
 
             ]
       },

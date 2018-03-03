@@ -18,5 +18,8 @@ export class PurchaseReturnReportsComponent implements OnInit {
     $(".collapse").not(id).slideUp();
     $(id).toggle('slow');
   }
-
+  
+  generateReport(parameters){
+    
+  }
 }

@@ -1,3 +1,5 @@
+import { LoginComponent } from './login/login.component';
+
 //ANGULAR MODULES
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -10,7 +12,6 @@ import {DropdownModule} from "ngx-dropdown";
 
 //COMPONENTS
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './generic/search.component';
 import { HeaderComponent } from './header/header.component';
@@ -128,7 +129,8 @@ import { FieldGeneratorComponent } from './views/reports/report-fields/field-gen
 import { CustomersListComponent } from './views/reports/customers-list/customers-list.component';
 import { SuppliersListComponent } from './views/reports/suppliers-list/suppliers-list.component';
 import { AgentListComponent } from './views/reports/agent-list/agent-list.component';
-
+import { ProductsListComponent } from './views/reports/products-list/products-list.component';
+import { LoginPageComponent } from './views/login-page/login-page.component';
 
 
 
@@ -136,6 +138,7 @@ import { AgentListComponent } from './views/reports/agent-list/agent-list.compon
 @NgModule({
     declarations: [
         AppComponent,
+        LoginPageComponent,
         LoginComponent,
         HomeComponent,
         FileUploadComponent,
@@ -195,7 +198,9 @@ import { AgentListComponent } from './views/reports/agent-list/agent-list.compon
         FieldGeneratorComponent,
         CustomersListComponent,
         SuppliersListComponent,
-        AgentListComponent
+        AgentListComponent,
+        ProductsListComponent,
+        LoginPageComponent
        
 
 
