@@ -19,7 +19,7 @@ export class ProductsListComponent implements OnInit {
   }
 
 
-  generateReport(parameters){
+  generate(parameters){
     
   }
 
