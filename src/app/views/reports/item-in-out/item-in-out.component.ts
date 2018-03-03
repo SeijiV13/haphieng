@@ -50,14 +50,10 @@ export class ItemInOutComponent implements OnInit {
     })
   }
 
-  print(){
+  print(){}
 
-  }
+ filter(){}
 
- 
-
- filter(){
-
- }
+ doAction(actionType){}
 
 }
