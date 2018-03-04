@@ -33,7 +33,7 @@
                 </button>
         </li>
         <li>
-            <button (click)="logoutConfirmation.show()" class="btn btn-link">
+            <button (click)="logoutModal.show()" class="btn btn-link">
                     <i class="glyphicon glyphicon-log-out top-nav-title"  style="font-size:1.2em"></i>
                     <span class="top-nav-title" xlabel="lnkLogout" style="font-size:.8em">LOGOUT</span>
                 </button>
@@ -43,45 +43,6 @@
 
 </div>
 
-<div bsModal #logoutConfirmation="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button *ngIf="pressedLogOut" type="button" class="close-modal" (click)="logoutConfirmation.hide()" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                <h4 class="modal-title"><span class="fa fa-sign-out"></span> Log Out</h4>
-            </div>
-            <h2>Are you sure?</h2>
-            <div class="modal-footer">
-                <div class="pull-right">
-                    <button style="border-radius: 5px !important" type="submit" class="btn btn-primary" [disabled]="pressedLogOut" (click)="logout()">Yes</button>
-                    <button style="border-radius: 5px !important" type="button" class="btn btn-default" [disabled]="pressedLogOut" (click)="logoutConfirmation.hide()">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div bsModal #sessionWarning="bs-modal" id="sessionWarningModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close-modal" (click)="sessionWarning.hide()" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                <h4 class="modal-title"><span class="fa fa-exclamation-triangle"></span> Session Warning</h4>
-            </div>
-            <div>{{sessionWarningMsg}}</div>
-            <div class="modal-footer">
-                <div class="pull-right">
-                    <button style="border-radius: 5px !important" type="submit" class="btn btn-primary" (click)="refreshJWT()">Yes</button>
-                    <button style="border-radius: 5px !important" type="button" class="btn btn-default" (click)="sessionWarning.hide()">No</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+<generic-modal #logoutModal [messageKey]="'confirmLogout'" (emitAction)="logout()" [buttons]='[{"buttonName": "Yes", "buttonEmit": true}, {"buttonName": "No", "buttonEmit": false}]' [type]="'confirmation'"></generic-modal>
 <!--session-timeout-modal #confirmationSessionExpiredModal (acceptTransaction)="forceLogout()" (denyTransaction)="checkSessExpired()"></session-timeout-modal-->
 <!--error-modal [maxZIndex]="true" [redirectButton]="true" #forceLogoutModal (emitOk)="logout()"></error-modal-->

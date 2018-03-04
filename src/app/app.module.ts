@@ -131,6 +131,9 @@ import { SuppliersListComponent } from './views/reports/suppliers-list/suppliers
 import { AgentListComponent } from './views/reports/agent-list/agent-list.component';
 import { ProductsListComponent } from './views/reports/products-list/products-list.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
+import { LineChartComponent } from './welcome/charts/line-chart/line-chart.component';
+import { BarChartComponent } from './welcome/charts/bar-chart/bar-chart.component';
+import { PieChartComponent } from './welcome/charts/pie-chart/pie-chart.component';
 
 
 
@@ -200,7 +203,10 @@ import { LoginPageComponent } from './views/login-page/login-page.component';
         SuppliersListComponent,
         AgentListComponent,
         ProductsListComponent,
-        LoginPageComponent
+        LoginPageComponent,
+        LineChartComponent,
+        BarChartComponent,
+        PieChartComponent
        
 
 

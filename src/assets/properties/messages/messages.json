@@ -83,5 +83,6 @@
     "transactionSuccessful": "Transaction Successful",
     "passwordChanged": "Password successfully changed.",
     "setTvrtoApproved": "This action will set the status of the TVR to ‘Approved’. Do you want to continue?",
-    "setTvrtoForRevision": "This action will set the status of the TVR to ‘For Revision’. Do you want to continue?"
+    "setTvrtoForRevision": "This action will set the status of the TVR to ‘For Revision’. Do you want to continue?",
+    "confirmLogout": "Are you sure you want to logout?"
 }

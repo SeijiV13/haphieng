@@ -54,8 +54,8 @@ import { CustomerBankFileComponent } from './../views/files/customer-bank-file/c
 
 export const routes: Routes = [
 
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      {path: 'login', component: LoginPageComponent},
+      //{ path: '', redirectTo: 'login', pathMatch: 'full' },
+      {path: '', component: LoginPageComponent},
       { path: 'xfs', component: XfsPageComponent },
 
       {

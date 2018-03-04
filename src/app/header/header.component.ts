@@ -1,3 +1,4 @@
+import { GenericModalComponent } from './../generic/generic-modal/generic-modal.component';
 import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthenticateService } from "../login/loginService/authenticate.service";
@@ -18,8 +19,6 @@ import * as $ from 'jquery';
 
 export class HeaderComponent implements OnInit, AfterViewInit {
 
-	//@ViewChild('confirmationSessionExpiredModal') confirmationBackModal: SessionTimeoutModalComponent;
-	//@ViewChild('forceLogoutModal') forceLogoutModal: ErrorModalComponent;
 	forceChange = localStorage.getItem('changePasswordWQuestion');
 	public dateToday = new Date();
 	public pressedLogOut: boolean = false;
@@ -32,6 +31,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 	public sessionWarningMsg: string;
 	losUser: boolean;
 	@Input() withButtons = true;
+	@ViewChild('logoutModal') logoutModal: GenericModalComponent; 
 	constructor(public authenticate: AuthenticateService,
 		public router: Router,
 		public sessionService: SessionService,
@@ -69,13 +69,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 	}
 
 	logout() {
-		this.pressedLogOut = true;
-		this.authenticate.logout().subscribe(
-			(data) => {
-				this.cookieService.remove("token");
-			}, (error) => {/**console.log(error.text());**/ },
-			() => { window.location.replace('/Appraisal'); }
-		);
+	   this.router.navigate(['/']);
 	}
 
 	showSessionWarningModal(msg) {
