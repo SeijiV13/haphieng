@@ -1,3 +1,4 @@
+import { ItemInOutModalComponent } from './../../transaction-modals/item-in-out-modal/item-in-out-modal.component';
 import { AddProductComponent } from './../../transaction-modals/add-product/add-product.component';
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -12,6 +13,7 @@ export class InventoryFileComponent implements OnInit {
   @ViewChild('pricingTable') pricingTable; 
   @ViewChild('resultsTable') resultsTable; 
   @ViewChild('addProduct') addProduct: AddProductComponent;
+  @ViewChild('itemInOutModal') itemInOutModal: ItemInOutModalComponent;
   formGroup: FormGroup;
   browseForm: FormGroup;
   constructor(private dataPasserService: DataPasserService, private fb: FormBuilder) { }
@@ -67,6 +69,6 @@ export class InventoryFileComponent implements OnInit {
  }
 
  itemTransactions(){
-   
+   this.itemInOutModal.show();
  }
 }

@@ -33,14 +33,12 @@ export class PurchaseReturnEntriesComponent implements OnInit {
   resultsKeys = [
      {"name": "rowNo"},
      {"name": "itemCode"},
-     {"name": "good"},
      {"name": "quantity"},
      {"name": "available"},
      {"name": "description"},
      {"name": "warehouse"},
      {"name": "price"},
      {"name": "amount"},
-     {"name": "remove", behavior: "clickable"}
   ];
     buttons = [
     {'name': "Post", 'id': "post-button", 'logo': 'glyphicon glyphicon-file', 'type': 'post', 'behavior':'single'},
@@ -74,14 +72,16 @@ export class PurchaseReturnEntriesComponent implements OnInit {
 
 
   pushNewItem(entry){
-    //get price
-    if(entry["lastprice"] !== entry['originalprice']){
-      entry['price'] = entry['lastprice'];
+    //get price 
+    let lastprice = parseFloat(entry['lastprice'])
+    let originalprice = parseFloat(entry['originalprice']);
+    if(lastprice){
+      entry['price'] = lastprice;
     }else{
-      entry['price'] = entry['originalprice'];
+      entry['price'] = originalprice;
     }
     //compute for amount
-    entry['amount'] = entry['price'] * entry ['quantity'];
+    entry['amount'] = parseFloat(entry['price']) * parseFloat(entry['quantity']);
     this.resultsResults.push(entry)
   }
 
@@ -97,6 +97,10 @@ export class PurchaseReturnEntriesComponent implements OnInit {
     }else if(type === 'itemtrans'){
       this.itemInOutModal.show();
     }
+  }
+
+   removeRow(index){
+    this.resultsResults.splice(index, 1);
   }
 
 }

@@ -1,3 +1,4 @@
+
 import { LoginComponent } from './login/login.component';
 
 //ANGULAR MODULES
@@ -7,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, BaseRequestOptions, RequestOptions, Http } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule, APP_BASE_HREF } from '@angular/common';
-import { ErrorHandlerModule } from './generic/error-handler/error-handler.module';
 import {DropdownModule} from "ngx-dropdown";
 
 //COMPONENTS
@@ -90,6 +90,7 @@ import { SessionService } from './generic/services/session.service';
 import { ChangePasswordService } from './generic/services/change-password.service';
 import { PasswordMeterService } from './generic/services/password-meter.service';
 import { TableFunctionsService} from './generic/services/table-functions.service';
+import { AuthenticationService } from './generic/services/http-services/authentication.service';
 
 //DIRECTIVES
 import { TooltipDirective } from 'ng2-tooltip-directive/components'
@@ -225,7 +226,6 @@ import { PieChartComponent } from './welcome/charts/pie-chart/pie-chart.componen
         HttpModule,
         DataTableModule,
         ROUTER_PROVIDER,
-        ErrorHandlerModule,
         TypeaheadModule.forRoot(),
         ModalModule.forRoot(),
         TabsModule.forRoot(),
@@ -280,6 +280,7 @@ import { PieChartComponent } from './welcome/charts/pie-chart/pie-chart.componen
         ChangePasswordService,
         PasswordMeterService,
         TableFunctionsService,
+        AuthenticationService,
         { provide: APP_INITIALIZER, useFactory: initFactory, deps: [InitService], multi: true,},
      
     ],

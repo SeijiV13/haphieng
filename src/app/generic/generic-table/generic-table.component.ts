@@ -14,6 +14,8 @@ export class GenericTableComponent implements OnInit {
   @Input() type: string = "single";
   @Input() keys: any;
   @Input() primaryKey: string;
+  @Input() removeRow: boolean
+  @Output() emitRemoveRow = new EventEmitter();
   //JSON Contains BUTTON NAME, ID, , LOGO, TYPE, BEHAVIOR, 
   @Input() buttons: any;
   @Input() colspan: string;
@@ -79,5 +81,9 @@ export class GenericTableComponent implements OnInit {
 
   onClickColumn(){
     this.emitColumnClicked.emit();
+  }
+
+  onRemoveRow(index){
+    this.emitRemoveRow.emit(index);
   }
 }

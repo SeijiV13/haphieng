@@ -31,18 +31,8 @@ export class HttpClient {
   }
 
   createAuthorizationHeader(headers: Headers) {
-    headers.append('Authorization', 'Bearer ' + this.cookieService.get('token'));
-    headers.append('Content-Type', 'application/json');
-
-    this.allowedTransactions = JSON.parse(localStorage.getItem("allwtrn"));
-    let location = this.location.path();
-    if (location && this.allowedTransactions) {
-      let transactionCode;
-      transactionCode = this.getTransactionCode(location);
-      if (transactionCode)
-        headers.append('TransactionCode', transactionCode);
-
-    }
+    //headers.append('Authorization', 'Bearer ' + this.cookieService.get('token'));
+     headers.append('Content-Type', 'application/json');
   }
 
   getBase(url) {
@@ -62,6 +52,11 @@ export class HttpClient {
     return this.http.post(this.baseUrl + url, data, {
       headers: headers
     });
+  }
+
+   postBaseLogin(url, data) {
+    let headers = new Headers();
+    return this.http.post(this.baseUrl + url, data);
   }
 
   postLogoutBase(url, data) {
@@ -136,26 +131,6 @@ export class HttpClient {
     });
   }
 
-
-
-  getTransactionCode(url) {
-
-    if (url) {
-      //let code = this.allowedTransactions.find((data) => data.windowName.trim() === url.trim()); OLD
-      let code = this.allowedTransactions.find(function (data) {
-
-        let bool = false;
-        if (data.windowName.trim() === url.trim())
-          bool = true;
-        else if (data.windowName.indexOf(url.trim()) > -1)
-          bool = true;
-        return bool;
-      });
-      if (code !== undefined) {
-        return code.tranCode;
-      }
-    } return null;
-  }
 
   handleMap(response: Response) {
     $('button').removeAttr('disabled');

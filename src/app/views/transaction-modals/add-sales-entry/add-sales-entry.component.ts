@@ -10,6 +10,7 @@ import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angu
   styleUrls: ['./add-sales-entry.component.scss']
 })
 export class AddSalesEntryComponent implements OnInit {
+  @Input() addTitle: string ="";
   agents = [
     {"value": "agent1", "label": "Agent 1"}
   ]

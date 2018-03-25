@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../generic/services/http-services/authentication.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
@@ -8,13 +9,8 @@ import { Router} from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
   loginError: boolean = false;
-  users = {
-    seiji: { password: "a"},
-    gelo: { password: "a"},
-    sky: { password: "a"},
-  }
   form: FormGroup;
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private authenticationService: AuthenticationService) {
    }
 
   ngOnInit() {
@@ -29,19 +25,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   onLogin(){
-    if(this.form.valid){
     let username = this.form.controls['username'].value;
-    let password = this.form.controls['password'].value;
-    if(this.users[username]){
-       let userPassword = this.users[username].password;
-       if(password == userPassword){
-        this.router.navigate(['/home']);
-       }else{
-         this.loginError = true;
-       }
+    let password = this.form.controls['password'].value
+    if(this.form.valid){
+      this.authenticationService.login(username, password).subscribe((data)=>{
+        console.log(data);
+     
+      })
     }else{
-        this.loginError = true;
-    }
+      this.loginError = true;
     }
   }
 

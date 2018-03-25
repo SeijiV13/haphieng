@@ -40,7 +40,6 @@ export class SalesEntriesComponent implements OnInit {
      {"name": "agent"},
      {"name": "price"},
      {"name": "amount"},
-     {"name": "remove", behavior: "clickable"}
   ];
     buttons = [
     {'name': "Post", 'id': "post-button", 'logo': 'glyphicon glyphicon-file', 'type': 'post', 'behavior':'single'},
@@ -74,16 +73,20 @@ export class SalesEntriesComponent implements OnInit {
   }
 
   pushNewItem(entry){
-    //get price
-    if(entry["lastprice"] !== entry['originalprice']){
-      entry['price'] = entry['lastprice'];
+    //get price 
+    
+    let lastprice = parseFloat(entry['lastprice'])
+    let originalprice = parseFloat(entry['originalprice']);
+    if(lastprice){
+      entry['price'] = lastprice;
     }else{
-      entry['price'] = entry['originalprice'];
+      entry['price'] = originalprice;
     }
     //compute for amount
-    entry['amount'] = entry['price'] * entry ['quantity'];
+    entry['amount'] = parseFloat(entry['price']) * parseFloat(entry['quantity']);
     this.resultsResults.push(entry)
   }
+
   doAction(type){
     if(type === 'post'){
 
@@ -98,5 +101,10 @@ export class SalesEntriesComponent implements OnInit {
       
     }
   }
+  
+  removeRow(index){
+    this.resultsResults.splice(index, 1);
+  }
+
 
 }

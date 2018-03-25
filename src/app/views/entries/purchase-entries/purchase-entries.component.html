@@ -75,7 +75,7 @@
     
   </fieldset>
   <app-add-supplier #addSupplier></app-add-supplier>
-  <generic-table (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
-  <app-add-sales-entry [type]="'purchase'" #addSalesEntry (entry)="pushNewItem($event)"></app-add-sales-entry>
+  <generic-table [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+  <app-add-sales-entry [addTitle]="'Add Purchase Entry'" [type]="'purchase'" #addSalesEntry (entry)="pushNewItem($event)"></app-add-sales-entry>
   <app-suspended-sales #suspendedSales></app-suspended-sales>
   <app-item-in-out-modal #itemInOutModal></app-item-in-out-modal>
