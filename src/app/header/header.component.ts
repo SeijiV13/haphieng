@@ -46,26 +46,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 		this.initSessionVariables();
 	}
     ngAfterViewInit(){
-		if(localStorage.getItem('losJson') ||
-			localStorage.getItem('ropaJson')){
-			this.losUser = true;
 
-		}
-		else this.losUser = false;
 	}
 	ngOnInit() {
-		/*this.forceChange = localStorage.getItem('changePasswordWQuestion');
-		this.router.events.subscribe((value) => {
-			if (value instanceof NavigationEnd) {
-				if (value.url === "/") {
-					$("#menu1").addClass("top-nav-active");
-				}
-				else {
-					$("#menu1").removeClass("top-nav-active");
-				}
-			}
-		});*/
-		//this.getUsername(this.dataPasserService.username);
+		this.username = this.dataPasserService.username;
 	}
 
 	logout() {
@@ -166,17 +150,5 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	getUsername(requestor: string) {
-		this.dropdownService.getRequestorValues().subscribe((data) => {
 
-			this.requestors = data.requestor;
-			let option = this.requestors.find((data) => data.value.trim() === requestor.trim());
-			if (option !== undefined) {
-				this.username = option.label;
-			} else
-				this.username = requestor;
-
-		});
-
-	}
 }

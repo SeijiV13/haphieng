@@ -9,7 +9,7 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient, private http: Http) { }
 
   login(email, password){
-     return this.httpClient.postBaseLogin(`/auth/sign_in?email=${email}&password=${password}`, "").map((res: Response)=> res);
+     return this.httpClient.postBaseLogin(`/auth/sign_in?email=${email}&password=${password}`, "").map((res: Response)=> res.json());
   }
   
 

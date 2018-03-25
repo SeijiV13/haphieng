@@ -5,6 +5,12 @@ export class DataPasserService {
     
     public selectedData: any;
     public multipleSelectedData: Array<any> = [];
+
+
+    public username: string = "";
+
+
+
     changeTitleEmitter = new EventEmitter();
     pathForRedirect = new EventEmitter();
 
@@ -35,7 +41,6 @@ export class DataPasserService {
     public rcCode: string;
     public appraisalRc: string;
     public requestingGroup = "";
-    public username = "";
     public apprLimitRE: string;
     public stopCheckboxDisabling: boolean = false;
     requestType = {
