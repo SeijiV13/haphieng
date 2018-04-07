@@ -33,7 +33,10 @@ export class LoginPageComponent implements OnInit {
     let password = this.form.controls['password'].value
     if(this.form.valid){
       this.authenticationService.login(username, password).subscribe((data)=>{
-        this.dataPasser.username = data.data['email'];
+        let jsonData = data.json();
+        console.log(data.headers);
+        console.log(jsonData)
+        this.dataPasser.username = jsonData.data['email'];
         this.router.navigate(["/home"]);
      
       }, (error)=>{
