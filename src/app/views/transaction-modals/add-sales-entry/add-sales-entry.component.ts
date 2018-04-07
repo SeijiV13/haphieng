@@ -1,3 +1,4 @@
+import { ItemInOutModalComponent } from './../item-in-out-modal/item-in-out-modal.component';
 import { GenericModalComponent } from './../../../generic/generic-modal/generic-modal.component';
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -10,6 +11,8 @@ import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angu
   styleUrls: ['./add-sales-entry.component.scss']
 })
 export class AddSalesEntryComponent implements OnInit {
+  @ViewChild('itemInOutModalEntry') itemInOutModalEntry : ItemInOutModalComponent;
+  @ViewChild('historyModal') historyModal: GenericModalComponent;
   @Input() addTitle: string ="";
   agents = [
     {"value": "agent1", "label": "Agent 1"}
@@ -25,7 +28,7 @@ export class AddSalesEntryComponent implements OnInit {
     {"itemCode": "00001", "description": "descriptions", "available": "12000", "pending": "300", "price":"100"}
   ];
   entryKeys = [
-    {name: "itemCode"},
+    {name: "itemCode", behavior: 'clickable'},
     {name:"description"},
     {name: "available"},
     {name: "pending"},
@@ -42,7 +45,7 @@ export class AddSalesEntryComponent implements OnInit {
     this.salesEntryGroup = this.fb.group({
       agent:['', Validators.required],
       itemCode: [''],
-      description: [''],
+      category: [''],
       lastprice: [''],
       quantity: ['', Validators.required],
       warehouse: [''],
@@ -97,6 +100,19 @@ export class AddSalesEntryComponent implements OnInit {
      
     }
 
+  }
+
+  itemInOutModal(event){
+    this.itemInOutModalEntry.show();
+  }
+
+  historyWarning(event){
+    let writePrice = event.target.value
+    if(writePrice)
+    this.historyModal.showWithCustomMessage("Do you want to save the price in the customer history?");
+  }
+
+  historyChange(){
   }
 
 }

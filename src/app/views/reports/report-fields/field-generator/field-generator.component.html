@@ -47,8 +47,7 @@
           <label class="control-label col-sm-3 col-md-4" for="requestFrom">Date</label>
              <div class="col-sm-9 col-md-8" >
                   <div class="date-field">
-                      <datepicker [id]="date" formControlName="date" [placeholder]="'MM/DD/YYYY'"></datepicker>
-                      
+                      <datepicker [id]="date" [controlName]="'date'" [form]="formGroup" [placeholder]="'MM/DD/YYYY'"></datepicker>
              </div> 
           </div>
 </div>
@@ -57,12 +56,12 @@
           <label class="control-label col-sm-3 col-md-4" for="requestFrom">Date From</label>
              <div class="col-sm-9 col-md-8" >
                   <div class="date-field1">
-                      <datepicker [id]="dateFrom" formControlName="dateFrom" [placeholder]="'MM/DD/YYYY'"></datepicker>
+                      <datepicker [id]="dateFrom" [controlName]="'dateFrom'" [form]="formGroup" [placeholder]="'MM/DD/YYYY'"></datepicker>
                       <div class="help-block">From</div>
                   </div>
 
                    <div class="date-field2">
-                      <datepicker [id]="dateTo" formControlName="dateTo" [placeholder]="'MM/DD/YYYY'"></datepicker>
+                      <datepicker [id]="dateTo" [controlName]="'dateTo'" [form]="formGroup" [placeholder]="'MM/DD/YYYY'"></datepicker>
                       <div class="help-block">To</div>
                    </div>
           </div>

@@ -1,10 +1,10 @@
-<div class="input-group datepicer-icon">
-  <input (focusin)="addCss()" Formatter='{"type": "date"}' [(ngModel)]="value" type="text" class="form-control" [id]="id" [placeholder]="placeholder"
-    #datepicker />
+<div [formGroup]="form" class="input-group datepicer-icon">
+  <input [autoFormat]="'date'" (focusin)="addCss()" Formatter='{"type": "date"}' [formControlName]="controlName" type="text" class="form-control"
+    [id]="id" [placeholder]="placeholder" #datepicker />
   <span class="input-group-btn">
-      <button class="btn btn-default" type="button">
-        <span class="glyphicon glyphicon-calendar" ></span>
-  </button>
+    <button class="btn btn-default" type="button">
+      <span class="fa fa-calendar"></span>
+    </button>
   </span>
 
 </div>

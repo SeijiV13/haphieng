@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-3 col-md-4" for="date">Date</label>
                 <div class="col-sm-9 col-md-8 field">
-                    <datepicker formControlName="date"  [id]="'date'" [validations]="['requiredValidator']"  [placeholder]="'Date'"></datepicker>
+                    <datepicker [id]="'date'" [controlName]="'date'" [form]="salesForm" [placeholder]="'MM/DD/YYYY'"></datepicker>
                     <control-messages [control]="salesForm.controls.date"></control-messages>
                 </div>
             </div> 
@@ -42,8 +42,7 @@
                <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="customer">Customer</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <select formControlName="customer" type="text" class="form-control">
-                    </select>
+                    <input formControlName="customer" type="text" class="form-control"/>
                     <control-messages [control]="salesForm.controls.customer"></control-messages>
                   </div>
              </div>

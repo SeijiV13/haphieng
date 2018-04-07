@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-3 col-md-4" for="date">Date</label>
                 <div class="col-sm-9 col-md-8 field">
-                    <datepicker formControlName="date"  [id]="'date'" [validations]="['requiredValidator']"  [placeholder]="'Date'"></datepicker>
+                    <datepicker [id]="'date'" [controlName]="'date'" [form]="purchaseForm" [placeholder]="'MM/DD/YYYY'"></datepicker>
                     <control-messages [control]="purchaseForm.controls.date"></control-messages>
                 </div>
             </div> 

@@ -135,6 +135,12 @@ import { LoginPageComponent } from './views/login-page/login-page.component';
 import { LineChartComponent } from './welcome/charts/line-chart/line-chart.component';
 import { BarChartComponent } from './welcome/charts/bar-chart/bar-chart.component';
 import { PieChartComponent } from './welcome/charts/pie-chart/pie-chart.component';
+import { UnderConstructionComponent } from './views/error-pages/under-construction/under-construction.component';
+import { InvDamageEntriesComponent } from './views/entries/inv-damage-entries/inv-damage-entries.component';
+import { ViewEditCounterReceiptsComponent } from './views/tools/view-edit-counter-receipts/view-edit-counter-receipts.component';
+import { ViewEditInvDamageComponent } from './views/tools/view-edit-inv-damage/view-edit-inv-damage.component';
+import { GenerateCounterReceiptsComponent } from './views/entries/generate-counter-receipts/generate-counter-receipts.component';
+import { ViewCounterReceiptsModalComponent } from './views/entries/generate-counter-receipts/view-counter-receipts-modal/view-counter-receipts-modal.component';
 
 
 
@@ -207,7 +213,13 @@ import { PieChartComponent } from './welcome/charts/pie-chart/pie-chart.componen
         LoginPageComponent,
         LineChartComponent,
         BarChartComponent,
-        PieChartComponent
+        PieChartComponent,
+        UnderConstructionComponent,
+        InvDamageEntriesComponent,
+        ViewEditCounterReceiptsComponent,
+        ViewEditInvDamageComponent,
+        GenerateCounterReceiptsComponent,
+        ViewCounterReceiptsModalComponent
        
 
 

@@ -1,3 +1,7 @@
+import { GenerateCounterReceiptsComponent } from './../views/entries/generate-counter-receipts/generate-counter-receipts.component';
+import { ViewEditInvDamageComponent } from './../views/tools/view-edit-inv-damage/view-edit-inv-damage.component';
+import { ViewEditCounterReceiptsComponent } from './../views/tools/view-edit-counter-receipts/view-edit-counter-receipts.component';
+import { InvDamageEntriesComponent } from './../views/entries/inv-damage-entries/inv-damage-entries.component';
 import { LoginPageComponent } from './../views/login-page/login-page.component';
 import { ProductsListComponent } from './../views/reports/products-list/products-list.component';
 import { AgentListComponent } from './../views/reports/agent-list/agent-list.component';
@@ -24,6 +28,8 @@ import { MenuResolver } from './../generic/menu.resolver';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
+//UNDER CONSTRUCTION PAGE
+import { UnderConstructionComponent } from './../views/error-pages/under-construction/under-construction.component';
 
 //COMPONENTS
 import { HomeComponent } from '../home/home.component';
@@ -73,16 +79,31 @@ export const routes: Routes = [
                   { path: 'agentFile', component: AgentFileComponent},
                   { path: 'supplierFile', component: SupplierFileComponent},
                   { path: 'customerBankFile', component: CustomerBankFileComponent},
+
                   { path: 'salesEntries', component: SalesEntriesComponent},
                   { path: 'salesReturnEntries', component: SalesReturnEntriesComponent},
                   { path: 'purchaseEntries', component: PurchaseEntriesComponent},
                   { path: 'purchaseReturnEntries', component: PurchaseReturnEntriesComponent },
+                  { path: 'invQuantityAdjEntries', component: UnderConstructionComponent},
+                  { path: 'transferringStockEntries', component: UnderConstructionComponent},
+                  { path: 'invDamageEntries', component: InvDamageEntriesComponent},
+                  { path: 'generateSalesCounterReceipts', component: GenerateCounterReceiptsComponent},
+                  { path: 'collectionFromCustomersEntries', component: UnderConstructionComponent},
+                  { path: 'paymentToSuppliersEntries', component: UnderConstructionComponent},
+                  
+
                   { path: 'viewEditSales', component: ViewEditSalesComponent},
                   { path: 'viewEditSalesReturns', component: ViewEditSalesReturnComponent},
                   { path: 'viewEditPurchases', component: ViewEditPurchasesComponent},
                   { path: 'viewEditPurchasesReturns', component: ViewEditPurchasesReturnComponent},
                   { path: 'customerTransactions', component: CustomerTransactionsComponent},
                   { path: 'supplierTransactions', component : SupplierTransactionsComponent},
+                  { path: 'viewEditCounterReceipts', component: ViewEditCounterReceiptsComponent},
+                  { path: 'viewEditQuantityStockAdjustments', component: UnderConstructionComponent},
+                  { path: 'viewEditInventoryDamages', component: ViewEditInvDamageComponent},
+                  { path: 'administratorControl', component: UnderConstructionComponent},
+                  
+
                   { path: 'itemInOutTransactions', component : ItemInOutComponent},
                   { path: 'changePassword', component: ChangePasswordComponent},
                   { path: 'salesReports', component: SalesReportsComponent},
@@ -92,7 +113,10 @@ export const routes: Routes = [
                   { path: 'suppliersList', component: SuppliersListComponent},
                   { path: 'customersList', component: CustomersListComponent},
                   { path: 'agentList', component: AgentListComponent},
-                  { path: 'productsList', component: ProductsListComponent}
+                  { path: 'productsList', component: ProductsListComponent},
+
+                  { path: 'about', component: UnderConstructionComponent},
+                  { path: 'contactUs', component: UnderConstructionComponent},
 
             ]
       },
