@@ -141,6 +141,7 @@ import { ViewEditCounterReceiptsComponent } from './views/tools/view-edit-counte
 import { ViewEditInvDamageComponent } from './views/tools/view-edit-inv-damage/view-edit-inv-damage.component';
 import { GenerateCounterReceiptsComponent } from './views/entries/generate-counter-receipts/generate-counter-receipts.component';
 import { ViewCounterReceiptsModalComponent } from './views/entries/generate-counter-receipts/view-counter-receipts-modal/view-counter-receipts-modal.component';
+import { ViewReceiptItemsModalComponent } from './views/tools/view-edit-counter-receipts/view-receipt-items-modal/view-receipt-items-modal.component';
 
 
 
@@ -219,7 +220,8 @@ import { ViewCounterReceiptsModalComponent } from './views/entries/generate-coun
         ViewEditCounterReceiptsComponent,
         ViewEditInvDamageComponent,
         GenerateCounterReceiptsComponent,
-        ViewCounterReceiptsModalComponent
+        ViewCounterReceiptsModalComponent,
+        ViewReceiptItemsModalComponent
        
 
 
