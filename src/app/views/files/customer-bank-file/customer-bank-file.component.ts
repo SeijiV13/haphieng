@@ -70,7 +70,7 @@ export class CustomerBankFileComponent implements OnInit {
   editDetails(){
     this.customerService.editCustomer(this.browseForm.getRawValue(), this.dataPasserService.selectedData['customer'].id).subscribe((data)=>{
 
-    }, (error) => console.log(error));
+    }, error  => this.dataPasserService.sendError(error.errors[0]));
   }
 
   getSelectedCustomer(){

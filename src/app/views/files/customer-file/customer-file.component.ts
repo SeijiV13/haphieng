@@ -77,13 +77,13 @@ export class CustomerFileComponent implements OnInit {
   getDropdownValues(){
     this.agentService.getAgents().subscribe((data)=>{
      this.agents = data;
-    });
+    }, error  => this.dataPasserService.sendError(error.errors[0]));
   }
 
   filter(){
      this.customerService.getCustomers().subscribe((data)=>{
        this.resultsResults = data;
-     })
+     }, error  => this.dataPasserService.sendError(error.errors[0]))
   } 
   addNewCustomer(){
    this.addCustomerModal.show();
@@ -99,7 +99,7 @@ export class CustomerFileComponent implements OnInit {
 
   editDetails(){
     this.customerService.editCustomer(this.browseForm.value, this.dataPasserService.selectedData['customer'].id).subscribe((data)=>{
-    }) 
+    }, error  => this.dataPasserService.sendError(error.errors[0])) 
    }
 
 }

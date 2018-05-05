@@ -79,14 +79,14 @@ export class InventoryFileComponent implements OnInit {
           total = total + parseInt(result.gross_price);
       }
       this.formGroup.controls['total'].setValue(total.toString());
-    });
+    }, error=>  this.dataPasserService.sendError(error.errors[0]));
 
   }
 
   editDetails(){
     this.productService.editProduct(this.browseForm.getRawValue(), this.dataPasserService.selectedData['product'].id).subscribe((data)=>{
 
-    }, error => console.log(error));
+    }, error => this.dataPasserService.sendError(error.errors[0]));
   }
 
   getSelectedProduct(){

@@ -27,7 +27,7 @@ export class AgentFileComponent implements OnInit {
    {name: 'remarks'} 
   ]
   
-  constructor(private fb: FormBuilder, private agentService: AgentService, private dataPasser: DataPasserService) { }
+  constructor(private fb: FormBuilder, private agentService: AgentService, private dataPasserService: DataPasserService) { }
 
   ngOnInit() {
 
@@ -49,9 +49,9 @@ export class AgentFileComponent implements OnInit {
   }
 
   editDetails(){
-    this.agentService.editAgent(this.browseForm.value, this.dataPasser.selectedData['agent'].id).subscribe((data)=>{
+    this.agentService.editAgent(this.browseForm.value, this.dataPasserService.selectedData['agent'].id).subscribe((data)=>{
 
-    },error =>{console.log(error)});
+    },error  => this.dataPasserService.sendError(error.errors[0]));
   }
 
   filter(){
@@ -60,7 +60,7 @@ export class AgentFileComponent implements OnInit {
     let address_1 = this.formGroup.controls['address'].value
     this.agentService.filterAgents(name, description, address_1).subscribe((data)=>{
       this.resultsResults = data;
-    })
+    }, error  => this.dataPasserService.sendError(error.errors[0]))
 
   }
 
@@ -69,8 +69,8 @@ export class AgentFileComponent implements OnInit {
   }
 
   getSelectedAgent(){
-    console.log(this.dataPasser.selectedData['agent']);
-   this.browseForm.patchValue(this.dataPasser.selectedData['agent']);
+    console.log(this.dataPasserService.selectedData['agent']);
+   this.browseForm.patchValue(this.dataPasserService.selectedData['agent']);
   }
 
   print(){}

@@ -1,6 +1,7 @@
 
 import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs/Rx';
+import { environment } from '../../../environments/environment';
 export class DataPasserService {
     
     public selectedData: any  = {};
@@ -13,12 +14,16 @@ export class DataPasserService {
     public client: string;
     public expiry: string;
     public uid: string;
-
+    
     changeTitleEmitter = new EventEmitter();
+    errorEmitter = new EventEmitter();
     pathForRedirect = new EventEmitter();
 
     sendPageTitle(data: string) {
         this.changeTitleEmitter.emit(data);
+    }
+    sendError(data: string){
+        this.errorEmitter.emit(data);
     }
     sendPath(path){
         this.pathForRedirect.emit(path);

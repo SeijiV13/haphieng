@@ -22,6 +22,7 @@
             <hr class="title-divider" style="margin-bottom:-0.4%;">
         </div>
         <br>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}} <div class="pull-right"><span class="fa fa-times" (click)="removeError()"></span></div></div>
         <div class="row">
             <router-outlet></router-outlet>
          

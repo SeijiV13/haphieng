@@ -119,7 +119,7 @@ export class AddSalesEntryComponent implements OnInit {
   filter(){
     this.productService.getProducts().subscribe((data)=>{
       this.entryResults = data;
-    });
+    }, error  => this.dataPasserService.sendError(error.errors[0]));
   }
 
 }

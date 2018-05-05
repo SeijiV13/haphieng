@@ -38,9 +38,7 @@ export class AddAgentComponent implements OnInit {
   addAgent(){
      this.agentService.createAgent(this.browseForm.getRawValue()).subscribe((data)=>{
          this.addAgentModal.hide();
-     }, error =>{
-       console.log(error);
-     })
+     },error  => this.dataPasserService.sendError(error.errors[0]))
   }
 
 }

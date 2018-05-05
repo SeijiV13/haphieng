@@ -51,13 +51,13 @@ export class SupplierFileComponent implements OnInit {
   editDetails(){
     this.supplierService.editSupplier(this.browseForm.value, this.dataPasserService.selectedData['supplier'].id).subscribe((data)=>{
 
-    }, error => console.log(error));
+    }, error  => this.dataPasserService.sendError(error.errors[0]));
 
   }
   filter(){
     this.supplierService.getSuppliers().subscribe((data)=>{
       this.resultsResults = data;
-        })
+        }, error  => this.dataPasserService.sendError(error.errors[0]))
 
   }
 

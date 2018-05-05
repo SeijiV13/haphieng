@@ -2,6 +2,7 @@ import { ModalDirective } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SupplierService } from '../../../web-services/supplier.service';
+import { DataPasserService } from '../../../generic/services/data-passer.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { SupplierService } from '../../../web-services/supplier.service';
 export class AddSupplierComponent implements OnInit {
   @ViewChild('addSupplierModal') addSupplierModal: ModalDirective;
   browseForm: FormGroup;
-  constructor(private fb: FormBuilder, private supplierService: SupplierService) { }
+  constructor(private fb: FormBuilder, private supplierService: SupplierService, private dataPasserService: DataPasserService) { }
 
   ngOnInit() {
      this.browseForm = this.fb.group({
@@ -38,7 +39,7 @@ export class AddSupplierComponent implements OnInit {
   addSupplier(){
      this.supplierService.createSupplier(this.browseForm.value).subscribe((data)=>{
            this.addSupplierModal.hide();
-     }, error => console.log(error));
+     }, error  => this.dataPasserService.sendError(error.errors[0]));
   }
 
 }

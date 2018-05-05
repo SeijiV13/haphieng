@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit, AfterViewChecked, AfterViewInit {
     public menuItems: any[];
     public pageTitle: string = "";
     public showPageTitle: boolean;
+    public errorMessage: string = "";
     forceChange = localStorage.getItem('changePasswordWQuestion');
     currentLocation;
     @ViewChild('menuView') menuView: MenuViewComponent;
@@ -36,6 +37,9 @@ export class HomeComponent implements OnInit, AfterViewChecked, AfterViewInit {
         this.dataPasserService.changeTitleEmitter.subscribe((data) => {
            // console.log(data);
             this.pageTitle = data;
+        });
+        this.dataPasserService.errorEmitter.subscribe((data)=>{
+            this.errorMessage = data
         })
         this.router.events.subscribe((val) => {
             /*if (val instanceof NavigationEnd) {
@@ -123,5 +127,9 @@ export class HomeComponent implements OnInit, AfterViewChecked, AfterViewInit {
         if ($(event.target).parents('div').last().attr('id') !== 'wrapper' || $(event.target).hasClass('main-second-submenu-button')) {
             $("#wrapper").addClass('toggled');
         }
+    }
+
+    removeError(){
+        this.errorMessage = '';
     }
 }

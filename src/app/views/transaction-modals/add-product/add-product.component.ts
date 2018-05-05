@@ -40,7 +40,7 @@ export class AddProductComponent implements OnInit {
   addProduct(){
      this.productService.createProduct(this.browseForm.getRawValue()).subscribe((data)=>{
         this.addProductModal.hide();
-     }, error => console.log(error));
+     }, error => this.dataPasserService.sendError(error.errors[0]));
   } 
 
   show(){

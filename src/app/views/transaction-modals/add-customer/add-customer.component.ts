@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomerService } from '../../../web-services/customer.service';
 import { AgentService } from '../../../web-services/agent.service';
+import { DataPasserService } from '../../../generic/services/data-passer.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -13,7 +14,7 @@ export class AddCustomerComponent implements OnInit {
   agents;
   browseForm: FormGroup;
   @ViewChild('addCustomerModal') addCustomerModal: ModalDirective;
-  constructor(private fb : FormBuilder, private customerService: CustomerService, private agentService: AgentService) { }
+  constructor(private fb : FormBuilder, private customerService: CustomerService, private agentService: AgentService, private dataPasserService: DataPasserService) { }
 
   ngOnInit() {
     this.browseForm = this.fb.group({
@@ -44,7 +45,7 @@ export class AddCustomerComponent implements OnInit {
   getDropdownValues(){
     this.agentService.getAgents().subscribe((data)=>{
       this.agents = data;
-    })
+    }, error  => this.dataPasserService.sendError(error.errors[0]))
   }
 
   show(){
@@ -57,7 +58,7 @@ export class AddCustomerComponent implements OnInit {
   addCustomer(){
     this.customerService.createCustomer(this.browseForm.value).subscribe((data)=>{
       this.addCustomerModal.hide();
-    }, error => console.log(error))
+    }, error  => this.dataPasserService.sendError(error.errors[0]))
   }
 
 
