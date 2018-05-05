@@ -6,7 +6,6 @@ export class ProductsService {
 
   constructor(private httpClient: HttpClient) { }
 
-
   getProducts(): Observable<any>{
     return this.httpClient.getBase(`/api/v1/haphieng/products`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
  }

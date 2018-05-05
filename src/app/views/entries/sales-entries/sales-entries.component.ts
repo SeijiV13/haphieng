@@ -84,7 +84,16 @@ export class SalesEntriesComponent implements OnInit {
     }
     //compute for amount
     entry['amount'] = parseFloat(entry['price']) * parseFloat(entry['quantity']);
-    this.resultsResults.push(entry)
+    this.resultsResults.push(entry);
+    this.computeTotal();
+  }
+
+  computeTotal(){
+    let total = 0
+    for(let result of this.resultsResults){
+      total = total + result.amount;
+    }
+    this.salesForm.controls['total'].setValue(total);
   }
 
   doAction(type){
@@ -104,6 +113,7 @@ export class SalesEntriesComponent implements OnInit {
   
   removeRow(index){
     this.resultsResults.splice(index, 1);
+    this.computeTotal();
   }
 
 

@@ -38,7 +38,7 @@
              </div>
          </div>
           <div class="col-md-6">
-              <div class="form-group" *ngIf="type === 'salesReturn'">
+              <div class="form-group" *ngIf="type === 'salesReturn' || type === 'invDamage'">
                  <label class="control-label col-sm-3 col-md-4" for="good">Good <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-8 field">
                      <label class="control-label"><input formControlName="good"  type="radio" value="Y">Yes</label>
@@ -53,7 +53,7 @@
             <div class="form-group">
                <label class="control-label col-sm-3 col-md-4" for="itemCode">Item Code</label>
                <div class="col-sm-9 col-md-8 field">
-                   <input formControlName="itemCode"  type="text" class="form-control">
+                   <input (change)="filter()" formControlName="itemCode"  type="text" class="form-control">
                 </div>
            </div>
        
@@ -62,7 +62,7 @@
              <div class="form-group">
                <label class="control-label col-sm-3 col-md-4" for="description">Category</label>
                <div class="col-sm-9 col-md-8 field">
-                   <input formControlName="category"  type="text" class="form-control">
+                   <input (change)="filter()"  formControlName="category"  type="text" class="form-control">
                    
                 </div>
            </div>
@@ -89,7 +89,7 @@
         </div>
   
           <div class="col-md-12">
-          <div class="form-group" *ngIf="type === 'purchaseReturn'">
+          <div class="form-group" *ngIf="type === 'purchaseReturn' || type === 'invDamage'">
                  <label class="control-label col-sm-3 col-md-2" for="good">Good <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-10 field">
                      <label class="control-label"><input formControlName="good"  type="radio" value="Y">Yes</label>
@@ -106,7 +106,7 @@
             <div class="form-group">
                <label class="control-label col-sm-3 col-md-4" for="itemCode">Item Code</label>
                <div class="col-sm-9 col-md-8 field">
-                   <input formControlName="itemCode"  type="text" class="form-control">
+                   <input (change)="filter()" formControlName="itemCode"  type="text" class="form-control">
                 </div>
            </div>
        
@@ -115,7 +115,7 @@
              <div class="form-group">
                <label class="control-label col-sm-3 col-md-4" for="description">Category</label>
                <div class="col-sm-9 col-md-8 field">
-                   <input formControlName="category"  type="text" class="form-control">
+                   <input (change)="filter()" formControlName="category"  type="text" class="form-control">
                    
                 </div>
            </div>
@@ -123,7 +123,7 @@
        </div>
 
       </fieldset>
-       <generic-table #entryTable [title]="'ITEMS'" [headers]="entryHeaders" [results]="entryResults" [type]="'single'" [keys]="entryKeys" (emitColumnClicked)="itemInOutModal($event)"></generic-table>
+       <generic-table #entryTable [title]="'ITEMS'"  [fieldContainer]="'product'" [headers]="entryHeaders" [results]="entryResults" [type]="'single'" [keys]="entryKeys" (emitColumnClicked)="itemInOutModal($event)"></generic-table>
         <fieldset class="section-content">
         <legend>
           <h5>OTHER DETAILS</h5>

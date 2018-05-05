@@ -21,6 +21,7 @@ export class PurchaseReturnEntriesComponent implements OnInit {
   resultsHeaders = [
     "Row No.",
     "Item code",
+    "Good",
     "Quantity",
     "Quantity Stock",
     "Description",
@@ -33,6 +34,7 @@ export class PurchaseReturnEntriesComponent implements OnInit {
   resultsKeys = [
      {"name": "rowNo"},
      {"name": "itemCode"},
+     {"name": "good"},
      {"name": "quantity"},
      {"name": "available"},
      {"name": "description"},
@@ -82,7 +84,17 @@ export class PurchaseReturnEntriesComponent implements OnInit {
     }
     //compute for amount
     entry['amount'] = parseFloat(entry['price']) * parseFloat(entry['quantity']);
-    this.resultsResults.push(entry)
+    this.resultsResults.push(entry);
+    this.computeTotal();
+  }
+
+  computeTotal(){
+    let total = 0
+    for(let result of this.resultsResults){
+      total = total + result.amount;
+    }
+    this.purchaseForm.controls['totalpeso'].setValue(total);
+    this.purchaseForm.controls['totalyuan'].setValue(total / 8.13)
   }
 
   doAction(type){
@@ -101,6 +113,7 @@ export class PurchaseReturnEntriesComponent implements OnInit {
 
    removeRow(index){
     this.resultsResults.splice(index, 1);
+    this.computeTotal();
   }
 
 }

@@ -84,7 +84,7 @@ export class InventoryFileComponent implements OnInit {
   }
 
   editDetails(){
-    this.productService.editProduct(this.browseForm.value, this.dataPasserService.selectedData['product'].id).subscribe((data)=>{
+    this.productService.editProduct(this.browseForm.getRawValue(), this.dataPasserService.selectedData['product'].id).subscribe((data)=>{
 
     }, error => console.log(error));
   }
@@ -104,4 +104,11 @@ export class InventoryFileComponent implements OnInit {
  itemTransactions(){
    this.itemInOutModal.show();
  }
+
+ computeLess(){
+  let grossPrice =  parseInt(this.browseForm.controls['gross_price'].value);
+  this.browseForm.controls['less_15'].setValue((grossPrice * .15).toString());
+  this.browseForm.controls['less_35'].setValue((grossPrice * .35).toString());
+ }
+
 }

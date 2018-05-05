@@ -4,6 +4,7 @@ import { DataPasserService } from './../../../generic/services/data-passer.servi
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap';
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
+import { ProductsService } from '../../../web-services/products.service';
 
 @Component({
   selector: 'app-add-sales-entry',
@@ -26,18 +27,20 @@ export class AddSalesEntryComponent implements OnInit {
   ];
   entryResults = [];
   entryKeys = [
-    {name: "itemCode", behavior: 'clickable'},
+    {name:"code", behavior: 'clickable'},
     {name:"description"},
-    {name: "available"},
-    {name: "pending"},
-    {name: "price"},
+    {name:"available"},
+    {name:"pending"},
+    {name:"gross_price"},
   ];
   salesEntryGroup: FormGroup;
   @Input("type") type: string;
   @Output("entry") entry = new EventEmitter();
   @ViewChild('addSalesEntryModal') addSalesEntryModal: ModalDirective;
   @ViewChild('errorModal') errorModal: GenericModalComponent;
-  constructor(private dataPasserService: DataPasserService, private fb: FormBuilder) { }
+  constructor(private dataPasserService: DataPasserService,
+               private fb: FormBuilder, 
+               private productService: ProductsService) { }
 
   ngOnInit() {
     this.salesEntryGroup = this.fb.group({
@@ -76,11 +79,11 @@ export class AddSalesEntryComponent implements OnInit {
   addEntry(){
     if(this.salesEntryGroup.valid){
       let entry = {
-      itemCode: this.dataPasserService.selectedData['itemCode'],
-      description:  this.dataPasserService.selectedData['description'],
-      originalprice: this.dataPasserService.selectedData['price'],
-      available: this.dataPasserService.selectedData['available'],
-      pending: this.dataPasserService.selectedData['pending'],
+      itemCode: this.dataPasserService.selectedData['product']['code'],
+      description:  this.dataPasserService.selectedData['product']['description'],
+      originalprice: this.dataPasserService.selectedData['product']['gross_price'],
+      available: this.dataPasserService.selectedData['product']['available'],
+      pending: this.dataPasserService.selectedData['product']['pending'],
 
       agent: this.salesEntryGroup.controls['agent'].value,
       lastprice: this.salesEntryGroup.controls['lastprice'].value,
@@ -111,6 +114,12 @@ export class AddSalesEntryComponent implements OnInit {
   }
 
   historyChange(){
+  }
+
+  filter(){
+    this.productService.getProducts().subscribe((data)=>{
+      this.entryResults = data;
+    });
   }
 
 }
