@@ -1,6 +1,8 @@
 import { ModalDirective } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { CustomerService } from '../../../web-services/customer.service';
+import { AgentService } from '../../../web-services/agent.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -8,32 +10,40 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./add-customer.component.scss']
 })
 export class AddCustomerComponent implements OnInit {
+  agents;
   browseForm: FormGroup;
   @ViewChild('addCustomerModal') addCustomerModal: ModalDirective;
-  constructor(private fb : FormBuilder) { }
+  constructor(private fb : FormBuilder, private customerService: CustomerService, private agentService: AgentService) { }
 
   ngOnInit() {
     this.browseForm = this.fb.group({
-      customerCode: [''],
+      code: [''],
       description: [''],
-      address: [''],
-      address2: [''],
+      address_1: [''],
+      address_2: [''],
       agent:[''],
-      residentPhone: [''],
+      resident_phone: [''],
       telephone: [''],
       cellphone: [''],
       terms: [''],
       email : [''],
       fax: [''],
-      tinNo: [''],
-      contactPerson: [''],
-      creditLimit:[''],
-      initialBalance: [''],
+      tin_number: [''],
+      contact_person: [''],
+      credit_limit:[''],
+      initial_balance: [''],
       remaining: [''],
-      customerType: [''],
+      customer_type: [''],
       remarks: ['']
 
 
+    });
+    this.getDropdownValues();
+  }
+
+  getDropdownValues(){
+    this.agentService.getAgents().subscribe((data)=>{
+      this.agents = data;
     })
   }
 
@@ -44,7 +54,11 @@ export class AddCustomerComponent implements OnInit {
     this.addCustomerModal.hide();
   }
 
-  addCustomer(){}
+  addCustomer(){
+    this.customerService.createCustomer(this.browseForm.value).subscribe((data)=>{
+      this.addCustomerModal.hide();
+    }, error => console.log(error))
+  }
 
 
 }

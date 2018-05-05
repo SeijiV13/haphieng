@@ -8,6 +8,7 @@ import { DataPasserService} from '../services/data-passer.service';
   styleUrls: ['./generic-table.component.scss']
 })
 export class GenericTableComponent implements OnInit {
+  @Input() fieldContainer: string = '';
   @Input() title: string;
   @Input() headers: any;
   @Input() results: any = [];
@@ -15,6 +16,7 @@ export class GenericTableComponent implements OnInit {
   @Input() keys: any;
   @Input() primaryKey: string;
   @Input() removeRow: boolean
+  @Output() selectedRow = new EventEmitter();
   @Output() emitRemoveRow = new EventEmitter();
   //JSON Contains BUTTON NAME, ID, , LOGO, TYPE, BEHAVIOR, 
   @Input() buttons: any;
@@ -85,5 +87,9 @@ export class GenericTableComponent implements OnInit {
 
   onRemoveRow(index){
     this.emitRemoveRow.emit(index);
+  }
+
+  emitSelectedRow(){
+    this.selectedRow.emit();
   }
 }

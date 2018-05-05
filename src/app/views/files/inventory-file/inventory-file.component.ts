@@ -3,6 +3,7 @@ import { AddProductComponent } from './../../transaction-modals/add-product/add-
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
+import { ProductsService } from '../../../web-services/products.service';
 
 @Component({
   selector: 'app-inventory-file',
@@ -16,12 +17,26 @@ export class InventoryFileComponent implements OnInit {
   @ViewChild('itemInOutModal') itemInOutModal: ItemInOutModalComponent;
   formGroup: FormGroup;
   browseForm: FormGroup;
-  constructor(private dataPasserService: DataPasserService, private fb: FormBuilder) { }
-  resultsHeaders = ['Row No.', 'Item Code','Category','Description','Gross Price','Less 15%','Less 35%','Total','W1','W2','Qty Pack Big', 'Qty Pack Small','Image','Location','Remarks 1', 'Remarks 2'
+  constructor(private dataPasserService: DataPasserService, private fb: FormBuilder, private productService: ProductsService) { }
+  resultsHeaders = ['Row No.', 'Item Code','Category','Description','Gross Price','Less 15%','Less 35%','Total','W1','W2','Qty Pack Big', 'Qty Pack Small','Location','Remarks 1', 'Remarks 2'
   ];
   resultsResults = []
-  resultsKeys = [ 
-   {name: 'requestNo', behavior: 'clickable'} 
+  resultsKeys = [
+   {name: 'rowNo'}, 
+   {name: 'code', behavior: 'clickable'},
+   {name: 'category'},
+   {name: 'description'},
+   {name: 'gross_price'},
+   {name: 'less_15'},
+   {name: 'less_35'},
+   {name: 'total'},
+   {name: 'warehouse_1'},
+   {name: 'warehouse_2'},
+   {name: 'pack_qty_big'},
+   {name: 'pack_qty_small'},
+   {name: 'location'},
+   {name: 'remarks_1'},
+   {name: 'remarks_2'}
   ]
 
   pricingHeaders = [''];
@@ -36,28 +51,46 @@ export class InventoryFileComponent implements OnInit {
        });
 
        this.browseForm = this.fb.group({
-         importedItem: [{value:'', disabled: true}],
-         itemCode: [{value:'', disabled: true}],
-         category: [{value:'', disabled: true}],
-         description: [{value:'', disabled: true}],
-         grossPrice: [{value:'', disabled: true}],
-         less35:[{value:'', disabled: true}],
-         less15: [{value:'', disabled: true}],
-         warehouseOne: [{value:'', disabled: true}],
-         warehouseTwo:[{value:'', disabled: true}],
-         packQtyBig: [{value:'', disabled: true}],
-         packQtySmall: [{value:'', disabled: true}],
-         remarksOne:[{value:'', disabled: true}],
-         remarksTwo: [{value:'', disabled: true}],
-         total: [{value:'', disabled: true}],
-         location: [{value:'', disabled: true}],
-         unit: [{value:'', disabled: true}],
-         minimumQuantity: [{value:'', disabled: true}],
+         imported: [''],
+         code: [''],
+         category: [''],
+         description: [''],
+         gross_price: [''],
+         less_35:[{value:'', disabled: true}],
+         less_15: [{value:'', disabled: true}],
+         warehouse_1: [''],
+         warehouse_2:[''],
+         pack_qty_big: [''],
+         pack_qty_small: [''],
+         remarks_1:[''],
+         remarks_2: [''],
+         total: [''],
+         location: [''],
+         unit: [''],
+         minimum_quantity: [''],
        })
   }
 
   filter(){
+    let total = 0
+    this.productService.getProducts().subscribe((data)=>{
+      this.resultsResults = data;
+      for(let result of this.resultsResults){
+          total = total + parseInt(result.gross_price);
+      }
+      this.formGroup.controls['total'].setValue(total.toString());
+    });
 
+  }
+
+  editDetails(){
+    this.productService.editProduct(this.browseForm.value, this.dataPasserService.selectedData['product'].id).subscribe((data)=>{
+
+    }, error => console.log(error));
+  }
+
+  getSelectedProduct(){
+    this.browseForm.patchValue(this.dataPasserService.selectedData['product']);
   }
 
   addNewProduct(){

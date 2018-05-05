@@ -2,6 +2,7 @@ import { DataPasserService } from './../../../generic/services/data-passer.servi
 import { ModalDirective } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AgentService } from '../../../web-services/agent.service';
 
 @Component({
   selector: 'app-add-agent',
@@ -11,17 +12,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class AddAgentComponent implements OnInit {
   @ViewChild('addAgentModal') addAgentModal: ModalDirective;
   browseForm: FormGroup;
-  constructor(private fb: FormBuilder, private dataPasserService: DataPasserService) { }
+  constructor(private fb: FormBuilder, private dataPasserService: DataPasserService, private agentService: AgentService) { }
 
   ngOnInit() {
     this.dataPasserService.sendPageTitle('AGENT FILE');
      this.browseForm = this.fb.group({
-      agentName: [''],
+      name: [''],
       description: [''],
       telephone: [''],
       cellphone: [''],
-      address: [''],
-      address2: [''],
+      address_1: [''],
+      address_2: [''],
       email: [''],
       remarks: ['']
     });
@@ -35,7 +36,11 @@ export class AddAgentComponent implements OnInit {
   }
 
   addAgent(){
-    
+     this.agentService.createAgent(this.browseForm.getRawValue()).subscribe((data)=>{
+         this.addAgentModal.hide();
+     }, error =>{
+       console.log(error);
+     })
   }
 
 }

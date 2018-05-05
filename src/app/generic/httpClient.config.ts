@@ -10,6 +10,7 @@ import { CookieService} from 'ngx-cookie';
 import { ProgressHttp } from "angular-progress-http";
 
 import * as $ from "jquery";
+import { DataPasserService } from './services/data-passer.service';
 
 @Injectable()
 export class HttpClient {
@@ -24,7 +25,8 @@ export class HttpClient {
     private _init: InitService,
     private progressHttp: ProgressHttp,
     private mes: MessageConfig,
-    private cookieService: CookieService) {
+    private cookieService: CookieService,
+    private dataPasser: DataPasserService) {
     this.baseUrl = _init.getConfig('host');
     this.servletUrl = _init.getConfig('servlet');
     this.env = _init.getConfig('env');
@@ -33,6 +35,11 @@ export class HttpClient {
   createAuthorizationHeader(headers: Headers) {
     //headers.append('Authorization', 'Bearer ' + this.cookieService.get('token'));
      headers.append('Content-Type', 'application/json');
+     headers.append('access-token', this.dataPasser.accessToken);
+     headers.append('token-type', this.dataPasser.tokenType);
+     headers.append('client', this.dataPasser.client);
+     headers.append('expiry', this.dataPasser.expiry);
+     headers.append('uid', this.dataPasser.uid);
   }
 
   getBase(url) {

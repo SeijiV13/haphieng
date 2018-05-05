@@ -34,8 +34,13 @@ export class LoginPageComponent implements OnInit {
     if(this.form.valid){
       this.authenticationService.login(username, password).subscribe((data)=>{
         let jsonData = data.json();
-        console.log(data.headers);
-        console.log(jsonData)
+        let headerData = data.headers.toJSON();
+        this.dataPasser.accessToken = headerData['access-token'];
+        this.dataPasser.client = headerData['client'];
+        this.dataPasser.tokenType = headerData['token-type'];
+        this.dataPasser.expiry = headerData['expiry'];
+        this.dataPasser.uid = headerData['uid'];
+        
         this.dataPasser.username = jsonData.data['email'];
         this.router.navigate(["/home"]);
      

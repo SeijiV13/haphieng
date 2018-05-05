@@ -24,9 +24,7 @@ export class AddSalesEntryComponent implements OnInit {
     'Pending Quantity',
     'Original Price'
   ];
-  entryResults = [
-    {"itemCode": "00001", "description": "descriptions", "available": "12000", "pending": "300", "price":"100"}
-  ];
+  entryResults = [];
   entryKeys = [
     {name: "itemCode", behavior: 'clickable'},
     {name:"description"},

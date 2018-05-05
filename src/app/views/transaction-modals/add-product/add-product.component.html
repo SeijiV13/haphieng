@@ -15,8 +15,14 @@
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="importedItem">Imported Item</label>
                   <div class="col-sm-9 col-md-8 field">
-                    <input type="checkbox" formControlName="importedItem">
+                    <input type="checkbox" formControlName="imported">
                  </div>
+             </div> 
+             <div class="form-group">
+                    <label class="control-label col-sm-3 col-md-4" for="category">Code</label>
+                    <div class="col-sm-9 col-md-8 field">
+                        <input formControlName="code"  type="text" class="form-control">
+                     </div>
              </div> 
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="category">Category</label>
@@ -36,31 +42,31 @@
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="grossPrice">Gross Price</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input (change)="computeLess()" Formatter='{"type":"decimal"}' type="text" class="form-control" formControlName="grossPrice">
+                     <input (change)="computeLess()" Formatter='{"type":"decimal"}' type="text" class="form-control" formControlName="gross_price">
                   </div>
              </div> 
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="less35">Less 35%</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" formControlName="less35">
+                     <input type="text" class="form-control" formControlName="less_35">
                   </div>
              </div> 
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="warehouseOne">Warehouse One</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="warehouseOne">
+                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="warehouse_1">
                   </div>
              </div>
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="packQtyBig">Pack Qty Big</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="packQtyBig">
+                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="pack_qty_big">
                   </div>
              </div> 
                <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" Formatter='{"type":"decimal"}' for="productLine">Product Line</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <select formControlName="productLine"  type="text" class="form-control">
+                     <select formControlName="product_line"  type="text" class="form-control">
                 
                    
                     </select>
@@ -85,25 +91,25 @@
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4"  for="minimumQuantity">Minimum Quantity</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="minimumQuantity">
+                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="minimum_quantity">
                   </div>
              </div>
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="less15">Less 15%</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control"  formControlName="less15">
+                     <input type="text" class="form-control"  formControlName="less_15">
                   </div>
              </div> 
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="warehouseTwo">Warehouse Two</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="warehouseTwo">
+                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="warehouse_2">
                   </div>
              </div>
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="packQtySmall">Pack Qty Small</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="packQtySmall">
+                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="pack_qty_small">
                   </div>
              </div> 
          </div>
@@ -111,7 +117,7 @@
           <div class="form-group">
                  <label class="control-label col-sm-3 col-md-2" for="remarksOne">Remarks 1</label>
                  <div class="col-sm-9 col-md-10 field">
-                     <textarea class="form-control" formControlName="remarksOne"></textarea>
+                     <textarea class="form-control" formControlName="remarks_1"></textarea>
                   </div>
              </div> 
         </div>
@@ -119,7 +125,7 @@
           <div class="form-group">
                  <label class="control-label col-sm-3 col-md-2" for="remarksTwo">Remarks 2</label>
                  <div class="col-sm-9 col-md-10 field">
-                     <textarea class="form-control" formControlName="remarksTwo"></textarea>
+                     <textarea class="form-control" formControlName="remarks_2"></textarea>
                   </div>
              </div> 
         </div>

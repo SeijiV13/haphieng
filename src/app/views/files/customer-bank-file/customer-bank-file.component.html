@@ -36,7 +36,7 @@
     
    </fieldset>
 
-    <generic-table #resultsTable [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+    <generic-table #resultsTable [title]="'RESULTS'" (selectedRow)="getSelectedCustomer()" [fieldContainer]="'customer'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
 
 
 <div [formGroup]="browseForm">
@@ -50,19 +50,19 @@
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="accountNumber">Account Number</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="accountNumber"  type="text" class="form-control">
+                     <input formControlName="bank_account_number"  type="text" class="form-control">
                   </div>
              </div>
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="accountName">Account Name</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="accountName"  type="text" class="form-control">
+                     <input formControlName="bank_account_name"  type="text" class="form-control">
                   </div>
              </div> 
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="bank">Bank</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="bank"  type="text" class="form-control">
+                     <input formControlName="bank_name"  type="text" class="form-control">
                   </div>
              </div> 
           
@@ -72,20 +72,20 @@
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="address">Branch</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="branch"  type="text" class="form-control">
+                     <input formControlName="bank_branch"  type="text" class="form-control">
                   </div>
              </div> 
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="address2">Status</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="status"  type="text" class="form-control">
+                     <input formControlName="bank_status"  type="text" class="form-control">
                   </div>
              </div> 
        
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="email">Remarks</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="remarks"  type="text" class="form-control">
+                     <input formControlName="bank_remarks"  type="text" class="form-control">
                   </div>
              </div> 
          

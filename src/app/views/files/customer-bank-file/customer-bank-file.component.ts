@@ -1,6 +1,7 @@
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from '../../../web-services/customer.service';
 
 @Component({
   selector: 'app-customer-bank-file',
@@ -13,9 +14,17 @@ export class CustomerBankFileComponent implements OnInit {
   resultsHeaders = ['Row No.', 'Customer Code', 'Description', 'Address', 'Address 2', 'Telephone',  'Cellphone',  'Email', 'Remarks']
   resultsResults = []
   resultsKeys = [ 
-   {name: 'requestNo', behavior: 'clickable'} 
+   {name: 'rowNo'},
+   {name: 'code', behavior: 'clickable'},
+   {name: 'description'},
+   {name: 'address_1'},
+   {name: 'address_2'},
+   {name: 'telephone'},
+   {name: 'cellphone'},
+   {name: 'email'},
+   {name: 'remarks'} 
   ]
-  constructor(private fb: FormBuilder, private dataPasserService: DataPasserService) { }
+  constructor(private fb: FormBuilder, private dataPasserService: DataPasserService, private customerService: CustomerService) { }
 
   ngOnInit() {
     this.dataPasserService.sendPageTitle('CUSTOMER BANK FILE');
@@ -24,20 +33,49 @@ export class CustomerBankFileComponent implements OnInit {
       customerDescription: ['']
     });
     this.browseForm = this.fb.group({
-      accountName: [''],
-      accountNumber: [''],
-      bank: [''],
-      branch: [''],
-      status: [''],
-      remarks: ['']
+      code: [''],
+      description: [''],
+      address_1: [''],
+      address_2: [''],
+      agent:[''],
+      resident_phone: [''],
+      telephone: [''],
+      cellphone: [''],
+      terms: [''],
+      email : [''],
+      fax: [''],
+      tin_number: [''],
+      contact_person: [''],
+      credit_limit:[''],
+      initial_balance: [''],
+      remaining: [''],
+      customer_type: [''],
+      remarks: [''],
+
+      bank_account_name: [''],
+      bank_account_number: [''],
+      bank_name: [''],
+      bank_branch: [''],
+      bank_status: [''],
+      bank_remarks: ['']
     })
   }
 
   filter(){
-
+    this.customerService.getCustomers().subscribe((data)=>{
+      this.resultsResults = data;
+    });
   }
   print(){}
-  editDetails(){}
+  editDetails(){
+    this.customerService.editCustomer(this.browseForm.getRawValue(), this.dataPasserService.selectedData['customer'].id).subscribe((data)=>{
+
+    }, (error) => console.log(error));
+  }
+
+  getSelectedCustomer(){
+    this.browseForm.patchValue(this.dataPasserService.selectedData['customer']);
+  }
 
 
 

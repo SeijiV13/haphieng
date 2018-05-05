@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { ModalDirective } from 'ngx-bootstrap';
+import { ProductsService } from '../../../web-services/products.service';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -10,35 +11,37 @@ import { ModalDirective } from 'ngx-bootstrap';
 export class AddProductComponent implements OnInit {
   browseForm: FormGroup;
   @ViewChild('addProductModal') addProductModal: ModalDirective;
- constructor(private dataPasserService: DataPasserService, private fb: FormBuilder) { }
+ constructor(private dataPasserService: DataPasserService, private fb: FormBuilder, private productService: ProductsService) { }
 
   ngOnInit() {
        this.browseForm = this.fb.group({
-         importedItem: [''],
-         itemCode: [''],
+         imported: [''],
+         code: [''],
          category: [''],
          description: [''],
-         grossPrice: [''],
-         less35:[{value:'', disabled: true}],
-         less15: [{value:'', disabled: true}],
-         warehouseOne: [''],
-         warehouseTwo:[''],
-         packQtyBig: [''],
-         packQtySmall: [''],
-         remarksOne:[''],
-         remarksTwo: [''],
+         gross_price: [''],
+         less_35:[{value:'', disabled: true}],
+         less_15: [{value:'', disabled: true}],
+         warehouse_1: [''],
+         warehouse_2:[''],
+         pack_qty_big: [''],
+         pack_qty_small: [''],
+         remarks_1:[''],
+         remarks_2: [''],
          total: [''],
          location: [''],
          unit: [''],
-         minimumQuantity: [''],
-         productLine: [''],
+         minimum_quantity: [''],
+         product_line: [''],
       
        })
   }
 
   addProduct(){
-
-  }
+     this.productService.createProduct(this.browseForm.getRawValue()).subscribe((data)=>{
+        this.addProductModal.hide();
+     }, error => console.log(error));
+  } 
 
   show(){
     this.addProductModal.show();
@@ -49,9 +52,9 @@ export class AddProductComponent implements OnInit {
   }
 
   computeLess(){
-   let grossPrice =  parseInt(this.browseForm.controls['grossPrice'].value);
-   this.browseForm.controls['less15'].setValue(grossPrice * .15);
-   this.browseForm.controls['less35'].setValue(grossPrice * .35);
+   let grossPrice =  parseInt(this.browseForm.controls['gross_price'].value);
+   this.browseForm.controls['less_15'].setValue((grossPrice * .15).toString());
+   this.browseForm.controls['less_35'].setValue((grossPrice * .35).toString());
   }
 
 }

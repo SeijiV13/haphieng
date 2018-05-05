@@ -30,7 +30,7 @@
                   </TR>
               </THEAD>
               <TBODY>
-                  <TR class="row-result" (click)="tableFunctions.onTableRowClick($event, result, dataPasserService.selectedData, processButtonId())" *ngFor="let result of results; let i = index">
+                  <TR class="row-result" (click)="tableFunctions.onTableRowClick($event, result, dataPasserService.selectedData, processButtonId(), fieldContainer); emitSelectedRow()" *ngFor="let result of results; let i = index">
                       <TD style="display:none" class="checkbox-container"><input (change)="tableFunctions.onUpdateCheckBox($event, result)" name="checkbox-results" type="checkbox" [value]="result"
                               class="checkbox-results"></TD>
                       <td *ngFor="let key of keys">

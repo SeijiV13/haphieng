@@ -9,7 +9,7 @@
      <div [formGroup]="salesEntryGroup">
       <fieldset *ngIf="type === 'sales' || type === 'salesReturn' || type == 'invDamage'" class="section-content">
         <legend>
-          <h5>PERSONAL DETAILS</h5>
+          <h5>ENTRY</h5>
         </legend>
         <div class="row form-horizontal">
         <div class="col-md-12">
@@ -28,12 +28,6 @@
          </div>
 
           <div class="col-md-6">
-              <div class="form-group">
-                 <label class="control-label col-sm-3 col-md-4" for="itemCode">Item Code</label>
-                 <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="itemCode"  type="text" class="form-control">
-                  </div>
-             </div>
              <div class="form-group" *ngIf="type === 'salesReturn' || type === 'invDamage'">
                  <label class="control-label col-sm-3 col-md-4" for="itemCode">Warehouse <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-8 field">
@@ -44,13 +38,6 @@
              </div>
          </div>
           <div class="col-md-6">
-               <div class="form-group">
-                 <label class="control-label col-sm-3 col-md-4" for="description">Category</label>
-                 <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="category"  type="text" class="form-control">
-                     
-                  </div>
-             </div>
               <div class="form-group" *ngIf="type === 'salesReturn'">
                  <label class="control-label col-sm-3 col-md-4" for="good">Good <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-8 field">
@@ -61,10 +48,30 @@
              </div>
          </div>
          </div>
+         <hr>
+        <div class="col-md-6">
+            <div class="form-group">
+               <label class="control-label col-sm-3 col-md-4" for="itemCode">Item Code</label>
+               <div class="col-sm-9 col-md-8 field">
+                   <input formControlName="itemCode"  type="text" class="form-control">
+                </div>
+           </div>
+       
+       </div>
+        <div class="col-md-6">
+             <div class="form-group">
+               <label class="control-label col-sm-3 col-md-4" for="description">Category</label>
+               <div class="col-sm-9 col-md-8 field">
+                   <input formControlName="category"  type="text" class="form-control">
+                   
+                </div>
+           </div>
+    
+       </div>
       </fieldset>
       <fieldset *ngIf="type === 'purchase' || type === 'purchaseReturn'" class="section-content">
         <legend>
-          <h5>PERSONAL DETAILS</h5>
+          <h5>ENTRY</h5>
         </legend>
         <div class="row form-horizontal">
         <div class="col-md-12">
@@ -92,27 +99,29 @@
              </div>
          </div>
          
-        
-          <div class="col-md-6">
-              <div class="form-group">
-                 <label class="control-label col-sm-3 col-md-4" for="itemCode">Item Code</label>
-                 <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="itemCode"  type="text" class="form-control">
-                  </div>
-             </div>
-         
-         </div>
-          <div class="col-md-6">
-               <div class="form-group">
-                 <label class="control-label col-sm-3 col-md-4" for="description">Category</label>
-                 <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="category"  type="text" class="form-control">
-                     
-                  </div>
-             </div>
       
          </div>
-         </div>
+        <hr>
+        <div class="col-md-6">
+            <div class="form-group">
+               <label class="control-label col-sm-3 col-md-4" for="itemCode">Item Code</label>
+               <div class="col-sm-9 col-md-8 field">
+                   <input formControlName="itemCode"  type="text" class="form-control">
+                </div>
+           </div>
+       
+       </div>
+        <div class="col-md-6">
+             <div class="form-group">
+               <label class="control-label col-sm-3 col-md-4" for="description">Category</label>
+               <div class="col-sm-9 col-md-8 field">
+                   <input formControlName="category"  type="text" class="form-control">
+                   
+                </div>
+           </div>
+    
+       </div>
+
       </fieldset>
        <generic-table #entryTable [title]="'ITEMS'" [headers]="entryHeaders" [results]="entryResults" [type]="'single'" [keys]="entryKeys" (emitColumnClicked)="itemInOutModal($event)"></generic-table>
         <fieldset class="section-content">

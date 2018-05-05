@@ -13,20 +13,16 @@
     <div [formGroup]="formGroup" class="row form-horizontal">
         <div class="col-md-6">
              <div class="form-group">
-                 <label class="control-label col-sm-3 col-md-4" for="productLineFilter">Product Line Filter</label>
+                 <label class="control-label col-sm-3 col-md-4" for="productLineFilter">Product Code Filter</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <select formControlName="product" type="text" class="form-control">
-                  
-                    </select>
+                     <input formControlName="product" type="text" class="form-control">
                   </div>
              </div> 
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="categoryFilter">Category Filter</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <select formControlName="category"  type="text" class="form-control">
-                
-                   
-                    </select>
+                     <input formControlName="category"  type="text" class="form-control">
+            
                   </div>
              </div> 
          </div>
@@ -50,7 +46,7 @@
     
    </fieldset>
 
-    <generic-table #resultsTable [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+    <generic-table #resultsTable (selectedRow)="getSelectedProduct()" [fieldContainer]="'product'" [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
 
 
   </tab>
@@ -64,9 +60,15 @@
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="importedItem">Imported Item</label>
                   <div class="col-sm-9 col-md-8 field">
-                    <input type="checkbox" formControlName="importedItem">
+                    <input type="checkbox" formControlName="imported">
                  </div>
              </div> 
+             <div class="form-group">
+                    <label class="control-label col-sm-3 col-md-4" for="category">Code</label>
+                    <div class="col-sm-9 col-md-8 field">
+                        <input formControlName="code"  type="text" class="form-control">
+                     </div>
+                </div> 
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="category">Category</label>
                  <div class="col-sm-9 col-md-8 field">
@@ -85,25 +87,25 @@
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="grossPrice">Gross Price</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" formControlName="grossPrice">
+                     <input type="text" class="form-control" formControlName="gross_price">
                   </div>
              </div> 
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="less35">Less 35%</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" formControlName="less35">
+                     <input type="text" class="form-control" formControlName="less_35">
                   </div>
              </div> 
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="warehouseOne">Warehouse One</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" formControlName="warehouseOne">
+                     <input type="text" class="form-control" formControlName="warehouse_1">
                   </div>
              </div>
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="packQtyBig">Pack Qty Big</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" formControlName="packQtyBig">
+                     <input type="text" class="form-control" formControlName="pack_qty_big">
                   </div>
              </div> 
          </div>
@@ -125,25 +127,25 @@
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="minimumQuantity">Minimum Quantity</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" formControlName="minimumQuantity">
+                     <input type="text" class="form-control" formControlName="minimum_quantity">
                   </div>
              </div>
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="less15">Less 15%</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" formControlName="less15">
+                     <input type="text" class="form-control" formControlName="less_15">
                   </div>
              </div> 
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="warehouseTwo">Warehouse Two</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" formControlName="warehouseTwo">
+                     <input type="text" class="form-control" formControlName="warehouse_2">
                   </div>
              </div>
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="packQtySmall">Pack Qty Small</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" formControlName="packQtySmall">
+                     <input type="text" class="form-control" formControlName="pack_qty_small">
                   </div>
              </div> 
          </div>
@@ -151,7 +153,7 @@
           <div class="form-group">
                  <label class="control-label col-sm-3 col-md-2" for="remarksOne">Remarks 1</label>
                  <div class="col-sm-9 col-md-10 field">
-                     <textarea class="form-control" formControlName="remarksOne"></textarea>
+                     <textarea class="form-control" formControlName="remarks_1"></textarea>
                   </div>
              </div> 
         </div>
@@ -159,11 +161,16 @@
           <div class="form-group">
                  <label class="control-label col-sm-3 col-md-2" for="remarksTwo">Remarks 2</label>
                  <div class="col-sm-9 col-md-10 field">
-                     <textarea class="form-control" formControlName="remarksTwo"></textarea>
+                     <textarea class="form-control" formControlName="remarks_2"></textarea>
                   </div>
              </div> 
         </div>
+
     </div>
+    
+    <div class="search-button-holder">
+            <button type="button" (click)="editDetails()" class="btn btn-default" >Edit Details</button>
+    </div>    
      </fieldset>
      <generic-table #pricingTable [title]="'PRICING'" [headers]="pricingHeaders" [results]="pricingResults" [type]="'single'" [keys]="pricingKeys"></generic-table>
   </tab>

@@ -17,7 +17,7 @@
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="customerCode">Customer Code</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="customerCode"  type="text" class="form-control">
+                     <input formControlName="code"  type="text" class="form-control">
                   </div>
              </div>
               <div class="form-group">
@@ -29,13 +29,13 @@
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="address">Address</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="address"  type="text" class="form-control">
+                     <input formControlName="address_1"  type="text" class="form-control">
                   </div>
              </div> 
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="address2">Address 2</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="address2"  type="text" class="form-control">
+                     <input formControlName="address_2"  type="text" class="form-control">
                   </div>
              </div> 
               <div class="form-group">
@@ -53,7 +53,7 @@
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="residentPhone">Resident Phone</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="residentPhone"  type="text" class="form-control">
+                     <input formControlName="resident_phone"  type="text" class="form-control">
                   </div>
              </div> 
             
@@ -64,13 +64,15 @@
                  <label class="control-label col-sm-3 col-md-4" for="agent">Agent</label>
                  <div class="col-sm-9 col-md-8 field">
                      <select class="form-control" formControlName="agent">
+                         <option value=""></option>
+                         <option *ngFor="let agent of agents" [value]="agent.name">{{agent.description}}</option>
                      </select>
                   </div>
              </div> 
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="tinNo">Tin No.</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="tinNo"  type="text" class="form-control">
+                     <input formControlName="tin_number"  type="text" class="form-control">
                   </div>
              </div> 
               <div class="form-group">
@@ -88,7 +90,7 @@
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="contactPerson">Contact Person</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="contactPerson"  type="text" class="form-control">
+                     <input formControlName="contact_person"  type="text" class="form-control">
                   </div>
              </div> 
               <div class="form-group">
@@ -109,13 +111,13 @@
            <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="creditLimit">Credit Limit</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="creditLimit"  type="text" class="form-control">
+                     <input formControlName="credit_limit"  type="text" class="form-control">
                   </div>
              </div> 
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="initialBalance">Inital Balance</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="initialBalance"  type="text" class="form-control">
+                     <input formControlName="initial_balance"  type="text" class="form-control">
                   </div>
              </div> 
         </div>
@@ -129,8 +131,8 @@
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="customerType">Customer Type</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <label class="control-label">Wholesale <input type="radio" formControlName="customerType"  value="WC"  ></label>
-                     <label class="control-label">Retail <input type="radio" formControlName="customerType"  value="RC"   ></label>
+                     <label class="control-label">Wholesale <input type="radio" formControlName="customer_type"  value="WC"  ></label>
+                     <label class="control-label">Retail <input type="radio" formControlName="customer_type"  value="RC"   ></label>
                   </div>
              </div> 
         </div>

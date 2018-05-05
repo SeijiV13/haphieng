@@ -6,14 +6,14 @@ export class TableFunctionsService {
   counter: number = 0;
   constructor(private dataPasserService: DataPasserService) { }
   // e is the target DOM, data is the information to be stored, container is where to store data
-  onTableRowClick(e, data, container, buttonIds: Array<string>) {
+  onTableRowClick(e, data, container, buttonIds: Array<string>, fieldContainer) {
     if (!$(e.target).hasClass("checkbox-results")) {
         var $checkbox = $(e.target).parent().children(".checkbox-container").children(".checkbox-results");
 
         if (!$checkbox.is(":checked")) {
             $('.checkbox-results').prop('checked', false);
             $checkbox.prop('checked', true);
-            this.dataPasserService.selectedData = data;
+            this.dataPasserService.selectedData[fieldContainer] = data;
 
             for(let buttonId of buttonIds){
               $("#"+ buttonId).removeClass('disabled-button');
@@ -27,7 +27,7 @@ export class TableFunctionsService {
         else {
             $checkbox.prop('checked', false);
             //removes the selected rrequest
-            this.dataPasserService.selectedData = null;
+            this.dataPasserService.selectedData[fieldContainer] = {};
             for(let buttonId of buttonIds){
               $("#"+ buttonId).addClass('disabled-button');
             }

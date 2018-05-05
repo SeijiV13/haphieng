@@ -142,7 +142,10 @@ import { ViewEditInvDamageComponent } from './views/tools/view-edit-inv-damage/v
 import { GenerateCounterReceiptsComponent } from './views/entries/generate-counter-receipts/generate-counter-receipts.component';
 import { ViewCounterReceiptsModalComponent } from './views/entries/generate-counter-receipts/view-counter-receipts-modal/view-counter-receipts-modal.component';
 import { ViewReceiptItemsModalComponent } from './views/tools/view-edit-counter-receipts/view-receipt-items-modal/view-receipt-items-modal.component';
-
+import { SupplierService } from './web-services/supplier.service';
+import { ProductsService } from './web-services/products.service';
+import { AgentService } from './web-services/agent.service';
+import { CustomerService } from './web-services/customer.service';
 
 
 
@@ -221,7 +224,8 @@ import { ViewReceiptItemsModalComponent } from './views/tools/view-edit-counter-
         ViewEditInvDamageComponent,
         GenerateCounterReceiptsComponent,
         ViewCounterReceiptsModalComponent,
-        ViewReceiptItemsModalComponent
+        ViewReceiptItemsModalComponent,
+      
        
 
 
@@ -295,6 +299,10 @@ import { ViewReceiptItemsModalComponent } from './views/tools/view-edit-counter-
         PasswordMeterService,
         TableFunctionsService,
         AuthenticationService,
+        ProductsService,
+        AgentService,
+        SupplierService,
+        CustomerService,
         { provide: APP_INITIALIZER, useFactory: initFactory, deps: [InitService], multi: true,},
      
     ],

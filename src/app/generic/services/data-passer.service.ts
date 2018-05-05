@@ -3,13 +3,16 @@ import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs/Rx';
 export class DataPasserService {
     
-    public selectedData: any;
+    public selectedData: any  = {};
     public multipleSelectedData: Array<any> = [];
 
 
     public username: string = "";
-
-
+    public accessToken: string;
+    public tokenType: string;
+    public client: string;
+    public expiry: string;
+    public uid: string;
 
     changeTitleEmitter = new EventEmitter();
     pathForRedirect = new EventEmitter();
