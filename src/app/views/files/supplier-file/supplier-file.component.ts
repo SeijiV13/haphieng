@@ -55,9 +55,11 @@ export class SupplierFileComponent implements OnInit {
 
   }
   filter(){
-    this.supplierService.getSuppliers().subscribe((data)=>{
+    let code = this.formGroup.controls['supplierCode'].value;
+    let description = this.formGroup.controls['description'].value
+    this.supplierService.filterSuppliers(code, description).subscribe((data)=>{
       this.resultsResults = data;
-        }, error  => this.dataPasserService.sendError(error.errors[0]))
+    }, error  => this.dataPasserService.sendError(error.errors[0]))
 
   }
 

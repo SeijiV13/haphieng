@@ -62,7 +62,9 @@ export class CustomerBankFileComponent implements OnInit {
   }
 
   filter(){
-    this.customerService.getCustomers().subscribe((data)=>{
+    let code = this.formGroup.controls['customerCode'].value;
+    let description =this.formGroup.controls['customerDescription'].value;
+    this.customerService.filterCustomers(description, code, "").subscribe((data)=>{
       this.resultsResults = data;
     });
   }

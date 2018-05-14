@@ -39,6 +39,8 @@ export class InventoryFileComponent implements OnInit {
    {name: 'remarks_2'}
   ]
 
+  categories = [{ code: "wheel", description: "dgood year"}]
+ 
   pricingHeaders = [''];
   pricingResults = [];
   pricingKeys = []
@@ -73,7 +75,9 @@ export class InventoryFileComponent implements OnInit {
 
   filter(){
     let total = 0
-    this.productService.getProducts().subscribe((data)=>{
+    let code = this.formGroup.controls['product'].value;
+    let category = this.formGroup.controls['category'].value;
+    this.productService.filterProducts(code, category).subscribe((data)=>{
       this.resultsResults = data;
       for(let result of this.resultsResults){
           total = total + parseInt(result.gross_price);

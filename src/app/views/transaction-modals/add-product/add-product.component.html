@@ -28,8 +28,8 @@
                  <label class="control-label col-sm-3 col-md-4" for="category">Category</label>
                  <div class="col-sm-9 col-md-8 field">
                      <select formControlName="category"  type="text" class="form-control">
-                
-                   
+                        <option value =""></option>
+                        <option *ngFor="let category of categories" [value]="category.code">{{category.description}}</option> 
                     </select>
                   </div>
              </div> 
@@ -67,7 +67,8 @@
                  <label class="control-label col-sm-3 col-md-4" Formatter='{"type":"decimal"}' for="productLine">Product Line</label>
                  <div class="col-sm-9 col-md-8 field">
                      <select formControlName="product_line"  type="text" class="form-control">
-                
+                            <option value =""></option>
+                            <option *ngFor="let productLine of productLines" [value]="productLine.code">{{productLine.description}}</option> 
                    
                     </select>
                   </div>

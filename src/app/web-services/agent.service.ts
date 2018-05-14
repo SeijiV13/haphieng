@@ -9,8 +9,7 @@ export class AgentService {
    
    
    filterAgents(name, description, address){
-     let dec = decodeURI(`/api/v1/haphieng/agents?{filters:{name:\\"${name}\\"}}`);
-    return this.httpClient.getBase(dec).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+    return this.httpClient.getBase(`/api/v1/haphieng/agents?filters%5Bname=${name}&filters%5Bdescription=${description}&filters%5Baddress=${address}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
    }
    getAgents(): Observable<any>{
       return this.httpClient.getBase(`/api/v1/haphieng/agents`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);

@@ -5,7 +5,9 @@ import {Observable} from 'rxjs/Rx';
 export class CustomerService {
 
   constructor(private httpClient: HttpClient) { }
-
+  filterCustomers(description, code, agent): Observable<any>{
+    return this.httpClient.getBase(`/api/v1/haphieng/customers?filters%5Bdescription=${description}&filters%5Bcode=${code}&filters%5Bagent=${agent}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
   getCustomers(): Observable<any>{
     return this.httpClient.getBase(`/api/v1/haphieng/customers`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
  }

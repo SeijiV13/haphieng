@@ -81,7 +81,10 @@ export class CustomerFileComponent implements OnInit {
   }
 
   filter(){
-     this.customerService.getCustomers().subscribe((data)=>{
+     let code = this.formGroup.controls['customer'].value;
+     let description = this.formGroup.controls['description'].value;
+     let agent = this.formGroup.controls['agent'].value;
+     this.customerService.filterCustomers(description, code, agent).subscribe((data)=>{
        this.resultsResults = data;
      }, error  => this.dataPasserService.sendError(error.errors[0]))
   } 
