@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap';
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
 import { ProductsService } from '../../../web-services/products.service';
+import { AgentService } from '../../../web-services/agent.service';
 
 @Component({
   selector: 'app-add-sales-entry',
@@ -15,9 +16,7 @@ export class AddSalesEntryComponent implements OnInit {
   @ViewChild('itemInOutModalEntry') itemInOutModalEntry : ItemInOutModalComponent;
   @ViewChild('historyModal') historyModal: GenericModalComponent;
   @Input() addTitle: string ="";
-  agents = [
-    {"value": "agent1", "label": "Agent 1"}
-  ]
+  agents: Array<any>;
   entryHeaders = [
     'Item Code',
     'Description',
@@ -40,7 +39,10 @@ export class AddSalesEntryComponent implements OnInit {
   @ViewChild('errorModal') errorModal: GenericModalComponent;
   constructor(private dataPasserService: DataPasserService,
                private fb: FormBuilder, 
-               private productService: ProductsService) { }
+               private productService: ProductsService,
+               private agentService: AgentService) {
+                 this.getDropdownValues();
+                }
 
   ngOnInit() {
     this.salesEntryGroup = this.fb.group({
@@ -48,23 +50,37 @@ export class AddSalesEntryComponent implements OnInit {
       itemCode: [''],
       category: [''],
       lastprice: [''],
-      quantity: ['', Validators.required],
+      quantity: [''],
+      qtyNew: [''],
       warehouse: [''],
       good: [''],
+      adjustmentRemarks: ['']
     });
+    if(this.type == 'sales'){
+      this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
+    }
     if(this.type == 'salesReturn'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
        this.salesEntryGroup.controls['good'].setValidators(Validators.required);
+       this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
     }
     if(this.type === 'purchase'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
+       this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
        this.salesEntryGroup.controls['agent'].setValidators(null);
     }
     if(this.type === 'purchaseReturn'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
         this.salesEntryGroup.controls['good'].setValidators(Validators.required);
+        this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
        this.salesEntryGroup.controls['agent'].setValidators(null);
     }
+  }
+
+  getDropdownValues(){
+    this.agentService.getAgents().subscribe((data)=>{
+      this.agents = data;
+    })
   }
 
 
@@ -84,12 +100,16 @@ export class AddSalesEntryComponent implements OnInit {
       originalprice: this.dataPasserService.selectedData['product']['gross_price'],
       available: this.dataPasserService.selectedData['product']['available'],
       pending: this.dataPasserService.selectedData['product']['pending'],
+      itemRemarks: this.dataPasserService.selectedData['product']['remarks_1'],
+      category: this.dataPasserService.selectedData['product']['category'],
 
       agent: this.salesEntryGroup.controls['agent'].value,
       lastprice: this.salesEntryGroup.controls['lastprice'].value,
       quantity: this.salesEntryGroup.controls['quantity'].value,
       warehouse: this.salesEntryGroup.controls['warehouse'].value,
       good: this.salesEntryGroup.controls['good'].value,
+      qtyNew: this.salesEntryGroup.controls['qtyNew'].value,
+      adjustmentRemarks: this.salesEntryGroup.controls['adjustmentRemarks'].value
     
     }
     this.addSalesEntryModal.hide();
@@ -117,9 +137,11 @@ export class AddSalesEntryComponent implements OnInit {
   }
 
   filter(){
-    this.productService.getProducts().subscribe((data)=>{
+    let code = this.salesEntryGroup.controls['itemCode'].value;
+    let category = this.salesEntryGroup.controls['category'].value;
+    this.productService.filterProducts(code, category).subscribe((data)=>{
       this.entryResults = data;
-    }, error  => this.dataPasserService.sendError(error.errors[0]));
+    }, error=>  this.dataPasserService.sendError(error.errors[0]));
   }
 
 }

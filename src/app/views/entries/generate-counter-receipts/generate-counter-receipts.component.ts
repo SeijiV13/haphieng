@@ -2,6 +2,7 @@ import { ViewCounterReceiptsModalComponent } from './view-counter-receipts-modal
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { CustomerService } from '../../../web-services/customer.service';
 
 @Component({
   selector: 'app-generate-counter-receipts',
@@ -24,7 +25,10 @@ export class GenerateCounterReceiptsComponent implements OnInit {
   ]
     buttons = [
   ]
-  constructor(private formBuilder: FormBuilder, private dataPasser: DataPasserService) { }
+  customers: Array<any>;
+  constructor(private formBuilder: FormBuilder, 
+             private dataPasser: DataPasserService,
+            private customerService: CustomerService) { }
 
   ngOnInit() {
     this.dataPasser.sendPageTitle("GENERATE SALES COUNTER RECEIPTS")
@@ -34,6 +38,12 @@ export class GenerateCounterReceiptsComponent implements OnInit {
         dateFrom: [''],
         dateTo: [''],
         customer: ['']
+    })
+  }
+
+  getDropdownValues(){
+    this.customerService.getCustomers().subscribe((data)=>{
+      this.customers = data;
     })
   }
 

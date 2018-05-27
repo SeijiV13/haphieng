@@ -5,14 +5,14 @@ import { AddCustomerComponent } from './../../transaction-modals/add-customer/ad
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CustomerService } from '../../../web-services/customer.service';
 
 @Component({
-  selector: 'app-sales-return-entries',
-  templateUrl: './sales-return-entries.component.html',
-  styleUrls: ['./sales-return-entries.component.scss']
+  selector: 'app-inv-quantity-adjustments-entries',
+  templateUrl: './inv-quantity-adjustments-entries.component.html',
+  styleUrls: ['./inv-quantity-adjustments-entries.component.scss']
 })
-export class SalesReturnEntriesComponent implements OnInit {
+export class InvQuantityAdjustmentsEntriesComponent implements OnInit {
+
   @ViewChild('itemInOutModal') itemInOutModal: ItemInOutModalComponent;
   @ViewChild('addCustomer') addCustomer: AddCustomerComponent;
   @ViewChild('addSalesEntry') addSalesEntry: AddSalesEntryComponent;
@@ -20,29 +20,33 @@ export class SalesReturnEntriesComponent implements OnInit {
   salesForm: FormGroup;
   resultsHeaders = [
     "Row No.",
-    "Item code",
-    "Good",
-    "Quantity",
-    "Quantity Stock",
-    "Description",
+    "Category",
     "W1/W2",
-    "Agent",
-    "Price",
-    "Amount",
+    "Item code",
+    "Qty New",
+    "Qty Old",
+    "Qty Diff",
+    "Unit Cost",
+    "Diff Amount",
+    "New Amount",
+    "Adjustment Remarks",
+    "Item Remarks",
     "Remove"
   ]
   resultsResults = [];
   resultsKeys = [
      {"name": "rowNo"},
-     {"name": "itemCode"},
-     {"name":"good"},
-     {"name": "quantity"},
-     {"name": "available"},
-     {"name": "description"},
+     {"name": "category"},
      {"name": "warehouse"},
-     {"name": "agent"},
-     {"name": "price"},
-     {"name": "amount"}
+     {"name": "itemCode"},
+     {"name":"qtyNew"},
+     {"name": "qtyOld"},
+     {"name": "qtyDiff"},
+     {"name": "originalprice"},
+     {"name": "diffAmount"},
+     {"name": "newAmount"},
+     {"name": "adjustmentRemarks"},
+     {"name": "itemRemarks"}
   ];
     buttons = [
     {'name': "Post", 'id': "post-button", 'logo': 'glyphicon glyphicon-file', 'type': 'post', 'behavior':'single'},
@@ -50,15 +54,10 @@ export class SalesReturnEntriesComponent implements OnInit {
     {'name': "Suspend", 'id': "suspend-button", 'logo': 'glyphicon glyphicon-download', 'type': 'suspend', 'behavior':'single'},
     {'name': "Item Transaction", 'id': "trans-button", 'logo': 'glyphicon glyphicon-file', 'type': 'itemtrans', 'behavior':'single'}
   ]
-  customers: Array<any>;
-  constructor(private dataPasserService: DataPasserService,
-             private fb: FormBuilder,
-             private customerService: CustomerService) {
-               this.getDropdownValues();
-              }
+  constructor(private dataPasserService: DataPasserService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.dataPasserService.sendPageTitle("SALES RETURN ENTRIES");
+    this.dataPasserService.sendPageTitle("IVENTORY QUANTITY ADJUSTMENT ENTRIES");
     this.salesForm = this.fb.group({
       refNo: ['', Validators.required],
       date: [''],
@@ -66,12 +65,6 @@ export class SalesReturnEntriesComponent implements OnInit {
       customer: ['', Validators.required],
       terms: [''],
       total: [{value:'', disabled: true}]
-    })
-  }
-
-  getDropdownValues(){
-    this.customerService.getCustomers().subscribe((data)=>{
-      this.customers = data;
     })
   }
 
@@ -88,25 +81,24 @@ export class SalesReturnEntriesComponent implements OnInit {
 
   pushNewItem(entry){
     //get price 
-    let lastprice = parseFloat(entry['lastprice'])
-    let originalprice = parseFloat(entry['originalprice']);
-    if(lastprice){
-      entry['price'] = lastprice;
-    }else{
-      entry['price'] = originalprice;
-    }
+    let gross_price = entry['originalprice'];
+    let newAmount =  parseFloat(gross_price) * parseFloat(entry['qtyNew']);
     //compute for amount
-    entry['amount'] = parseFloat(entry['price']) * parseFloat(entry['quantity']);
+    entry['amount'] = newAmount;
+    entry['newAmount'] = newAmount;
     this.resultsResults.push(entry);
     this.computeTotal();
   }
+
   computeTotal(){
     let total = 0
     for(let result of this.resultsResults){
       total = total + result.amount;
     }
     this.salesForm.controls['total'].setValue(total);
+
   }
+
   doAction(type){
     if(type === 'post'){
 

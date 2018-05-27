@@ -1,7 +1,7 @@
 
  <fieldset class="section-content">
     <legend>
-        <h5>Sales Entries</h5>
+        <h5>Purhase Entries</h5>
     </legend>
     <div [formGroup]="purchaseForm" class="row form-horizontal">
         <div class="col-md-6">
@@ -37,6 +37,8 @@
                  <label class="control-label col-sm-3 col-md-4" for="supplier">Supplier</label>
                  <div class="col-sm-9 col-md-8 field">
                      <select formControlName="supplier" type="text" class="form-control">
+                        <option value=""></option>
+                        <option *ngFor="let data of suppliers" [value]="data.code">{{data.code}} | {{data.description}}</option>
                     </select>
                     <control-messages [control]="purchaseForm.controls.customer"></control-messages>
                   </div>

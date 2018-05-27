@@ -6,6 +6,7 @@ import { AddCustomerComponent } from './../../transaction-modals/add-customer/ad
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { SupplierService } from '../../../web-services/supplier.service';
 
 @Component({
   selector: 'app-purchase-entries',
@@ -45,8 +46,13 @@ export class PurchaseEntriesComponent implements OnInit {
     {'name': "Resume", 'id': "resume-button", 'logo': 'glyphicon glyphicon-pencil', 'type': 'resume', 'behavior':'single'},
     {'name': "Suspend", 'id': "suspend-button", 'logo': 'glyphicon glyphicon-download', 'type': 'suspend', 'behavior':'single'},
     {'name': "Item Transaction", 'id': "trans-button", 'logo': 'glyphicon glyphicon-file', 'type': 'itemtrans', 'behavior':'single'}
-  ]
-  constructor(private dataPasserService: DataPasserService, private fb: FormBuilder) { }
+  ];
+  suppliers: Array<any>;
+  constructor(private dataPasserService: DataPasserService, 
+             private fb: FormBuilder,
+             private supplierService: SupplierService) {
+               this.getDropdownValues();
+              }
 
   ngOnInit() {
     this.dataPasserService.sendPageTitle("PURCHASE ENTRIES");
@@ -58,6 +64,12 @@ export class PurchaseEntriesComponent implements OnInit {
       terms: [''],
       totalpeso: [{value:'', disabled: true}],
       totalyuan: [{value:'', disabled: true}]
+    })
+  }
+
+  getDropdownValues(){
+    this.supplierService.getSuppliers().subscribe((data)=>{
+        this.suppliers = data;
     })
   }
 

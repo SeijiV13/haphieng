@@ -5,6 +5,7 @@ import { AddCustomerComponent } from './../../transaction-modals/add-customer/ad
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { CustomerService } from '../../../web-services/customer.service';
 @Component({
   selector: 'app-inv-damage-entries',
   templateUrl: './inv-damage-entries.component.html',
@@ -48,7 +49,12 @@ export class InvDamageEntriesComponent implements OnInit {
     {'name': "Suspend", 'id': "suspend-button", 'logo': 'glyphicon glyphicon-download', 'type': 'suspend', 'behavior':'single'},
     {'name': "Item Transaction", 'id': "trans-button", 'logo': 'glyphicon glyphicon-file', 'type': 'itemtrans', 'behavior':'single'}
   ]
-  constructor(private dataPasserService: DataPasserService, private fb: FormBuilder) { }
+  customers: Array<any>;
+  constructor(private dataPasserService: DataPasserService, 
+              private fb: FormBuilder,
+              private customerService: CustomerService) { 
+                this.getDropdownValues();
+              }
 
   ngOnInit() {
     this.dataPasserService.sendPageTitle("IVENTORY DAMAGE ENTRIES");
@@ -59,6 +65,12 @@ export class InvDamageEntriesComponent implements OnInit {
       customer: ['', Validators.required],
       terms: [''],
       total: [{value:'', disabled: true}]
+    })
+  }
+
+  getDropdownValues(){
+    this.customerService.getCustomers().subscribe((data)=>{
+      this.customers = data;
     })
   }
 

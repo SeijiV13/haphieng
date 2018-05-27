@@ -42,7 +42,10 @@
                <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="customer">Customer</label>
                  <div class="col-sm-9 col-md-8 field">
-                    <input formControlName="customer" type="text" class="form-control"/>
+                    <select formControlName="customer" type="text" class="form-control">
+                        <option value=""></option>
+                        <option *ngFor="let data of customers" [value]="data.code">{{data.code}} | {{data.description}}</option>
+                    </select>
                     <control-messages [control]="salesForm.controls.customer"></control-messages>
                   </div>
              </div>

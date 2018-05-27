@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
      <div [formGroup]="salesEntryGroup">
-      <fieldset *ngIf="type === 'sales' || type === 'salesReturn' || type == 'invDamage'" class="section-content">
+      <fieldset *ngIf="type === 'sales' || type === 'salesReturn' || type == 'invDamage' || type == 'invAdjustment'" class="section-content">
         <legend>
           <h5>ENTRY</h5>
         </legend>
@@ -18,7 +18,7 @@
                  <label class="control-label col-sm-3 col-md-2" for="description">Agent <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-10 field">
                      <select formControlName="agent" class="form-control">
-                       <option *ngFor="let agent of agents" [value]="agent.value">{{agent.label}}</option>
+                       <option *ngFor="let agent of agents" [value]="agent.name">{{agent.name}} | {{agent.description}}</option>
                      </select>
                      <control-messages [control]="salesEntryGroup.controls.agent"></control-messages>
                   </div>
@@ -28,7 +28,7 @@
          </div>
 
           <div class="col-md-6">
-             <div class="form-group" *ngIf="type === 'salesReturn' || type === 'invDamage'">
+             <div class="form-group" *ngIf="type === 'salesReturn' || type === 'invDamage' || type  === 'invAdjustment'">
                  <label class="control-label col-sm-3 col-md-4" for="itemCode">Warehouse <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-8 field">
                      <label class="control-label"><input formControlName="warehouse"  type="radio"  value="W1">W1</label>
@@ -44,6 +44,22 @@
                      <label class="control-label"><input formControlName="good"  type="radio" value="Y">Yes</label>
                       <label class="control-label"><input formControlName="good"  type="radio"  value="N">No</label>
                       <control-messages [control]="salesEntryGroup.controls.good"></control-messages>
+                  </div>
+             </div>
+           <div class="form-group" *ngIf="type == 'invAdjustment'">
+                 <label class="control-label col-sm-3 col-md-4" for="description">New Quantity <span class="fa fa-asterisk"></span></label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input Formatter='{"type": "number"}' formControlName="qtyNew"  type="text" class="form-control">
+                     <control-messages [control]="salesEntryGroup.controls.quantity"></control-messages>
+                  </div>
+             </div>
+         </div>
+            <div class="col-md-12">
+             <div class="form-group" *ngIf="type  === 'invAdjustment'">
+                 <label class="control-label col-sm-3 col-md-2" for="adjustmentRemarks">Adjustment Remarks <span class="fa fa-asterisk"></span></label>
+                 <div class="col-sm-9 col-md-10 field">
+                    <textarea rows="4" class="form-control" formControlName="adjustmentRemarks"></textarea>
+                    <control-messages [control]="salesEntryGroup.controls.adjustmentRemarks"></control-messages>
                   </div>
              </div>
          </div>
@@ -82,7 +98,7 @@
                        <option  value="W1">W2</option>
                        <option  value="W2">W1</option>
                      </select>
-                     <control-messages [control]="salesEntryGroup.controls.agent"></control-messages>
+                     <control-messages [control]="salesEntryGroup.controls.warehouse"></control-messages>
                   </div>
              </div> 
  
@@ -124,7 +140,7 @@
 
       </fieldset>
        <generic-table #entryTable [title]="'ITEMS'"  [fieldContainer]="'product'" [headers]="entryHeaders" [results]="entryResults" [type]="'single'" [keys]="entryKeys" (emitColumnClicked)="itemInOutModal($event)"></generic-table>
-        <fieldset class="section-content">
+        <fieldset class="section-content" *ngIf="type != 'invAdjustment'">
         <legend>
           <h5>OTHER DETAILS</h5>
         </legend>

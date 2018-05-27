@@ -1,0 +1,56 @@
+<div class="search-button-holder">
+  <button type="button" (click)="print('standard')" class="btn btn-default" ><span class="glyphicon glyphicon-print"></span> Standard</button>
+  <button type="button" (click)="print('hhh')" class="btn btn-default" ><span class="glyphicon glyphicon-print"></span> HHH Plain</button>
+  <button type="button" (click)="print('hap')" class="btn btn-default" ><span class="glyphicon glyphicon-print"></span> Hap Hieng Plain</button>
+  <button type="button" (click)="print('ckcj')" class="btn btn-default" ><span class="glyphicon glyphicon-print"></span> CKCJ Plain</button>
+</div>
+
+<fieldset class="section-content">
+   <legend>
+       <h5>Adjustment Entries</h5>
+   </legend>
+   <div [formGroup]="salesForm" class="row form-horizontal">
+       <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="refNo">Ref No.</label>
+                <div class="col-sm-9 col-md-8 field">
+                    <input formControlName="refNo" type="text" class="form-control">
+                    <control-messages [control]="salesForm.controls.refNo"></control-messages>
+                 </div>
+            </div> 
+              <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="customer">Date</label>
+                <div class="col-sm-9 col-md-8 field">
+                  <datepicker [id]="'date'" [controlName]="'date'" [form]="salesForm" [placeholder]="'MM/DD/YYYY'"></datepicker>
+                  <control-messages [control]="salesForm.controls.date"></control-messages>
+                 </div>
+            </div>
+         
+     
+        </div>
+        <div class="col-md-6">
+     
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="total">Total</label>
+                <div class="col-sm-9 col-md-8 field">
+                    <input formControlName="total" type="text" class="form-control">
+                 
+                 </div>
+            </div> 
+        </div>
+
+ </div>
+   
+
+   
+       <div class="search-button-holder">
+           <button type="button" (click)="addEntry();" class="btn btn-primary pull-right" >Add Entry</button>
+           <button type="button" (click)="addNewCustomer()" class="btn btn-default" >Add New Customer</button>
+       </div>
+   
+ </fieldset>
+ <app-add-customer #addCustomer></app-add-customer>
+ <generic-table [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+ <app-add-sales-entry [addTitle]="'Add Inventory Damage Entry'" [type]="'invAdjustment'" #addSalesEntry (entry)="pushNewItem($event)"></app-add-sales-entry>
+ <app-suspended-sales #suspendedSales></app-suspended-sales>
+ <app-item-in-out-modal #itemInOutModal></app-item-in-out-modal>

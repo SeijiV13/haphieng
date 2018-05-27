@@ -146,6 +146,7 @@ import { SupplierService } from './web-services/supplier.service';
 import { ProductsService } from './web-services/products.service';
 import { AgentService } from './web-services/agent.service';
 import { CustomerService } from './web-services/customer.service';
+import { InvQuantityAdjustmentsEntriesComponent } from './views/entries/inv-quantity-adjustments-entries/inv-quantity-adjustments-entries.component';
 
 
 
@@ -225,6 +226,7 @@ import { CustomerService } from './web-services/customer.service';
         GenerateCounterReceiptsComponent,
         ViewCounterReceiptsModalComponent,
         ViewReceiptItemsModalComponent,
+        InvQuantityAdjustmentsEntriesComponent,
       
        
 

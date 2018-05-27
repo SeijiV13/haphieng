@@ -24,6 +24,7 @@ import { PurchaseEntriesComponent } from './../views/entries/purchase-entries/pu
 import { SalesReturnEntriesComponent } from './../views/entries/sales-return-entries/sales-return-entries.component';
 import { SalesEntriesComponent } from './../views/entries/sales-entries/sales-entries.component';
 
+
 import { MenuResolver } from './../generic/menu.resolver';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
@@ -56,6 +57,7 @@ import { CustomerFileComponent } from './../views/files/customer-file/customer-f
 import { SupplierFileComponent } from './../views/files/supplier-file/supplier-file.component';
 import { AgentFileComponent } from './../views/files/agent-file/agent-file.component';
 import { CustomerBankFileComponent } from './../views/files/customer-bank-file/customer-bank-file.component';
+import { InvQuantityAdjustmentsEntriesComponent } from '../views/entries/inv-quantity-adjustments-entries/inv-quantity-adjustments-entries.component';
 
 
 export const routes: Routes = [
@@ -84,7 +86,7 @@ export const routes: Routes = [
                   { path: 'salesReturnEntries', component: SalesReturnEntriesComponent},
                   { path: 'purchaseEntries', component: PurchaseEntriesComponent},
                   { path: 'purchaseReturnEntries', component: PurchaseReturnEntriesComponent },
-                  { path: 'invQuantityAdjEntries', component: UnderConstructionComponent},
+                  { path: 'invQuantityAdjEntries', component: InvQuantityAdjustmentsEntriesComponent},
                   { path: 'transferringStockEntries', component: UnderConstructionComponent},
                   { path: 'invDamageEntries', component: InvDamageEntriesComponent},
                   { path: 'generateSalesCounterReceipts', component: GenerateCounterReceiptsComponent},
