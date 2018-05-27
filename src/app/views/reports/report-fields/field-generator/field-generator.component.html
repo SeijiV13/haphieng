@@ -6,22 +6,27 @@
     <label class="control-label col-sm-3 col-md-4" for="customer">Customer</label>
     <div class="col-sm-9 col-md-8 field">
          <select formControlName="customer" type="text" class="form-control">
-         </select>
+                        <option value=""></option>
+                        <option *ngFor="let data of customers" [value]="data.code">{{data.code}} | {{data.description}}</option>
+        </select>
    
     </div>
  </div>
 <div *ngIf="field === 'supplier'" class="form-group">
     <label class="control-label col-sm-3 col-md-4" for="supplier">Supplier</label>
     <div class="col-sm-9 col-md-8 field">
-         <select formControlName="supplier" type="text" class="form-control">
-         </select>
-   
+        <select formControlName="supplier" type="text" class="form-control">
+                        <option value=""></option>
+                        <option *ngFor="let data of suppliers" [value]="data.code">{{data.code}} | {{data.description}}</option>
+        </select>
     </div>
  </div>
  <div *ngIf="field === 'category'" class="form-group">
     <label class="control-label col-sm-3 col-md-4" for="category">Category</label>
     <div class="col-sm-9 col-md-8 field">
-         <select formControlName="category" type="text" class="form-control">
+          <select formControlName="category" type="text" class="form-control">
+                        <option value=""></option>
+                        <option *ngFor="let data of categories" [value]="data.code">{{data.code}} | {{data.description}}</option>
          </select>
    
     </div>
@@ -29,8 +34,10 @@
   <div *ngIf="field === 'item'" class="form-group">
     <label class="control-label col-sm-3 col-md-4" for="customer">Item</label>
     <div class="col-sm-9 col-md-8 field">
-         <select formControlName="item" type="text" class="form-control">
-         </select>
+          <select formControlName="item" type="text" class="form-control">
+                        <option value=""></option>
+                        <option *ngFor="let data of items" [value]="data.code">{{data.code}} | {{data.description}}</option>
+                    </select>
    
     </div>
  </div>
@@ -38,7 +45,9 @@
     <label class="control-label col-sm-3 col-md-4" for="agent">Agent</label>
     <div class="col-sm-9 col-md-8 field">
          <select formControlName="agent" type="text" class="form-control">
-         </select>
+                        <option value=""></option>
+                        <option *ngFor="let data of agents" [value]="data.name">{{data.name}} | {{data.description}}</option>
+          </select>
    
     </div>
  </div>
