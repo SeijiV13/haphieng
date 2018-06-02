@@ -1,7 +1,8 @@
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomerService } from '../../../web-services/customer.service';
+import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
 
 @Component({
   selector: 'app-customer-bank-file',
@@ -9,6 +10,7 @@ import { CustomerService } from '../../../web-services/customer.service';
   styleUrls: ['./customer-bank-file.component.scss']
 })
 export class CustomerBankFileComponent implements OnInit {
+  @ViewChild('resultsTable') resultsTable: GenericTableComponent;
   formGroup :FormGroup;
   browseForm: FormGroup;
   resultsHeaders = ['Row No.', 'Customer Code', 'Description', 'Address', 'Address 2', 'Telephone',  'Cellphone',  'Email', 'Remarks']
@@ -64,8 +66,17 @@ export class CustomerBankFileComponent implements OnInit {
   filter(){
     let code = this.formGroup.controls['customerCode'].value;
     let description =this.formGroup.controls['customerDescription'].value;
-    this.customerService.filterCustomers(description, code, "").subscribe((data)=>{
-      this.resultsResults = data;
+    this.customerService.filterCustomers(description, code, "", 1).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination);
+    });
+  }
+  filterOnPagination(page){
+    let code = this.formGroup.controls['customerCode'].value;
+    let description =this.formGroup.controls['customerDescription'].value;
+    this.customerService.filterCustomers(description, code, "", page).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination);
     });
   }
   print(){}

@@ -14,20 +14,27 @@ import * as $ from "jquery";
 export class PaginationComponent implements OnChanges, AfterViewInit {
     @Input() legend: boolean = true;
     @Input('url') url: string;
+    @Input() pagination: any;
     @Input('noOfRowsDisplayed') noOfRowsDisplayed: number = 10;
     @Output('returnedValueEvent') returnedValueEvent = new EventEmitter();
     @Output('showLoaderEvent') showLoaderEvent = new EventEmitter();
+    @Output() searchPagination = new EventEmitter();
     @Output('changeLink') changeLink = new EventEmitter();
     public pagerOptions: any = {};
 
-    constructor(private httpClient: HttpClient, private pagerService: PagingService) { }
+    constructor(private httpClient: HttpClient, private pagerService: PagingService) { 
+        
+    }
+
+    setPagination(pagination){
+        this.pagination = pagination;
+    }
 
     ngOnChanges() {
-        if (this.url) { this.retrieveFunction(1); }
+        //if (this.url) { this.retrieveFunction(1); }
     }
 
     ngAfterViewInit() {
-
        // this.floatingTabJquery();
     }
 
@@ -35,9 +42,8 @@ export class PaginationComponent implements OnChanges, AfterViewInit {
         this.pagerOptions = this.pagerService.getPager(totalRow, page, this.noOfRowsDisplayed);
     }
 
-    retrieveNewValues(pageNo: number) { 
-        if (pageNo < 1 || pageNo > this.pagerOptions.totalPages) return;
-        this.retrieveFunction(pageNo);
+    retrieveNewValues(pageNo) {
+          this.searchPagination.emit(pageNo); 
     }
 
     retrieveFunction(pageNo: number) {

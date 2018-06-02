@@ -3,6 +3,7 @@ import { DataPasserService } from './../../../generic/services/data-passer.servi
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SupplierService } from '../../../web-services/supplier.service';
+import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
 
 @Component({
   selector: 'app-supplier-file',
@@ -10,7 +11,8 @@ import { SupplierService } from '../../../web-services/supplier.service';
   styleUrls: ['./supplier-file.component.scss']
 })
 export class SupplierFileComponent implements OnInit {
-  @ViewChild('addSupplierModal') addSupplierModal: AddSupplierComponent
+  @ViewChild('addSupplierModal') addSupplierModal: AddSupplierComponent;
+  @ViewChild('resultsTable') resultsTable: GenericTableComponent;
   formGroup: FormGroup;
   browseForm: FormGroup;
   resultsHeaders = ['Row No.', 'Supplier Code', 'Description', 'Telephone', 'Address', 'Address2']
@@ -57,8 +59,19 @@ export class SupplierFileComponent implements OnInit {
   filter(){
     let code = this.formGroup.controls['supplierCode'].value;
     let description = this.formGroup.controls['description'].value
-    this.supplierService.filterSuppliers(code, description).subscribe((data)=>{
-      this.resultsResults = data;
+    this.supplierService.filterSuppliers(code, description, 1).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination);
+    }, error  => this.dataPasserService.sendError(error.errors[0]))
+
+  }
+
+  filterOnPagination(page){
+    let code = this.formGroup.controls['supplierCode'].value;
+    let description = this.formGroup.controls['description'].value
+    this.supplierService.filterSuppliers(code, description, page).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination);
     }, error  => this.dataPasserService.sendError(error.errors[0]))
 
   }

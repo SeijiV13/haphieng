@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgentService } from '../../../web-services/agent.service';
 import { DataPasserService } from '../../../generic/services/data-passer.service';
+import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
 
 @Component({
   selector: 'app-agent-file',
@@ -11,6 +12,7 @@ import { DataPasserService } from '../../../generic/services/data-passer.service
 })
 export class AgentFileComponent implements OnInit {
   @ViewChild('addAgentModal') addAgentModal:AddAgentComponent;
+  @ViewChild('resultsTable') resultsTable: GenericTableComponent;
   formGroup :FormGroup;
   browseForm: FormGroup;
   resultsHeaders = ['Row No.', 'Name', 'Description', 'Address', 'Address 2', 'Telephone',  'Cellphone',  'Email', 'Remarks']
@@ -58,8 +60,20 @@ export class AgentFileComponent implements OnInit {
     let name = this.formGroup.controls['name'].value;
     let description = this.formGroup.controls['description'].value;
     let address_1 = this.formGroup.controls['address'].value
-    this.agentService.filterAgents(name, description, address_1).subscribe((data)=>{
-      this.resultsResults = data;
+    this.agentService.filterAgents(name, description, address_1, 1).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination);
+    }, error  => this.dataPasserService.sendError(error.errors[0]))
+
+  }
+
+  filterOnPagination(page){
+    let name = this.formGroup.controls['name'].value;
+    let description = this.formGroup.controls['description'].value;
+    let address_1 = this.formGroup.controls['address'].value
+    this.agentService.filterAgents(name, description, address_1, page).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination);
     }, error  => this.dataPasserService.sendError(error.errors[0]))
 
   }

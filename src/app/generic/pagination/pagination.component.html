@@ -6,27 +6,27 @@
     </div>
     <div class="col-xs-6 col-lg-6" style="text-align:center">
         <ul  class="pagination" style="margin:0px;">
-            <li [ngClass]="{disabled:pagerOptions.currentPage === 1}">
-                <button type="button" class="btn btn-default" (click)="retrieveNewValues(1)" [disabled]="pagerOptions.currentPage === 1"><<</button>
+            <li [ngClass]="{disabled:pagination?.current_page === 1}">
+                <button type="button exemption-button" [disabled]="pagination?.current_page == 1" class="btn btn-default" (click)="retrieveNewValues(1)" [disabled]="pagination?.current_page === 1"><<</button>
             </li>
-            <li [ngClass]="{disabled:pagerOptions.currentPage === 1}">
-                <button type="button" class="btn btn-default" (click)="retrieveNewValues(pagerOptions.currentPage - 1)" [disabled]="pagerOptions.currentPage === 1"><</button>
-            </li>
-            <li>
-                <input type="number" #goToPage [value]="pagerOptions.currentPage" class="form-control go-to-page" style="width:50px">
+            <li [ngClass]="{disabled:pagination?.prev_page  == null}">
+                <button type="button" class="btn btn-default exemption-button" [disabled]="pagination?.current_page == 1" (click)="retrieveNewValues(pagination.prev_page)" [disabled]="!pagination?.prev_page"><</button>
             </li>
             <li>
-                <button type="button" class="btn btn-default" (click)="retrieveNewValues(goToPage.value)" style="font-size:12px;">Go To Page</button>
+                <input type="number" #goToPage [value]="pagination?.current_page" class="form-control go-to-page" style="width:50px">
             </li>
-            <li [ngClass]="{disabled:pagerOptions.currentPage === pagerOptions.totalPages}">
-                <button type="button" class="btn btn-default" (click)="retrieveNewValues(pagerOptions.currentPage + 1)" [disabled]="pagerOptions.currentPage === pagerOptions.totalPages">></button>
+            <li>
+                <button type="button" class="btn btn-default"  (click)="retrieveNewValues(goToPage.value)" style="font-size:12px;">Go To Page</button>
             </li>
-            <li [ngClass]="{disabled:pagerOptions.currentPage === pagerOptions.totalPages}">
-                <button type="button" class="btn btn-default" (click)="retrieveNewValues(pagerOptions.totalPages)" [disabled]="pagerOptions.currentPage === pagerOptions.totalPages">>></button>
+            <li [ngClass]="{disabled:pagination?.next_page == null}">
+                <button type="button" class="btn btn-default exemption-button" [disabled]="pagination?.is_last_page" (click)="retrieveNewValues(pagination.next_page)">></button>
+            </li>
+            <li [ngClass]="{disabled:pagination?.total_pages == null}">
+                <button type="button" class="btn btn-default exemption-button" [disabled]="pagination?.is_last_page" (click)="retrieveNewValues(pagination?.total_pages)" >>></button>
             </li>
         </ul>
     </div>
-    <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" style="text-align: right">Page {{pagerOptions.currentPage}} of {{pagerOptions.totalPages}}</div>
+    <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3" style="text-align: right">Page {{pagination?.current_page}} of {{pagination?.total_pages}}</div>
    
 </div>
 

@@ -8,8 +8,8 @@ export class AgentService {
      }
    
    
-   filterAgents(name, description, address){
-    return this.httpClient.getBase(`/api/v1/haphieng/agents?filters%5Bname=${name}&filters%5Bdescription=${description}&filters%5Baddress=${address}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+   filterAgents(name, description, address, page){
+    return this.httpClient.getBase(`/api/v1/haphieng/agents?page=${page}&filters%5Bname=${name}&filters%5Bdescription=${description}&filters%5Baddress=${address}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
    }
    getAgents(): Observable<any>{
       return this.httpClient.getBase(`/api/v1/haphieng/agents`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);

@@ -6,8 +6,8 @@ export class ProductsService {
 
   constructor(private httpClient: HttpClient) { }
  
-  filterProducts(code, category): Observable<any>{
-    return this.httpClient.getBase(`/api/v1/haphieng/products?filters%5Bcategory=${category}&filters%5Bcode=${code}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  filterProducts(code, category, page): Observable<any>{
+    return this.httpClient.getBase(`/api/v1/haphieng/products?page=${page}&filters%5Bcategory=${category}&filters%5Bcode=${code}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
   getProducts(): Observable<any>{
     return this.httpClient.getBase(`/api/v1/haphieng/products`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);

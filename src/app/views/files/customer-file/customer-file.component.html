@@ -42,9 +42,7 @@
         </div>
     
    </fieldset>
-
-    <generic-table (selectedRow)="getSelectedCustomer()" #resultsTable [title]="'RESULTS'" [fieldContainer]="'customer'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
-
+   <generic-table [pagination]="pagination" #resultsTable (searchPagination)="filterOnPagination($event)" (selectedRow)="getSelectedCustomer()" [fieldContainer]="'customer'" [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
 
   </tab>
   <tab heading="Card Form">

@@ -28,7 +28,6 @@ export class DateFormatterService {
   }
 
   formatCompletionDate(prefCompDate): string {
-    console.log(prefCompDate);
     if (prefCompDate) {
       let completionDate = prefCompDate.split(" ")[0].split("-");
       if (completionDate[1] === undefined) {

@@ -34,9 +34,7 @@
         </div>
     
    </fieldset>
-
-    <generic-table #resultsTable [title]="'RESULTS'" [fieldContainer]="'supplier'" (selectedRow)="getSelectedSupplier()"  [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
-
+   <generic-table [pagination]="pagination" #resultsTable (searchPagination)="filterOnPagination($event)" (selectedRow)="getSelectedSupplier()" [fieldContainer]="'supplier'" [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
 
   </tab>
   <tab heading="Card Form">
@@ -125,7 +123,7 @@
       </fieldset>
 
     </div>
-   
+    
      <generic-table #pricingTable [title]="'COSTING'" [headers]="pricingHeaders" [results]="pricingResults" [type]="'single'" [keys]="pricingKeys"></generic-table>
   </tab>
 </tabset>

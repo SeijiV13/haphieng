@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { CustomerService } from '../../../web-services/customer.service';
 import { AgentService } from '../../../web-services/agent.service';
+import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
 
 @Component({
   selector: 'app-customer-file',
@@ -12,6 +13,7 @@ import { AgentService } from '../../../web-services/agent.service';
 })
 export class CustomerFileComponent implements OnInit {
   @ViewChild('addCustomerModal') addCustomerModal: AddCustomerComponent;
+  @ViewChild('resultsTable') resultsTable: GenericTableComponent;
   agents: any;
   formGroup :FormGroup
   browseForm: FormGroup;
@@ -84,10 +86,22 @@ export class CustomerFileComponent implements OnInit {
      let code = this.formGroup.controls['customer'].value;
      let description = this.formGroup.controls['description'].value;
      let agent = this.formGroup.controls['agent'].value;
-     this.customerService.filterCustomers(description, code, agent).subscribe((data)=>{
-       this.resultsResults = data;
+     this.customerService.filterCustomers(description, code, agent, 1).subscribe((data)=>{
+       this.resultsResults = data.collection;
+       this.resultsTable.setPagination(data.pagination)
      }, error  => this.dataPasserService.sendError(error.errors[0]))
   } 
+
+  filterOnPagination(page){
+    let code = this.formGroup.controls['customer'].value;
+    let description = this.formGroup.controls['description'].value;
+    let agent = this.formGroup.controls['agent'].value;
+    this.customerService.filterCustomers(description, code, agent, page).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination)
+    }, error  => this.dataPasserService.sendError(error.errors[0]))
+ } 
+
   addNewCustomer(){
    this.addCustomerModal.show();
   }

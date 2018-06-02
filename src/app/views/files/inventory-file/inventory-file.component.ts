@@ -4,6 +4,7 @@ import { DataPasserService } from './../../../generic/services/data-passer.servi
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { ProductsService } from '../../../web-services/products.service';
+import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
 
 @Component({
   selector: 'app-inventory-file',
@@ -12,7 +13,7 @@ import { ProductsService } from '../../../web-services/products.service';
 })
 export class InventoryFileComponent implements OnInit {
   @ViewChild('pricingTable') pricingTable; 
-  @ViewChild('resultsTable') resultsTable; 
+  @ViewChild('resultsTable') resultsTable: GenericTableComponent; 
   @ViewChild('addProduct') addProduct: AddProductComponent;
   @ViewChild('itemInOutModal') itemInOutModal: ItemInOutModalComponent;
   formGroup: FormGroup;
@@ -43,7 +44,8 @@ export class InventoryFileComponent implements OnInit {
  
   pricingHeaders = [''];
   pricingResults = [];
-  pricingKeys = []
+  pricingKeys = [];
+  pagination: any;
   ngOnInit() {
        this.dataPasserService.sendPageTitle("INVENTORY FILE");
        this.formGroup = this.fb.group({
@@ -74,17 +76,32 @@ export class InventoryFileComponent implements OnInit {
   }
 
   filter(){
-    let total = 0
+    let total = 0;
     let code = this.formGroup.controls['product'].value;
     let category = this.formGroup.controls['category'].value;
-    this.productService.filterProducts(code, category).subscribe((data)=>{
-      this.resultsResults = data;
+    this.productService.filterProducts(code, category, 1).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination);
       for(let result of this.resultsResults){
           total = total + parseInt(result.gross_price);
       }
       this.formGroup.controls['total'].setValue(total.toString());
     }, error=>  this.dataPasserService.sendError(error.errors[0]));
 
+  }
+
+  filterOnPagination(page){
+    let total = 0;
+    let code = this.formGroup.controls['product'].value;
+    let category = this.formGroup.controls['category'].value;
+    this.productService.filterProducts(code, category, page).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination);
+      for(let result of this.resultsResults){
+          total = total + parseInt(result.gross_price);
+      }
+      this.formGroup.controls['total'].setValue(total.toString());
+    }, error=>  this.dataPasserService.sendError(error.errors[0]));
   }
 
   editDetails(){

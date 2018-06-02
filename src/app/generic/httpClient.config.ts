@@ -140,7 +140,7 @@ export class HttpClient {
 
 
   handleMap(response: Response) {
-    $('button').removeAttr('disabled');
+    $('button').not(".exemption-button").removeAttr('disabled');
     $("input.checkbox").not(".checkbox-inquire").removeAttr('disabled');
     return response.json();
   }

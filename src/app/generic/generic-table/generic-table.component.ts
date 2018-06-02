@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { TableFunctionsService} from '../services/table-functions.service';
 import { MessageConfig } from '../../generic/message.config';
 import { DataPasserService} from '../services/data-passer.service';
+import { PaginationComponent } from '../pagination/pagination.component';
 @Component({
   selector: 'generic-table',
   templateUrl: './generic-table.component.html',
@@ -15,14 +16,17 @@ export class GenericTableComponent implements OnInit {
   @Input() type: string = "single";
   @Input() keys: any;
   @Input() primaryKey: string;
-  @Input() removeRow: boolean
+  @Input() removeRow: boolean;
+  @Input() pagination: any;
   @Output() selectedRow = new EventEmitter();
   @Output() emitRemoveRow = new EventEmitter();
+  @Output() searchPagination = new EventEmitter();
   //JSON Contains BUTTON NAME, ID, , LOGO, TYPE, BEHAVIOR, 
   @Input() buttons: any;
   @Input() colspan: string;
   @Output() emitType = new EventEmitter();
   @Output() emitColumnClicked = new EventEmitter();
+  @ViewChild('paginationSelector') paginationSelector: PaginationComponent;
   searchUrl: string = "";
   removeLoad: boolean = true;
   tableResultMessage: string = "";
@@ -35,6 +39,9 @@ export class GenericTableComponent implements OnInit {
       this.tableResultMessage  = "No Result/s Found";
    }
   
+  }
+  setPagination(pagination){
+    this.paginationSelector.setPagination(pagination);
   }
   
   doSearch(searchUrl) {
@@ -91,5 +98,9 @@ export class GenericTableComponent implements OnInit {
 
   emitSelectedRow(){
     this.selectedRow.emit();
+  }
+
+  retrieveNewValues(pageNo){
+    this.searchPagination.emit(pageNo);
   }
 }

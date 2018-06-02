@@ -25,6 +25,7 @@ export class AddSalesEntryComponent implements OnInit {
     'Original Price'
   ];
   entryResults = [];
+  pagination: any;
   entryKeys = [
     {name:"code", behavior: 'clickable'},
     {name:"description"},
@@ -139,8 +140,9 @@ export class AddSalesEntryComponent implements OnInit {
   filter(){
     let code = this.salesEntryGroup.controls['itemCode'].value;
     let category = this.salesEntryGroup.controls['category'].value;
-    this.productService.filterProducts(code, category).subscribe((data)=>{
-      this.entryResults = data;
+    this.productService.filterProducts(code, category, 1).subscribe((data)=>{
+      this.entryResults = data.collection;
+      this.pagination = data.pagination
     }, error=>  this.dataPasserService.sendError(error.errors[0]));
   }
 
