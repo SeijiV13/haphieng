@@ -13,6 +13,7 @@ import { GenericTableComponent } from '../../../generic/generic-table/generic-ta
 export class AgentFileComponent implements OnInit {
   @ViewChild('addAgentModal') addAgentModal:AddAgentComponent;
   @ViewChild('resultsTable') resultsTable: GenericTableComponent;
+  pagination = 1;
   formGroup :FormGroup;
   browseForm: FormGroup;
   resultsHeaders = ['Row No.', 'Name', 'Description', 'Address', 'Address 2', 'Telephone',  'Cellphone',  'Email', 'Remarks']

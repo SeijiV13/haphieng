@@ -13,6 +13,7 @@ import { GenericTableComponent } from '../../../generic/generic-table/generic-ta
 export class SupplierFileComponent implements OnInit {
   @ViewChild('addSupplierModal') addSupplierModal: AddSupplierComponent;
   @ViewChild('resultsTable') resultsTable: GenericTableComponent;
+  pagination = 1;
   formGroup: FormGroup;
   browseForm: FormGroup;
   resultsHeaders = ['Row No.', 'Supplier Code', 'Description', 'Telephone', 'Address', 'Address2']

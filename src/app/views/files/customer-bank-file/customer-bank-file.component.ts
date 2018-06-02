@@ -11,6 +11,7 @@ import { GenericTableComponent } from '../../../generic/generic-table/generic-ta
 })
 export class CustomerBankFileComponent implements OnInit {
   @ViewChild('resultsTable') resultsTable: GenericTableComponent;
+  pagination = 1;
   formGroup :FormGroup;
   browseForm: FormGroup;
   resultsHeaders = ['Row No.', 'Customer Code', 'Description', 'Address', 'Address 2', 'Telephone',  'Cellphone',  'Email', 'Remarks']

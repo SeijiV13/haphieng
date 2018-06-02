@@ -60,7 +60,8 @@ export class DatepickerComponent implements AfterViewInit {
           return inst;
         }
 
-      }).addClass('datepicker-on-modal').keypress(function (e) { });
+      }).addClass('datepicker-on-modal').keypress(function (e) { })
+    
     }
     else {
       $("#" + self.id).datepicker({

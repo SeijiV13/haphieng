@@ -40,12 +40,12 @@
                     <label class="control-label col-sm-3 col-md-4" for="dateFrom">Date From</label>
                         <div class="col-sm-9 col-md-8 field">
                             <div class="date-field1">
-                                <datepicker [onModal]="!modal" [id]="'dateFrom'" [controlName]="'dateFrom'" [form]="itemForm" [placeholder]="'MM/DD/YYYY'"></datepicker>
+                                <datepicker [onModal]="modal" [id]="'dateFromItem'" [controlName]="'dateFrom'" [form]="itemForm" [placeholder]="'MM/DD/YYYY'"></datepicker>
                                 <control-messages [control]="itemForm.controls.dateFrom"></control-messages>
                              </div>
 
                             <div class="date-field2">
-                                <datepicker  [onModal]="!modal" [id]="'dateTo'" [controlName]="'dateTo'" [form]="itemForm" [placeholder]="'MM/DD/YYYY'"></datepicker>
+                                <datepicker  [onModal]="modal" [id]="'dateToItem'" [controlName]="'dateTo'" [form]="itemForm" [placeholder]="'MM/DD/YYYY'"></datepicker>
                              </div>
                       </div>
             </div>

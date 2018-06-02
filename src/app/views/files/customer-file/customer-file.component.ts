@@ -14,6 +14,7 @@ import { GenericTableComponent } from '../../../generic/generic-table/generic-ta
 export class CustomerFileComponent implements OnInit {
   @ViewChild('addCustomerModal') addCustomerModal: AddCustomerComponent;
   @ViewChild('resultsTable') resultsTable: GenericTableComponent;
+  pagination = 1;
   agents: any;
   formGroup :FormGroup
   browseForm: FormGroup;
