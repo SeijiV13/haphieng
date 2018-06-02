@@ -2,6 +2,7 @@ import { AddCustomerComponent } from './../../transaction-modals/add-customer/ad
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
+import { CustomerService } from '../../../web-services/customer.service';
 
 @Component({
   selector: 'app-view-edit-sales',
@@ -11,13 +12,16 @@ import { FormGroup, FormBuilder} from '@angular/forms';
 export class ViewEditSalesComponent implements OnInit {
   formGroup :FormGroup
   browseForm: FormGroup;
+  customers: any
   resultsHeaders = ['Ref No.', 'Date', 'Customer', 'Terms', 'Amount', 'Balance', 'Ctr Ref']
   resultsResults = []
   resultsKeys = [ 
    {name: 'requestNo', behavior: 'clickable'} 
   ]
 
-  constructor(private fb: FormBuilder, private dataPasserService: DataPasserService) { }
+  constructor(private fb: FormBuilder, 
+              private dataPasserService: DataPasserService,
+              private customerService: CustomerService) { }
  
   ngOnInit() {
     this.dataPasserService.sendPageTitle("VIEW/EDIT SALES");
@@ -26,7 +30,7 @@ export class ViewEditSalesComponent implements OnInit {
       refNo: [''],
 
     });
-
+    this.getDropdownValues();
   }
 
   filter(){
@@ -41,6 +45,12 @@ export class ViewEditSalesComponent implements OnInit {
 
     }
      
+  }
+
+  getDropdownValues(){
+     this.customerService.getCustomers().subscribe((data)=>{
+       this.customers = data;
+     })
   }
 
   editDetails(){

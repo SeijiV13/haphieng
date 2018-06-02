@@ -139,7 +139,7 @@
        </div>
 
       </fieldset>
-       <generic-table #entryTable [title]="'ITEMS'"  [fieldContainer]="'product'" [headers]="entryHeaders" [results]="entryResults" [type]="'single'" [keys]="entryKeys" (emitColumnClicked)="itemInOutModal($event)"></generic-table>
+       <generic-table #entryTable [title]="'ITEMS'" (searchPagination)="filterOnPagination($event)" [pagination]="pagination"  [fieldContainer]="'product'" [headers]="entryHeaders" [results]="entryResults" [type]="'single'" [keys]="entryKeys" (emitColumnClicked)="itemInOutModal($event)"></generic-table>
         <fieldset class="section-content" *ngIf="type != 'invAdjustment'">
         <legend>
           <h5>OTHER DETAILS</h5>

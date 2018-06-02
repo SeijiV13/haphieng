@@ -6,6 +6,7 @@ import { ModalDirective } from 'ngx-bootstrap';
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
 import { ProductsService } from '../../../web-services/products.service';
 import { AgentService } from '../../../web-services/agent.service';
+import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
 
 @Component({
   selector: 'app-add-sales-entry',
@@ -15,6 +16,7 @@ import { AgentService } from '../../../web-services/agent.service';
 export class AddSalesEntryComponent implements OnInit {
   @ViewChild('itemInOutModalEntry') itemInOutModalEntry : ItemInOutModalComponent;
   @ViewChild('historyModal') historyModal: GenericModalComponent;
+  @ViewChild('entryTable') entryTable: GenericTableComponent;
   @Input() addTitle: string ="";
   agents: Array<any>;
   entryHeaders = [
@@ -142,7 +144,18 @@ export class AddSalesEntryComponent implements OnInit {
     let category = this.salesEntryGroup.controls['category'].value;
     this.productService.filterProducts(code, category, 1).subscribe((data)=>{
       this.entryResults = data.collection;
-      this.pagination = data.pagination
+      this.pagination = data.pagination;
+      this.entryTable.setPagination(data.pagination);
+    }, error=>  this.dataPasserService.sendError(error.errors[0]));
+  }
+
+  filterOnPagination(page){
+    let code = this.salesEntryGroup.controls['itemCode'].value;
+    let category = this.salesEntryGroup.controls['category'].value;
+    this.productService.filterProducts(code, category, page).subscribe((data)=>{
+      this.entryResults = data.collection;
+      this.pagination = data.pagination;
+      this.entryTable.setPagination(data.pagination);
     }, error=>  this.dataPasserService.sendError(error.errors[0]));
   }
 

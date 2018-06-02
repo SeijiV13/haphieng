@@ -2,6 +2,7 @@ import { AddCustomerComponent } from './../../transaction-modals/add-customer/ad
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
+import { CustomerService } from '../../../web-services/customer.service';
 
 @Component({
   selector: 'app-view-edit-sales-return',
@@ -16,9 +17,12 @@ formGroup :FormGroup
   resultsResults = []
   resultsKeys = [ 
    {name: 'requestNo', behavior: 'clickable'} 
-  ]
+  ]; 
+  customers: any;
 
-  constructor(private fb: FormBuilder, private dataPasserService: DataPasserService) { }
+  constructor(private fb: FormBuilder,
+              private dataPasserService: DataPasserService,
+              private customerService : CustomerService) { }
  
   ngOnInit() {
     this.dataPasserService.sendPageTitle("VIEW/EDIT SALES RETURN");
@@ -27,7 +31,14 @@ formGroup :FormGroup
       refNo: [''],
 
     });
+    this.getDropdownValues();
 
+  }
+
+  getDropdownValues(){
+     this.customerService.getCustomers().subscribe((data)=>{
+       this.customers = data;
+     })
   }
 
   filter(){

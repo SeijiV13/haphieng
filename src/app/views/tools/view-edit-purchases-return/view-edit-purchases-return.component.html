@@ -7,8 +7,10 @@
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="productLineFilter">Supplier Filter</label>
                  <div class="col-sm-9 col-md-8 field">
-                      <select formControlName="supplier"  type="text" class="form-control">
-                      </select>
+                      <select formControlName="supplier" type="text" class="form-control">
+                        <option value=""></option>
+                        <option *ngFor="let data of suppliers" [value]="data.code">{{data.code}} | {{data.description}}</option>
+                     </select>
                   </div>
              </div> 
          </div>

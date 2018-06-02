@@ -2,6 +2,7 @@ import { AddCustomerComponent } from './../../transaction-modals/add-customer/ad
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
+import { SupplierService } from '../../../web-services/supplier.service';
 
 @Component({
   selector: 'app-supplier-transactions',
@@ -16,16 +17,24 @@ export class SupplierTransactionsComponent implements OnInit {
   resultsResults = []
   resultsKeys = [ 
    {name: 'requestNo', behavior: 'clickable'} 
-  ]
+  ];
+  suppliers: any;
 
-  constructor(private fb: FormBuilder, private dataPasserService: DataPasserService) { }
+  constructor(private fb: FormBuilder, 
+             private dataPasserService: DataPasserService,
+            private supplierService: SupplierService) { }
  
   ngOnInit() {
     this.dataPasserService.sendPageTitle("SUPPLIER TRANSACTIONS");
     this.formGroup = this.fb.group({
       supplier: [''],
     });
-
+    this.getDropdownValues();
+  }
+  getDropdownValues(){
+    this.supplierService.getSuppliers().subscribe((data)=>{
+      this.suppliers = data;
+    })
   }
 
   filter(){
