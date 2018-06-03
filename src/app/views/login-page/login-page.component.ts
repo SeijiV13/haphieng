@@ -40,6 +40,11 @@ export class LoginPageComponent implements OnInit {
         this.dataPasser.tokenType = headerData['token-type'];
         this.dataPasser.expiry = headerData['expiry'];
         this.dataPasser.uid = headerData['uid'];
+        localStorage.setItem('access-token', this.dataPasser.accessToken);
+        localStorage.setItem('client', this.dataPasser.client);
+        localStorage.setItem('tokenType', this.dataPasser.tokenType);
+        localStorage.setItem('expiry', this.dataPasser.expiry);
+        localStorage.setItem('uid', this.dataPasser.uid);
         
         this.dataPasser.username = jsonData.data['email'];
         this.router.navigate(["/home"]);

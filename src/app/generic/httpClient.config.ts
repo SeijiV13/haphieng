@@ -30,6 +30,10 @@ export class HttpClient {
     this.baseUrl = _init.getConfig('host');
     this.servletUrl = _init.getConfig('servlet');
     this.env = _init.getConfig('env');
+
+    localStorage.setItem('host', this.baseUrl);
+    localStorage.setItem('servlet', this.servletUrl);
+    localStorage.setItem('env', this.env);
   }
 
   createAuthorizationHeader(headers: Headers) {

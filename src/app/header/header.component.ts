@@ -54,6 +54,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
 	logout() {
 	   this.router.navigate(['/']);
+	   localStorage.clear();
 	}
 
 	showSessionWarningModal(msg) {

@@ -59,7 +59,7 @@ export class SalesEntriesComponent implements OnInit {
               }
 
   ngOnInit() {
-    this.dataPasserService.sendPageTitle("SALES ENTRIES");
+    this.dataPasserService.sendPageTitle("SALES ENTRY");
     this.salesForm = this.fb.group({
       refNo: ['', Validators.required],
       date: [''],

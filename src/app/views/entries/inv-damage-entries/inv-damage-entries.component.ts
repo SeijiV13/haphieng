@@ -57,7 +57,7 @@ export class InvDamageEntriesComponent implements OnInit {
               }
 
   ngOnInit() {
-    this.dataPasserService.sendPageTitle("IVENTORY DAMAGE ENTRIES");
+    this.dataPasserService.sendPageTitle("IVENTORY DAMAGE ENTRY");
     this.salesForm = this.fb.group({
       refNo: ['', Validators.required],
       date: [''],

@@ -57,7 +57,7 @@ export class PurchaseReturnEntriesComponent implements OnInit {
                }
 
   ngOnInit() {
-    this.dataPasserService.sendPageTitle("PURCHASE RETURN ENTRIES");
+    this.dataPasserService.sendPageTitle("PURCHASE RETURN ENTRY");
     this.purchaseForm = this.fb.group({
       refNo: ['', Validators.required],
       date: [''],

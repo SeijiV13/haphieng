@@ -55,7 +55,7 @@ export class PurchaseEntriesComponent implements OnInit {
               }
 
   ngOnInit() {
-    this.dataPasserService.sendPageTitle("PURCHASE ENTRIES");
+    this.dataPasserService.sendPageTitle("PURCHASE ENTRY");
     this.purchaseForm = this.fb.group({
       refNo: ['', Validators.required],
       date: [''],

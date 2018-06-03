@@ -69,7 +69,7 @@
             <div class="form-group">
                <label class="control-label col-sm-3 col-md-4" for="itemCode">Item Code</label>
                <div class="col-sm-9 col-md-8 field">
-                   <input (change)="filter()" formControlName="itemCode"  type="text" class="form-control">
+                   <input formControlName="itemCode"  type="text" class="form-control">
                 </div>
            </div>
        
@@ -78,11 +78,14 @@
              <div class="form-group">
                <label class="control-label col-sm-3 col-md-4" for="description">Category</label>
                <div class="col-sm-9 col-md-8 field">
-                   <input (change)="filter()"  formControlName="category"  type="text" class="form-control">
-                   
+                   <input formControlName="category"  type="text" class="form-control">
+                   <div class="button-holder" style ="margin-top:8px">
+                      <button class="pull-right btn btn-primary" (click)="filter()">Filter</button>
+                   </div>
                 </div>
+               
            </div>
-    
+     
        </div>
       </fieldset>
       <fieldset *ngIf="type === 'purchase' || type === 'purchaseReturn'" class="section-content">
@@ -122,7 +125,7 @@
             <div class="form-group">
                <label class="control-label col-sm-3 col-md-4" for="itemCode">Item Code</label>
                <div class="col-sm-9 col-md-8 field">
-                   <input (change)="filter()" formControlName="itemCode"  type="text" class="form-control">
+                   <input formControlName="itemCode"  type="text" class="form-control">
                 </div>
            </div>
        
@@ -131,13 +134,14 @@
              <div class="form-group">
                <label class="control-label col-sm-3 col-md-4" for="description">Category</label>
                <div class="col-sm-9 col-md-8 field">
-                   <input (change)="filter()" formControlName="category"  type="text" class="form-control">
-                   
+                   <input formControlName="category"  type="text" class="form-control">
+                   <div class="button-holder" style ="margin-top:8px">
+                      <button class="pull-right btn btn-primary" (click)="filter()">Filter</button>
+                   </div>
                 </div>
            </div>
     
        </div>
-
       </fieldset>
        <generic-table #entryTable [title]="'ITEMS'" (searchPagination)="filterOnPagination($event)" [pagination]="pagination"  [fieldContainer]="'product'" [headers]="entryHeaders" [results]="entryResults" [type]="'single'" [keys]="entryKeys" (emitColumnClicked)="itemInOutModal($event)"></generic-table>
         <fieldset class="section-content" *ngIf="type != 'invAdjustment'">

@@ -57,7 +57,7 @@ export class InvQuantityAdjustmentsEntriesComponent implements OnInit {
   constructor(private dataPasserService: DataPasserService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.dataPasserService.sendPageTitle("IVENTORY QUANTITY ADJUSTMENT ENTRIES");
+    this.dataPasserService.sendPageTitle("IVENTORY QUANTITY ADJUSTMENT ENTRY");
     this.salesForm = this.fb.group({
       refNo: ['', Validators.required],
       date: [''],
