@@ -10,7 +10,8 @@ filterSuppliers(code, description, page): Observable<any>{
 }
 getSuppliers(): Observable<any>{
     return this.httpClient.getBase(`/api/v1/haphieng/suppliers`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
- }
+}
+
 
 getSupplier(id){
    return this.httpClient.getBase(`/api/v1/haphieng/suppliers/${id}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);

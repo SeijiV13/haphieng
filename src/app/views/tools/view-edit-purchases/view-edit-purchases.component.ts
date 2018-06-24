@@ -3,6 +3,7 @@ import { DataPasserService } from './../../../generic/services/data-passer.servi
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { SupplierService } from '../../../web-services/supplier.service';
+import { PurchaseService } from '../../../web-services/purchase.service';
 
 @Component({
   selector: 'app-view-edit-purchases',
@@ -14,15 +15,22 @@ export class ViewEditPurchasesComponent implements OnInit {
  
 formGroup :FormGroup
   browseForm: FormGroup;
-  resultsHeaders = ['Ref No.', 'Date', 'Supplier',  'Terms', 'Amount']
+  resultsHeaders = ['Row No.', 'Ref No.', 'Date',  'Terms', 'Total Peso Amount', 'Total Yuan Amount']
   resultsResults = []
-  resultsKeys = [ 
-   {name: 'requestNo', behavior: 'clickable'} 
+  resultsKeys = [
+   {name: 'rowNo'},  
+   {name: 'reference_number'} ,
+   {name : 'date'},
+   {name: 'terms'},
+   {name: 'total_peso'},
+   {name: 'total_yuan'}
+
   ];
   suppliers: any;
 
   constructor(private fb: FormBuilder, private dataPasserService: DataPasserService,
-              private supplierService: SupplierService) { }
+              private supplierService: SupplierService,
+              private purchaseService: PurchaseService) { }
  
   ngOnInit() {
     this.dataPasserService.sendPageTitle("VIEW/EDIT PURCHASES");
@@ -41,7 +49,11 @@ formGroup :FormGroup
   }
 
   filter(){
-
+    let refNo = this.formGroup.controls['refNo'].value;
+    let supplier = this.formGroup.controls['supplier'].value;
+    this.purchaseService.getFilteredPurchase(refNo, supplier).subscribe((data)=>{
+     this.resultsResults = data;
+    })
   }
 
   print(type){

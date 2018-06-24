@@ -3,6 +3,7 @@ import { DataPasserService } from './../../../generic/services/data-passer.servi
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { CustomerService } from '../../../web-services/customer.service';
+import { SalesService } from '../../../web-services/sales.service';
 
 @Component({
   selector: 'app-view-edit-sales',
@@ -13,15 +14,20 @@ export class ViewEditSalesComponent implements OnInit {
   formGroup :FormGroup
   browseForm: FormGroup;
   customers: any
-  resultsHeaders = ['Ref No.', 'Date', 'Customer', 'Terms', 'Amount', 'Balance', 'Ctr Ref']
+  resultsHeaders = ['Row No.', 'Ref No.', 'Date', 'Customer', 'Terms', 'Total Amount']
   resultsResults = []
   resultsKeys = [ 
-   {name: 'requestNo', behavior: 'clickable'} 
+   {name: 'rowNo'},
+   {name: 'reference_number'},
+   {name: 'date'},
+   {name: 'terms'},
+   {name: 'total'} 
   ]
 
   constructor(private fb: FormBuilder, 
               private dataPasserService: DataPasserService,
-              private customerService: CustomerService) { }
+              private customerService: CustomerService,
+              private salesService: SalesService) { }
  
   ngOnInit() {
     this.dataPasserService.sendPageTitle("VIEW/EDIT SALES");
@@ -34,6 +40,11 @@ export class ViewEditSalesComponent implements OnInit {
   }
 
   filter(){
+    let customer = this.formGroup.controls['customer'].value;
+    let refNo = this.formGroup.controls['refNo'].value;
+    this.salesService.getFilteredSales(refNo, customer).subscribe((data)=>{
+      this.resultsResults = data;
+    })
 
   }
 

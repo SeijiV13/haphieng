@@ -38,9 +38,9 @@
                  <div class="col-sm-9 col-md-8 field">
                      <select formControlName="supplier" type="text" class="form-control">
                         <option value=""></option>
-                        <option *ngFor="let data of suppliers" [value]="data.code">{{data.code}} | {{data.description}}</option>
+                        <option *ngFor="let data of suppliers" [value]="data.id">{{data.code}} | {{data.description}}</option>
                     </select>
-                    <control-messages [control]="purchaseForm.controls.customer"></control-messages>
+                    <control-messages [control]="purchaseForm.controls.supplier"></control-messages>
                   </div>
              </div>
               <div class="form-group">
@@ -76,8 +76,12 @@
         </div>
     
   </fieldset>
+
+  <generic-modal  #errorModal [buttons]='[{"buttonName": "Ok", "buttonEmit": "false"}]' [type]="'error'"></generic-modal>
+  <generic-modal (emitAction)="suspendTransaction()"  #infoModalSuspend [buttons]='[{"buttonName": "No", "buttonEmit": false}, {"buttonName": "Yes", "buttonEmit": true}]' [type]="'confirmation'"></generic-modal>
+  <generic-modal (emitAction)="postTransaction()"  #infoModalPost [buttons]='[{"buttonName": "No", "buttonEmit": false}, {"buttonName": "Yes", "buttonEmit": true}]' [type]="'confirmation'"></generic-modal>
   <app-add-supplier #addSupplier></app-add-supplier>
   <generic-table [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
   <app-add-sales-entry [addTitle]="'Add Purchase Entry'" [type]="'purchase'" #addSalesEntry (entry)="pushNewItem($event)"></app-add-sales-entry>
-  <app-suspended-sales #suspendedSales></app-suspended-sales>
+  <app-suspended-sales [type]="'purchase'" (emitSale)="retrieveSuspendedPurchase($event)" #suspendedSales></app-suspended-sales>
   <app-item-in-out-modal #itemInOutModal></app-item-in-out-modal>

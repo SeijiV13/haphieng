@@ -7,6 +7,7 @@ import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angu
 import { ProductsService } from '../../../web-services/products.service';
 import { AgentService } from '../../../web-services/agent.service';
 import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
+import { FormErrorHandlerService } from '../../../generic/services/form-error-handler.service';
 
 @Component({
   selector: 'app-add-sales-entry',
@@ -31,8 +32,8 @@ export class AddSalesEntryComponent implements OnInit {
   entryKeys = [
     {name:"code", behavior: 'clickable'},
     {name:"description"},
-    {name:"available"},
-    {name:"pending"},
+    {name:"available_quantity"},
+    {name:"pending_quantity"},
     {name:"gross_price"},
   ];
   salesEntryGroup: FormGroup;
@@ -43,7 +44,8 @@ export class AddSalesEntryComponent implements OnInit {
   constructor(private dataPasserService: DataPasserService,
                private fb: FormBuilder, 
                private productService: ProductsService,
-               private agentService: AgentService) {
+               private agentService: AgentService,
+               private formErrorHandler: FormErrorHandlerService) {
                  this.getDropdownValues();
                 }
 
@@ -97,28 +99,34 @@ export class AddSalesEntryComponent implements OnInit {
 
   addEntry(){
     if(this.salesEntryGroup.valid){
-      let entry = {
-      itemCode: this.dataPasserService.selectedData['product']['code'],
-      description:  this.dataPasserService.selectedData['product']['description'],
-      originalprice: this.dataPasserService.selectedData['product']['gross_price'],
-      available: this.dataPasserService.selectedData['product']['available'],
-      pending: this.dataPasserService.selectedData['product']['pending'],
-      itemRemarks: this.dataPasserService.selectedData['product']['remarks_1'],
-      category: this.dataPasserService.selectedData['product']['category'],
-
-      agent: this.salesEntryGroup.controls['agent'].value,
-      lastprice: this.salesEntryGroup.controls['lastprice'].value,
-      quantity: this.salesEntryGroup.controls['quantity'].value,
-      warehouse: this.salesEntryGroup.controls['warehouse'].value,
-      good: this.salesEntryGroup.controls['good'].value,
-      qtyNew: this.salesEntryGroup.controls['qtyNew'].value,
-      adjustmentRemarks: this.salesEntryGroup.controls['adjustmentRemarks'].value
+      if(this.dataPasserService.selectedData['product']){
+        let entry = {
+          itemCode: this.dataPasserService.selectedData['product']['code'],
+          description:  this.dataPasserService.selectedData['product']['description'],
+          originalprice: this.dataPasserService.selectedData['product']['gross_price'],
+          available: this.dataPasserService.selectedData['product']['available_quantity'],
+          pending: this.dataPasserService.selectedData['product']['pending_quantity'],
+          itemRemarks: this.dataPasserService.selectedData['product']['remarks_1'],
+          category: this.dataPasserService.selectedData['product']['category'],
     
-    }
-    this.addSalesEntryModal.hide();
-    this.entry.emit(entry);
+          agent: this.salesEntryGroup.controls['agent'].value,
+          lastprice: this.salesEntryGroup.controls['lastprice'].value,
+          quantity: this.salesEntryGroup.controls['quantity'].value,
+          warehouse: this.salesEntryGroup.controls['warehouse'].value,
+          good: this.salesEntryGroup.controls['good'].value,
+          qtyNew: this.salesEntryGroup.controls['qtyNew'].value,
+          adjustmentRemarks: this.salesEntryGroup.controls['adjustmentRemarks'].value
+        
+        }
+        this.addSalesEntryModal.hide();
+        this.entry.emit(entry);
+      }else{
+        this.errorModal.showWithCustomMessage('Please select an item.');
+      }
+   
 
     }else{
+      this.formErrorHandler.markFormDirty(this.salesEntryGroup);
       this.errorModal.messageKey = "acceptError";
       this.errorModal.show();
      
