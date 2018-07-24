@@ -13,7 +13,8 @@ import { GenericTableComponent } from '../../../generic/generic-table/generic-ta
 })
 export class ViewEditSalesComponent implements OnInit {
   @ViewChild('resultsTable') resultsTable: GenericTableComponent;
-  formGroup :FormGroup
+  formGroup :FormGroup;
+  pagination = 1;
   browseForm: FormGroup;
   customers: any
   resultsHeaders = ['Row No.', 'Ref No.', 'Customer', 'Date','Terms', 'Total Amount']
@@ -77,8 +78,8 @@ export class ViewEditSalesComponent implements OnInit {
      })
   }
 
-  editDetails(){
+  editDetails(){ }
 
-  }
+  getSelectedProduct(){}
 
 }

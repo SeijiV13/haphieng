@@ -15,6 +15,7 @@ export class ViewEditPurchasesReturnComponent implements OnInit {
 
  
 formGroup :FormGroup;
+pagination = 1;
   browseForm: FormGroup;
   resultsHeaders = ['Row No.', 'Ref No.', 'Date', 'Supplier',  'Terms', 'Total Peso Amount', 'Total Yuan Amount']
   resultsResults = []
@@ -76,7 +77,7 @@ formGroup :FormGroup;
     }
      
   }
-  editDetails(){
+  editDetails(){}
 
-  }
+  getSelectedProduct(){}
 }

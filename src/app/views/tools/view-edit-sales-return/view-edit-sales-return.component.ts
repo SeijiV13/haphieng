@@ -13,7 +13,8 @@ import { GenericTableComponent } from '../../../generic/generic-table/generic-ta
 })
 export class ViewEditSalesReturnComponent implements OnInit {
 
-formGroup :FormGroup
+formGroup :FormGroup;
+pagination = 1;
   browseForm: FormGroup;
   resultsHeaders = ['Row No.', 'Ref No.', 'Customer', 'Date',  'Amount', 'Balance']
   resultsResults = []
@@ -79,4 +80,5 @@ formGroup :FormGroup
   editDetails(){
 
   }
+  getSelectedProduct(){}
 }

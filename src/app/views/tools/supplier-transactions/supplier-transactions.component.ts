@@ -15,6 +15,7 @@ export class SupplierTransactionsComponent implements OnInit {
 
  formGroup :FormGroup;
   browseForm: FormGroup;
+  pagination = 1;
   resultsHeaders = ['Row No.', 'Ref No.', 'Date', 'Supplier',  'Terms', 'Total Peso Amount', 'Total Yuan Amount']
   resultsResults = []
   resultsKeys = [
@@ -74,5 +75,7 @@ export class SupplierTransactionsComponent implements OnInit {
   editDetails(){
 
   }
+
+  getSelectedProduct(){}
 
 }

@@ -13,6 +13,7 @@ import { GenericTableComponent } from '../../../generic/generic-table/generic-ta
 })
 export class CustomerTransactionsComponent implements OnInit {
   formGroup :FormGroup;
+  pagination = 1;
   browseForm: FormGroup;
   resultsHeaders = ['Row No.', 'Ref No.', 'Customer', 'Date',  'Amount', 'Balance']
   resultsResults = []
@@ -75,5 +76,7 @@ export class CustomerTransactionsComponent implements OnInit {
   editDetails(){
 
   }
+
+  getSelectedProduct(){}
 
 }
