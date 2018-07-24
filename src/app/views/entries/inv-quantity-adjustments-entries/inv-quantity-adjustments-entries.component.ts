@@ -75,12 +75,12 @@ export class InvQuantityAdjustmentsEntriesComponent implements OnInit {
   }
 
   addEntry(){
-    if(!this.salesForm.controls['customer'].value){
-      this.errorModal.showWithCustomMessage("Please select a customer");
-      this.salesForm.controls['customer'].setErrors(Validators.required);
-    }else{
+    // if(!this.salesForm.controls['customer'].value){
+    //   this.errorModal.showWithCustomMessage("Please select a customer");
+    //   this.salesForm.controls['customer'].setErrors(Validators.required);
+    // }else{
       this.addSalesEntry.show(this.salesForm.controls['customer'].value);
-    }
+    // }
   }
 
   addNewCustomer(){
