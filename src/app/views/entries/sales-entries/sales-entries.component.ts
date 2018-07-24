@@ -91,7 +91,12 @@ export class SalesEntriesComponent implements OnInit {
   }
 
   addEntry(){
-    this.addSalesEntry.show();
+    if(!this.salesForm.controls['customer'].value){
+      this.errorModal.showWithCustomMessage("Please select a customer");
+      this.salesForm.controls['customer'].setErrors(Validators.required);
+    }else{
+      this.addSalesEntry.show(this.salesForm.controls['customer'].value);
+    }
   }
   addNewCustomer(){
     this.addCustomer.show();
@@ -151,6 +156,7 @@ export class SalesEntriesComponent implements OnInit {
           this.salesService.createSale(sale).subscribe((data)=>{
             this.salesForm.reset();
             this.resultsResults = [];
+            this.retrievedSale = false;
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }else{
@@ -158,6 +164,7 @@ export class SalesEntriesComponent implements OnInit {
           this.salesService.editSale(this.salesForm.controls['id'].value,sale).subscribe((data)=>{
             this.salesForm.reset();
             this.resultsResults = [];
+            this.retrievedSale = false;
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }
@@ -183,6 +190,7 @@ export class SalesEntriesComponent implements OnInit {
           this.salesService.createSale(sale).subscribe((data)=>{
             this.salesForm.reset();
             this.resultsResults = [];
+            this.retrievedSale = false;
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }else{
@@ -191,6 +199,7 @@ export class SalesEntriesComponent implements OnInit {
             this.salesForm.reset();
             this.resultsResults = [];
             this.infoModalPost.hide();
+            this.retrievedSale = false;
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }
         this.salesForm.controls['refNo'].enable();

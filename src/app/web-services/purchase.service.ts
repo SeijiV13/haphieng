@@ -10,8 +10,8 @@ export class PurchaseService {
     return this.httpClient.getBase(`/api/v1/haphieng/purchases`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
 
-  getFilteredPurchase(refNo, supplier): Observable<any>{
-    return this.httpClient.getBase(`/api/v1/haphieng/purchases?filters%5Breference_number=${refNo}&filters%5Bsupplier_id=${supplier}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  getFilteredPurchase(refNo, supplier, page): Observable<any>{
+    return this.httpClient.getBase(`/api/v1/haphieng/purchases?page=${page}&filters%5Breference_number=${refNo}&filters%5Bsupplier_code=${supplier}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
 
   getSuspendedPurchases(){
@@ -33,5 +33,35 @@ export class PurchaseService {
 
   editPurchase(id, body){
     return this.httpClient.putBase(`/api/v1/haphieng/purchases/${id}`, body).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+  //PURCHASE RETURNS
+  getPurchasesReturn(){
+    return this.httpClient.getBase(`/api/v1/haphieng/purchase_returns`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+  getFilteredPurchasesReturn(refNo, supplier, page): Observable<any>{
+    return this.httpClient.getBase(`/api/v1/haphieng/purchase_returns?page=${page}&filters%5Breference_number=${refNo}&filters%5Bsupplier_code=${supplier}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+  getSuspendedPurchasesReturn(){
+    return this.httpClient.getBase(`/api/v1/haphieng/purchase_returns?filters%5Bstatus=suspend`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+  getPostedPurchaseReturn(){
+    return this.httpClient.getBase(`/api/v1/haphieng/purchase_returns?filters%5Bstatus=posted`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+  getPurchaseReturn(id){
+    return this.httpClient.getBase(`/api/v1/haphieng/purchase_returns/${id}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+  createPurchaseReturn(body){
+    return this.httpClient.postBase(`/api/v1/haphieng/purchase_returns`, body).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+
+  editPurchaseReturn(id, body){
+    return this.httpClient.putBase(`/api/v1/haphieng/purchase_returns/${id}`, body).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
 }

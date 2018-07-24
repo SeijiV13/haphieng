@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 export class DataPasserService {
     
     public selectedData: any  = {};
+    public dropdowns: any = {};
     public multipleSelectedData: Array<any> = [];
 
 

@@ -28,7 +28,7 @@
          </div>
 
           <div class="col-md-6">
-             <div class="form-group" *ngIf="type === 'sales' || type === 'salesReturn' || type === 'invDamage' || type  === 'invAdjustment'">
+             <div class="form-group" *ngIf="type === 'sales' || type === 'salesReturn' || type  === 'invAdjustment'">
                  <label class="control-label col-sm-3 col-md-4" for="itemCode">Warehouse <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-8 field">
                      <label class="control-label"><input formControlName="warehouse"  type="radio"  value="W1">W1</label>
@@ -38,7 +38,7 @@
              </div>
          </div>
           <div class="col-md-6">
-              <div class="form-group" *ngIf="type === 'salesReturn' || type === 'invDamage'">
+              <div class="form-group" *ngIf="type === 'salesReturn'">
                  <label class="control-label col-sm-3 col-md-4" for="good">Good <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-8 field">
                      <label class="control-label"><input formControlName="good"  type="radio" value="Y">Yes</label>
@@ -108,7 +108,7 @@
         </div>
   
           <div class="col-md-12">
-          <div class="form-group" *ngIf="type === 'purchaseReturn' || type === 'invDamage'">
+          <div class="form-group" *ngIf="type === 'purchaseReturn'">
                  <label class="control-label col-sm-3 col-md-2" for="good">Good <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-10 field">
                      <label class="control-label"><input formControlName="good"  type="radio" value="Y">Yes</label>

@@ -3,6 +3,10 @@ import { AuthenticationService } from './../../generic/services/http-services/au
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
+import { CustomerService } from '../../web-services/customer.service';
+import { ProductsService } from '../../web-services/products.service';
+import { AgentService } from '../../web-services/agent.service';
+import { SupplierService } from '../../web-services/supplier.service';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -14,7 +18,11 @@ export class LoginPageComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, 
               private router: Router, 
               private authenticationService: AuthenticationService,
-              private dataPasser: DataPasserService) {
+              private dataPasser: DataPasserService,
+              private customerService: CustomerService,
+              private productService: ProductsService,
+              private agentService: AgentService,
+              private supplierService: SupplierService) {
    }
 
   ngOnInit() {
@@ -40,12 +48,22 @@ export class LoginPageComponent implements OnInit {
         this.dataPasser.tokenType = headerData['token-type'];
         this.dataPasser.expiry = headerData['expiry'];
         this.dataPasser.uid = headerData['uid'];
+        
         localStorage.setItem('access-token', this.dataPasser.accessToken);
         localStorage.setItem('client', this.dataPasser.client);
         localStorage.setItem('tokenType', this.dataPasser.tokenType);
         localStorage.setItem('expiry', this.dataPasser.expiry);
         localStorage.setItem('uid', this.dataPasser.uid);
-        
+        this.customerService.getCustomers().subscribe((data)=>{
+          this.dataPasser.dropdowns['customer'] = data;
+        });
+        this.supplierService.getSuppliers().subscribe((data)=>{
+          this.dataPasser.dropdowns['supplier'] = data;
+        })
+        this.agentService.getAgents().subscribe((data)=>{
+          this.dataPasser.dropdowns['agent'] = data;
+        })
+    
         this.dataPasser.username = jsonData.data['email'];
         this.router.navigate(["/home"]);
      

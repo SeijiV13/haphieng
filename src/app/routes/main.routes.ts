@@ -58,6 +58,7 @@ import { SupplierFileComponent } from './../views/files/supplier-file/supplier-f
 import { AgentFileComponent } from './../views/files/agent-file/agent-file.component';
 import { CustomerBankFileComponent } from './../views/files/customer-bank-file/customer-bank-file.component';
 import { InvQuantityAdjustmentsEntriesComponent } from '../views/entries/inv-quantity-adjustments-entries/inv-quantity-adjustments-entries.component';
+import { ViewEditInvAdjComponent } from '../views/tools/view-edit-inv-adj/view-edit-inv-adj.component';
 
 
 export const routes: Routes = [
@@ -101,7 +102,7 @@ export const routes: Routes = [
                   { path: 'customerTransactions', component: CustomerTransactionsComponent},
                   { path: 'supplierTransactions', component : SupplierTransactionsComponent},
                   { path: 'viewEditCounterReceipts', component: ViewEditCounterReceiptsComponent},
-                  { path: 'viewEditQuantityStockAdjustments', component: UnderConstructionComponent},
+                  { path: 'viewEditQuantityStockAdjustments', component: ViewEditInvAdjComponent},
                   { path: 'viewEditInventoryDamages', component: ViewEditInvDamageComponent},
                   { path: 'administratorControl', component: UnderConstructionComponent},
                   

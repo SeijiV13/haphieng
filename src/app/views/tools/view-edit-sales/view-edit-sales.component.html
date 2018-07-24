@@ -39,7 +39,7 @@
     
    </fieldset>
 
-    <generic-table #resultsTable [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+   <generic-table [pagination]="pagination" #resultsTable (searchPagination)="filterOnPagination($event)" (selectedRow)="getSelectedProduct()" [fieldContainer]="'sales'" [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
 
 
   

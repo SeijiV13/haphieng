@@ -86,8 +86,14 @@ export class PurchaseEntriesComponent implements OnInit {
   print(type: string){}
 
   addEntry(){
-    this.addSalesEntry.show();
+    if(!this.purchaseForm.controls['supplier'].value){
+      this.errorModal.showWithCustomMessage("Please select a customer");
+      this.purchaseForm.controls['supplier'].setErrors(Validators.required);
+    }else{
+      this.addSalesEntry.show(this.purchaseForm.controls['supplier'].value);
+    }
   }
+
   addNewSupplier(){
     this.addSupplier.show();
   }
@@ -147,6 +153,7 @@ export class PurchaseEntriesComponent implements OnInit {
           this.purchaseService.createPurchase(purchase).subscribe((data)=>{
             this.purchaseForm.reset();
             this.resultsResults = [];
+            this.retrievedSale = false;
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }else{
@@ -154,6 +161,7 @@ export class PurchaseEntriesComponent implements OnInit {
           this.purchaseService.editPurchase(this.purchaseForm.controls['id'].value,purchase).subscribe((data)=>{
             this.purchaseForm.reset();
             this.resultsResults = [];
+            this.retrievedSale = false;
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }
@@ -179,6 +187,7 @@ export class PurchaseEntriesComponent implements OnInit {
           this.purchaseService.createPurchase(purchase).subscribe((data)=>{
             this.purchaseForm.reset();
             this.resultsResults = [];
+            this.retrievedSale = false;
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }else{
@@ -186,6 +195,7 @@ export class PurchaseEntriesComponent implements OnInit {
           this.purchaseService.editPurchase(this.purchaseForm.controls['id'].value, purchase).subscribe((data)=>{
             this.purchaseForm.reset();
             this.resultsResults = [];
+            this.retrievedSale = false;
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }

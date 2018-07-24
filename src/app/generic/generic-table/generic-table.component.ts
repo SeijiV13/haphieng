@@ -9,6 +9,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
   styleUrls: ['./generic-table.component.scss']
 })
 export class GenericTableComponent implements OnInit {
+  @Input() paginationActive = true;
   @Input() fieldContainer: string = '';
   @Input() title: string;
   @Input() headers: any;
@@ -102,5 +103,10 @@ export class GenericTableComponent implements OnInit {
 
   retrieveNewValues(pageNo){
     this.searchPagination.emit(pageNo);
+  }
+
+  filter(item, filter){
+    let customer = this.dataPasserService.dropdowns[filter].filter(value=> value.id == item);
+    return customer[0].code;
   }
 }

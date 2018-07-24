@@ -5,6 +5,7 @@ import { AddCustomerComponent } from './../../transaction-modals/add-customer/ad
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { GenericModalComponent } from '../../../generic/generic-modal/generic-modal.component';
 
 @Component({
   selector: 'app-inv-quantity-adjustments-entries',
@@ -17,6 +18,7 @@ export class InvQuantityAdjustmentsEntriesComponent implements OnInit {
   @ViewChild('addCustomer') addCustomer: AddCustomerComponent;
   @ViewChild('addSalesEntry') addSalesEntry: AddSalesEntryComponent;
   @ViewChild('suspendedSales') suspendedSales: SuspendedSalesComponent;
+  @ViewChild('errorModal') errorModal: GenericModalComponent;
   salesForm: FormGroup;
   resultsHeaders = [
     "Row No.",
@@ -73,8 +75,14 @@ export class InvQuantityAdjustmentsEntriesComponent implements OnInit {
   }
 
   addEntry(){
-    this.addSalesEntry.show();
+    if(!this.salesForm.controls['customer'].value){
+      this.errorModal.showWithCustomMessage("Please select a customer");
+      this.salesForm.controls['customer'].setErrors(Validators.required);
+    }else{
+      this.addSalesEntry.show(this.salesForm.controls['customer'].value);
+    }
   }
+
   addNewCustomer(){
     this.addCustomer.show();
   }

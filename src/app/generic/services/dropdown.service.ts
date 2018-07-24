@@ -6,12 +6,7 @@ import { Http } from "@angular/http";
 @Injectable()
 export class DropdownService {
 
-  array = ['province', 'city', 'rePurpose', 'autoPurpose', 'classification'
-    , 'propertyType', 'occupancy', 'classify', 'requestingGroup','verTitle','apprType'
-    , 'branch', 'reviewer', 'requestStatus', 'requestor', 'approver', 'bearing'
-    , 'appraisalCompany', 'VEHwarehouse', 'VEHmodel', 'VEHbrand', 'utility', 'reqGrpByRequestor'
-    , 'externalAppraiser', 'internalAppraiser', 'improvementType', 'reportStatus'
-    , 'region', 'assetType', 'tatType', 'tatPriority', 'internalAppraiserAll', 'externalAppraiserAll', 'encoder', 'approverTVR', 'requestingBranch', 'requestingBranchAll', 'tvrStatus', 'clearingInd', 'regDeeds'];
+  array = ['customer'];
 
 
   constructor(private httpClient: HttpClient, private http: Http) { }

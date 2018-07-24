@@ -36,10 +36,20 @@
                       <td *ngFor="let key of keys">
                           <ng-container *ngIf="key.name !== 'rowNo'">
                                <ng-container *ngIf="key.behavior === 'clickable'">
-                                  <a (click)="onClickColumn(result)">{{result[key.name]}}</a>
+                                 <ng-container *ngIf="key.filter">
+                                     {{filter(result[key.name], key.filter)}}
+                                 </ng-container>
+                                 <ng-container *ngIf="!key.filter">
+                                     <a (click)="onClickColumn(result)">{{result[key.name]}}</a> 
+                                    </ng-container>
                                </ng-container>
                                <ng-container *ngIf="key.behavior !== 'clickable'">
+                                 <ng-container *ngIf="key.filter">
+                                     {{filter(result[key.name], key.filter)}}
+                                </ng-container>
+                                <ng-container *ngIf="!key.filter">
                                   {{result[key.name]}}
+                                </ng-container>
                                </ng-container>
                           </ng-container>
                           <ng-container *ngIf="key.name === 'rowNo'">
@@ -57,7 +67,7 @@
 
 
       </div>
-      <div [hidden]="!(results.length !== 0 && removeLoad !== false)">
+      <div [hidden]="!(results.length !== 0 && removeLoad !== false) || (!paginationActive)">
       <pagination-selector #paginationSelector  [url]="searchUrl" (showLoaderEvent)="showLoader($event)" (returnedValueEvent)="map2Tables($event)" (searchPagination)="retrieveNewValues($event)"></pagination-selector>
       </div>
 

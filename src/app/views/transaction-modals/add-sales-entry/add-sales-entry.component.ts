@@ -8,6 +8,7 @@ import { ProductsService } from '../../../web-services/products.service';
 import { AgentService } from '../../../web-services/agent.service';
 import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
 import { FormErrorHandlerService } from '../../../generic/services/form-error-handler.service';
+import { SalesService } from '../../../web-services/sales.service';
 
 @Component({
   selector: 'app-add-sales-entry',
@@ -41,10 +42,12 @@ export class AddSalesEntryComponent implements OnInit {
   @Output("entry") entry = new EventEmitter();
   @ViewChild('addSalesEntryModal') addSalesEntryModal: ModalDirective;
   @ViewChild('errorModal') errorModal: GenericModalComponent;
+  customer: any;
   constructor(private dataPasserService: DataPasserService,
                private fb: FormBuilder, 
                private productService: ProductsService,
                private agentService: AgentService,
+               private salesService: SalesService,
                private formErrorHandler: FormErrorHandlerService) {
                  this.getDropdownValues();
                 }
@@ -89,8 +92,12 @@ export class AddSalesEntryComponent implements OnInit {
   }
 
 
-  show(){
+  show(customer){
+    this.customer = customer;
     this.addSalesEntryModal.show();
+    this.salesService.getSalesHistory(this.customer, "asd").subscribe((data)=>{
+      
+    })
   }
 
   hide(){

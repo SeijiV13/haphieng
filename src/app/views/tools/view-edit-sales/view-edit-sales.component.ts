@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { CustomerService } from '../../../web-services/customer.service';
 import { SalesService } from '../../../web-services/sales.service';
+import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
 
 @Component({
   selector: 'app-view-edit-sales',
@@ -11,14 +12,16 @@ import { SalesService } from '../../../web-services/sales.service';
   styleUrls: ['./view-edit-sales.component.scss']
 })
 export class ViewEditSalesComponent implements OnInit {
+  @ViewChild('resultsTable') resultsTable: GenericTableComponent;
   formGroup :FormGroup
   browseForm: FormGroup;
   customers: any
-  resultsHeaders = ['Row No.', 'Ref No.', 'Date', 'Customer', 'Terms', 'Total Amount']
+  resultsHeaders = ['Row No.', 'Ref No.', 'Customer', 'Date','Terms', 'Total Amount']
   resultsResults = []
   resultsKeys = [ 
    {name: 'rowNo'},
    {name: 'reference_number'},
+   {name: 'customer_id', filter: 'customer'},
    {name: 'date'},
    {name: 'terms'},
    {name: 'total'} 
@@ -30,7 +33,7 @@ export class ViewEditSalesComponent implements OnInit {
               private salesService: SalesService) { }
  
   ngOnInit() {
-    this.dataPasserService.sendPageTitle("VIEW/EDIT SALES");
+    this.dataPasserService.sendPageTitle("VIEW SALES");
     this.formGroup = this.fb.group({
       customer: [''],
       refNo: [''],
@@ -42,10 +45,20 @@ export class ViewEditSalesComponent implements OnInit {
   filter(){
     let customer = this.formGroup.controls['customer'].value;
     let refNo = this.formGroup.controls['refNo'].value;
-    this.salesService.getFilteredSales(refNo, customer).subscribe((data)=>{
-      this.resultsResults = data;
-    })
+    this.salesService.getFilteredSales(refNo, customer, 1).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination);
+    }, error => this.dataPasserService.sendError(error.errors[0]))
 
+  }
+
+  filterOnPagination(page){
+    let customer = this.formGroup.controls['customer'].value;
+    let refNo = this.formGroup.controls['refNo'].value;
+    this.salesService.getFilteredSales(refNo, customer, page).subscribe((data)=>{
+      this.resultsResults = data.collection;
+      this.resultsTable.setPagination(data.pagination);
+    }, error => this.dataPasserService.sendError(error.errors[0]))
   }
 
 

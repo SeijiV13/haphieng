@@ -149,6 +149,8 @@ import { CustomerService } from './web-services/customer.service';
 import { InvQuantityAdjustmentsEntriesComponent } from './views/entries/inv-quantity-adjustments-entries/inv-quantity-adjustments-entries.component';
 import { SalesService } from './web-services/sales.service';
 import { PurchaseService } from './web-services/purchase.service';
+import { DamageService } from './web-services/damage.service';
+import { ViewEditInvAdjComponent } from './views/tools/view-edit-inv-adj/view-edit-inv-adj.component';
 
 
 
@@ -229,6 +231,7 @@ import { PurchaseService } from './web-services/purchase.service';
         ViewCounterReceiptsModalComponent,
         ViewReceiptItemsModalComponent,
         InvQuantityAdjustmentsEntriesComponent,
+        ViewEditInvAdjComponent,
       
        
 
@@ -309,6 +312,7 @@ import { PurchaseService } from './web-services/purchase.service';
         CustomerService,
         SalesService,
         PurchaseService,
+        DamageService,
         { provide: APP_INITIALIZER, useFactory: initFactory, deps: [InitService], multi: true,},
      
     ],

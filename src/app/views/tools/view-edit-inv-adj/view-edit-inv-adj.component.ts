@@ -3,53 +3,49 @@ import { DataPasserService } from './../../../generic/services/data-passer.servi
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { CustomerService } from '../../../web-services/customer.service';
-import { SalesService } from '../../../web-services/sales.service';
+import { DamageService } from '../../../web-services/damage.service';
 import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
 
 @Component({
-  selector: 'app-customer-transactions',
-  templateUrl: './customer-transactions.component.html',
-  styleUrls: ['./customer-transactions.component.scss']
+  selector: 'app-view-edit-inv-adj',
+  templateUrl: './view-edit-inv-adj.component.html',
+  styleUrls: ['./view-edit-inv-adj.component.scss']
 })
-export class CustomerTransactionsComponent implements OnInit {
-  formGroup :FormGroup;
+export class ViewEditInvAdjComponent implements OnInit {
+  @ViewChild('resultsTable') resultsTable: GenericTableComponent;
+  formGroup :FormGroup
   browseForm: FormGroup;
-  resultsHeaders = ['Row No.', 'Ref No.', 'Customer', 'Date',  'Amount', 'Balance']
+  resultsHeaders = ['Ref No.', 'Date', 'Customer',  'Amount', 'Balance']
   resultsResults = []
   resultsKeys = [ 
-    {name: 'rowNo'},
-    {name: 'reference_number'},
-    {name: 'customer_id', filter: 'customer'},
-    {name: 'date'},
-    {name: 'terms'},
-    {name: 'total'} 
-   ]
+   {name: 'requestNo', behavior: 'clickable'} 
+  ]
   customers: any;
-  @ViewChild('resultsTable') resultsTable: GenericTableComponent; 
-  constructor(private fb: FormBuilder, 
-              private dataPasserService: DataPasserService,
+
+  constructor(private fb: FormBuilder, private dataPasserService: DataPasserService,
               private customerService: CustomerService,
-              private salesService: SalesService) { }
+              private damageService: DamageService) { }
  
   ngOnInit() {
-    this.dataPasserService.sendPageTitle("CUSTOMER TRANSACTIONS");
+    this.dataPasserService.sendPageTitle("VIEW QUANTITY STOCK ADJUSTMENTS");
     this.formGroup = this.fb.group({
       customer: [''],
-    });
-    this.getDropdownValues();
+      refNo: [''],
 
+    });
+   this.getDropdownValues();
   }
 
   getDropdownValues(){
     this.customerService.getCustomers().subscribe((data)=>{
       this.customers = data;
-    });
+    })
   }
 
   filter(){
     let customer = this.formGroup.controls['customer'].value;
-
-    this.salesService.getFilteredSales("", customer, 1).subscribe((data)=>{
+    let refNo = this.formGroup.controls['refNo'].value;
+    this.damageService.getFilteredDamageItems(refNo, customer).subscribe((data)=>{
       this.resultsResults = data.collection;
       this.resultsTable.setPagination(data.pagination);
     }, error => this.dataPasserService.sendError(error.errors[0]))
@@ -58,7 +54,8 @@ export class CustomerTransactionsComponent implements OnInit {
 
   filterOnPagination(page){
     let customer = this.formGroup.controls['customer'].value;
-    this.salesService.getFilteredSales("", customer, page).subscribe((data)=>{
+    let refNo = this.formGroup.controls['refNo'].value;
+    this.damageService.getFilteredDamageItems(refNo, customer).subscribe((data)=>{
       this.resultsResults = data.collection;
       this.resultsTable.setPagination(data.pagination);
     }, error => this.dataPasserService.sendError(error.errors[0]))
@@ -75,5 +72,4 @@ export class CustomerTransactionsComponent implements OnInit {
   editDetails(){
 
   }
-
 }

@@ -62,6 +62,6 @@
     
   </fieldset>
   <app-add-customer #addCustomer></app-add-customer>
-  <generic-table (emitColumnClicked)="viewCounterReceipts()" [removeRow]="false"  [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+  <generic-table (emitColumnClicked)="viewCounterReceipts()" [removeRow]="false"  [buttons]="buttons" #resultsTable [title]="'RECEIPTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
 
   <view-counter-receipts-modal #viewReceiptsModal></view-counter-receipts-modal>
