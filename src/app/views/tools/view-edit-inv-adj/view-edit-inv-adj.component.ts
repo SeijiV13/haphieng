@@ -46,20 +46,20 @@ export class ViewEditInvAdjComponent implements OnInit {
   filter(){
     let customer = this.formGroup.controls['customer'].value;
     let refNo = this.formGroup.controls['refNo'].value;
-    this.damageService.getFilteredDamageItems(refNo, customer).subscribe((data)=>{
-      this.resultsResults = data.collection;
-      this.resultsTable.setPagination(data.pagination);
-    }, error => this.dataPasserService.sendError(error.errors[0]))
+    // this.damageService.getFilteredDamageItems(refNo, customer).subscribe((data)=>{
+    //   this.resultsResults = data.collection;
+    //   this.resultsTable.setPagination(data.pagination);
+    // }, error => this.dataPasserService.sendError(error.errors[0]))
 
   }
 
   filterOnPagination(page){
     let customer = this.formGroup.controls['customer'].value;
     let refNo = this.formGroup.controls['refNo'].value;
-    this.damageService.getFilteredDamageItems(refNo, customer).subscribe((data)=>{
-      this.resultsResults = data.collection;
-      this.resultsTable.setPagination(data.pagination);
-    }, error => this.dataPasserService.sendError(error.errors[0]))
+    // this.damageService.getFilteredDamageItems(refNo, customer).subscribe((data)=>{
+    //   this.resultsResults = data.collection;
+    //   this.resultsTable.setPagination(data.pagination);
+    // }, error => this.dataPasserService.sendError(error.errors[0]))
   }
 
   print(type){

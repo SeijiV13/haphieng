@@ -9,8 +9,12 @@ export class DamageService {
     return this.httpClient.getBase(`/api/v1/haphieng/inventory_damages`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
 
-  getFilteredDamageItems(refNo, customer){
-    return this.httpClient.getBase(`/api/v1/haphieng/inventory_damages?filters%5Breference_number=${refNo}&filters%5Bcustomer_id=${customer}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  getFilteredDamageItems(refNo, customer, page, status){
+    return this.httpClient.getBase(`/api/v1/haphieng/inventory_damages?page=${page}&filters%5Breference_number=${refNo}&filters%5Bcustomer_id=${customer}&filters%5Bstatus=${status}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+  getFilteredItemsWoutPage(refNo){
+    return this.httpClient.getBase(`/api/v1/haphieng/inventory_damages?filters%5Breference_number=${refNo}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
   
   getSuspendedDamageItems(){

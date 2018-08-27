@@ -37,18 +37,40 @@
                           <ng-container *ngIf="key.name !== 'rowNo'">
                                <ng-container *ngIf="key.behavior === 'clickable'">
                                  <ng-container *ngIf="key.filter">
-                                     {{filter(result[key.name], key.filter)}}
+                                     <ng-container *ngIf="key.objectname">
+                                            <a (click)="onClickColumn(result)"> {{filter(getObject(result, key.objectname, key.name), key.filter, key.returnvalue)}}</a>    
+                                     </ng-container>
+                                     <ng-container *ngIf="!key.objectname">
+                                         <a (click)="onClickColumn(result)"> {{filter(result[key.name], key.filter, key.returnvalue)}}</a>  
+                                     </ng-container>
                                  </ng-container>
                                  <ng-container *ngIf="!key.filter">
-                                     <a (click)="onClickColumn(result)">{{result[key.name]}}</a> 
-                                    </ng-container>
+                                     <ng-container *ngIf="key.objectname">
+                                            <a (click)="onClickColumn(result)">{{getObject(result, key.objectname, key.name)}}</a>       
+                                     </ng-container>
+                                     <ng-container *ngIf="!key.objectname">
+                                         <a (click)="onClickColumn(result)">{{result[key.name]}}</a>     
+                                     </ng-container>
+                                </ng-container>
                                </ng-container>
+                             
+                             
                                <ng-container *ngIf="key.behavior !== 'clickable'">
                                  <ng-container *ngIf="key.filter">
-                                     {{filter(result[key.name], key.filter)}}
+                                        <ng-container *ngIf="key.objectname">
+                                             {{filter(getObject(result, key.objectname, key.name), key.filter, key.returnvalue)}} 
+                                         </ng-container>
+                                         <ng-container *ngIf="!key.objectname">
+                                              {{filter(result[key.name], key.filter, key.returnvalue)}}
+                                         </ng-container>
                                 </ng-container>
                                 <ng-container *ngIf="!key.filter">
-                                  {{result[key.name]}}
+                                      <ng-container *ngIf="key.objectname">
+                                         {{getObject(result, key.objectname, key.name)}}      
+                                     </ng-container>
+                                     <ng-container *ngIf="!key.objectname">
+                                        {{result[key.name]}}    
+                                     </ng-container>
                                 </ng-container>
                                </ng-container>
                           </ng-container>

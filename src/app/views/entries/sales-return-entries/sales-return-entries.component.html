@@ -11,13 +11,21 @@
     </legend>
     <div [formGroup]="salesForm" class="row form-horizontal">
         <div class="col-md-6">
-             <div class="form-group">
-                 <label class="control-label col-sm-3 col-md-4" for="refNo">Ref No.</label>
-                 <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="refNo" type="text" class="form-control">
-                     <control-messages [control]="salesForm.controls.refNo"></control-messages>
-                  </div>
-             </div> 
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="refNo">Ref No.</label>
+                <div class="col-sm-9 col-md-8 field">
+                <div class="input-group">
+                   <input (keyup)="typeAheadRef($event)" formControlName="refNo" type="text" class="form-control">
+                   <span class="input-group-btn">
+                     <button (click)="resetRefNo()" class="btn btn-default" type="button">
+                       Reset
+                     </button>
+                   </span>
+                 </div>
+                 <control-messages [control]="salesForm.controls.refNo"></control-messages>
+                 </div>
+               
+            </div> 
              <div class="form-group">
                 <label class="control-label col-sm-3 col-md-4" for="date">Date</label>
                 <div class="col-sm-9 col-md-8 field">

@@ -10,6 +10,8 @@ import { SupplierService } from '../../../web-services/supplier.service';
 import { GenericModalComponent } from '../../../generic/generic-modal/generic-modal.component';
 import { PurchaseService } from '../../../web-services/purchase.service';
 import { FormErrorHandlerService } from '../../../generic/services/form-error-handler.service';
+import { ProductsService } from '../../../web-services/products.service';
+const REFERENCE_NUMBER_LENGTH = 11;
 
 @Component({
   selector: 'app-purchase-entries',
@@ -59,7 +61,8 @@ export class PurchaseEntriesComponent implements OnInit {
              private fb: FormBuilder,
              private supplierService: SupplierService,
              private purchaseService: PurchaseService,
-             private formErrorHandler: FormErrorHandlerService) {
+             private formErrorHandler: FormErrorHandlerService,
+             private productService: ProductsService) {
                this.getDropdownValues();
               }
 
@@ -183,7 +186,7 @@ export class PurchaseEntriesComponent implements OnInit {
 
       }else{
         if(!this.retrievedSale){
-          let purchase = this.createPurchaseJson('suspend');
+          let purchase = this.createPurchaseJson('suspended');
           this.purchaseService.createPurchase(purchase).subscribe((data)=>{
             this.purchaseForm.reset();
             this.resultsResults = [];
@@ -191,7 +194,7 @@ export class PurchaseEntriesComponent implements OnInit {
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }else{
-          let purchase = this.createPurchaseJson('suspend');
+          let purchase = this.createPurchaseJson('suspended');
           this.purchaseService.editPurchase(this.purchaseForm.controls['id'].value, purchase).subscribe((data)=>{
             this.purchaseForm.reset();
             this.resultsResults = [];
@@ -207,18 +210,63 @@ export class PurchaseEntriesComponent implements OnInit {
   }
 
   retrieveSuspendedPurchase(purchase){
-    this.purchaseForm.controls['id'].setValue(purchase.id);
-    this.purchaseForm.controls['currency'].setValue(purchase.currency);
-    this.purchaseForm.controls['date'].setValue(purchase.date);
-    this.purchaseForm.controls['refNo'].setValue(purchase.reference_number);
-    this.purchaseForm.controls['terms'].setValue(purchase.terms);
-    this.purchaseForm.controls['totalpeso'].setValue(purchase.total_peso);
-    this.purchaseForm.controls['totalyuan'].setValue(purchase.total_yuan);
-    this.purchaseForm.controls['supplier'].setValue(purchase.supplier_id);
+    this.purchaseForm.controls['id'].setValue(purchase.data.id);
+    this.purchaseForm.controls['currency'].setValue(purchase.data.attributes.currency);
+    this.purchaseForm.controls['date'].setValue(purchase.data.attributes.date);
+    this.purchaseForm.controls['refNo'].setValue(purchase.data.attributes.reference_number);
+    this.purchaseForm.controls['terms'].setValue(purchase.data.attributes.terms);
+    this.purchaseForm.controls['totalpeso'].setValue(purchase.data.attributes.total_peso);
+    this.purchaseForm.controls['totalyuan'].setValue(purchase.data.attributes.total_yuan);
+    this.purchaseForm.controls['supplier'].setValue(purchase.data.attributes.supplier_id);
 
 
     this.retrievedSale = true;
     this.purchaseForm.controls['refNo'].disable();
+    this.resultsResults = [];
+    this.retrieveItemsOfSuspendedSale(purchase);
+  }
+
+  retrieveItemsOfSuspendedSale(sales){
+    this.productService.getProducts().subscribe((data)=>{
+      for(let item of sales.included){
+        let selecteditem = data.filter((items) => items.id == item.attributes.product_id);
+        if(selecteditem){
+          let originalprice = parseFloat(item.attributes['price_override']);
+          selecteditem[0]['price'] = originalprice;
+          
+          //compute for amount
+          selecteditem[0]['amount'] = parseFloat(selecteditem[0]['price']) * parseFloat(item.attributes['quantity']);
+          this.resultsResults.push({
+            id: selecteditem[0]['id'],
+            itemCode: selecteditem[0]['code'],
+            description:  selecteditem[0]['description'],
+            originalprice: selecteditem[0]['gross_price'],
+            available: selecteditem[0]['available_quantity'],
+            pending: selecteditem[0]['pending_quantity'],
+            itemRemarks: selecteditem[0]['remarks_1'],
+            category: selecteditem[0]['category'],
+
+            agent: item.attributes.agent_id,
+            lastprice: "",
+            quantity: item.attributes.quantity,
+            warehouse: item.attributes.warehouse_source,
+            good: "",
+            qtyNew: "",
+            adjustmentRemarks: "",
+
+            price: selecteditem[0]['price'],
+            amount: selecteditem[0]['amount']
+            
+          })
+          this.computeTotal();
+
+        }
+      }
+     
+    })
+ 
+   
+   
   }
 
   createPurchaseJson(status){
@@ -231,18 +279,17 @@ export class PurchaseEntriesComponent implements OnInit {
       total_peso: this.purchaseForm.controls['totalpeso'].value,
       total_yuan: this.purchaseForm.controls['totalyuan'].value,
       supplier_id: this.purchaseForm.controls['supplier'].value,
-      product_purchase: [
+      product_purchases_attributes: [
       ]
     }
 
     for(let item of this.resultsResults){
-      let jsonPurchase = {
+      json.product_purchases_attributes.push({
         quantity: item.quantity,
-        warehouse_source: item.warehouse == "W2" ? 'warehouse_2_stock': 'warehouse_1_stock',
-        override_price: item.price,
-        product: item.itemCode
-      }
-      json.product_purchase.push({jsonPurchase})
+        warehouse_source: item.warehouse, //== "W2" ? 'warehouse_2_stock': 'warehouse_1_stock',
+        price_override: item.price,
+        product_id: item.id
+      })
     }
 
 
@@ -255,4 +302,45 @@ export class PurchaseEntriesComponent implements OnInit {
     this.resultsResults.splice(index, 1);
     this.computeTotal();
   }
+
+  latestRefNoChecker(data){
+    let highestrefno  = 0;
+    for(let sale of data){
+     if(parseInt(sale.attributes.reference_number.substr(1)) > highestrefno){
+       highestrefno = parseInt(sale.attributes.reference_number.substr(1));
+     }
+    }
+    return highestrefno
+ }
+
+ typeAheadRef(event){
+   this.purchaseForm.controls['refNo'].disable();
+   this.purchaseService.getFilteredPurchaseWithoutPage(event.target.value).subscribe((data)=>{
+     if(data.data.length != 0){
+         let finalref = "";
+         let latestrefno = this.latestRefNoChecker(data.data)
+         let nextindex = latestrefno + 1;
+
+         let zerolength =  REFERENCE_NUMBER_LENGTH - nextindex.toString().length;
+         for(let i = 0; i < zerolength; i ++){
+           finalref = finalref + "0";
+         }
+
+         finalref = event.target.value + finalref + nextindex.toString();
+         this.purchaseForm.controls['refNo'].setValue(finalref);
+
+     }else{
+       if(event.target.value && event.target.value.length == 1){
+         this.purchaseForm.controls['refNo'].setValue(event.target.value + "00000000001");
+       }
+ 
+     }
+   })
+ 
+ }
+
+ resetRefNo(){
+   this.purchaseForm.controls['refNo'].enable();
+   this.purchaseForm.controls['refNo'].reset();
+ }
 }

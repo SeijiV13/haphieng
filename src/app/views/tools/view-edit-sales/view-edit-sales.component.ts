@@ -21,11 +21,11 @@ export class ViewEditSalesComponent implements OnInit {
   resultsResults = []
   resultsKeys = [ 
    {name: 'rowNo'},
-   {name: 'reference_number'},
-   {name: 'customer_id', filter: 'customer'},
-   {name: 'date'},
-   {name: 'terms'},
-   {name: 'total'} 
+   {name: 'reference_number', objectname: 'attributes'},
+   {name: 'customer_id', filter: 'customer', objectname: 'attributes', "returnvalue": "code"},
+   {name: 'date', objectname: 'attributes'},
+   {name: 'terms' , objectname: 'attributes'},
+   {name: 'total', objectname: 'attributes'},
   ]
 
   constructor(private fb: FormBuilder, 
@@ -46,8 +46,12 @@ export class ViewEditSalesComponent implements OnInit {
   filter(){
     let customer = this.formGroup.controls['customer'].value;
     let refNo = this.formGroup.controls['refNo'].value;
-    this.salesService.getFilteredSales(refNo, customer, 1).subscribe((data)=>{
-      this.resultsResults = data.collection;
+    this.salesService.getFilteredSales(refNo, customer, 1, 'posted').subscribe((data)=>{
+      if(data.collection){
+        this.resultsResults = (data.collection).data
+      }else if(data.data){
+        this.resultsResults = data.data;
+      }
       this.resultsTable.setPagination(data.pagination);
     }, error => this.dataPasserService.sendError(error.errors[0]))
 
@@ -56,8 +60,12 @@ export class ViewEditSalesComponent implements OnInit {
   filterOnPagination(page){
     let customer = this.formGroup.controls['customer'].value;
     let refNo = this.formGroup.controls['refNo'].value;
-    this.salesService.getFilteredSales(refNo, customer, page).subscribe((data)=>{
-      this.resultsResults = data.collection;
+    this.salesService.getFilteredSales(refNo, customer, page, 'posted').subscribe((data)=>{
+      if(data.collection){
+        this.resultsResults = (data.collection).data
+      }else if(data.data){
+        this.resultsResults = data.data;
+      }
       this.resultsTable.setPagination(data.pagination);
     }, error => this.dataPasserService.sendError(error.errors[0]))
   }

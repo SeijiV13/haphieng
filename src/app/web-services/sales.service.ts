@@ -10,10 +10,15 @@ export class SalesService {
     return this.httpClient.getBase(`/api/v1/haphieng/sales`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
 
-  getFilteredSales(refNo, customer, page){
-    return this.httpClient.getBase(`/api/v1/haphieng/sales?page=${page}&filters%5Breference_number=${refNo}&filters%5Bcustomer_code=${customer}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  getFilteredSales(refNo, customer, page, status){
+    return this.httpClient.getBase(`/api/v1/haphieng/sales?page=${page}&filters%5Breference_number=${refNo}&filters%5Bcustomer_code=${customer}&filters%5Bstatus=${status}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
-  
+
+  getFilteredSalesWithoutPage(refNo){
+    return this.httpClient.getBase(`/api/v1/haphieng/sales?&filters%5Breference_number=${refNo}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+
   getSuspendedSales(){
     return this.httpClient.getBase(`/api/v1/haphieng/sales?filters%5Bstatus=suspend`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
@@ -43,9 +48,14 @@ export class SalesService {
     return this.httpClient.getBase(`/api/v1/haphieng/sales_returns`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
 
-  getFilteredSalesReturn(refNo, customer, page){
-    return this.httpClient.getBase(`/api/v1/haphieng/sales_returns?page=${page}&filters%5Breference_number=${refNo}&filters%5Bcustomer_code=${customer}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  getFilteredSalesReturn(refNo, customer, page, status){
+    return this.httpClient.getBase(`/api/v1/haphieng/sales_returns?page=${page}&filters%5Breference_number=${refNo}&filters%5Bcustomer_code=${customer}&filters%5Bstatus=${status}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
+
+  getFilteredSalesReturnWithoutPage(refNo){
+    return this.httpClient.getBase(`/api/v1/haphieng/sales_returns?&filters%5Breference_number=${refNo}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
   
   getSuspendedSalesReturn(){
     return this.httpClient.getBase(`/api/v1/haphieng/sales_returns?filters%5Bstatus=suspend`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);

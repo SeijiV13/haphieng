@@ -46,6 +46,9 @@ export class AppComponent {
           })
           this.agentService.getAgents().subscribe((data)=>{
             this.dataPasserService.dropdowns['agent'] = data;
+          });
+          this.productService.getProducts().subscribe((data)=>{
+              this.dataPasserService.dropdowns['product'] = data;
           })
         }else{
             this.router.navigate(['']);

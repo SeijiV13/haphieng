@@ -1,6 +1,7 @@
 import { ViewReceiptItemsModalComponent } from './view-receipt-items-modal/view-receipt-items-modal.component';
 import { DataPasserService } from './../../../generic/services/data-passer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { SalesService } from '../../../web-services/sales.service';
 
 @Component({
   selector: 'app-view-edit-counter-receipts',
@@ -9,7 +10,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class ViewEditCounterReceiptsComponent implements OnInit {
   @ViewChild ("viewReceiptItemsModal") viewReceiptItemsModal: ViewReceiptItemsModalComponent;
-  constructor(private dataPasser: DataPasserService) { }
+  constructor(private dataPasser: DataPasserService, private salesService: SalesService) { }
    resultsHeaders = [
     "CtrRef",
     "Date",
@@ -35,6 +36,14 @@ export class ViewEditCounterReceiptsComponent implements OnInit {
 
   ngOnInit() {
     this.dataPasser.sendPageTitle("VIEW/EDIT COUNTER RECEIPTS");
+    this.getPostedSales();
+  }
+
+  getPostedSales(){
+    this.salesService.getPostedSales().subscribe((data)=>{
+     console.log(data);
+      // this.resultsResults = data;
+    })
   }
 
   viewReceiptItems(){

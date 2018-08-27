@@ -20,11 +20,11 @@ pagination = 1;
   resultsResults = []
   resultsKeys = [ 
     {name: 'rowNo'},
-    {name: 'reference_number'},
-    {name: 'customer_id', filter: 'customer'},
-    {name: 'date'},
-    {name: 'terms'},
-    {name: 'total'} 
+    {name: 'reference_number', objectname: 'attributes'},
+    {name: 'customer_id', filter: 'customer' , objectname: 'attributes', "returnvalue": "code"},
+    {name: 'date', objectname: 'attributes'},
+    {name: 'terms', objectname: 'attributes'},
+    {name: 'total', objectname: 'attributes'} 
    ]
   customers: any;
  @ViewChild('resultsTable') resultsTable: GenericTableComponent;
@@ -53,8 +53,12 @@ pagination = 1;
   filter(){
     let customer = this.formGroup.controls['customer'].value;
     let refNo = this.formGroup.controls['refNo'].value;
-    this.salesService.getFilteredSalesReturn(refNo, customer, 1).subscribe((data)=>{
-      this.resultsResults = data.collection;
+    this.salesService.getFilteredSalesReturn(refNo, customer, 1, 'posted').subscribe((data)=>{
+      if(data.collection){
+        this.resultsResults = (data.collection).data
+      }else if(data.data){
+        this.resultsResults = data.data;
+      }
       this.resultsTable.setPagination(data.pagination);
     }, error => this.dataPasserService.sendError(error.errors[0]))
 
@@ -63,8 +67,12 @@ pagination = 1;
   filterOnPagination(page){
     let customer = this.formGroup.controls['customer'].value;
     let refNo = this.formGroup.controls['refNo'].value;
-    this.salesService.getFilteredSalesReturn(refNo, customer, page).subscribe((data)=>{
-      this.resultsResults = data.collection;
+    this.salesService.getFilteredSalesReturn(refNo, customer, page, 'posted').subscribe((data)=>{
+      if(data.collection){
+        this.resultsResults = (data.collection).data
+      }else if(data.data){
+        this.resultsResults = data.data;
+      }
       this.resultsTable.setPagination(data.pagination);
     }, error => this.dataPasserService.sendError(error.errors[0]))
   }

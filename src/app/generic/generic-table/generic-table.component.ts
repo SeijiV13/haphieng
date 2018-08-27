@@ -105,8 +105,12 @@ export class GenericTableComponent implements OnInit {
     this.searchPagination.emit(pageNo);
   }
 
-  filter(item, filter){
+  getObject(result, objectname, name){
+    return result[objectname][name];
+  }
+
+  filter(item, filter, returnvalue){
     let customer = this.dataPasserService.dropdowns[filter].filter(value=> value.id == item);
-    return customer[0].code;
+    return customer[0][returnvalue];
   }
 }

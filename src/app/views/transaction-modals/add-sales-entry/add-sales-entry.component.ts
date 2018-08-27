@@ -108,6 +108,7 @@ export class AddSalesEntryComponent implements OnInit {
     if(this.salesEntryGroup.valid){
       if(this.dataPasserService.selectedData['product']){
         let entry = {
+          id: this.dataPasserService.selectedData['product']['id'],
           itemCode: this.dataPasserService.selectedData['product']['code'],
           description:  this.dataPasserService.selectedData['product']['description'],
           originalprice: this.dataPasserService.selectedData['product']['gross_price'],

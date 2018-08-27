@@ -10,7 +10,7 @@ import { ProductsService } from '../../../web-services/products.service';
 })
 export class AddProductComponent implements OnInit {
   browseForm: FormGroup;
-  categories = [{ code: "wheel", description: "dgood year"}];
+  categories = [{ code: "car parts", description: "Car parts"}]
   productLines = [];
   @ViewChild('addProductModal') addProductModal: ModalDirective;
  constructor(private dataPasserService: DataPasserService, private fb: FormBuilder, private productService: ProductsService) { }

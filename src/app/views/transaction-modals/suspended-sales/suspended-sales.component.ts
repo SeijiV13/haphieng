@@ -25,10 +25,10 @@ export class SuspendedSalesComponent implements OnInit {
   suspendedResults = [];
   suspendedKeys = [
     {"name": "rowNo"},
-    {"name": "reference_number"},
-    {"name":"terms"},
-    {"name": "total"},
-    {"name": "sale_type"},
+    {"name": "reference_number", "objectname": "attributes"},
+    {"name":"terms", "objectname": "attributes"},
+    {"name": "total", "objectname": "attributes"},
+    {"name": "sale_type", "objectname": "attributes"},
 
   ];
 
@@ -50,13 +50,18 @@ export class SuspendedSalesComponent implements OnInit {
       ]
       this.suspendedKeys = [
         {"name": "rowNo"},
-        {"name": "reference_number"},
-        {"name":"terms"},
-        {"name": "total"},
-        {"name": "sale_type"},
+        {"name": "reference_number", "objectname": "attributes"},
+        {"name":"terms", "objectname": "attributes"},
+        {"name": "total", "objectname": "attributes"},
+        {"name": "sale_type", "objectname": "attributes"},
       ]
       this.salesService.getSuspendedSales().subscribe((data)=>{
-        this.suspendedResults = data;
+        if(data.collection){
+          this.suspendedResults = (data.collection).data
+        }else if(data.data){
+          this.suspendedResults = data.data;
+        }
+      
       })
     }
     else if(this.type == 'purchase'){
@@ -69,14 +74,18 @@ export class SuspendedSalesComponent implements OnInit {
         
       ]
       this.suspendedKeys = [
-        {"name": "rowNo"},
-        {"name": "reference_number"},
-        {"name":"terms"},
-        {"name": "total_peso"},
-        {"name": "total_yuan"},
+        {"name": "rowNo", "objectname": "attributes"},
+        {"name": "reference_number", "objectname": "attributes"},
+        {"name":"terms", "objectname": "attributes"},
+        {"name": "total_peso", "objectname": "attributes"},
+        {"name": "total_yuan", "objectname": "attributes"},
       ]
       this.purchaseService.getSuspendedPurchases().subscribe((data)=>{
-        this.suspendedResults = data;
+        if(data.collection){
+          this.suspendedResults = (data.collection).data
+        }else if(data.data){
+          this.suspendedResults = data.data;
+        }
       })
     }
     else if(this.type == 'salesreturn'){
@@ -87,13 +96,17 @@ export class SuspendedSalesComponent implements OnInit {
         "Total",
       ];
       this.suspendedKeys = [
-        {"name": "rowNo"},
-        {"name": "reference_number"},
-        {"name":"terms"},
-        {"name": "total"},
+        {name: "rowNo"},
+        {name: "reference_number", "objectname": "attributes"},
+        {"name":"terms", "objectname": "attributes"},
+        {"name": "total", "objectname": "attributes"},
       ]
       this.salesService.getSuspendedSalesReturn().subscribe((data)=>{
-        this.suspendedResults = data;
+        if(data.collection){
+          this.suspendedResults = (data.collection).data
+        }else if(data.data){
+          this.suspendedResults = data.data;
+        }
       })
     }  else if(this.type == 'purchasereturn'){
       this.suspendedHeaders = [
@@ -105,13 +118,17 @@ export class SuspendedSalesComponent implements OnInit {
       ];
       this.suspendedKeys = [
         {"name": "rowNo"},
-        {"name": "reference_number"},
-        {"name":"terms"},
-        {"name": "total_peso"},
-        {"name": "total_yuan"},
+        {"name": "reference_number", "objectname": "attributes"},
+        {"name":"terms", "objectname": "attributes"},
+        {"name": "total_peso", "objectname": "attributes"},
+        {"name": "total_yuan", "objectname": "attributes"},
       ]
       this.purchaseService.getSuspendedPurchasesReturn().subscribe((data)=>{
-        this.suspendedResults = data;
+        if(data.collection){
+          this.suspendedResults = (data.collection).data
+        }else if(data.data){
+          this.suspendedResults = data.data;
+        }
       })
     }
     else if(this.type == 'damage'){
@@ -123,12 +140,16 @@ export class SuspendedSalesComponent implements OnInit {
       ];
       this.suspendedKeys = [
         {"name": "rowNo"},
-        {"name": "reference_number"},
-        {"name":"terms"},
-        {"name": "total"},
+        {"name": "reference_number", "objectname": "attributes"},
+        {"name":"terms", "objectname": "attributes"},
+        {"name": "total", "objectname": "attributes"},
       ]
       this.damageService.getSuspendedDamageItems().subscribe((data)=>{
-        this.suspendedResults = data;
+        if(data.collection){
+          this.suspendedResults = (data.collection).data
+        }else if(data.data){
+          this.suspendedResults = data.data;
+        }
       })
     } 
     this.suspendedModal.show();

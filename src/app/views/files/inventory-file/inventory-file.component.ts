@@ -40,7 +40,7 @@ export class InventoryFileComponent implements OnInit {
    {name: 'remarks_2'}
   ]
 
-  categories = [{ code: "wheel", description: "dgood year"}]
+  categories = [{ code: "car parts", description: "Car parts"}]
  
   pricingHeaders = [''];
   pricingResults = [];

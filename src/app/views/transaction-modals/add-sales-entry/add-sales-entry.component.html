@@ -18,7 +18,7 @@
                  <label class="control-label col-sm-3 col-md-2" for="description">Agent <span class="fa fa-asterisk"></span></label>
                  <div class="col-sm-9 col-md-10 field">
                      <select formControlName="agent" class="form-control">
-                       <option *ngFor="let agent of agents" [value]="agent.name">{{agent.name}} | {{agent.description}}</option>
+                       <option *ngFor="let agent of agents" [value]="agent.id">{{agent.name}} | {{agent.description}}</option>
                      </select>
                      <control-messages [control]="salesEntryGroup.controls.agent"></control-messages>
                   </div>

@@ -21,12 +21,12 @@ pagination = 1;
   resultsResults = []
   resultsKeys = [
     {name: 'rowNo'},  
-    {name: 'reference_number'} ,
-    {name : 'date'},
-    {name : 'supplier_id', filter: 'supplier'},
-    {name: 'terms'},
-    {name: 'total_peso'},
-    {name: 'total_yuan'}
+    {name: 'reference_number', objectname: 'attributes'} ,
+    {name : 'date', objectname: 'attributes'},
+    {name : 'supplier_id', filter: 'supplier', objectname: 'attributes', "returnvalue": "code"},
+    {name: 'terms', objectname: 'attributes'},
+    {name: 'total_peso', objectname: 'attributes'},
+    {name: 'total_yuan', objectname: 'attributes'}
  
    ];
   suppliers: any;
@@ -54,8 +54,12 @@ pagination = 1;
   filter(){
     let refNo = this.formGroup.controls['refNo'].value;
     let supplier = this.formGroup.controls['supplier'].value;
-    this.purchaseService.getFilteredPurchasesReturn(refNo, supplier, 1).subscribe((data)=>{
-     this.resultsResults = data.collection;
+    this.purchaseService.getFilteredPurchasesReturn(refNo, supplier, 1, 'posted').subscribe((data)=>{
+      if(data.collection){
+        this.resultsResults = (data.collection).data
+      }else if(data.data){
+        this.resultsResults = data.data;
+      }
      this.resultsTable.setPagination(data.pagination);
     }, error => this.dataPasserService.sendError(error.errors[0]))
   }
@@ -63,8 +67,12 @@ pagination = 1;
   filterOnPagination(page){
     let refNo = this.formGroup.controls['refNo'].value;
     let supplier = this.formGroup.controls['supplier'].value;
-    this.purchaseService.getFilteredPurchasesReturn(refNo, supplier, page).subscribe((data)=>{
-     this.resultsResults = data.collection;
+    this.purchaseService.getFilteredPurchasesReturn(refNo, supplier, page, 'posted').subscribe((data)=>{
+      if(data.collection){
+        this.resultsResults = (data.collection).data
+      }else if(data.data){
+        this.resultsResults = data.data;
+      }
      this.resultsTable.setPagination(data.pagination);
     }, error => this.dataPasserService.sendError(error.errors[0]))
   }

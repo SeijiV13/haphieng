@@ -42,7 +42,7 @@
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="grossPrice">Gross Price</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input (change)="computeLess()" Formatter='{"type":"decimal"}' type="text" class="form-control" formControlName="gross_price">
+                     <input (change)="computeLess()" Formatter='{"type":"number"}' type="text" class="form-control" formControlName="gross_price">
                   </div>
              </div> 
              <div class="form-group">
@@ -54,17 +54,17 @@
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="warehouseOne">Warehouse One</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="warehouse_1_stock">
+                     <input type="text" class="form-control" Formatter='{"type":"number"}' formControlName="warehouse_1_stock">
                   </div>
              </div>
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="packQtyBig">Pack Qty Big</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="pack_qty_big">
+                     <input type="text" class="form-control" Formatter='{"type":"number"}' formControlName="pack_qty_big">
                   </div>
              </div> 
                <div class="form-group">
-                 <label class="control-label col-sm-3 col-md-4" Formatter='{"type":"decimal"}' for="productLine">Product Line</label>
+                 <label class="control-label col-sm-3 col-md-4" Formatter='{"type":"number"}' for="productLine">Product Line</label>
                  <div class="col-sm-9 col-md-8 field">
                      <select formControlName="product_line"  type="text" class="form-control">
                             <option value =""></option>
@@ -92,7 +92,7 @@
               <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4"  for="minimumQuantity">Minimum Quantity</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="minimum_quantity">
+                     <input type="text" class="form-control" Formatter='{"type":"number"}' formControlName="minimum_quantity">
                   </div>
              </div>
              <div class="form-group">
@@ -104,13 +104,13 @@
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="warehouseTwo">Warehouse Two</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="warehouse_2_stock">
+                     <input type="text" class="form-control" Formatter='{"type":"number"}' formControlName="warehouse_2_stock">
                   </div>
              </div>
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="packQtySmall">Pack Qty Small</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input type="text" class="form-control" Formatter='{"type":"decimal"}' formControlName="pack_qty_small">
+                     <input type="text" class="form-control" Formatter='{"type":"number"}' formControlName="pack_qty_small">
                   </div>
              </div> 
          </div>

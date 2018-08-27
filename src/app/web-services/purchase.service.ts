@@ -10,8 +10,12 @@ export class PurchaseService {
     return this.httpClient.getBase(`/api/v1/haphieng/purchases`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
 
-  getFilteredPurchase(refNo, supplier, page): Observable<any>{
-    return this.httpClient.getBase(`/api/v1/haphieng/purchases?page=${page}&filters%5Breference_number=${refNo}&filters%5Bsupplier_code=${supplier}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  getFilteredPurchase(refNo, supplier, page, status): Observable<any>{
+    return this.httpClient.getBase(`/api/v1/haphieng/purchases?page=${page}&filters%5Breference_number=${refNo}&filters%5Bsupplier_code=${supplier}&filters%5Bstatus=${status}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+  getFilteredPurchaseWithoutPage(refNo): Observable<any>{
+    return this.httpClient.getBase(`/api/v1/haphieng/purchases?filters%5Breference_number=${refNo}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
 
   getSuspendedPurchases(){
@@ -40,8 +44,12 @@ export class PurchaseService {
     return this.httpClient.getBase(`/api/v1/haphieng/purchase_returns`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
 
-  getFilteredPurchasesReturn(refNo, supplier, page): Observable<any>{
-    return this.httpClient.getBase(`/api/v1/haphieng/purchase_returns?page=${page}&filters%5Breference_number=${refNo}&filters%5Bsupplier_code=${supplier}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  getFilteredPurchasesReturn(refNo, supplier, page, status): Observable<any>{
+    return this.httpClient.getBase(`/api/v1/haphieng/purchase_returns?page=${page}&filters%5Breference_number=${refNo}&filters%5Bsupplier_code=${supplier}&filters%5Bstatus=${status}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
+  }
+
+  getFilteredPurchaseReturnsWithoutPage(refNo): Observable<any>{
+    return this.httpClient.getBase(`/api/v1/haphieng/purchase_returns?filters%5Breference_number=${refNo}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
 
   getSuspendedPurchasesReturn(){

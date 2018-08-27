@@ -9,7 +9,8 @@ import { CustomerService } from '../../../web-services/customer.service';
 import { GenericModalComponent } from '../../../generic/generic-modal/generic-modal.component';
 import { SalesService } from '../../../web-services/sales.service';
 import { FormErrorHandlerService } from '../../../generic/services/form-error-handler.service';
-
+import { ProductsService } from '../../../web-services/products.service';
+const REFERENCE_NUMBER_LENGTH = 11;
 @Component({
   selector: 'app-sales-entries',
   templateUrl: './sales-entries.component.html',
@@ -46,7 +47,7 @@ export class SalesEntriesComponent implements OnInit {
      {"name": "quantity"},
      {"name": "available"},
      {"name": "pending"},
-     {"name": "agent"},
+     {"name": "agent", "filter": "agent", "returnvalue": "name"},
      {"name": "price"},
      {"name": "amount"},
   ];
@@ -63,7 +64,8 @@ export class SalesEntriesComponent implements OnInit {
               private fb: FormBuilder,
               private customerService: CustomerService,
               private salesService: SalesService,
-              private formErrorHandler: FormErrorHandlerService) { 
+              private formErrorHandler: FormErrorHandlerService,
+              private productService: ProductsService) { 
                 this.getDropdownValues();
               }
 
@@ -186,7 +188,7 @@ export class SalesEntriesComponent implements OnInit {
 
       }else{
         if(!this.retrievedSale){
-          let sale = this.createSaleJson('suspend');
+          let sale = this.createSaleJson('suspended');
           this.salesService.createSale(sale).subscribe((data)=>{
             this.salesForm.reset();
             this.resultsResults = [];
@@ -194,7 +196,7 @@ export class SalesEntriesComponent implements OnInit {
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }else{
-          let sale = this.createSaleJson('suspend');
+          let sale = this.createSaleJson('suspended');
           this.salesService.editSale(this.salesForm.controls['id'].value,sale).subscribe((data)=>{
             this.salesForm.reset();
             this.resultsResults = [];
@@ -210,15 +212,60 @@ export class SalesEntriesComponent implements OnInit {
   }
 
   retrieveSuspendedSale(sales){
-    this.salesForm.controls['id'].setValue(sales.id);
-    this.salesForm.controls['date'].setValue(sales.date);
-    this.salesForm.controls['refNo'].setValue(sales.reference_number);
-    this.salesForm.controls['terms'].setValue(sales.terms);
-    this.salesForm.controls['total'].setValue(sales.total);
-    this.salesForm.controls['wcrc'].setValue(sales.sale_type);
-    this.salesForm.controls['customer'].setValue(sales.customer_id);
+    this.salesForm.controls['id'].setValue(sales.data.id);
+    this.salesForm.controls['date'].setValue(sales.data.attributes.date);
+    this.salesForm.controls['refNo'].setValue(sales.data.attributes.reference_number);
+    this.salesForm.controls['terms'].setValue(sales.data.attributes.terms);
+    this.salesForm.controls['total'].setValue(sales.data.attributes.total);
+    this.salesForm.controls['wcrc'].setValue(sales.data.attributes.sale_type);
+    this.salesForm.controls['customer'].setValue(sales.data.attributes.customer_id);
     this.retrievedSale = true;
     this.salesForm.controls['refNo'].disable();
+    this.resultsResults = [];
+    this.retrieveItemsOfSuspendedSale(sales);
+  }
+
+  retrieveItemsOfSuspendedSale(sales){
+    this.productService.getProducts().subscribe((data)=>{
+      for(let item of sales.included){
+        let selecteditem = data.filter((items) => items.id == item.attributes.product_id);
+        if(selecteditem){
+          let originalprice = parseFloat(item.attributes['price_override']);
+          selecteditem[0]['price'] = originalprice;
+          
+          //compute for amount
+          selecteditem[0]['amount'] = parseFloat(selecteditem[0]['price']) * parseFloat(item.attributes['quantity']);
+          this.resultsResults.push({
+            id: selecteditem[0]['id'],
+            itemCode: selecteditem[0]['code'],
+            description:  selecteditem[0]['description'],
+            originalprice: selecteditem[0]['gross_price'],
+            available: selecteditem[0]['available_quantity'],
+            pending: selecteditem[0]['pending_quantity'],
+            itemRemarks: selecteditem[0]['remarks_1'],
+            category: selecteditem[0]['category'],
+
+            agent: item.attributes.agent_id,
+            lastprice: "",
+            quantity: item.attributes.quantity,
+            warehouse: item.attributes.warehouse_source,
+            good: "",
+            qtyNew: "",
+            adjustmentRemarks: "",
+
+            price: selecteditem[0]['price'],
+            amount: selecteditem[0]['amount']
+            
+          })
+          this.computeTotal();
+
+        }
+      }
+     
+    })
+ 
+   
+   
   }
 
   createSaleJson(status){
@@ -230,19 +277,18 @@ export class SalesEntriesComponent implements OnInit {
       total: this.salesForm.controls['total'].value,
       sale_type: this.salesForm.controls['wcrc'].value,
       customer_id: this.salesForm.controls['customer'].value,
-      product_sales: [
+      product_sales_attributes: [
       ]
     }
 
     for(let item of this.resultsResults){
-      let jsonSale = {
+      json.product_sales_attributes.push({
         quantity: item.quantity,
-        warehouse_source: item.warehouse == "W2" ? 'warehouse_2_stock': 'warehouse_1_stock',
-        override_price: item.price,
-        agent: item.agent,
-        product: item.itemCode
-      }
-      json.product_sales.push({jsonSale})
+        warehouse_source: item.warehouse, //== "W2" ? 'warehouse_2_stock': 'warehouse_1_stock',
+        price_override: item.price,
+        agent_id: item.agent,
+        product_id: item.id
+      })
     }
 
 
@@ -253,6 +299,47 @@ export class SalesEntriesComponent implements OnInit {
   removeRow(index){
     this.resultsResults.splice(index, 1);
     this.computeTotal();
+  }
+
+  latestRefNoChecker(data){
+     let highestrefno  = 0;
+     for(let sale of data){
+      if(parseInt(sale.attributes.reference_number.substr(1)) > highestrefno){
+        highestrefno = parseInt(sale.attributes.reference_number.substr(1));
+      }
+     }
+     return highestrefno
+  }
+
+  typeAheadRef(event){
+    this.salesForm.controls['refNo'].disable();
+    this.salesService.getFilteredSalesWithoutPage(event.target.value).subscribe((data)=>{
+      if(data.data.length != 0){
+          let finalref = "";
+          let latestrefno = this.latestRefNoChecker(data.data)
+          let nextindex = latestrefno + 1;
+
+          let zerolength =  REFERENCE_NUMBER_LENGTH - nextindex.toString().length;
+          for(let i = 0; i < zerolength; i ++){
+            finalref = finalref + "0";
+          }
+
+          finalref = event.target.value + finalref + nextindex.toString();
+          this.salesForm.controls['refNo'].setValue(finalref);
+
+      }else{
+        if(event.target.value && event.target.value.length == 1){
+          this.salesForm.controls['refNo'].setValue(event.target.value + "00000000001");
+        }
+  
+      }
+    })
+  
+  }
+
+  resetRefNo(){
+    this.salesForm.controls['refNo'].enable();
+    this.salesForm.controls['refNo'].reset();
   }
 
 
