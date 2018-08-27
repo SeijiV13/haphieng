@@ -59,4 +59,8 @@ export class GenerateCounterReceiptsComponent implements OnInit {
    this.viewReceiptsModal.show();
   }
 
+  searchReceipt(){
+    
+  }
+
 }
