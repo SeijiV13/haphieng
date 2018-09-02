@@ -1,5 +1,4 @@
 //VARIABLES
-@import url('https://fonts.googleapis.com/css?family=Lato');
 $fonts: Lato, Helvetica, Arial, sans-serif;
 $global-color:#03603b;
 $menu-colors: #29363d;
@@ -159,7 +158,6 @@ ul.pagination>li{
 
 .pw-meter i {
     padding-top: 2px;
-    float: right;
     color: #0066cc;
     display: inline-block;
     margin-right: 5px;
