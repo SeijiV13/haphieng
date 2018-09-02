@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService} from 'ngx-cookie';
-import { AuthenticateService } from "../../../login/loginService/authenticate.service";
 import * as $ from 'jquery';
 
 @Component({
   selector: 'error-page',
   templateUrl: './error-page.component.html',
-  providers:[AuthenticateService]
 })
 export class ErrorPageComponent implements OnInit {
   nextPageInd:string;
   loginPressed:boolean = false;
   message:string = "Oops! Something went wrong.";
-  constructor(private authenticate: AuthenticateService, private cookieService: CookieService) { 
+  constructor( private cookieService: CookieService) { 
 
     if(localStorage.getItem("redirectLogin") == "true"){
       this.nextPageInd = "Login";
@@ -34,12 +32,6 @@ export class ErrorPageComponent implements OnInit {
         this.cookieService.get("usrid")){
       this.loginPressed = true;
       var usrid = this.cookieService.get("usrid");
-      this.authenticate.remoteLogout(usrid).subscribe(
-        (data) => {
-        this.cookieService.remove("token");
-        },(error) => {/**console.log(error.text());**/},
-        ()=>{ window.location.replace('/'); }
-      );
     }
     window.location.replace('/');
   }

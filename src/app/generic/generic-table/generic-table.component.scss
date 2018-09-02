@@ -142,3 +142,13 @@ tfoot .form-control {
     border-color: lightgray;
     text-align: center;
 }
+
+.loader{
+    margin:auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    background-size: cover !important;
+    background: url('../../../assets/img/cube_loader.gif')
+}

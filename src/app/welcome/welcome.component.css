@@ -102,82 +102,8 @@ tbody{
 
 }
 
-.picto-legend{
-	width:16px;
-	height: 16px;
-	background-size: 16px 16px !important;
-	margin-left:5px;
-	margin-right:0;
-	vertical-align: text-top;
-}
-.picto-legend:first-child{
-	margin-left:0;
-}
-
-
-.re-within-tat{
-	background:url(../../assets/img/reWithinTAT.png) left top no-repeat;
-}
-.re-near-tat{
-	background:url(../../assets/img/reNearTAT.png) left top no-repeat;
-}
-.re-beyond-tat{
-	background:url(../../assets/img/reBeyondTAT.png) left top no-repeat;
-}
-
-
-.mc-within-tat{
-	background:url(../../assets/img/mcWithinTAT.png) left top no-repeat;
-}
-.mc-near-tat{
-	background:url(../../assets/img/mcNearTAT.png) left top no-repeat;
-}
-.mc-beyond-tat{
-	background:url(../../assets/img/mcBeyondTAT.png) left top no-repeat;
-}
 
 
 
-.pa-within-tat{
-	background:url(../../assets/img/paWithinTAT.png) no-repeat;
-}
-.pa-near-tat{
-	background:url(../../assets/img/paNearTAT.png) no-repeat;
-}
-.pa-beyond-tat{
-	background:url(../../assets/img/paBeyondTAT.png) no-repeat;
-}
 
-.total-tat{
-	background:url(../../assets/img/totalTAT.png) left top no-repeat;
-}
-
-.re-within-tat, .re-near-tat, .re-beyond-tat, .mc-within-tat, .mc-near-tat, .mc-beyond-tat, .pa-within-tat, .pa-near-tat, .pa-beyond-tat, .total-tat{
-	background-size: 20px 20px;
-}
-
-
-.re-within-tat .badge, .mc-within-tat .badge, .pa-within-tat .badge{
-	border:1px solid #090;
-	color:#090 !important;
-}
-.re-near-tat .badge, .mc-near-tat .badge, .pa-near-tat .badge{
-	border:1px solid #F90;
-	color:#F90 !important;
-}
-.re-beyond-tat .badge, .mc-beyond-tat .badge, .pa-beyond-tat .badge{
-	border:1px solid #F00;
-	color:#F00 !important;
-}
-.total-tat .badge{
-	border:1px solid #666;
-	color:#666 !important;
-}
-
-.legendTat{
-	font-size:0.6em;
-	color:#999;
-	font-weight:normal;
-	vertical-align: middle !important;
-}
 

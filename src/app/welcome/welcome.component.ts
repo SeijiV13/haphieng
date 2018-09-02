@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { AuthenticateService } from "../login/loginService/authenticate.service";
+
 import { ActivatedRoute } from '@angular/router';
 import { DataPasserService } from '../generic/services/data-passer.service';
 import { DropdownService } from '../generic/services/dropdown.service';
@@ -16,13 +16,11 @@ import * as $ from 'jquery';
 @Component({
   selector: 'welcome',
   templateUrl: './welcome.component.html',
-  providers: [AuthenticateService],
   styleUrls: ['./welcome.component.css'],
 })
 
 export class WelcomeComponent {
   constructor(
-    private _service: AuthenticateService,
     private route: ActivatedRoute,
     private router: Router,
     private dataPasserService: DataPasserService,

@@ -1,11 +1,9 @@
 body, html{
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url('../../../../assets/img/login-background.png');
 
 }
 .logo{
-    background-image: url('../../../../assets/img/app-front.png') !important;
         background-repeat: no-repeat;
         width:100%;
         height:100px;

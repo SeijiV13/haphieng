@@ -79,6 +79,7 @@ export class InventoryFileComponent implements OnInit {
     let total = 0;
     let code = this.formGroup.controls['product'].value;
     let category = this.formGroup.controls['category'].value;
+    this.resultsTable.showLoader();
     this.productService.filterProducts(code, category, 1).subscribe((data)=>{
       this.resultsResults = data.collection;
       this.resultsTable.setPagination(data.pagination);
@@ -86,7 +87,11 @@ export class InventoryFileComponent implements OnInit {
           total = total + parseInt(result.gross_price);
       }
       this.formGroup.controls['total'].setValue(total.toString());
-    }, error=>  this.dataPasserService.sendError(error.errors[0]));
+      this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
 
   }
 
@@ -94,6 +99,7 @@ export class InventoryFileComponent implements OnInit {
     let total = 0;
     let code = this.formGroup.controls['product'].value;
     let category = this.formGroup.controls['category'].value;
+    this.resultsTable.showLoader();
     this.productService.filterProducts(code, category, page).subscribe((data)=>{
       this.resultsResults = data.collection;
       this.resultsTable.setPagination(data.pagination);
@@ -101,7 +107,11 @@ export class InventoryFileComponent implements OnInit {
           total = total + parseInt(result.gross_price);
       }
       this.formGroup.controls['total'].setValue(total.toString());
-    }, error=>  this.dataPasserService.sendError(error.errors[0]));
+      this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
   }
 
   editDetails(){

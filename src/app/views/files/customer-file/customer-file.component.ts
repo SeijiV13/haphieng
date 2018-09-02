@@ -87,20 +87,30 @@ export class CustomerFileComponent implements OnInit {
      let code = this.formGroup.controls['customer'].value;
      let description = this.formGroup.controls['description'].value;
      let agent = this.formGroup.controls['agent'].value;
+     this.resultsTable.showLoader();
      this.customerService.filterCustomers(description, code, agent, 1).subscribe((data)=>{
        this.resultsResults = data.collection;
-       this.resultsTable.setPagination(data.pagination)
-     }, error  => this.dataPasserService.sendError(error.errors[0]))
+       this.resultsTable.setPagination(data.pagination);
+       this.resultsTable.hideLoader();
+     }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
   } 
 
   filterOnPagination(page){
     let code = this.formGroup.controls['customer'].value;
     let description = this.formGroup.controls['description'].value;
     let agent = this.formGroup.controls['agent'].value;
+    this.resultsTable.showLoader();
     this.customerService.filterCustomers(description, code, agent, page).subscribe((data)=>{
       this.resultsResults = data.collection;
-      this.resultsTable.setPagination(data.pagination)
-    }, error  => this.dataPasserService.sendError(error.errors[0]))
+      this.resultsTable.setPagination(data.pagination);
+      this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
  } 
 
   addNewCustomer(){

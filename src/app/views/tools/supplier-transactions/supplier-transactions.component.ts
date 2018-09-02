@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder} from '@angular/forms';
 import { SupplierService } from '../../../web-services/supplier.service';
 import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
 import { PurchaseService } from '../../../web-services/purchase.service';
+import { ViewItemsComponent } from '../../transaction-modals/view-items/view-items.component';
 
 @Component({
   selector: 'app-supplier-transactions',
@@ -12,7 +13,7 @@ import { PurchaseService } from '../../../web-services/purchase.service';
   styleUrls: ['./supplier-transactions.component.scss']
 })
 export class SupplierTransactionsComponent implements OnInit {
-
+  @ViewChild('viewItemsModal') viewItemsModal: ViewItemsComponent;
  formGroup :FormGroup;
   browseForm: FormGroup;
   pagination = 1;
@@ -20,7 +21,7 @@ export class SupplierTransactionsComponent implements OnInit {
   resultsResults = []
   resultsKeys = [
     {name: 'rowNo'},  
-    {name: 'reference_number', objectname: 'attributes'} ,
+    {name: 'reference_number', objectname: 'attributes', behavior: 'clickable'} ,
     {name : 'date', objectname: 'attributes'},
     {name : 'supplier_id', filter: 'supplier', objectname: 'attributes', "returnvalue": "code"},
     {name: 'terms', objectname: 'attributes'},
@@ -50,6 +51,7 @@ export class SupplierTransactionsComponent implements OnInit {
 
   filter(){
     let supplier = this.formGroup.controls['supplier'].value;
+    this.resultsTable.showLoader();
     this.purchaseService.getFilteredPurchase("", supplier, 1, 'posted').subscribe((data)=>{
       if(data.collection){
         this.resultsResults = (data.collection).data
@@ -57,11 +59,16 @@ export class SupplierTransactionsComponent implements OnInit {
         this.resultsResults = data.data;
       }
      this.resultsTable.setPagination(data.pagination);
-    }, error => this.dataPasserService.sendError(error.errors[0]))
+     this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
   }
  
   filterOnPagination(page){
     let supplier = this.formGroup.controls['supplier'].value;
+    this.resultsTable.showLoader();
     this.purchaseService.getFilteredPurchase("", supplier, page, 'posted').subscribe((data)=>{
       if(data.collection){
         this.resultsResults = (data.collection).data
@@ -69,7 +76,15 @@ export class SupplierTransactionsComponent implements OnInit {
         this.resultsResults = data.data;
       }
      this.resultsTable.setPagination(data.pagination);
-    }, error => this.dataPasserService.sendError(error.errors[0]))
+     this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
+  }
+
+  viewItems(result){
+    this.viewItemsModal.show('purchase', result.id);
   }
 
   print(type){

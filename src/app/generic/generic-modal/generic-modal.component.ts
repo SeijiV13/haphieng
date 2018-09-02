@@ -99,18 +99,9 @@ export class GenericModalComponent implements AfterViewInit{
   }
 
   setColor(){
-    if(this.type === 'success'){
-      $(".modal-header").css("border-bottom-color", "green");
-      $(".logo").css("color", "green");
-    }
-    else if(this.type === 'confirmation'){
-      $(".modal-header").css("border-bottom-color", "#6a706f");
+      // $(".modal-header").css("border-bottom-color", "#6a706f");
       $(".logo").css("color", "#6a706f");
-    }
-    else if(this.type === 'error'){
-      $(".modal-header").css("border-bottom-color", "#c42f2f");
-      $(".logo").css("color", "#c42f2f");
-    }
+    
   }
 
 

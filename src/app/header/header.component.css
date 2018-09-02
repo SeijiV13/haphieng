@@ -1,11 +1,14 @@
 .header {
     background-color:white;
-    padding: 5px;
+    padding: 7px;
     z-index:1000;
     position:fixed;
     width:100%;
-   top: 0px !important;
-
+    top: 0px !important;
+    -webkit-box-shadow: 2px 8px 49px -16px rgba(125,112,125,1);
+    -moz-box-shadow: 2px 8px 49px -16px rgba(125,112,125,1);
+    box-shadow: 2px 8px 49px -16px rgba(125,112,125,1);
+    background-size: 50%;
     /**color: #126c99;
     background-color: #ffffff;    **/
     /**-webkit-background-size: cover;
@@ -13,8 +16,8 @@
     -o-background-size: cover;
     background-size: cover; **/
     background-size: 50%;
-    border-bottom-style: solid;
-    border-bottom-width: 5px;
+    /* border-bottom-style: solid;
+    border-bottom-width: 5px; */
 }
 
 .header-logo {

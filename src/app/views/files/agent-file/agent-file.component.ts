@@ -60,22 +60,32 @@ export class AgentFileComponent implements OnInit {
   filter(){
     let name = this.formGroup.controls['name'].value;
     let description = this.formGroup.controls['description'].value;
-    let address_1 = this.formGroup.controls['address'].value
+    let address_1 = this.formGroup.controls['address'].value;
+    this.resultsTable.showLoader();
     this.agentService.filterAgents(name, description, address_1, 1).subscribe((data)=>{
       this.resultsResults = data.collection;
       this.resultsTable.setPagination(data.pagination);
-    }, error  => this.dataPasserService.sendError(error.errors[0]))
+      this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
 
   }
 
   filterOnPagination(page){
     let name = this.formGroup.controls['name'].value;
     let description = this.formGroup.controls['description'].value;
-    let address_1 = this.formGroup.controls['address'].value
+    let address_1 = this.formGroup.controls['address'].value;
+    this.resultsTable.showLoader();
     this.agentService.filterAgents(name, description, address_1, page).subscribe((data)=>{
       this.resultsResults = data.collection;
       this.resultsTable.setPagination(data.pagination);
-    }, error  => this.dataPasserService.sendError(error.errors[0]))
+      this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
 
   }
 

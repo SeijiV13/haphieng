@@ -1,11 +1,12 @@
 //VARIABLES
-$fonts: "Helvetica";
+@import url('https://fonts.googleapis.com/css?family=Lato');
+$fonts: Lato, Helvetica, Arial, sans-serif;
 $global-color:#03603b;
-$menu-colors: #19491d;
+$menu-colors: #29363d;
 $menu-border-colors: #074d24;
 $submenu-colors:#1e995d;
 $button: 0px;
-$sidebar-color: green;
+$sidebar-color: #181e20;
 $main-submenu-button-color:#00260e;
 $main-submenu-button-hover-color: #2d8954;
 $menu-menu-hover-color:#0f2603;
@@ -22,12 +23,11 @@ $header-border-color: green;
 @import 'mixins';
 
 //FONT PROPERTIES AND GENERIC STYLE 
-@font-face {
-    font-family: $fonts;
-    font-style: normal;
-    font-weight: 400;
-    src: local('Lato Regular'), local('Lato-Regular'), url(./font/Lato.ttf);
+
+body{
+    font-family: Lato, Helvetica, Arial, sans-serif;
 }
+
 a { cursor: pointer;}
 body,
 input,
@@ -400,7 +400,6 @@ ul.pagination>li{
     display: table-cell;
     vertical-align: middle;
     text-align: center;
-    background: url("../img/login-header-background.png") left no-repeat;
     height: 80px;
     width: 300px;
     margin: 0 20 0 0px;
@@ -531,7 +530,7 @@ ul.pagination>li{
 
 input.form-control {
     @include appearance-attribute(none);
-    @include border-radius(0px);
+    // @include border-radius(0px);
 }
 
 .form-group {
@@ -557,7 +556,7 @@ input.form-control {
 }
 
 select.form-control {
-    @include border-radius(0px);
+    // @include border-radius(0px);
     @include appearance-attribute(none);
     background: url("../img/dropdown-arrow.png") no-repeat;
     background-position: 98% center;
@@ -651,4 +650,14 @@ th{
 input[type="radio"] {
   margin-top: -1px;
   vertical-align: middle;
+}
+
+.card{
+    background: white;
+    padding: 20px;
+    height: auto;
+    margin: auto;
+    -webkit-box-shadow: 1px 1px 7px -1px rgba(191,172,191,1);
+    -moz-box-shadow: 1px 1px 7px -1px rgba(191,172,191,1);
+    box-shadow: 1px 1px 7px -1px rgba(191,172,191,1);
 }

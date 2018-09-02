@@ -158,21 +158,31 @@ export class AddSalesEntryComponent implements OnInit {
   filter(){
     let code = this.salesEntryGroup.controls['itemCode'].value;
     let category = this.salesEntryGroup.controls['category'].value;
+    this.entryTable.showLoader();
     this.productService.filterProducts(code, category, 1).subscribe((data)=>{
       this.entryResults = data.collection;
       this.pagination = data.pagination;
       this.entryTable.setPagination(data.pagination);
-    }, error=>  this.dataPasserService.sendError(error.errors[0]));
+      this.entryTable.hideLoader();
+    }, error => {
+      this.entryTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
   }
 
   filterOnPagination(page){
     let code = this.salesEntryGroup.controls['itemCode'].value;
     let category = this.salesEntryGroup.controls['category'].value;
+    this.entryTable.showLoader();
     this.productService.filterProducts(code, category, page).subscribe((data)=>{
       this.entryResults = data.collection;
       this.pagination = data.pagination;
       this.entryTable.setPagination(data.pagination);
-    }, error=>  this.dataPasserService.sendError(error.errors[0]));
+      this.entryTable.hideLoader();
+    }, error => {
+      this.entryTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
   }
 
 }

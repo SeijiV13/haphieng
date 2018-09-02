@@ -18,12 +18,14 @@
 <div *ngIf="type == 'single'" class="row">
   <div class="col-sm-12">
       <!--LOADING ANIMATION GIF-->
-      <loading-animation [removeLoad]="removeLoad"></loading-animation>
-      <div *ngIf="results.length === 0 && removeLoad !== false">
+      <div class="loader" *ngIf="showLoaderIcon">
+
+      </div>
+      <div *ngIf="results.length === 0 && showLoaderIcon == false">
           <div class="alert alert-info">{{tableResultMessage}}</div>
       </div>
       <div [hidden]="!(results.length !== 0 && removeLoad !== false)" class="table-responsive">
-          <table class="table">
+          <table class="table" *ngIf="!showLoaderIcon">
               <THEAD>
                   <TR>
                     <th *ngFor="let header of headers">{{header}}</th>
@@ -89,7 +91,7 @@
 
 
       </div>
-      <div [hidden]="!(results.length !== 0 && removeLoad !== false) || (!paginationActive)">
+      <div [hidden]="showLoaderIcon || results.length == 0">
       <pagination-selector #paginationSelector  [url]="searchUrl" (showLoaderEvent)="showLoader($event)" (returnedValueEvent)="map2Tables($event)" (searchPagination)="retrieveNewValues($event)"></pagination-selector>
       </div>
 

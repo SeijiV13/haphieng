@@ -59,21 +59,31 @@ export class SupplierFileComponent implements OnInit {
   }
   filter(){
     let code = this.formGroup.controls['supplierCode'].value;
-    let description = this.formGroup.controls['description'].value
+    let description = this.formGroup.controls['description'].value;
+    this.resultsTable.showLoader();
     this.supplierService.filterSuppliers(code, description, 1).subscribe((data)=>{
       this.resultsResults = data.collection;
       this.resultsTable.setPagination(data.pagination);
-    }, error  => this.dataPasserService.sendError(error.errors[0]))
+      this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
 
   }
 
   filterOnPagination(page){
     let code = this.formGroup.controls['supplierCode'].value;
-    let description = this.formGroup.controls['description'].value
+    let description = this.formGroup.controls['description'].value;
+    this.resultsTable.showLoader();
     this.supplierService.filterSuppliers(code, description, page).subscribe((data)=>{
       this.resultsResults = data.collection;
       this.resultsTable.setPagination(data.pagination);
-    }, error  => this.dataPasserService.sendError(error.errors[0]))
+      this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
 
   }
 

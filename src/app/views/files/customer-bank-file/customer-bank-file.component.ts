@@ -67,18 +67,28 @@ export class CustomerBankFileComponent implements OnInit {
   filter(){
     let code = this.formGroup.controls['customerCode'].value;
     let description =this.formGroup.controls['customerDescription'].value;
+    this.resultsTable.showLoader();
     this.customerService.filterCustomers(description, code, "", 1).subscribe((data)=>{
       this.resultsResults = data.collection;
       this.resultsTable.setPagination(data.pagination);
-    });
+      this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
   }
   filterOnPagination(page){
     let code = this.formGroup.controls['customerCode'].value;
     let description =this.formGroup.controls['customerDescription'].value;
+    this.resultsTable.showLoader();
     this.customerService.filterCustomers(description, code, "", page).subscribe((data)=>{
       this.resultsResults = data.collection;
       this.resultsTable.setPagination(data.pagination);
-    });
+      this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
   }
   print(){}
   editDetails(){

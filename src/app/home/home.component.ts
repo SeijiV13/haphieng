@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthenticateService } from "../login/loginService/authenticate.service";
 import { Router, NavigationEnd } from '@angular/router';
 import { PlatformLocation } from '@angular/common';
 import { DataPasserService } from '../generic/services/data-passer.service';
@@ -13,7 +12,6 @@ import * as $ from 'jquery';
 @Component({ 
     selector: 'home',
     templateUrl: './home.component.html',
-    providers: [AuthenticateService]
 })
 
 export class HomeComponent implements OnInit, AfterViewChecked, AfterViewInit {
@@ -27,7 +25,6 @@ export class HomeComponent implements OnInit, AfterViewChecked, AfterViewInit {
   
 
     constructor(
-        private authenticate: AuthenticateService,
         private route: ActivatedRoute, private router: Router,
         public dataPasserService: DataPasserService,
         private dropdownService: DropdownService,

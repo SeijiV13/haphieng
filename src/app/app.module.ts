@@ -1,5 +1,4 @@
 
-import { LoginComponent } from './login/login.component';
 
 //ANGULAR MODULES
 import { BrowserModule } from '@angular/platform-browser';
@@ -83,7 +82,6 @@ import { UserDetailsService } from './generic/services/user-details.service'
 import { DateFormatterService } from './generic/services/date-formatter.service';
 import { ClearSessionService } from './generic/services/clear-session.service';
 import { DeadlineColorService } from './generic/services/deadline-color.service';
-import { AuthenticateService } from './login/loginService/authenticate.service';
 import { TransactionTitlesService } from './generic/services/transaction-titles.service';
 import { RecordLockerUrlService } from './generic/services/record-locker-url.service';
 import { SessionService } from './generic/services/session.service';
@@ -151,6 +149,7 @@ import { SalesService } from './web-services/sales.service';
 import { PurchaseService } from './web-services/purchase.service';
 import { DamageService } from './web-services/damage.service';
 import { ViewEditInvAdjComponent } from './views/tools/view-edit-inv-adj/view-edit-inv-adj.component';
+import { ViewItemsComponent } from './views/transaction-modals/view-items/view-items.component';
 
 
 
@@ -158,7 +157,6 @@ import { ViewEditInvAdjComponent } from './views/tools/view-edit-inv-adj/view-ed
     declarations: [
         AppComponent,
         LoginPageComponent,
-        LoginComponent,
         HomeComponent,
         FileUploadComponent,
         SearchComponent,
@@ -232,6 +230,7 @@ import { ViewEditInvAdjComponent } from './views/tools/view-edit-inv-adj/view-ed
         ViewReceiptItemsModalComponent,
         InvQuantityAdjustmentsEntriesComponent,
         ViewEditInvAdjComponent,
+        ViewItemsComponent,
       
        
 
@@ -298,7 +297,6 @@ import { ViewEditInvAdjComponent } from './views/tools/view-edit-inv-adj/view-ed
         ClearSessionService,
         DeadlineColorService,
         HttpClient,
-        AuthenticateService,
         TransactionTitlesService,
         RecordLockerUrlService,
         SessionService,

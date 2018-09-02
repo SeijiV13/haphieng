@@ -1,7 +1,6 @@
 import { GenericModalComponent } from './../generic/generic-modal/generic-modal.component';
 import { Component, Input, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { AuthenticateService } from "../login/loginService/authenticate.service";
 import { SessionTimeoutModalComponent } from '../generic/session-timeout-modal/session-timeout-modal.component';
 import { SessionService } from '../generic/services/session.service';
 import { CookieService} from 'ngx-cookie';
@@ -14,7 +13,6 @@ import * as $ from 'jquery';
 	selector: 'header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.css'],
-	providers: [AuthenticateService]
 })
 
 export class HeaderComponent implements OnInit, AfterViewInit {
@@ -32,7 +30,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 	losUser: boolean;
 	@Input() withButtons = true;
 	@ViewChild('logoutModal') logoutModal: GenericModalComponent; 
-	constructor(public authenticate: AuthenticateService,
+	constructor(
 		public router: Router,
 		public sessionService: SessionService,
 		public elementRef: ElementRef,

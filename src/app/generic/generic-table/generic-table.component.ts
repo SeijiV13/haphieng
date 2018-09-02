@@ -31,6 +31,7 @@ export class GenericTableComponent implements OnInit {
   searchUrl: string = "";
   removeLoad: boolean = true;
   tableResultMessage: string = "";
+  showLoaderIcon = false;
   constructor(private tableFunctions: TableFunctionsService,
               private messageConfig: MessageConfig,
               private dataPasserService: DataPasserService) { }
@@ -40,6 +41,14 @@ export class GenericTableComponent implements OnInit {
       this.tableResultMessage  = "No Result/s Found";
    }
   
+  }
+
+  showLoader(){
+    this.showLoaderIcon = true;
+  }
+
+  hideLoader(){
+    this.showLoaderIcon = false
   }
   setPagination(pagination){
     this.paginationSelector.setPagination(pagination);
@@ -56,10 +65,6 @@ export class GenericTableComponent implements OnInit {
     if (this.results.length === 0) {
         this.tableResultMessage = "No Result/s Found";
     }
-  }
-
- showLoader(event) {
-    this.removeLoad = !event.data;
   }
 
   onButtonClick(type: string){
@@ -89,8 +94,8 @@ export class GenericTableComponent implements OnInit {
     return buttonIds;
   }
 
-  onClickColumn(){
-    this.emitColumnClicked.emit();
+  onClickColumn(result){
+    this.emitColumnClicked.emit(result);
   }
 
   onRemoveRow(index){

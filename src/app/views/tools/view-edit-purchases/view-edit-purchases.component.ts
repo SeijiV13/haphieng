@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder} from '@angular/forms';
 import { SupplierService } from '../../../web-services/supplier.service';
 import { PurchaseService } from '../../../web-services/purchase.service';
 import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
+import { ViewItemsComponent } from '../../transaction-modals/view-items/view-items.component';
 
 @Component({
   selector: 'app-view-edit-purchases',
@@ -12,8 +13,7 @@ import { GenericTableComponent } from '../../../generic/generic-table/generic-ta
   styleUrls: ['./view-edit-purchases.component.scss']
 })
 export class ViewEditPurchasesComponent implements OnInit {
-
- 
+@ViewChild('viewItemsModal') viewItemsModal: ViewItemsComponent;
 formGroup :FormGroup;
 pagination = 1;
   browseForm: FormGroup;
@@ -21,7 +21,7 @@ pagination = 1;
   resultsResults = []
   resultsKeys = [
     {name: 'rowNo'},  
-    {name: 'reference_number', objectname: 'attributes'} ,
+    {name: 'reference_number', objectname: 'attributes', behavior: 'clickable'} ,
     {name : 'date', objectname: 'attributes'},
     {name : 'supplier_id', filter: 'supplier', objectname: 'attributes', "returnvalue": "code"},
     {name: 'terms', objectname: 'attributes'},
@@ -55,6 +55,7 @@ pagination = 1;
   filter(){
     let refNo = this.formGroup.controls['refNo'].value;
     let supplier = this.formGroup.controls['supplier'].value;
+    this.resultsTable.showLoader();
     this.purchaseService.getFilteredPurchase(refNo, supplier, 1, 'posted').subscribe((data)=>{
       if(data.collection){
         this.resultsResults = (data.collection).data
@@ -62,12 +63,17 @@ pagination = 1;
         this.resultsResults = data.data;
       }
      this.resultsTable.setPagination(data.pagination);
-    }, error => this.dataPasserService.sendError(error.errors[0]))
+     this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
   }
  
   filterOnPagination(page){
     let refNo = this.formGroup.controls['refNo'].value;
     let supplier = this.formGroup.controls['supplier'].value;
+    this.resultsTable.showLoader();
     this.purchaseService.getFilteredPurchase(refNo, supplier, page, 'posted').subscribe((data)=>{
       if(data.collection){
         this.resultsResults = (data.collection).data
@@ -75,7 +81,15 @@ pagination = 1;
         this.resultsResults = data.data;
       }
      this.resultsTable.setPagination(data.pagination);
-    }, error => this.dataPasserService.sendError(error.errors[0]))
+     this.resultsTable.hideLoader();
+    }, error => {
+      this.resultsTable.hideLoader();
+      this.dataPasserService.sendError(error.errors[0])}
+    )
+  }
+
+  viewItems(result){
+    this.viewItemsModal.show('purchase', result.id);
   }
 
   print(type){

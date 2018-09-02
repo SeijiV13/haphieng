@@ -35,7 +35,7 @@ export class ViewEditCounterReceiptsComponent implements OnInit {
   ]
 
   ngOnInit() {
-    this.dataPasser.sendPageTitle("VIEW/EDIT COUNTER RECEIPTS");
+    this.dataPasser.sendPageTitle("VIEW COUNTER RECEIPTS");
     this.getPostedSales();
   }
 
