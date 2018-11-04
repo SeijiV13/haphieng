@@ -1,3 +1,4 @@
-<p>
-  payment-suppliers-entries works!
-</p>
+<generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+<generic-modal  #errorModal [buttons]='[{"buttonName": "Ok", "buttonEmit": "false"}]' [type]="'error'"></generic-modal>
+<add-payment #addPaymentModal></add-payment>
+ 

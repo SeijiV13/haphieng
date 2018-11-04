@@ -61,6 +61,7 @@ import { InvQuantityAdjustmentsEntriesComponent } from '../views/entries/inv-qua
 import { ViewEditInvAdjComponent } from '../views/tools/view-edit-inv-adj/view-edit-inv-adj.component';
 import { TransferringStockComponent } from '../views/entries/transferring-stock/transferring-stock.component';
 import { CollectionFromCustomersEntriesComponent } from '../views/entries/collection-from-customers-entries/collection-from-customers-entries.component';
+import { PaymentSuppliersEntriesComponent } from '../views/entries/payment-suppliers-entries/payment-suppliers-entries.component';
 
 
 export const routes: Routes = [
@@ -94,7 +95,7 @@ export const routes: Routes = [
                   { path: 'invDamageEntries', component: InvDamageEntriesComponent},
                   { path: 'generateSalesCounterReceipts', component: GenerateCounterReceiptsComponent},
                   { path: 'collectionFromCustomersEntries', component: CollectionFromCustomersEntriesComponent},
-                  { path: 'paymentToSuppliersEntries', component: UnderConstructionComponent},
+                  { path: 'paymentToSuppliersEntries', component: PaymentSuppliersEntriesComponent},
                   
 
                   { path: 'viewEditSales', component: ViewEditSalesComponent},
