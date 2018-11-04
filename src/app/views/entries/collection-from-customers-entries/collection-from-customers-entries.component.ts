@@ -34,4 +34,8 @@ export class CollectionFromCustomersEntriesComponent implements OnInit {
        this.addPaymentModal.show();
     }
   }
+
+  removeRow(index){
+    this.resultsResults.splice(index, 1);
+  }
 }
