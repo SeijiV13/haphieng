@@ -150,6 +150,13 @@ import { PurchaseService } from './web-services/purchase.service';
 import { DamageService } from './web-services/damage.service';
 import { ViewEditInvAdjComponent } from './views/tools/view-edit-inv-adj/view-edit-inv-adj.component';
 import { ViewItemsComponent } from './views/transaction-modals/view-items/view-items.component';
+import { TransferringStockComponent } from './views/entries/transferring-stock/transferring-stock.component';
+import { CollectionFromCustomersEntriesComponent } from './views/entries/collection-from-customers-entries/collection-from-customers-entries.component';
+import { PaymentToSuppliersEntriesComponent } from './views/entries/payment-to-suppliers-entries/payment-to-suppliers-entries.component';
+import { AddPaymentComponent } from './views/transaction-modals/add-payment/add-payment.component';
+import { AddCheckComponent } from './views/transaction-modals/add-check/add-check.component';
+import { AddDiscountComponent } from './views/transaction-modals/add-discount/add-discount.component';
+import { PaymentSuppliersEntriesComponent } from './views/entries/payment-suppliers-entries/payment-suppliers-entries.component';
 
 
 
@@ -231,6 +238,13 @@ import { ViewItemsComponent } from './views/transaction-modals/view-items/view-i
         InvQuantityAdjustmentsEntriesComponent,
         ViewEditInvAdjComponent,
         ViewItemsComponent,
+        TransferringStockComponent,
+        CollectionFromCustomersEntriesComponent,
+        PaymentToSuppliersEntriesComponent,
+        AddPaymentComponent,
+        AddCheckComponent,
+        AddDiscountComponent,
+        PaymentSuppliersEntriesComponent,
       
        
 

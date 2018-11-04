@@ -1,0 +1,47 @@
+<div bsModal #addDiscountModal="bs-modal" class="modal generic-modal-comp fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <!--MODAL CONTENT -->
+      <div class="modal-content">
+        <div class="modal-header">
+           <h4 class="text-center" class="modal-title"><b>Add Discount/s</b></h4>
+        </div>
+        <div class="modal-body">
+           <fieldset>
+              <legend><h5>Information</h5></legend>
+              <div [formGroup]="discountForm" class="row form-horizontal">
+              <div class="col-sm-6">
+                <div class="form-group">
+                   <label class="control-label col-sm-3 col-md-4" for="refNo">Description</label>
+                   <div class="col-sm-9 col-md-8 field">
+                       <input formControlName="description" type="text" class="form-control">
+                       <control-messages [control]="discountForm.controls.description"></control-messages>
+                    </div>
+               </div>
+           
+              </div>
+             <div class="col-sm-6">  
+              <div class="form-group">
+                  <label class="control-label col-sm-3 col-md-4" for="total">Amount</label>
+                  <div class="col-sm-9 col-md-8 field">
+                      <input formControlName="amount" type="text" class="form-control">
+                      <control-messages [control]="discountForm.controls.amount"></control-messages>
+                   
+                   </div>
+              </div> 
+             </div>
+             </div>
+            </fieldset>
+        
+          </div>
+        <div class="modal-footer">
+          <div>
+            <ng-container >
+                <button class="btn btn-default" (click)="hide()">Close</button>
+               <button class="btn btn-primary" (click)="addDiscount()">Add Discount</button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

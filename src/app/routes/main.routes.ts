@@ -59,6 +59,8 @@ import { AgentFileComponent } from './../views/files/agent-file/agent-file.compo
 import { CustomerBankFileComponent } from './../views/files/customer-bank-file/customer-bank-file.component';
 import { InvQuantityAdjustmentsEntriesComponent } from '../views/entries/inv-quantity-adjustments-entries/inv-quantity-adjustments-entries.component';
 import { ViewEditInvAdjComponent } from '../views/tools/view-edit-inv-adj/view-edit-inv-adj.component';
+import { TransferringStockComponent } from '../views/entries/transferring-stock/transferring-stock.component';
+import { CollectionFromCustomersEntriesComponent } from '../views/entries/collection-from-customers-entries/collection-from-customers-entries.component';
 
 
 export const routes: Routes = [
@@ -88,10 +90,10 @@ export const routes: Routes = [
                   { path: 'purchaseEntries', component: PurchaseEntriesComponent},
                   { path: 'purchaseReturnEntries', component: PurchaseReturnEntriesComponent },
                   { path: 'invQuantityAdjEntries', component: InvQuantityAdjustmentsEntriesComponent},
-                  { path: 'transferringStockEntries', component: UnderConstructionComponent},
+                  { path: 'transferringStockEntries', component: TransferringStockComponent},
                   { path: 'invDamageEntries', component: InvDamageEntriesComponent},
                   { path: 'generateSalesCounterReceipts', component: GenerateCounterReceiptsComponent},
-                  { path: 'collectionFromCustomersEntries', component: UnderConstructionComponent},
+                  { path: 'collectionFromCustomersEntries', component: CollectionFromCustomersEntriesComponent},
                   { path: 'paymentToSuppliersEntries', component: UnderConstructionComponent},
                   
 

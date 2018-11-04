@@ -1,0 +1,108 @@
+<div bsModal #addPaymentModal="bs-modal" class="modal generic-modal-comp fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <!--MODAL CONTENT -->
+    <div class="modal-content">
+      <div class="modal-header">
+         <h4 class="text-center" class="modal-title"><b>Customer Collection</b></h4>
+      </div>
+      <div class="modal-body">
+         <fieldset>
+           <legend><h5>Information</h5></legend>
+           <div [formGroup]="paymentForm" class="row form-horizontal">
+           <div class="col-sm-6">
+             <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="refNo">PR #</label>
+                <div class="col-sm-9 col-md-8 field">
+                    <input formControlName="pr" type="text" class="form-control">
+                    <control-messages [control]="paymentForm.controls.pr"></control-messages>
+                 </div>
+            </div> 
+           </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="total">Payment Date</label>
+                <div class="col-sm-9 col-md-8 field">
+                    <input formControlName="paymentDate" type="text" class="form-control">
+                    <control-messages [control]="paymentForm.controls.paymentDate"></control-messages>
+                 
+                 </div>
+            </div> 
+          </div>
+          </div>
+         </fieldset>
+         <!-- CHECK TABLE -->
+         <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="checkButtons" #checkTable [title]="'Check Payment'" [headers]="checkHeaders" [results]="checkResults" [type]="'single'" [keys]="checkResultsKeys"></generic-table>
+         <!-- DISCOUNT TABLE -->
+         <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="discountButtons" #checkTable [title]="'Discounts'" [headers]="discountHeaders" [results]="discountResults" [type]="'single'" [keys]="discountResultsKeys"></generic-table>
+         <!-- RETURNS TABLE -->
+         <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="[]" #checkTable [title]="'Returns'" [headers]="returnHeaders" [results]="returnResults" [type]="'single'" [keys]="returnResultsKeys"></generic-table>
+         <!-- TRANSACTION TABLE -->
+         <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="[]" #checkTable [title]="'Transactions'" [headers]="tranHeaders" [results]="tranResults" [type]="'single'" [keys]="tranResultsKeys"></generic-table>
+         <fieldset>
+            <legend><h5>Summary</h5></legend>
+            <div [formGroup]="summaryForm" class="row form-horizontal">
+            <div class="col-sm-6">
+              <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="refNo">Checks Payment</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="checksPayment" type="text" class="form-control">
+                     <control-messages [control]="summaryForm.controls.checksPayment"></control-messages>
+                  </div>
+             </div>
+             <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="refNo">Cash Payment</label>
+                <div class="col-sm-9 col-md-8 field">
+                    <input Formatter='{"type": "currency"}' formControlName="cashPayment" type="text" class="form-control">
+                    <control-messages [control]="summaryForm.controls.cashPayment"></control-messages>
+                 </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="refNo">Discounts</label>
+                <div class="col-sm-9 col-md-8 field">
+                    <input formControlName="discount" type="text" class="form-control">
+                    <control-messages [control]="summaryForm.controls.discount"></control-messages>
+                 </div>
+            </div> 
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="refNo">Collection Total</label>
+                <div class="col-sm-9 col-md-8 field">
+                    <input formControlName="collectionTotal" type="text" class="form-control">
+                    <control-messages [control]="summaryForm.controls.collectionTotal"></control-messages>
+                 </div>
+            </div> 
+            </div>
+           <div class="col-sm-6">
+             <div class="form-group">
+                 <label class="control-label col-sm-3 col-md-4" for="total">Total Returns</label>
+                 <div class="col-sm-9 col-md-8 field">
+                     <input formControlName="totalReturns" type="text" class="form-control">
+                     <control-messages [control]="summaryForm.controls.totalReturns"></control-messages>
+                  
+                  </div>
+             </div> 
+             <div class="form-group">
+                <label class="control-label col-sm-3 col-md-4" for="total">Balance</label>
+                <div class="col-sm-9 col-md-8 field">
+                    <input formControlName="balance" type="text" class="form-control">
+                    <control-messages [control]="summaryForm.controls.balance"></control-messages>
+                 
+                 </div>
+            </div> 
+           </div>
+           </div>
+          </fieldset>
+      
+        </div>
+      <div class="modal-footer">
+        <div>
+          <ng-container >
+              <button class="btn btn-default" (click)="hide()">Close</button>
+             <button class="btn btn-primary" (click)="addProduct()">Add Collection</button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<add-check #addCheckModal></add-check>
+<add-discount #addDiscountModal></add-discount>

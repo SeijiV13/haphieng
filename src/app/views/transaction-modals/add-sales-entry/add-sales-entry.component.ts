@@ -26,6 +26,8 @@ export class AddSalesEntryComponent implements OnInit {
     'Description',
     'Available Quantity',
     'Pending Quantity',
+    'W1 Stock',
+    'W2 Stcok',
     'Original Price'
   ];
   entryResults = [];
@@ -35,6 +37,8 @@ export class AddSalesEntryComponent implements OnInit {
     {name:"description"},
     {name:"available_quantity"},
     {name:"pending_quantity"},
+    {name: "warehouse_1_stock"},
+    {name: "warehouse_2_stock"},
     {name:"gross_price"},
   ];
   salesEntryGroup: FormGroup;
@@ -54,7 +58,7 @@ export class AddSalesEntryComponent implements OnInit {
 
   ngOnInit() {
     this.salesEntryGroup = this.fb.group({
-      agent:['', Validators.required],
+      agent:[''],
       itemCode: [''],
       category: [''],
       lastprice: [''],
@@ -66,22 +70,26 @@ export class AddSalesEntryComponent implements OnInit {
     });
     if(this.type == 'sales'){
       this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
+      this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
     }
     if(this.type == 'salesReturn'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
        this.salesEntryGroup.controls['good'].setValidators(Validators.required);
        this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
+       this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
     }
     if(this.type === 'purchase'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
        this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
        this.salesEntryGroup.controls['agent'].setValidators(null);
+       this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
     }
     if(this.type === 'purchaseReturn'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
         this.salesEntryGroup.controls['good'].setValidators(Validators.required);
         this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
        this.salesEntryGroup.controls['agent'].setValidators(null);
+       this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
     }
   }
 
