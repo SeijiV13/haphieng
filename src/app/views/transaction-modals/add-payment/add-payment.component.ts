@@ -113,4 +113,16 @@ export class AddPaymentComponent implements OnInit {
 
     }
   }
+
+  removeCheckRow(index){
+    this.checkResults.splice(index, 1);
+  }
+
+  removeDiscountRow(index){
+    this.discountResults.splice(index, 1);
+  }
+
+  addCollection(){
+    
+  }
 }
