@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AddCheckComponent implements OnInit {
   @ViewChild('addCheckModal') addCheckModal: ModalDirective;
+  @Output() emitAddCheck = new EventEmitter();
   checkForm: FormGroup;
   constructor(private formBuilder: FormBuilder) { }
 
@@ -39,7 +40,8 @@ export class AddCheckComponent implements OnInit {
   }
 
   addCheck(){
-    
+     this.hide();
+     this.emitAddCheck.emit(this.checkForm.value);
   }
 
 

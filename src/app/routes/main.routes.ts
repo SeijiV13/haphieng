@@ -62,6 +62,7 @@ import { ViewEditInvAdjComponent } from '../views/tools/view-edit-inv-adj/view-e
 import { TransferringStockComponent } from '../views/entries/transferring-stock/transferring-stock.component';
 import { CollectionFromCustomersEntriesComponent } from '../views/entries/collection-from-customers-entries/collection-from-customers-entries.component';
 import { PaymentSuppliersEntriesComponent } from '../views/entries/payment-suppliers-entries/payment-suppliers-entries.component';
+import { AdministratorControlComponent } from '../views/tools/administrator-control/administrator-control.component';
 
 
 export const routes: Routes = [
@@ -107,7 +108,7 @@ export const routes: Routes = [
                   { path: 'viewEditCounterReceipts', component: ViewEditCounterReceiptsComponent},
                   { path: 'viewEditQuantityStockAdjustments', component: ViewEditInvAdjComponent},
                   { path: 'viewEditInventoryDamages', component: ViewEditInvDamageComponent},
-                  { path: 'administratorControl', component: UnderConstructionComponent},
+                  { path: 'administratorControl', component: AdministratorControlComponent},
                   
 
                   { path: 'itemInOutTransactions', component : ItemInOutComponent},

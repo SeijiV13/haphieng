@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GenericModalComponent } from '../../../generic/generic-modal/generic-modal.component';
 import { DataPasserService } from '../../../generic/services/data-passer.service';
+import { AddPaymentComponent } from '../../transaction-modals/add-payment/add-payment.component';
 
 @Component({
   selector: 'collection-from-customers-entries',
@@ -9,7 +10,8 @@ import { DataPasserService } from '../../../generic/services/data-passer.service
 })
 export class CollectionFromCustomersEntriesComponent implements OnInit {
   @ViewChild('errorModal') errorModal: GenericModalComponent;
-  @ViewChild('addPaymentModal') addPaymentModal: GenericModalComponent;
+  @ViewChild('addPaymentModal') addPaymentModal: AddPaymentComponent;
+  customer: string = '';
   resultsHeaders = [
     "Customer",
     "Amount",
@@ -31,7 +33,7 @@ export class CollectionFromCustomersEntriesComponent implements OnInit {
 
   doAction(type){
     if(type === 'post'){
-       this.addPaymentModal.show();
+       this.addPaymentModal.show(this.customer);
     }
   }
 

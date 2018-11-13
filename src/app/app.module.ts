@@ -157,6 +157,7 @@ import { AddPaymentComponent } from './views/transaction-modals/add-payment/add-
 import { AddCheckComponent } from './views/transaction-modals/add-check/add-check.component';
 import { AddDiscountComponent } from './views/transaction-modals/add-discount/add-discount.component';
 import { PaymentSuppliersEntriesComponent } from './views/entries/payment-suppliers-entries/payment-suppliers-entries.component';
+import { AdministratorControlComponent } from './views/tools/administrator-control/administrator-control.component';
 
 
 
@@ -245,6 +246,7 @@ import { PaymentSuppliersEntriesComponent } from './views/entries/payment-suppli
         AddCheckComponent,
         AddDiscountComponent,
         PaymentSuppliersEntriesComponent,
+        AdministratorControlComponent,
       
        
 
