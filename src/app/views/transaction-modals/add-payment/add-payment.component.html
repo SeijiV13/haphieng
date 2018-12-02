@@ -33,11 +33,10 @@
          <!-- CHECK TABLE -->
          <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeCheckRow($event)" (emitType)="doAction($event)" [buttons]="checkButtons" #checkTable [title]="'Check Payment'" [headers]="checkHeaders" [results]="checkResults" [type]="'single'" [keys]="checkResultsKeys"></generic-table>
          <!-- DISCOUNT TABLE -->
-         <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeDiscountRow($event)" (emitType)="doAction($event)" [buttons]="discountButtons" #checkTable [title]="'Discounts'" [headers]="discountHeaders" [results]="discountResults" [type]="'single'" [keys]="discountResultsKeys"></generic-table>
+         <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeDiscountRow($event)" (emitType)="doAction($event)" [buttons]="discountButtons" [title]="'Discounts'" [headers]="discountHeaders" [results]="discountResults" [type]="'single'" [keys]="discountResultsKeys"></generic-table>
          <!-- RETURNS TABLE -->
-         <generic-table [paginationActive]="false" [removeRow]="false" (emitType)="doAction($event)" [buttons]="[]" #checkTable [title]="'Returns'" [headers]="returnHeaders" [results]="returnResults" [type]="'single'" [keys]="returnResultsKeys"></generic-table>
-         <!-- TRANSACTION TABLE -->
-         <generic-table [paginationActive]="false" [removeRow]="false" (emitType)="doAction($event)" [buttons]="[]" #checkTable [title]="'Transactions'" [headers]="tranHeaders" [results]="tranResults" [type]="'single'" [keys]="tranResultsKeys"></generic-table>
+         <generic-table [paginationActive]="false" [removeRow]="false" (emitType)="doAction($event)" [buttons]="returnButtons"  [title]="'Returns'" [headers]="returnHeaders" [results]="returnResults" [type]="'single'" [keys]="returnResultsKeys"></generic-table>
+
          <fieldset>
             <legend><h5>Summary</h5></legend>
             <div [formGroup]="summaryForm" class="row form-horizontal">

@@ -72,10 +72,10 @@ export class AddPaymentComponent implements OnInit {
     {name: 'amount'}
   ];
   returnResultsKeys: any[] = [
-    "rowNo",
-    "refNo",
-    "date",
-    "amount"
+    {name: "rowNo"},
+    {name: 'reference_number', objectname: 'attributes'},
+    {name: 'data', objectname: 'attributes'},
+    {name: "total", objectname: 'attributes'}
   ];
   tranResultsKeys: any[] = [];
 
@@ -88,6 +88,9 @@ export class AddPaymentComponent implements OnInit {
     {'name': "Add Discount", 'id': "disc-button", 'logo': 'glyphicon glyphicon-file', 'type': 'add-discount', 'behavior':'single'},
 
   ];
+
+  returnButtons: any[] = [];
+  tranButtons: any[] = [];
   constructor(private formBuilder: FormBuilder,
               private salesService: SalesService,
               private purchaseService: PurchaseService) { }
@@ -176,7 +179,7 @@ export class AddPaymentComponent implements OnInit {
 
   getSalesReturn(customer){
      this.salesService.getFilteredSalesReturn('', customer, '', '').subscribe((data)=>{
-       this.returnResults = data;
+       this.returnResults = data.collection.data;
      })
   }
 }
