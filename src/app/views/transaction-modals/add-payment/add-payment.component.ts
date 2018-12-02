@@ -74,7 +74,7 @@ export class AddPaymentComponent implements OnInit {
   returnResultsKeys: any[] = [
     {name: "rowNo"},
     {name: 'reference_number', objectname: 'attributes'},
-    {name: 'data', objectname: 'attributes'},
+    {name: 'date', objectname: 'attributes'},
     {name: "total", objectname: 'attributes'}
   ];
   tranResultsKeys: any[] = [];
