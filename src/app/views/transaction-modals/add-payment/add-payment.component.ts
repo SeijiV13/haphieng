@@ -131,10 +131,37 @@ export class AddPaymentComponent implements OnInit {
   
   show(customer){
     this.addPaymentModal.show();
-    if(this.type == 'customer')
-    this.getSalesReturn(customer);
-    else if(this.type == 'supplier')
-    this.getPurchaseReturn(customer);
+    if(this.type == 'customer'){
+      this.getSalesReturn(customer);
+      this.returnHeaders = [
+        "Row No.",
+        "Ref No.",
+        "Date",
+        "Amount"
+      ];
+      this.returnResultsKeys = [
+        {name: "rowNo"},
+        {name: 'reference_number', objectname: 'attributes'},
+        {name: 'date', objectname: 'attributes'},
+        {name: "total", objectname: 'attributes'}
+      ]
+    }
+    else if(this.type == 'supplier'){
+      this.getPurchaseReturn(customer);
+      this.returnResultsKeys = [
+        {name: "rowNo"},
+        {name: 'reference_number', objectname: 'attributes'},
+        {name: 'date', objectname: 'attributes'},
+        {name: "total_peso", objectname: 'attributes'},
+        {name: "total_yuan", objectname: 'attributes'}
+      ];
+      this.returnHeaders = [
+        "Row No.",
+        "Ref No.",
+        "Total Peso",
+        "Total Yuan"
+      ];
+    }
   }
 
   hide(){
@@ -173,7 +200,7 @@ export class AddPaymentComponent implements OnInit {
 
   getPurchaseReturn(supplier){
     this.purchaseService.getFilteredPurchasesReturn('', supplier, '', '').subscribe((data)=>{
-      this.returnResults = data;
+      this.returnResults = data.collection.data;
     })
   }
 

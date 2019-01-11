@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GenericModalComponent } from '../../../generic/generic-modal/generic-modal.component';
 import { DataPasserService } from '../../../generic/services/data-passer.service';
+import { AddPaymentComponent } from '../../transaction-modals/add-payment/add-payment.component';
 
 @Component({
   selector: 'app-payment-suppliers-entries',
@@ -8,8 +9,9 @@ import { DataPasserService } from '../../../generic/services/data-passer.service
   styleUrls: ['./payment-suppliers-entries.component.scss']
 })
 export class PaymentSuppliersEntriesComponent implements OnInit {
+  supplier: string = '';
   @ViewChild('errorModal') errorModal: GenericModalComponent;
-  @ViewChild('addPaymentModal') addPaymentModal: GenericModalComponent;
+  @ViewChild('addPaymentModal') addPaymentModal: AddPaymentComponent;
   resultsHeaders = [
     "Supplier",
     "Amount",
@@ -32,7 +34,7 @@ export class PaymentSuppliersEntriesComponent implements OnInit {
 
   doAction(type){
     if(type === 'post'){
-       this.addPaymentModal.show();
+       this.addPaymentModal.show(this.supplier);
     }
   }
 
