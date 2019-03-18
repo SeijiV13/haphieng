@@ -137,7 +137,9 @@ export class AddPaymentComponent implements OnInit {
     if(this.dataPasserService.selectedData['customer']){
       this.summaryForm.controls['balance'].setValue(this.dataPasserService.selectedData['customer'].initial_balance)
     }
-    
+    if(this.dataPasserService.selectedData['supplier']){
+      this.summaryForm.controls['balance'].setValue(this.dataPasserService.selectedData['supplier'].initial_balance)
+    }
   }
   
   show(customer){
