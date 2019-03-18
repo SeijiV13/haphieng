@@ -1,3 +1,4 @@
+import { AdjustmentsService } from './../../../web-services/adjustments.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import { SalesService } from '../../../web-services/sales.service';
@@ -44,7 +45,8 @@ export class ViewItemsComponent implements OnInit {
               private productService: ProductsService,
               private purchaseService: PurchaseService,
               private dataPasserService: DataPasserService,
-              private damageService: DamageService) { }
+              private damageService: DamageService,
+              private adjustmentService: AdjustmentsService) { }
 
   ngOnInit() {
   }
@@ -88,6 +90,12 @@ export class ViewItemsComponent implements OnInit {
 
     }else if(type == 'damage'){
       this.damageService.getDamageItem(id).subscribe((data)=>{
+        this.retrieveItemsOfSuspendedSale(data);
+        this.entryTable.hideLoader();
+      })
+
+    }else if(type == 'adjustments'){
+      this.adjustmentService.getAdjustment(id).subscribe((data)=>{
         this.retrieveItemsOfSuspendedSale(data);
         this.entryTable.hideLoader();
       })

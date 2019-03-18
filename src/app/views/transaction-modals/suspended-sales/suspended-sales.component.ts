@@ -1,3 +1,5 @@
+import { TransferringService } from './../../../web-services/transferring.service';
+import { AdjustmentsService } from './../../../web-services/adjustments.service';
 import { ModalDirective } from 'ngx-bootstrap';
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { SalesService } from '../../../web-services/sales.service';
@@ -35,7 +37,9 @@ export class SuspendedSalesComponent implements OnInit {
   constructor(private salesService: SalesService,
                private dataPasserService: DataPasserService,
                private purchaseService: PurchaseService,
-               private damageService: DamageService) { }
+               private damageService: DamageService,
+               private adjustmentService: AdjustmentsService,
+               private transfersService: TransferringService) { }
 
   ngOnInit() {
   }
@@ -152,6 +156,44 @@ export class SuspendedSalesComponent implements OnInit {
         }
       })
     } 
+    else if(this.type == 'adjustments'){
+      this.suspendedHeaders = [
+        "Row No.",
+        "Ref No.",
+        "Date",
+      ];
+      this.suspendedKeys = [
+        {"name": "rowNo"},
+        {"name": "reference_number", "objectname": "attributes"},
+        {"name":"data"},
+      ]
+      this.adjustmentService.getSuspendedAdjustments().subscribe((data)=>{
+        if(data.collection){
+          this.suspendedResults = (data.collection).data
+        }else if(data.data){
+          this.suspendedResults = data.data;
+        }
+      })
+    } 
+    else if(this.type == 'transfers'){
+      this.suspendedHeaders = [
+        "Row No.",
+        "Ref No.",
+        "Date",
+      ];
+      this.suspendedKeys = [
+        {"name": "rowNo"},
+        {"name": "reference_number", "objectname": "attributes"},
+        {"name":"data"},
+      ]
+      this.transfersService.getSuspendedTransfers().subscribe((data)=>{
+        if(data.collection){
+          this.suspendedResults = (data.collection).data
+        }else if(data.data){
+          this.suspendedResults = data.data;
+        }
+      })
+    } 
     this.suspendedModal.show();
   }
   hide(){
@@ -189,6 +231,20 @@ export class SuspendedSalesComponent implements OnInit {
     else if(this.type == 'damage'){
       let id = this.dataPasserService.selectedData['suspendedSales'].id
       this.damageService.getDamageItem(id).subscribe((data)=>{
+        this.emitSale.emit(data);
+        this.hide();
+      })
+    }
+    else if(this.type == 'adjustments'){
+      let id = this.dataPasserService.selectedData['suspendedSales'].id
+      this.adjustmentService.getAdjustment(id).subscribe((data)=>{
+        this.emitSale.emit(data);
+        this.hide();
+      })
+    }
+    else if(this.type == 'transfers'){
+      let id = this.dataPasserService.selectedData['suspendedSales'].id
+      this.transfersService.getTransfer(id).subscribe((data)=>{
         this.emitSale.emit(data);
         this.hide();
       })

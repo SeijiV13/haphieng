@@ -1,3 +1,5 @@
+import { TransferringService } from './web-services/transferring.service';
+import { AdjustmentsService } from './web-services/adjustments.service';
 
 
 //ANGULAR MODULES
@@ -327,6 +329,8 @@ import { AdministratorControlComponent } from './views/tools/administrator-contr
         SalesService,
         PurchaseService,
         DamageService,
+        AdjustmentsService,
+        TransferringService,
         { provide: APP_INITIALIZER, useFactory: initFactory, deps: [InitService], multi: true,},
      
     ],

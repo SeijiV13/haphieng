@@ -3,7 +3,7 @@
       <h5>SEARCH CRITERIA</h5>
   </legend>
   <div [formGroup]="formGroup" class="row form-horizontal">
-      <div class="col-md-6">
+      <!--<div class="col-md-6">
            <div class="form-group">
                <label class="control-label col-sm-3 col-md-4" for="productLineFilter">Customer Code Filter</label>
                <div class="col-sm-9 col-md-8 field">
@@ -13,9 +13,9 @@
                      </select>
                 </div>
            </div> 
-       </div>
+       </div>-->
 
-       <div class="col-md-6">
+       <div class="col-md-12">
             <div class="form-group">
                <label class="control-label col-sm-3 col-md-4" for="categoryFilter">Ref No Filter</label>
                <div class="col-sm-9 col-md-8 field">
@@ -35,5 +35,5 @@
  </fieldset>
 
 
- <generic-table [pagination]="pagination" #resultsTable (searchPagination)="filterOnPagination($event)" (selectedRow)="getSelectedProduct()" [fieldContainer]="'sales'" [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
-
+ <generic-table [pagination]="pagination" #resultsTable (searchPagination)="filterOnPagination($event)" (emitColumnClicked)="viewItems($event)" (selectedRow)="getSelectedProduct()" [fieldContainer]="'sales'" [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+   <view-items #viewItemsModal></view-items>

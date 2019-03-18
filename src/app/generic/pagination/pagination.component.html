@@ -18,11 +18,11 @@
             <li>
                 <button type="button" class="btn btn-default"  (click)="retrieveNewValues(goToPage.value)" style="font-size:12px;">Go To Page</button>
             </li>
-            <li [ngClass]="{disabled:pagination?.next_page == null}">
-                <button type="button" class="btn btn-default exemption-button" [disabled]="pagination?.is_last_page" (click)="retrieveNewValues(pagination.next_page)">></button>
+            <li>
+                <button type="button" class="btn btn-default" (click)="retrieveNewValues(pagination.next_page)">></button>
             </li>
-            <li [ngClass]="{disabled:pagination?.total_pages == null}">
-                <button type="button" class="btn btn-default exemption-button" [disabled]="pagination?.is_last_page" (click)="retrieveNewValues(pagination?.total_pages)" >>></button>
+            <li>
+                <button type="button" class="btn btn-default" (click)="retrieveNewValues(pagination?.total_pages)" >>></button>
             </li>
         </ul>
     </div>

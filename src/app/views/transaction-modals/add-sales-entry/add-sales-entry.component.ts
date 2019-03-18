@@ -72,24 +72,29 @@ export class AddSalesEntryComponent implements OnInit {
       this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
       this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
     }
-    if(this.type == 'salesReturn'){
+   else if(this.type == 'salesReturn'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
        this.salesEntryGroup.controls['good'].setValidators(Validators.required);
        this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
        this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
     }
-    if(this.type === 'purchase'){
+   else if(this.type === 'purchase'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
        this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
        this.salesEntryGroup.controls['agent'].setValidators(null);
        this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
     }
-    if(this.type === 'purchaseReturn'){
+   else if(this.type === 'purchaseReturn'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
         this.salesEntryGroup.controls['good'].setValidators(Validators.required);
         this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
        this.salesEntryGroup.controls['agent'].setValidators(null);
        this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
+    }
+    if(this.type == 'invAdjustment'){
+        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
+        this.salesEntryGroup.controls['qtyNew'].setValidators(Validators.required);
+        this.salesEntryGroup.controls['adjustmentRemarks'].setValidators(Validators.required);
     }
   }
 
@@ -103,6 +108,7 @@ export class AddSalesEntryComponent implements OnInit {
   show(customer){
     this.customer = customer;
     this.addSalesEntryModal.show();
+    if(customer)
     this.salesService.getSalesHistory(this.customer, "asd").subscribe((data)=>{
       
     })

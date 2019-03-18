@@ -1,3 +1,4 @@
+import { TransferringService } from './../../../web-services/transferring.service';
 import { ItemInOutModalComponent } from './../../transaction-modals/item-in-out-modal/item-in-out-modal.component';
 import { SuspendedSalesComponent } from './../../transaction-modals/suspended-sales/suspended-sales.component';
 import { AddSalesEntryComponent } from './../../transaction-modals/add-sales-entry/add-sales-entry.component';
@@ -63,7 +64,7 @@ export class TransferringStockComponent implements OnInit {
   constructor(private dataPasserService: DataPasserService, 
               private fb: FormBuilder,
               private customerService: CustomerService,
-              private damageService: DamageService,
+              private transferringService: TransferringService,
               private formErrorHandler: FormErrorHandlerService,
               private productService: ProductsService) { 
                 this.getDropdownValues();
@@ -143,16 +144,16 @@ export class TransferringStockComponent implements OnInit {
 
       }else{
         if(!this.retrievedSale){
-          let sale = this.createSaleReturnJson('posted');
-          this.damageService.createDamageItem(sale).subscribe((data)=>{
+          let sale = this.createStockTransferJson('posted');
+          this.transferringService.createTransfer(sale).subscribe((data)=>{
             this.salesForm.reset();
             this.resultsResults = [];
             this.retrievedSale = false;
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }else{
-          let sale = this.createSaleReturnJson('posted');
-          this.damageService.editDamageItem(this.salesForm.controls['id'].value,sale).subscribe((data)=>{
+          let sale = this.createStockTransferJson('posted');
+          this.transferringService.editTransfer(this.salesForm.controls['id'].value,sale).subscribe((data)=>{
             this.salesForm.reset();
             this.resultsResults = [];
             this.retrievedSale = false;
@@ -178,16 +179,16 @@ export class TransferringStockComponent implements OnInit {
 
       }else{
         if(!this.retrievedSale){
-          let sale = this.createSaleReturnJson('suspended');
-          this.damageService.createDamageItem(sale).subscribe((data)=>{
+          let sale = this.createStockTransferJson('suspended');
+          this.transferringService.createTransfer(sale).subscribe((data)=>{
             this.salesForm.reset();
             this.resultsResults = [];
             this.retrievedSale = false;
             this.infoModalPost.hide();
           }, error => this.dataPasserService.sendError(error.errors[0]));
         }else{
-          let sale = this.createSaleReturnJson('suspended');
-          this.damageService.editDamageItem(this.salesForm.controls['id'].value,sale).subscribe((data)=>{
+          let sale = this.createStockTransferJson('suspended');
+          this.transferringService.editTransfer(this.salesForm.controls['id'].value,sale).subscribe((data)=>{
             this.salesForm.reset();
             this.resultsResults = [];
             this.retrievedSale = false;
@@ -206,7 +207,6 @@ export class TransferringStockComponent implements OnInit {
     this.salesForm.controls['date'].setValue(sales.data.attributes.date);
     this.salesForm.controls['refNo'].setValue(sales.data.attributes.reference_number);
     this.salesForm.controls['total'].setValue(sales.data.attributes.total);
-    this.salesForm.controls['customer'].setValue(sales.data.attributes.customer_id);
     this.retrievedSale = true;
     this.salesForm.controls['refNo'].disable();
     this.resultsResults = [];
@@ -257,22 +257,22 @@ export class TransferringStockComponent implements OnInit {
   }
 
 
-  createSaleReturnJson(status){
+  createStockTransferJson(status){
     let json = {
       date: this.salesForm.controls['date'].value,
       reference_number: this.salesForm.controls['refNo'].value,
       status: status,
       total: this.salesForm.controls['total'].value,
-      customer_id: this.salesForm.controls['customer'].value,
-      damaged_products_attributes: [
+      product_transfers_attributes: [
       ]
     }
 
     for(let item of this.resultsResults){
-      json.damaged_products_attributes.push({
-        quantity: item.quantity,
-        price_override: item.price,
-        agent_id: item.agent,
+      json.product_transfers_attributes.push({
+        to: item.warehouse == 'W1' ? 'W2' : 'W1',
+        from: item.warehouse,
+        date: this.salesForm.controls['date'].value,
+        remarks: item.adjustmentRemarks,
         product_id: item.id
       })
     }
@@ -298,7 +298,7 @@ export class TransferringStockComponent implements OnInit {
 
  typeAheadRef(event){
    this.salesForm.controls['refNo'].disable();
-   this.damageService.getFilteredItemsWoutPage(event.target.value).subscribe((data)=>{
+   this.transferringService.getFilteredTransfersWithoutPage(event.target.value).subscribe((data)=>{
       if(data.data.length != 0){
         let finalref = "";
         let latestrefno = this.latestRefNoChecker(data.data)
