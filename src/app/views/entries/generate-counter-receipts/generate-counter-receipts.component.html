@@ -8,7 +8,14 @@
              <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="refNo">Counter Receipt No.</label>
                  <div class="col-sm-9 col-md-8 field">
-                     <input formControlName="counterReceiptNo" type="text" class="form-control">
+                    <div class="input-group">
+                      <input (keyup)="typeAheadRef($event)" formControlName="counterReceiptNo" type="text" class="form-control">
+                      <span class="input-group-btn">
+                        <button (click)="resetRefNo()" class="btn btn-default" type="button">
+                          Reset
+                        </button>
+                      </span>
+                    </div> 
                      <control-messages [control]="form.controls.counterReceiptNo"></control-messages>
                   </div>
              </div> 
@@ -45,8 +52,10 @@
                <div class="form-group">
                  <label class="control-label col-sm-3 col-md-4" for="customer">Customer</label>
                  <div class="col-sm-9 col-md-8 field">
-                    <input formControlName="customer" type="text" class="form-control"/>
-                    <control-messages [control]="form.controls.customer"></control-messages>
+                    <select formControlName="customer" type="text" class="form-control">
+                        <option value=""></option>
+                        <option *ngFor="let data of customers" [value]="data.code">{{data.code}} | {{data.description}}</option>
+                       </select>
                   </div>
              </div>
        
@@ -57,11 +66,11 @@
     
 
         <div class="search-button-holder">
-            <button type="button" (click)="searchReceipt()" class="btn btn-primary" >Filter</button>
+            <button type="button" (click)="filter()" class="btn btn-primary" >Filter</button>
         </div>
     
   </fieldset>
   <app-add-customer #addCustomer></app-add-customer>
-  <generic-table (emitColumnClicked)="viewCounterReceipts()" [removeRow]="false"  [buttons]="buttons" #resultsTable [title]="'RECEIPTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+  <generic-table (searchPagination)="filterOnPagination($event)"  (emitColumnClicked)="viewCounterReceipts($event)" [removeRow]="false"  [buttons]="buttons" #resultsTable [title]="'RECEIPTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
 
   <view-counter-receipts-modal #viewReceiptsModal></view-counter-receipts-modal>

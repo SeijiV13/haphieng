@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-3 col-md-4" for="total">Payment Date</label>
                 <div class="col-sm-9 col-md-8 field">
-                    <input formControlName="paymentDate" type="text" class="form-control">
+                    <datepicker [onModal]="true" [id]="'paymentDate'" [controlName]="'paymentDate'" [form]="paymentForm" [placeholder]="'MM/DD/YYYY'"></datepicker>
                     <control-messages [control]="paymentForm.controls.paymentDate"></control-messages>
                  
                  </div>
@@ -35,7 +35,7 @@
          <!-- DISCOUNT TABLE -->
          <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeDiscountRow($event)" (emitType)="doAction($event)" [buttons]="discountButtons" [title]="'Discounts'" [headers]="discountHeaders" [results]="discountResults" [type]="'single'" [keys]="discountResultsKeys"></generic-table>
          <!-- RETURNS TABLE -->
-         <generic-table [paginationActive]="false" [removeRow]="false" (emitType)="doAction($event)" [buttons]="returnButtons"  [title]="'Returns'" [headers]="returnHeaders" [results]="returnResults" [type]="'single'" [keys]="returnResultsKeys"></generic-table>
+         <generic-table #returnTable [paginationActive]="false" [removeRow]="false" (emitType)="doAction($event)" [buttons]="returnButtons"  [title]="'Returns'" [headers]="returnHeaders" [results]="returnResults" [type]="'single'" [keys]="returnResultsKeys"></generic-table>
 
          <fieldset>
             <legend><h5>Summary</h5></legend>
@@ -51,7 +51,7 @@
              <div class="form-group">
                 <label class="control-label col-sm-3 col-md-4" for="refNo">Cash Payment</label>
                 <div class="col-sm-9 col-md-8 field">
-                    <input Formatter='{"type": "currency"}' formControlName="cashPayment" type="text" class="form-control">
+                    <input Formatter='{"type": "currency"}' (keyup)="changeCashPayment()" formControlName="cashPayment" type="text" class="form-control">
                     <control-messages [control]="summaryForm.controls.cashPayment"></control-messages>
                  </div>
             </div>

@@ -28,6 +28,7 @@ export class GenericTableComponent implements OnInit {
   @Output() emitType = new EventEmitter();
   @Output() emitColumnClicked = new EventEmitter();
   @ViewChild('paginationSelector') paginationSelector: PaginationComponent;
+  @Input() removePagination = false;
   searchUrl: string = "";
   removeLoad: boolean = true;
   tableResultMessage: string = "";

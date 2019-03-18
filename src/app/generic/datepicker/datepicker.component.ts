@@ -52,13 +52,13 @@ export class DatepickerComponent implements AfterViewInit {
           self.value = $(this).val();
           self.setValue(self.value);
         },
-        beforeShow: function (input, inst) {
-          var rect = input.getBoundingClientRect();
-          setTimeout(() => {
-            inst.dpDiv.css({ top: rect.left + 40, left: rect.left + 0 });
-          }, 2)
-          return inst;
-        }
+        // beforeShow: function (input, inst) {
+        //   var rect = input.getBoundingClientRect();
+        //   setTimeout(() => {
+        //     inst.dpDiv.css({ top: rect.left + 40, left: rect.left + 0 });
+        //   }, 2)
+        //   return inst;
+        // }
 
       }).addClass('datepicker-on-modal').keypress(function (e) { })
     

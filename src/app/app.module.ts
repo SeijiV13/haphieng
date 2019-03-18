@@ -158,6 +158,7 @@ import { AddCheckComponent } from './views/transaction-modals/add-check/add-chec
 import { AddDiscountComponent } from './views/transaction-modals/add-discount/add-discount.component';
 import { PaymentSuppliersEntriesComponent } from './views/entries/payment-suppliers-entries/payment-suppliers-entries.component';
 import { AdministratorControlComponent } from './views/tools/administrator-control/administrator-control.component';
+import { GeneratedReceiptsService } from './web-services/generated-receipts.service';
 
 
 
@@ -327,6 +328,7 @@ import { AdministratorControlComponent } from './views/tools/administrator-contr
         SalesService,
         PurchaseService,
         DamageService,
+        GeneratedReceiptsService,
         { provide: APP_INITIALIZER, useFactory: initFactory, deps: [InitService], multi: true,},
      
     ],

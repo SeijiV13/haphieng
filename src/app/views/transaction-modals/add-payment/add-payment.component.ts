@@ -5,6 +5,8 @@ import { AddCheckComponent } from '../add-check/add-check.component';
 import { AddDiscountComponent } from '../add-discount/add-discount.component';
 import { SalesService } from '../../../web-services/sales.service';
 import { PurchaseService } from '../../../web-services/purchase.service';
+import { GenericTableComponent } from '../../../generic/generic-table/generic-table.component';
+import { DataPasserService } from '../../../generic/services/data-passer.service';
 
 @Component({
   selector: 'add-payment',
@@ -15,6 +17,7 @@ export class AddPaymentComponent implements OnInit {
   @ViewChild('addPaymentModal') addPaymentModal: ModalDirective;
   @ViewChild('addCheckModal') addCheckModal: AddCheckComponent;
   @ViewChild('addDiscountModal') addDiscountModal: AddDiscountComponent;
+  @ViewChild('returnTable') returnTable: GenericTableComponent;
   @Input() type: string;
   paymentForm: FormGroup;
   summaryForm: FormGroup;
@@ -93,13 +96,14 @@ export class AddPaymentComponent implements OnInit {
   tranButtons: any[] = [];
   constructor(private formBuilder: FormBuilder,
               private salesService: SalesService,
-              private purchaseService: PurchaseService) { }
+              private purchaseService: PurchaseService,
+              private dataPasserService: DataPasserService) { }
 
   ngOnInit() {
     this.paymentForm = this.initializeForm();
     this.summaryForm = this.initializeSummaryForm();
     this.disableFields();
-    
+
   }
 
   disableFields(){
@@ -121,15 +125,23 @@ export class AddPaymentComponent implements OnInit {
   initializeSummaryForm(){
     return this.formBuilder.group({
       checksPayment: [''],
-      cashPayment: [''],
+      cashPayment: ['0'],
       discount: [''],
       collectionTotal: [''],
       totalReturns: [''],
-      balance: ['']
+      balance: []
     })
+  }
+
+  setBalance(){
+    if(this.dataPasserService.selectedData['customer']){
+      this.summaryForm.controls['balance'].setValue(this.dataPasserService.selectedData['customer'].initial_balance)
+    }
+    
   }
   
   show(customer){
+    this.setBalance();
     this.addPaymentModal.show();
     if(this.type == 'customer'){
       this.getSalesReturn(customer);
@@ -180,10 +192,12 @@ export class AddPaymentComponent implements OnInit {
 
   removeCheckRow(index){
     this.checkResults.splice(index, 1);
+    this.computeValues();
   }
 
   removeDiscountRow(index){
     this.discountResults.splice(index, 1);
+    this.computeValues();
   }
 
   addCollection(){
@@ -192,21 +206,55 @@ export class AddPaymentComponent implements OnInit {
 
   addCheck(check){
     this.checkResults.push(check);
+    this.computeValues();
   }
 
   addDiscount(discount){
     this.discountResults.push(discount);
+    this.computeValues();
   }
 
   getPurchaseReturn(supplier){
-    this.purchaseService.getFilteredPurchasesReturn('', supplier, '', '').subscribe((data)=>{
+    this.returnTable.showLoader();
+    this.purchaseService.getFilteredPurchasesReturn('', supplier.code, '', '').subscribe((data)=>{
       this.returnResults = data.collection.data;
+      this.returnTable.hideLoader();
     })
   }
 
   getSalesReturn(customer){
-     this.salesService.getFilteredSalesReturn('', customer, '', '').subscribe((data)=>{
+     this.returnTable.showLoader();
+     this.salesService.getFilteredSalesReturn('', customer.code, '', '').subscribe((data)=>{
        this.returnResults = data.collection.data;
+       this.returnTable.hideLoader();
+       let totalReturns = 0;
+       for(let data of this.returnResults){
+         totalReturns = totalReturns + parseFloat(data.attributes.total);
+       }
+       this.summaryForm.controls['totalReturns'].setValue(totalReturns);
      })
+  }
+
+  changeCashPayment(){
+    this.computeValues();
+  }
+
+  computeValues(){
+    let checkAmount = 0;
+    let discountAmount = 0;
+    let cashPayment = this.summaryForm.controls['cashPayment'].value;
+    let collectionTotal = 0;
+    for(let check of this.checkResults){
+      let amount= check.amount.replace(/,/g, '');
+      checkAmount = checkAmount + parseFloat(amount);
+    }
+    for(let discount of this.discountResults){
+      let amount= discount.amount.replace(/,/g, '');
+      discountAmount = discountAmount + parseFloat(amount);
+    }
+    this.summaryForm.controls['checksPayment'].setValue(checkAmount);
+    this.summaryForm.controls['discount'].setValue(discountAmount);
+    collectionTotal = checkAmount - discountAmount +  parseFloat(cashPayment.replace(/,/g, ''));
+    this.summaryForm.controls['collectionTotal'].setValue(collectionTotal);
   }
 }

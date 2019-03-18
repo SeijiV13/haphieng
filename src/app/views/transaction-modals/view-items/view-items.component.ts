@@ -65,31 +65,30 @@ export class ViewItemsComponent implements OnInit {
     if(type == 'sale'){
       this.salesService.getSale(id).subscribe((data)=>{
          this.retrieveItemsOfSuspendedSale(data);
-         this.entryTable.hideLoader();
       })
 
     }else if(type == 'sale_return'){
       this.salesService.getSaleReturn(id).subscribe((data)=>{
         this.retrieveItemsOfSuspendedSale(data);
-        this.entryTable.hideLoader();
+ 
       })
       
     }else if(type == 'purchase'){
       this.purchaseService.getPurchase(id).subscribe((data)=>{
         this.retrieveItemsOfSuspendedSale(data);
-        this.entryTable.hideLoader();
+
       })
 
     }else if(type == 'purchase_return'){
       this.purchaseService.getPurchaseReturn(id).subscribe((data)=>{
         this.retrieveItemsOfSuspendedSale(data);
-        this.entryTable.hideLoader();
+  
       })
 
     }else if(type == 'damage'){
       this.damageService.getDamageItem(id).subscribe((data)=>{
         this.retrieveItemsOfSuspendedSale(data);
-        this.entryTable.hideLoader();
+     
       })
 
     }
@@ -130,6 +129,7 @@ export class ViewItemsComponent implements OnInit {
     
         }
       }
+      this.entryTable.hideLoader();
      
     })
  
