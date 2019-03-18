@@ -14,6 +14,7 @@ import { SupplierService } from '../../../web-services/supplier.service';
 export class PaymentSuppliersEntriesComponent implements OnInit {
   supplier: any ={};
   formGroup: FormGroup;
+  pagination = 1;
   @ViewChild('errorModal') errorModal: GenericModalComponent;
   @ViewChild('addPaymentModal') addPaymentModal: AddPaymentComponent;
   @ViewChild('resultsTable') resultsTable: GenericTableComponent;

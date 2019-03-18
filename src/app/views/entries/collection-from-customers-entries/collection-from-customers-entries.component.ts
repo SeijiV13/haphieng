@@ -17,6 +17,7 @@ export class CollectionFromCustomersEntriesComponent implements OnInit {
   @ViewChild('resultsTable') resultsTable: GenericTableComponent;
   formGroup:FormGroup;
   customer: any = {};
+  pagination = 1;
   resultsHeaders = [
     "Row No.",
     "Customer",
