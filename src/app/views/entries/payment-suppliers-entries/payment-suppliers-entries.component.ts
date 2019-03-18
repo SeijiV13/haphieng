@@ -48,9 +48,10 @@ export class PaymentSuppliersEntriesComponent implements OnInit {
   }
 
   doAction(type){
-    if(type === 'post'){
-       this.addPaymentModal.show(this.supplier);
-    }
+   if(this.supplier.id)
+   this.addPaymentModal.show(this.supplier);
+   else
+   this.errorModal.showWithCustomMessage('Please select a supplier');
   }
 
   removeRow(index){
