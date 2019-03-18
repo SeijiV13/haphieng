@@ -1,4 +1,4 @@
-<generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+<generic-table (emitType)="doAction($event)" [pagination]="pagination" #resultsTable (searchPagination)="filterOnPagination($event)" (selectedRow)="getSelectedSupplier()" [fieldContainer]="'supplier'" [title]="'RESULTS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys" [buttons]="buttons"></generic-table>
 <generic-modal  #errorModal [buttons]='[{"buttonName": "Ok", "buttonEmit": "false"}]' [type]="'error'"></generic-modal>
 <add-payment [type]="'supplier'" #addPaymentModal></add-payment>
  

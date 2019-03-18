@@ -663,3 +663,5 @@ input[type="radio"] {
 .modal{
     overflow:auto !important;
  }
+
+ .datepicker-on-modal{ z-index:99999999 !important; }

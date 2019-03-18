@@ -55,7 +55,6 @@ export class SalesService {
   getFilteredSalesReturnWithoutPage(refNo){
     return this.httpClient.getBase(`/api/v1/haphieng/sales_returns?&filters%5Breference_number=${refNo}`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);
   }
-
   
   getSuspendedSalesReturn(){
     return this.httpClient.getBase(`/api/v1/haphieng/sales_returns?filters%5Bstatus=suspend`).map(this.httpClient.handleMap).catch(this.httpClient.handleError);

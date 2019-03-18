@@ -11,7 +11,8 @@ export class AddCheckComponent implements OnInit {
   @ViewChild('addCheckModal') addCheckModal: ModalDirective;
   @Output() emitAddCheck = new EventEmitter();
   checkForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+            ) { }
 
   ngOnInit() {
     this.checkForm = this.initializeForm();
@@ -30,6 +31,7 @@ export class AddCheckComponent implements OnInit {
       
     })
   }
+
 
   show(){
     this.addCheckModal.show();

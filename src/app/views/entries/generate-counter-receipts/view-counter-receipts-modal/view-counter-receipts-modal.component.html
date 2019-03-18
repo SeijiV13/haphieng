@@ -6,7 +6,7 @@
          <h4 class="text-center" class="modal-title"><b>Counter Receipts</b></h4>
       </div>
       <div class="modal-body">
-       <generic-table #entryTable [title]="'ITEMS'" [headers]="entryHeaders" [results]="entryResults" [type]="'single'" [keys]="entryKeys"></generic-table>
+       <generic-table  #entryTable [removePagination]="true" [title]="'ITEMS'" [headers]="entryHeaders" [results]="entryResults" [type]="'single'" [keys]="entryKeys"></generic-table>
       </div>
       <div class="modal-footer">
         <div>
