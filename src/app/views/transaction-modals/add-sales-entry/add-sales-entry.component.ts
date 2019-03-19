@@ -81,15 +81,15 @@ export class AddSalesEntryComponent implements OnInit {
    else if(this.type === 'purchase'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
        this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
-       this.salesEntryGroup.controls['agent'].setValidators(null);
-       this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
+      //  this.salesEntryGroup.controls['agent'].setValidators(null);
+      //  this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
     }
    else if(this.type === 'purchaseReturn'){
        this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);
         this.salesEntryGroup.controls['good'].setValidators(Validators.required);
         this.salesEntryGroup.controls['quantity'].setValidators(Validators.required);
-       this.salesEntryGroup.controls['agent'].setValidators(null);
-       this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
+      //  this.salesEntryGroup.controls['agent'].setValidators(null);
+      //  this.salesEntryGroup.controls['agent'].setValidators(Validators.required);
     }
     if(this.type == 'invAdjustment'){
         this.salesEntryGroup.controls['warehouse'].setValidators(Validators.required);

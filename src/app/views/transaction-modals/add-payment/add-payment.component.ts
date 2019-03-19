@@ -18,6 +18,7 @@ export class AddPaymentComponent implements OnInit {
   @ViewChild('addCheckModal') addCheckModal: AddCheckComponent;
   @ViewChild('addDiscountModal') addDiscountModal: AddDiscountComponent;
   @ViewChild('returnTable') returnTable: GenericTableComponent;
+  @ViewChild('tranTable') tranTable: GenericTableComponent;
   @Input() type: string;
   paymentForm: FormGroup;
   summaryForm: FormGroup;
@@ -47,8 +48,8 @@ export class AddPaymentComponent implements OnInit {
     "Amount"
   ];
   tranHeaders: any[] = [
+    "Row No.",
     "Ref No.",
-    "Date",
     "Terms",
     "Amount"
   ];
@@ -80,7 +81,12 @@ export class AddPaymentComponent implements OnInit {
     {name: 'date', objectname: 'attributes'},
     {name: "total", objectname: 'attributes'}
   ];
-  tranResultsKeys: any[] = [];
+  tranResultsKeys: any[] = [
+    {name: "rowNo"},
+    {name: 'reference_number', objectname: 'attributes'},
+    {name: 'terms', objectname: 'attributes'},
+    {name: "total", objectname: 'attributes'}
+  ];
 
   checkButtons: any[] = [
     {'name': "Add Check Payment", 'id': "check-button", 'logo': 'glyphicon glyphicon-file', 'type': 'add-check', 'behavior':'single'},
@@ -147,6 +153,8 @@ export class AddPaymentComponent implements OnInit {
     this.addPaymentModal.show();
     if(this.type == 'customer'){
       this.getSalesReturn(customer);
+      this.getSales(customer);
+      this
       this.returnHeaders = [
         "Row No.",
         "Ref No.",
@@ -158,10 +166,24 @@ export class AddPaymentComponent implements OnInit {
         {name: 'reference_number', objectname: 'attributes'},
         {name: 'date', objectname: 'attributes'},
         {name: "total", objectname: 'attributes'}
-      ]
+      ];
+      this.tranHeaders = [
+        "Row No.",
+        "Ref No.",
+        "Terms",
+        "Amount"
+      ];
+      this.tranResultsKeys = [
+        {name: "rowNo"},
+        {name: 'reference_number', objectname: 'attributes'},
+        {name: 'terms', objectname: 'attributes'},
+        {name: "total", objectname: 'attributes'}
+      ];
+    
     }
     else if(this.type == 'supplier'){
       this.getPurchaseReturn(customer);
+      this.getPurchase(customer);
       this.returnResultsKeys = [
         {name: "rowNo"},
         {name: 'reference_number', objectname: 'attributes'},
@@ -174,6 +196,20 @@ export class AddPaymentComponent implements OnInit {
         "Ref No.",
         "Total Peso",
         "Total Yuan"
+      ];
+      this.tranHeaders = [
+        "Row No.",
+        "Ref No.",
+        "Terms",
+        "Amount in Peso",
+        "Amount in Yuan"
+      ];
+      this.tranResultsKeys = [
+        {name: "rowNo"},
+        {name: 'reference_number', objectname: 'attributes'},
+        {name: 'terms', objectname: 'attributes'},
+        {name: "total_peso", objectname: 'attributes'},
+        {name: "total_yuan", objectname: 'attributes'},
       ];
     }
   }
@@ -216,6 +252,14 @@ export class AddPaymentComponent implements OnInit {
     this.computeValues();
   }
 
+  getPurchase(supplier){
+    this.tranTable.showLoader();
+    this.purchaseService.getFilteredPurchase('', supplier.code, '', 'posted').subscribe((data)=>{
+      this.tranResults = data.collection.data;
+      this.tranTable.hideLoader();
+    })
+  }
+
   getPurchaseReturn(supplier){
     this.returnTable.showLoader();
     this.purchaseService.getFilteredPurchasesReturn('', supplier.code, '', '').subscribe((data)=>{
@@ -223,6 +267,14 @@ export class AddPaymentComponent implements OnInit {
       this.returnTable.hideLoader();
     })
   }
+
+  getSales(customer){
+    this.tranTable.showLoader();
+    this.salesService.getFilteredSales('', customer.code, '', 'posted').subscribe((data)=>{
+      this.tranResults = data.collection.data;
+      this.tranTable.hideLoader();
+    })
+ }
 
   getSalesReturn(customer){
      this.returnTable.showLoader();

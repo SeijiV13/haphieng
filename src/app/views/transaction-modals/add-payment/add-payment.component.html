@@ -30,6 +30,8 @@
           </div>
           </div>
          </fieldset>
+         <!-- TRANSACTIONS-->
+         <generic-table [paginationActive]="false"   #tranTable [title]="'Transactions'" [headers]="tranHeaders" [results]="tranResults" [type]="'single'" [keys]="tranResultsKeys"></generic-table>
          <!-- CHECK TABLE -->
          <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeCheckRow($event)" (emitType)="doAction($event)" [buttons]="checkButtons" #checkTable [title]="'Check Payment'" [headers]="checkHeaders" [results]="checkResults" [type]="'single'" [keys]="checkResultsKeys"></generic-table>
          <!-- DISCOUNT TABLE -->
