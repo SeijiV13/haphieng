@@ -96,7 +96,6 @@ export class ViewItemsComponent implements OnInit {
     }else if(type == 'adjustments'){
       this.adjustmentService.getAdjustment(id).subscribe((data)=>{
         this.retrieveItemsOfSuspendedSale(data);
-        this.entryTable.hideLoader();
       })
 
     }

@@ -230,7 +230,7 @@ export class InvQuantityAdjustmentsEntriesComponent implements OnInit {
             agent: item.attributes.agent_id,
             lastprice: "",
             quantity: item.attributes.quantity,
-            warehouse: item.attributes.warehouse_source,
+            warehouse: item.attributes.warehouse,
             good: "",
             qtyNew: item.attributes.after,
             qtyOld: item.attributes.before,

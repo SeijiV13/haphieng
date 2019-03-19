@@ -236,7 +236,7 @@ export class TransferringStockComponent implements OnInit {
             agent: item.attributes.agent_id,
             lastprice: "",
             quantity: item.attributes.quantity,
-            warehouse: item.attributes.warehouse_source,
+            warehouse: item.attributes.warehouse,
             good: "N",
             qtyNew: "",
             adjustmentRemarks: "",
@@ -269,9 +269,10 @@ export class TransferringStockComponent implements OnInit {
 
     for(let item of this.resultsResults){
       json.product_transfers_attributes.push({
-        to: item.warehouse == 'W1' ? 'W2' : 'W1',
-        from: item.warehouse,
+        to: item.warehouse,
+        from: item.warehouse == 'W1' ? 'W2' : 'W1',
         date: this.salesForm.controls['date'].value,
+        quantity: item.qtyNew,
         remarks: item.adjustmentRemarks,
         product_id: item.id
       })

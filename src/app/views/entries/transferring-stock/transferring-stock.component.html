@@ -62,5 +62,5 @@
  <app-add-customer #addCustomer></app-add-customer>
  <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
  <app-add-sales-entry [addTitle]="'Add Transferring Stock Entry'" [type]="'transfStock'" #addSalesEntry (entry)="pushNewItem($event)"></app-add-sales-entry>
- <app-suspended-sales [type]="'transferring'" (emitSale)="retrieveSuspendedSale($event)" #suspendedSales></app-suspended-sales>
+ <app-suspended-sales [type]="'transfers'" (emitSale)="retrieveSuspendedSale($event)" #suspendedSales></app-suspended-sales>
  <app-item-in-out-modal #itemInOutModal></app-item-in-out-modal>
