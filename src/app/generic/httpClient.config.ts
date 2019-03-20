@@ -17,6 +17,9 @@ export class HttpClient {
   public baseUrl: string;
   public servletUrl: string;
   public env: string;
+  public yuanRate: string;
+  public wcDisc: string;
+  public rcDisc: string;
   public allowedTransactions: any[];
 
   constructor(private http: Http,
@@ -30,10 +33,15 @@ export class HttpClient {
     this.baseUrl = _init.getConfig('host');
     this.servletUrl = _init.getConfig('servlet');
     this.env = _init.getConfig('env');
-
+    this.yuanRate = _init.getConfig('yuan-rate');
+    this.wcDisc = _init.getConfig('wc-discount');
+    this.rcDisc = _init.getConfig('rc-discount');
     localStorage.setItem('host', this.baseUrl);
     localStorage.setItem('servlet', this.servletUrl);
     localStorage.setItem('env', this.env);
+    localStorage.setItem('yuanRate',  this.yuanRate);
+    localStorage.setItem('wcDisc', this.wcDisc);
+    localStorage.setItem('rcDisc', this.rcDisc);
   }
 
   createAuthorizationHeader(headers: Headers) {

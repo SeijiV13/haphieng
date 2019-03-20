@@ -125,7 +125,25 @@ export class SalesEntriesComponent implements OnInit {
     for(let result of this.resultsResults){
       total = total + result.amount;
     }
-    this.salesForm.controls['total'].setValue(total);
+    let finalTotal = this.computeDiscountPercentage(total)
+    this.salesForm.controls['total'].setValue(finalTotal);
+  }
+
+  computeDiscountPercentage(total){
+    let wcdisc = parseFloat(localStorage.getItem('wcDisc'));
+    let rcdisc = parseFloat(localStorage.getItem('rcDisc'));
+    let finalTotal = 0;
+    if(this.salesForm.controls['wcrc'].value){
+      if(this.salesForm.controls['wcrc'].value == 'WC'){
+       finalTotal =  total - ((wcdisc/100) * total);
+      }
+      else if(this.salesForm.controls['wcrc'].value == 'RC'){
+        finalTotal =  total - ((rcdisc/100) * total);
+      }
+      return finalTotal;
+    }else{
+      return total;
+    }
   }
 
   doAction(type){

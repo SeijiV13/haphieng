@@ -122,7 +122,7 @@ export class PurchaseReturnEntriesComponent implements OnInit {
       total = total + result.amount;
     }
     this.purchaseForm.controls['totalpeso'].setValue(total);
-    this.purchaseForm.controls['totalyuan'].setValue(total / 8.13)
+    this.purchaseForm.controls['totalyuan'].setValue(total / parseFloat(localStorage.getItem('yuanRate')))
   }
 
 
