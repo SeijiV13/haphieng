@@ -1,6 +1,6 @@
 {
   
-    "host": "http://haphieng-staging.herokuapp.com",
+    "host": "http://haphieng-production.herokuapp.com",
     "yuan-rate": "8.13",
     "wc-discount": "35",
     "rc-discount": "15"
