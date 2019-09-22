@@ -275,7 +275,8 @@ export class SalesEntriesComponent implements OnInit {
             adjustmentRemarks: "",
 
             price: selecteditem[0]['price'],
-            amount: selecteditem[0]['amount']
+            amount: selecteditem[0]['amount'],
+            discountedAmount: this.computeDiscountPercentage(selecteditem[0]['amount'])
             
           })
           this.computeTotal();
