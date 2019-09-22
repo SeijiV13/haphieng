@@ -36,7 +36,8 @@ export class SalesEntriesComponent implements OnInit {
     "Agent",
     "Price",
     "Amount",
-    "Remove"
+    "Discounted Amount",
+    "Remove",
   ]
   resultsResults = [];
   resultsKeys = [
@@ -50,6 +51,7 @@ export class SalesEntriesComponent implements OnInit {
      {"name": "agent", "filter": "agent", "returnvalue": "name"},
      {"name": "price"},
      {"name": "amount"},
+     {"name": "discountedAmount"}
   ];
     buttons = [
     {'name': "Post", 'id': "post-button", 'logo': 'glyphicon glyphicon-file', 'type': 'post', 'behavior':'single'},
@@ -58,7 +60,7 @@ export class SalesEntriesComponent implements OnInit {
     {'name': "Item Transaction", 'id': "trans-button", 'logo': 'glyphicon glyphicon-file', 'type': 'itemtrans', 'behavior':'single'}
   ];
   retrievedSale: boolean = false;
-
+  chosenCustomer: any;
   customers : Array<any>;
   constructor(private dataPasserService: DataPasserService, 
               private fb: FormBuilder,
@@ -116,6 +118,7 @@ export class SalesEntriesComponent implements OnInit {
     }
     //compute for amount
     entry['amount'] = parseFloat(entry['price']) * parseFloat(entry['quantity']);
+    entry["discountedAmount"] = this.computeDiscountPercentage(entry['amount']);
     this.resultsResults.push(entry);
     this.computeTotal();
   }
@@ -123,10 +126,10 @@ export class SalesEntriesComponent implements OnInit {
   computeTotal(){
     let total = 0
     for(let result of this.resultsResults){
-      total = total + result.amount;
+      total = total + result.discountedAmount;
     }
-    let finalTotal = this.computeDiscountPercentage(total)
-    this.salesForm.controls['total'].setValue(finalTotal);
+
+    this.salesForm.controls['total'].setValue(total);
   }
 
   computeDiscountPercentage(total){
@@ -358,6 +361,17 @@ export class SalesEntriesComponent implements OnInit {
   resetRefNo(){
     this.salesForm.controls['refNo'].enable();
     this.salesForm.controls['refNo'].reset();
+  }
+
+  changeValueOnEditTable(event) {
+    (this.resultsResults[event.index])[event.key.name] = event.value;
+  }
+
+  getCustomerDetails(){
+    this.customerService.getCustomer(this.salesForm.controls["customer"].value).subscribe((data) => {
+      this.salesForm.controls["wcrc"].setValue(data.customer_type);
+      this.chosenCustomer = data;
+    })
   }
 
 

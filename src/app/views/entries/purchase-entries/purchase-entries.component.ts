@@ -57,6 +57,7 @@ export class PurchaseEntriesComponent implements OnInit {
     {'name': "Item Transaction", 'id': "trans-button", 'logo': 'glyphicon glyphicon-file', 'type': 'itemtrans', 'behavior':'single'}
   ];
   suppliers: Array<any>;
+  chosenSupplier: any;
   constructor(private dataPasserService: DataPasserService, 
              private fb: FormBuilder,
              private supplierService: SupplierService,
@@ -343,4 +344,14 @@ export class PurchaseEntriesComponent implements OnInit {
    this.purchaseForm.controls['refNo'].enable();
    this.purchaseForm.controls['refNo'].reset();
  }
+
+  changeValueOnEditTable(event) {
+    (this.resultsResults[event.index])[event.key.name] = event.value;
+  }
+
+  getSupplierDetails() {
+    this.supplierService.getSupplier(this.purchaseForm.controls["supplier"].value).subscribe((data) => {
+      this.chosenSupplier =data;
+    })
+  }
 }

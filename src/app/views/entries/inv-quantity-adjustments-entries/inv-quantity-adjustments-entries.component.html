@@ -61,7 +61,7 @@
  <generic-modal  #errorModal [buttons]='[{"buttonName": "Ok", "buttonEmit": "false"}]' [type]="'error'"></generic-modal>
  <generic-modal (emitAction)="postTransaction()"  #infoModalPost [buttons]='[{"buttonName": "No", "buttonEmit": false}, {"buttonName": "Yes", "buttonEmit": true}]' [type]="'confirmation'"></generic-modal>
  <app-add-customer #addCustomer></app-add-customer>
- <generic-table [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
+ <generic-table (emitChangeEdit)="changeValueOnEditTable($event)"  [paginationActive]="false" [removeRow]="true" (emitRemoveRow)="removeRow($event)" (emitType)="doAction($event)" [buttons]="buttons" #resultsTable [title]="'ITEMS'" [headers]="resultsHeaders" [results]="resultsResults" [type]="'single'" [keys]="resultsKeys"></generic-table>
  <app-add-sales-entry [addTitle]="'Add Inventory Quantity Adjusments'" [type]="'invAdjustment'" #addSalesEntry (entry)="pushNewItem($event)"></app-add-sales-entry>
   <app-suspended-sales [type]="'adjustments'" (emitSale)="retrieveSuspendedSale($event)" #suspendedSales></app-suspended-sales>
  <app-item-in-out-modal #itemInOutModal></app-item-in-out-modal>

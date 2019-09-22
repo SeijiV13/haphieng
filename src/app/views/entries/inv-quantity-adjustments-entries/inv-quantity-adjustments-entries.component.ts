@@ -316,4 +316,8 @@ export class InvQuantityAdjustmentsEntriesComponent implements OnInit {
     this.salesForm.controls['refNo'].reset();
   }
 
+   changeValueOnEditTable(event) {
+    (this.resultsResults[event.index])[event.key.name] = event.value;
+  }
+
 }

@@ -55,7 +55,8 @@ export class PurchaseReturnEntriesComponent implements OnInit {
     {'name': "Resume", 'id': "resume-button", 'logo': 'glyphicon glyphicon-pencil', 'type': 'resume', 'behavior':'single'},
     {'name': "Suspend", 'id': "suspend-button", 'logo': 'glyphicon glyphicon-download', 'type': 'suspend', 'behavior':'single'},
     {'name': "Item Transaction", 'id': "trans-button", 'logo': 'glyphicon glyphicon-file', 'type': 'itemtrans', 'behavior':'single'}
-  ]
+  ];
+  chosenSupplier: any;
   suppliers: Array<any>;
   retrievedSale:boolean = false;
   constructor(private dataPasserService: DataPasserService, 
@@ -344,5 +345,15 @@ export class PurchaseReturnEntriesComponent implements OnInit {
    this.purchaseForm.controls['refNo'].enable();
    this.purchaseForm.controls['refNo'].reset();
  }
+
+   changeValueOnEditTable(event) {
+    (this.resultsResults[event.index])[event.key.name] = event.value;
+  }
+
+  getSupplierDetails() {
+    this.supplierService.getSupplier(this.purchaseForm.controls["supplier"].value).subscribe((data) => {
+      this.chosenSupplier =data;
+    })
+  }
 
 }

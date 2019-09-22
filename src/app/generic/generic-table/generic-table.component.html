@@ -35,7 +35,7 @@
                   <TR class="row-result" (click)="tableFunctions.onTableRowClick($event, result, dataPasserService.selectedData, processButtonId(), fieldContainer); emitSelectedRow()" *ngFor="let result of results; let i = index">
                       <TD style="display:none" class="checkbox-container"><input (change)="tableFunctions.onUpdateCheckBox($event, result)" name="checkbox-results" type="checkbox" [value]="result"
                               class="checkbox-results"></TD>
-                      <td *ngFor="let key of keys">
+                      <td contenteditable="true" (keyup)="changeValueOnEditContent($event, key, i)" *ngFor="let key of keys;">
                           <ng-container *ngIf="key.name !== 'rowNo'">
                                <ng-container *ngIf="key.behavior === 'clickable'">
                                  <ng-container *ngIf="key.filter">

@@ -59,6 +59,7 @@ export class SalesReturnEntriesComponent implements OnInit {
   ]
   customers: Array<any>;
   retrievedSale: boolean = false;
+  chosenCustomer: any;
   constructor(private dataPasserService: DataPasserService,
              private fb: FormBuilder,
              private customerService: CustomerService,
@@ -67,7 +68,6 @@ export class SalesReturnEntriesComponent implements OnInit {
              private productService: ProductsService) {
                this.getDropdownValues();
               }
-
   ngOnInit() {
     this.dataPasserService.sendPageTitle("SALES RETURN ENTRY");
     this.salesForm = this.fb.group({
@@ -336,5 +336,15 @@ export class SalesReturnEntriesComponent implements OnInit {
    this.salesForm.controls['refNo'].enable();
    this.salesForm.controls['refNo'].reset();
  }
+
+  changeValueOnEditTable(event) {
+    (this.resultsResults[event.index])[event.key.name] = event.value;
+  }
+
+  getCustomerDetails(){
+    this.customerService.getCustomer(this.salesForm.controls["customer"].value).subscribe((data) => {
+      this.chosenCustomer = data;
+    })
+  }
 
 }

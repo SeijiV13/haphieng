@@ -19,6 +19,8 @@ export class GenericTableComponent implements OnInit {
   @Input() primaryKey: string;
   @Input() removeRow: boolean;
   @Input() pagination: any;
+
+  @Output() emitChangeEdit = new EventEmitter();
   @Output() selectedRow = new EventEmitter();
   @Output() emitRemoveRow = new EventEmitter();
   @Output() searchPagination = new EventEmitter();
@@ -118,5 +120,9 @@ export class GenericTableComponent implements OnInit {
   filter(item, filter, returnvalue){
     let customer = this.dataPasserService.dropdowns[filter].filter(value=> value.id == item);
     return customer[0][returnvalue];
+  }
+
+  changeValueOnEditContent(event, key, i) {
+    this.emitChangeEdit.emit({value: event.target.innerText, key: key, index: i});
   }
 }
